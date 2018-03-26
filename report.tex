@@ -1,0 +1,123 @@
+ \documentclass[a4paper, 12pt]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{lmodern} % Pour changer le pack de police
+\usepackage{makeidx}
+\usepackage{layout}
+
+\usepackage{graphicx}   % For images 
+
+% Bibliography 
+\usepackage[backend=bibtex]{biblatex}
+\bibliography{bibliographie}
+
+% SETTINGS
+\usepackage[top=1in, bottom=1in, left=1in,right=1in,footskip=0.5in,
+headheight=15.5pt]{geometry} 
+
+% ========= FOR LINKS ============= % 
+\usepackage{color}   %May be necessary if you want to color links
+\usepackage{hyperref}	% clickable links 
+\hypersetup{
+    colorlinks=true, %set true if you want colored links
+    linktoc=all,     %set to all if you want both sections and subsections linked
+    linkcolor=black,  %choose some color if you want links to stand out
+}
+
+% =========  Text Style ============= % 
+%\usepackage{pslatex} % for times new roman, old package, but works
+
+\usepackage{float} %used for figure placement with H as a parameter
+\usepackage{setspace}
+\usepackage{float}
+\usepackage{enumerate}
+
+\usepackage[font=small,labelfont=bf]{caption}
+\def\figurename{\textbf{Figure }}
+
+%======= HEADERS/FOOTERS ====== % 
+\usepackage{fancyhdr}
+%\usepackage{titleps}
+\fancypagestyle{plain} { 
+	\fancyhead[R]{}
+	% Left footer
+	\fancyfoot[L]{\emph{Departement Informatique, Université Science et Technologies USTO, Oran}}
+	% Right footer ( \thepage is page number ) 
+	\fancyfoot[R]{\thepage}
+	\fancyfoot[C]{}
+	
+	\renewcommand{\headrulewidth}{0.4pt}
+	\renewcommand{\footrulewidth}{0.4pt}
+}
+
+\fancypagestyle{plain_nofoot} 
+{
+	\fancyhf{}
+	\fancyhead[R]{}
+	\fancyhead[L]{\rightmark}
+	\fancyfoot[R]{\thepage}
+    \renewcommand{\headrulewidth}{1pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
+% Pour supprimer le footer en présence des footnotes
+\newcommand{\FancyFootNote}[1]{
+    \footnote{#1}
+    \thispagestyle{plain_nofoot} %change pagestyle for this page only.
+}
+
+% ====================================================%
+% =================== DOCUMENT ======================%
+% ====================================================%
+\pagenumbering{roman} %numbering before main content starts
+
+\title{Projet Fin Etude}
+\author{Serious Person 1, Serious Person 2}
+\date{\today}
+
+\makeindex
+
+\begin{document}	
+	\maketitle
+%	\layout			% verifier dimensions/ structure de la page
+
+	\pagestyle{fancy}	
+
+	\chapter*{Abstract} 
+
+	\pagestyle{plain}	
+
+	\pdfbookmark[0]{Contents}{contents}
+	\tableofcontents
+	
+	\pagenumbering{arabic} %reset numbering to normal for the main content
+	
+% Chapitre1/intro
+	\input{Parts/ChapitreIntroduction.tex}
+%Chapitre 2	
+	\input{Parts/ChapitreServicesWeb.tex}
+%Chapitre 3
+	\input{Parts/ChapitreGraphes.tex}
+%Chapitre 4
+	\chapter{Développement}
+		\section{Technologies utilisées}
+		\subsection{NodeJs}
+			Pour l'API, parler des avantages : performances, moteur V8, flexibilités...  
+		\subsection{Neo4J}
+			Pourquoi choisir une BDD orienté Graph, pourquoi Neo4J , ..etc.
+		\subsection{MongoDB}
+		
+	\section{Modèle de données}
+	\section{Formulation des requêtes}
+	\section{Implémentation}
+%Chapitre 5
+	\chapter{Conclusion}
+		Evaluer le résultat 
+
+	\newpage
+	left blank
+	\newpage
+	\listoffigures
+	\printbibliography
+\end{document}

@@ -1,0 +1,58 @@
+\chapter{Représentation du réseau routier}
+	\section{Généralités sur les graphes}
+	\subsection{Définition}
+	Définir un graphe, noeud, arc, ..etc, avec examples
+	
+	\section{Avantages d'utilisation d'un graphe}
+	\subsection{Domaines d'utilisation des graphes}
+	Citer certains domaines qui utilisent des graphes
+	\subsection{Recherche de chemins}
+	Ce qu'est un chemin, caractéristiques d'un chemin dans un graphe. Parler des algorithmes connus : Djikstra, Bellmand Ford et quelques contraintes (poids..etc)
+	
+	\section{Données collectées}
+	\subsection{ETO (Entreprise de Transport d'Oran)}
+	\begin{itemize}
+	\item Nous avons été acceuilis par un des responsable de l'ETO, qui nous a fourni plusieurs informations sur ( comment marche chaque ligne, frequences, horaires, temps d'été/hiver...etc)
+	\item Parler des données des lignes de l'ETO qu'il nous a fourni
+	\item Parler des inconvenients ? Adresses non completes, informations mal classées,...
+	\item Remerciements .
+	\end{itemize}
+	\subsection{DTW (Direction Transport)}
+	** To be done
+	\subsection{Données supplémentaires}
+	Données qu'on a ajouté nous-même, parler de l'idée du crowd-sourcing.
+	\subsection{Traitement de données}
+	Comment on a utiliser ces données (ex : trouver coordonnées, calculer distance avec les coordonnées), et les outils/programmes écrits pour automatiser.. si possible).
+	
+	** Nous serons contraint d'utiliser les adresses données comme premiere version, vu l'absence de données GPS, nous (*ajouter une fonctionnalité pour pouvoir integrer aisément les coordonnées GPS au dessus des données existantes.
+
+
+	\section{Construction du graphe}
+	\subsection{Différente approches}
+	\begin{itemize}
+	\item \textbf{Outils Open Source (OpenTripPlanner} : 
+		Il existe plusieurs outils qui proposent ce service, en particulier OpenTripPlanner : Un projet Open Source qui permet de créer un réseau routier à partir de données GTFS \FancyFootNote{GTFS (General Transit Feed Specification : ...}, ces données seront ensuite intégrées avec OpenStreetMap et stockée sur le serveur, qui exposera une API REST pour questionner le serveur : Recherche de Chemin, Possibilité d'intégrer les horaires, ...etc.
+		
+		Vu la nature un peu particulière du réseau d'Oran, et la non-disponibilité des données (Données officielles des lignes et données (adresses) sur OpenStreetMap), cette solution ne sera pas envisagée. 
+		Cependant, l'application prendra une architecture flexible permettant d'intégrer, au futur, de tels outils rapidement au cas de nécessité.
+	\item \textbf{Représentation indépendante de chaque ligne}
+	Une des approches considérées était de représenter chaque ligne indépendamment, l'algorithme du service aura à chercher des points de liaison entre ces lignes.
+	L'avantage principal de cette approche est la facilité de manipulation de ces données de lignes, en ajoutant/supprimant des lignes sans conflits.
+	Cette approche présente par contre un inconvénient majeure au niveau de performance, vu que l'utilisation d'un algorithme de PathFinding requiert l'utilisation de plusieurs tables (lignes) à chaque requête. Ce qui nous a mené à l'approche suivante.
+	\item \textbf{Représentation en graphe}:
+	
+	\begin{itemize}
+	\item Representation la plus intuitive
+	\item Permet un accès plus rapide, en stockant le graphe déja construit (i.e stocker dans une base de données orientée graphe)
+	\item Avantages utilisation des algorithmes de recherche de chemin efficaces, meilleures performances...etc
+	\item Citer les inconvenients (*Proposer les solutions et changements faits pour contrer ça) Inconvénients lors de la modification, modification d'une station peut affecter plusieurs lignes, modification d'une ligne peut poser plusieurs conflits ou imposer la reconstruction du graphe...
+	\end{itemize}
+
+	\end{itemize}
+	\subsection{Représentation choisie}
+	décrire la representation, ainsi que les avantages de celle ci ( ou les inconvenients des autres)
+	\subsection{Résultat final}
+	\subsection{Contraintes}
+	Parler de quelques limitations (Espace, complexité d'ajout...etc)
+
+				
