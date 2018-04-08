@@ -1,7 +1,21 @@
 \chapter{Représentation du réseau routier}
+**
+**Un graphe sert mieux à définir l'existence d'une relation entre objets tels qu'une ligne entre deux stations de métro, une relation d'amitié dans un réseau social ou encore une rue entre deux carrefours
+
 	\section{Généralités sur les graphes}
-	\subsection{Définition}
-	Définir un graphe, noeud, arc, ..etc, avec examples
+	La théorie des graphes est très probablement née en 1735 lorsque Leonhard Euler (1707 - 1783) résout le problème des sept ponts de Königsberg. 
+L’énoncé de ce problème est: La ville de Königsberg est une ville autour d'un fleuve, elle compte quatre berges et sept ponts les reliant. Le but du jeu est de savoir s'il existe un chemin permettant d'emprunter tous les ponts une fois et une seule et revenir au point de départ. Le problème s'appelle, de façon plus formelle, la recherche d'un cycle eulérien dans un graphe. Euler a démontré que ce problème n'avait pas de solution.
+
+	\subsection{Définitions}
+	\textbf{Graphe :} Un graphe est composé de sommets (\textbf{vertices}) ou noeuds (\textbf{nodes}), et d'arcs (\textbf{edges}) ou d’arêtes (\textbf{links}) reliant certains de ces sommets ou noeuds.
+	Un graphe G est défini de manière formelle par un couple (S,A) où :
+	\begin{itemize}
+	\item S est un ensemble fini d'éléments. Chacun de ces éléments est appelé sommet du graphe.
+	\item A est un sous ensemble (éventuellement nul) de SxS. Chacun de ces éléments de A est appelé arc ou arête.
+	\end{itemize}
+	Chaque arc est associé un poids qui le décrit. Par exemple, dans un réseau social il peut définir la nature de la relation (ami, famille, collègue) et dans un réseau routier la longueur d’une rue. Parfois le terme coût est utilisé. 
+	
+	\textbf{Graphe connexe: } De manière intuitive, la notion de connexité est triviale, mais importante dans notre cas. Un graphe est connexe si on peut atteindre n’importe quel sommet à partir d’un sommet quelconque en parcourant différentes arêtes.
 	
 	\section{Avantages d'utilisation d'un graphe}
 	\subsection{Domaines d'utilisation des graphes}
