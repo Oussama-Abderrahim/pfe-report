@@ -1,138 +1,167 @@
-	\chapter{Les Services Web}
-	\newpage
-		\section{Introduction} 
-			\paragraph{(Laisser l'introduction et conclusion à la fin)}
-			\begin{itemize}
-			\item Web passé de centré interaction utilisateur à plus d'interaction entre applications..
-			\item avant les services web
-			\end{itemize}
+\chapter{Les Services Web}
+\newpage
+\section{Introduction} 
+\paragraph{(Laisser l'introduction et conclusion à la fin)}
+\begin{itemize}
+	\item Web passé de centré interaction utilisateur à plus d'interaction entre applications..
+	\item avant les services web
+\end{itemize}
 		
-		\section{Avant les services web}
-		Parler brièvement des prédecesseurs (COBRA, DCOM) middlewares et protocoles, XML-RPC.\newline
+\section{Avant les services web}
+Parler brièvement des prédecesseurs (COBRA, DCOM) middlewares et protocoles, XML-RPC.\newline
 		
-		Vers les années 90s, les technologies Web et les technologies des systèmes distribuées ont commencé à gagner en popularité. Les technologies Web étaient principalement conçus pour envoyer des informations d'utilisateur à un autre, par format mail avec pièce jointe ou en HTML. Les technologies de systèmes distribués, cependant, étaient principalement conçus pour connecter des ordinateurs, ou plus spécifiquement des applications exécutées sur ces machines, et donc leurs permettre de s'échanger des informations ou collaborer sur des tâches.
-		Chacune de ces deux technologies avaient des objectifs différents, et évoluaient vers un chemin différent. Ainsi, les Services Web sont apparu avec but de rassembler ces deux technologies sur un seul objectif commun reliant les deux.\cite{W3Road}
+Vers les années 90s, les technologies Web et les technologies des systèmes distribuées ont commencé à gagner en popularité. Les technologies Web étaient principalement conçues pour envoyer des informations d'utilisateur à un autre, en HTML par example. Les technologies de systèmes distribués, cependant, étaient principalement conçues pour connecter des ordinateurs, ou plus spécifiquement des applications exécutées sur ces machines, et donc leurs permettre de s'échanger des informations ou collaborer sur des tâches.
+Chacune de ces deux technologies avaient des objectifs différents, et évoluaient vers un chemin différent. Ainsi, les Services Web sont apparu avec but de rassembler ces deux technologies sur un seul objectif commun reliant les deux.\cite{W3Road}
 
-		\section{Définition}
-		Un Service Web est un programme dynamique qui utilise le schéma Client-Serveur pour permettre la communication et l'échange de données entre des applications à travers un réseau (Internet par exemple).
-		Il utilise un système de messagerie standard\FancyFootNote{Un protocole standard est un protocole formalisé (fixé) accepté par une autorité (comme la W3C) ou la plupart des parties qui l'implémentent.} comme XML mais n'est lié à aucun système d'exploitation ou langage de programmation.
+\section{Définition}
+Un Service Web est un programme dynamique qui utilise le schéma Client-Serveur pour permettre la communication et l'échange de données entre des applications à travers un réseau (Internet par exemple).
+Il utilise un système de messagerie standard\FancyFootNote{Un protocole standard est un protocole formalisé (fixé) accepté par une autorité (comme la W3C) ou la plupart des parties qui l'implémentent.} comme XML mais n'est lié à aucun système d'exploitation ou langage de programmation.
 
-	Quelques définitions officielles :
-			\begin{enumerate}
-			\item W3C :
-			Un Service Web est un composant logiciel conçu pour permettre l'interaction interopérable entre machines à travers un réseau. Il a une interface décrite en un format compris par une machine (Spécifiquement WSDL). Les autres systèmes interagissent avec le Service Web d'une manière définie par sa description en utilisant des messages SOAP, généralement transmis en utilisant HTTP avec un XML sérialisé en parallèle avec d'autres Standard du Web.\cite{W3}
-			\item Wikipedia : Un service web (ou service de la toile) est un protocole d'interface informatique de la famille des technologies web permettant la communication et l'échange de données entre applications et systèmes hétérogènes dans des environnements distribués. Il s'agit donc d'un ensemble de fonctionnalités exposées sur internet ou sur un intranet, par et pour des applications ou machines, sans intervention humaine, de manière synchrone ou asynchrone. Le protocole de communication est défini dans le cadre de la norme SOAP dans la signature du service exposé (WSDL). Actuellement, le protocole de transport est essentiellement HTTP(S).\cite{Wikipedia}
-			\end{enumerate}
+Quelques définitions officielles :
+\begin{enumerate}
+	\item W3C :
+	      Un Service Web est un composant logiciel conçu pour permettre l'interaction interopérable entre machines à travers un réseau. Il a une interface décrite en un format compris par une machine (Spécifiquement WSDL). Les autres systèmes interagissent avec le Service Web d'une manière définie par sa description en utilisant des messages SOAP, généralement transmis en utilisant HTTP avec un XML sérialisé en parallèle avec d'autres Standard du Web.\cite{W3}
+	\item Wikipedia : Un service web (ou service de la toile) est un protocole d'interface informatique de la famille des technologies web permettant la communication et l'échange de données entre applications et systèmes hétérogènes dans des environnements distribués. Il s'agit donc d'un ensemble de fonctionnalités exposées sur internet ou sur un intranet, par et pour des applications ou machines, sans intervention humaine, de manière synchrone ou asynchrone. Le protocole de communication est défini dans le cadre de la norme SOAP dans la signature du service exposé (WSDL). Actuellement, le protocole de transport est essentiellement HTTP(S).\cite{Wikipedia}
+\end{enumerate}
 
-		\section{Principe et objectifs}
-		\subsection{Pourquoi les services Web ?}
-		Les services web ont été conçus pour permettre l'interaction interopérable entre machines à travers un réseau, en d'autre termes, permettre à différents systèmes de fonctionner et communiquer entre eux.\newline
+\section{Principe et objectifs}
+\subsection{Pourquoi les services Web ?}
+Les services web ont été conçus pour permettre l'interaction interopérable entre machines à travers un réseau, en d'autre termes, permettre à différents systèmes de fonctionner et communiquer entre eux.\newline
 Puisque différentes applications peuvent être écrites en différents langages et architectures, et sont souvent ramenées à subir plusieurs changements, l’interaction directe entre ces applications est souvent difficile voire pas possible, un service web implémenté pour une application ou ressource offre donc un moyen compréhensible par les autres machines d'accéder aux services de cette application et ce, indépendamment de la technologie implémentée par cette application.
 \cite{refTutorialPointsWS}
-		\subsection{Fonctionnement général d'un Service Web}
-			Un service web est un agent réalisé par un fournisseur de service, cet agent joue le rôle d'un intermédiaire entre ce service et les demandeurs extérieurs, ou clients, qui communiquent à travers leur \emph{agent de requête}. 
+\subsection{Fonctionnement général d'un Service Web}
+Un service web est un agent réalisé par un fournisseur de service, cet agent joue le rôle d'un intermédiaire entre ce service et les demandeurs extérieurs, ou clients, qui communiquent à travers leur \emph{agent de requête}. 
 \newline			
 Un service web permet donc de recevoir des messages d'un agent de requête, qu'il traduit ou transmit au service dans un format compris par le fournisseur du service.\newline La figure \ref{Generalite_figure} résume le rôle de ces différents acteurs.
-		\begin{figure}[h]
-			\center
-			\includegraphics[scale=0.5]{img/Whatisaserviceweb.png}
-			\caption{Generalités Services Web}		
-			\label{Generalite_figure}
-			\centering
-		\end{figure}						
-		\newline
- Dans la figure \ref{Generalite_figure}, l'agent de requête et l'agent du service utilisent le même format de message, basé sur ensemble de standards et de protocoles ouverts déjà existants, tel que le XML.
-	Ces protocoles sont implémentés par défaut (ou faciles à intégrer) dans la majorité des technologies, ce qui permet la communication entre différentes applications sans contraintes majeures. 
+\begin{figure}[h]
+	\center
+	\includegraphics[scale=0.5]{img/Whatisaserviceweb.png}
+	\caption{Generalités Services Web}		
+	\label{Generalite_figure}
+	\centering
+\end{figure}						
+\newline
+Dans la figure \ref{Generalite_figure}, l'agent de requête et l'agent du service utilisent le même format de message, basé sur ensemble de standards et de protocoles ouverts déjà existants, tel que le XML.
+Ces protocoles sont implémentés par défaut (ou faciles à intégrer) dans la majorité des technologies, ce qui permet la communication entre différentes applications sans contraintes majeures. 
 	
-	Ce système est réalisé grâce à plusieurs technologies, les plus connus étant les Services Web type SOAP et les Services Web type REST, détaillés dans les parties 2.5 et 2.6 respectivement.
+Ce système est réalisé grâce à plusieurs technologies, les plus connus étant les Services Web type SOAP et les Services Web type REST, détaillés dans les parties 2.5 et 2.6 respectivement.
 	
-		\subsection{L'architecture orientée services} 
-				L'architecture orientée services (Service Oriented Architecture, SOA) est style architectural qui vise à concevoir des services web extensibles et hautement réutilisables, et les rendre ensuite visibles et accessibles aux consommateurs.
+\subsection{L'architecture orientée services} 
+L'architecture orientée services (Service Oriented Architecture, SOA) est style architectural qui vise à concevoir des services web extensibles et hautement réutilisables, et les rendre ensuite visibles et accessibles aux consommateurs.
 				
-	On trouve trois acteurs majeurs dans une architecture SOA de service web :
-				\begin{itemize}
-				\item \textbf{Service Provider} : 
-					C'est le fournisseur du service. il implémente le service et le rends disponible sur Internet.
-				\item \textbf{Service requester} :
-					C'est le consommateur (Client) de ce service. Il utilise un service web existant en ouvrant une connexion réseau et en envoyant des requêtes (par example des messages en XML).
-				\item \textbf{Annuaire service registry} : 
-				C'est un annuaire de services. ce registre fournit un endroit central où les développeurs peuvent publier leur nouveau service web, ou trouver d'autres existants.\newline 
-				\end{itemize}
+On trouve trois acteurs majeurs dans une architecture SOA de service web :
+\begin{itemize}
+	\item \textbf{Service Provider} : 
+	      C'est le fournisseur du service. il implémente le service et le rends disponible sur le réseau.
+	\item \textbf{Service requester} :
+	      C'est le consommateur (Client) de ce service. Il utilise un service web existant en ouvrant une connexion réseau et en envoyant des requêtes (par example des messages en XML).
+	\item \textbf{Annuaire service registry} : 
+	      C'est un annuaire de services. ce registre fournit un endroit central où les développeurs peuvent publier leur nouveau service web, ou trouver d'autres existants.\newline 
+\end{itemize}
 
 Les services Web emploient un ensemble de technologies qui ont été conçues en respectant une structure en couches sans être dépendantes entre elles. Cette pile, appelée "Pile de protocoles de services web", peut évoluer, mais elle est principalement formée de quatre couches : \cite{refTutorialPointsWS}
-			\begin{itemize}
-			\item \textbf{Couche transport} : Cette couche est responsable du transport des messages échangés entre les applications, cette couche utilise généralement le protocole HTTP, mais d'autres tel que SMTP, FTP ou BEEP peuvent être utilisés.
-			\item \textbf{Couche communication (Messaging)} : Cette couche est responsable de la représentation et formatage des messages échangés entre applications, et ceci afin d'assurer qu'ils soient compris par chaque extrémité. Cette couche utilise principalement XML (ou un dérivé de ce dernier comme XML-RPC et SOAP), mais peut aussi utiliser d'autres formats standard suivant l'architecture, Les services REST peuvent envoyer en simple texte, JSON ou XML par example.
-			\item \textbf{Couche description de service} : Cette interface est responsable de la description de l'interface publique du Service Web, cette description est réalisée en utilisant le WSDL.\newline
-			\texttt{WSDL : (Web Services Description Language)} : c'est un langage de description standard basé sur XML, développé en jointure par Microsoft et IBM. Il permet de décrire différentes informations sur le Service Web tel que la liste de ses fonctions, comment interagir avec et les invoquer, les ports et protocoles utilisés...etc.
-			\item \textbf{Couche découverte de service} : Cette couche est responsable de centraliser les services dans un registre commun, et fournir des fonctionnalités de recherche/publication de services web. Ce service est assuré par l'annuaire UDDI.\newline
-			\texttt{UDDI (Universal Description, Discovery and Integration)} : C'est un annuaire de services web, ce protocole, basé sur XML, comporte deux sections en WSDL : les descriptions de ces services et des définitions de ports pour manipuler et rechercher dans l'annuaire.
-			\end{itemize}
+\begin{itemize}
+	\item \textbf{Couche transport} : Cette couche est responsable du transport des messages échangés entre les applications, cette couche utilise généralement le protocole HTTP, mais d'autres tel que SMTP, FTP ou BEEP peuvent être utilisés.
+	\item \textbf{Couche communication (Messaging)} : Cette couche est responsable de la représentation et formatage des messages échangés entre applications, et ceci afin d'assurer qu'ils soient compris par chaque extrémité. Cette couche utilise principalement XML (ou un dérivé de ce dernier comme XML-RPC et SOAP), mais peut aussi utiliser d'autres formats standard suivant l'architecture, Les services REST peuvent envoyer en simple texte, JSON ou XML par example.
+	\item \textbf{Couche description de service} : Cette interface est responsable de la description de l'interface publique du Service Web, cette description est réalisée en utilisant le WSDL.\newline
+	      \texttt{WSDL : (Web Services Description Language)} : c'est un langage de description standard basé sur XML, développé en jointure par Microsoft et IBM. Il permet de décrire différentes informations sur le Service Web tel que la liste de ses fonctions, comment interagir avec et les invoquer, les ports et protocoles utilisés...etc.
+	\item \textbf{Couche découverte de service} : Cette couche est responsable de centraliser les services dans un registre commun, et fournir des fonctionnalités de recherche/publication de services web. Ce service est assuré par l'annuaire UDDI.\newline
+	      \texttt{UDDI (Universal Description, Discovery and Integration)} : C'est un annuaire de services web, ce protocole, basé sur XML, comporte deux sections en WSDL : les descriptions de ces services et des définitions de ports pour manipuler et rechercher dans l'annuaire.
+\end{itemize}
 			
-		\subsection{Caractéristiques d'un Service Web}
-		Dans un Service Web complet on trouve les caractéristiques suivantes :\cite{refTutorialPointsWS}
-		\begin{itemize}
-		\item Il ne dépends d'aucun Système ou langage.
-		\item Il est accessible par un réseau (Internet/Intranet).
-		\item Il dispose d'une interface publique permettant au clients d'invoquer des procédures ou méthodes sur des objets distants, l'annuaire du service contient la descriptions de ces fonctionnalités et comment les utiliser.
-		\item Utilise un système de messagerie standard (souvent basés sur XML).
-		\item Les fonctionnalités utilisées par le service sont regroupées en un nombre limité de \emph{gros grains} qui sont exposés ensuite au client et ainsi permettre une interaction plus simple avec le service.
-		\item Son système est \emph{faiblement couplé} : Le consommateur de ce service n'est pas directement lié au service, ce service peut changer au fil du temps sans perturber le client, ou peut même disparaitre et le client trouvera un autre service en cherchant dans son annuaire.
-		\end{itemize}
-		\newpage
-		\section{Services web SOAP} 
-			\subsection{Le protocole SOAP}
-				SOAP (Simple object Access Protocol) est un protocole de communication standardisé par le W3C. 
-				Il définit un format pour l'envoi des messages (basé sur XML) sous forme d'enveloppe et de son contenu, qui peuvent être envoyés par divers protocoles de transport tel que HTTP et SMTP.
-				
-				SOAP s'appuie donc sur des standards très connus, ce qui lui a donné une grande portabilité et interopérabilité comparé à ses prédécesseurs (COBRA, DCOM, JAVA RMI...etc).
-				
-			\subsection{Structure de message SOAP}
-			Un message SOAP est un document XML contenant les éléments suivants : \cite{refTutorialPointsSOAP}
-			\begin{itemize}
-			\item \textbf{Enveloppe} : Définit le début et fin du message, elle contient contient la spécification des espaces de désignation (namespace\FancyFootNote{Un namespace est un préfixe identifiant de manière unique la signification d'un terme pour éviter toute ambiguïté.}) et le codage des données. c'est un élément obligatoire.
-			\item \textbf{Header (Entête)} : Contient des informations ou options supplémentaires pour le traitement du message comme l'encodage, elle est optionnelle.
-			\item \textbf{Body ( Corps )} : Contient les données XML du message à transporter, un élément obligatoire.
-			\item \textbf{Fault (Gestion d'erreurs)} : Fournit des informations sur les erreurs qui peuvent se produire au traitement de l'information, un élément qui peut être optionnel.
-			\end{itemize}
-			\begin{figure}[h]
-				\begin{center}
-					\includegraphics[scale=1]{img/soapmessagebody.png}
-				\end{center}	
-			\label{Structure message SOAP}
-			\caption{Structure message SOAP}		
-			\centering
-		\end{figure}			
-			Un message SOAP est un peu lourd, mais reste simple à comprendre et à utiliser, sa structure offre une fiabilité par rapport au format de données, ainsi qu'un moyen de gérer les erreurs grâce au SOAP Fault.
-			\newpage
-			\subsection{Inconvenients}
-				Bien que SOAP soit une solution standardisée pour l'accès aux Services Web, on peut noter certains inconvénients :
-				\begin{itemize}
-				\item \textbf{Lourdeur :} L'utilisation d'XML et la structure des messages SOAP est assez verbeuse, XML nécessite aussi d'être parsé\FancyFootNote{Parser XML: Lire le document XML et identifier les fonctions de chaque pièce de ce document, tout en vérifiant sa syntaxe.}, ce qui peut rendre SOAP moins rapide comparé aux autres solutions lorsqu'il nécessite des communications répétées avec le serveur.
-				\item \textbf{limité uniquement à XML :} Les messages SOAP et WSDL (XML) sont fortement typé, bien que ce soit un point fort de XML, ce n'est pas très adapté pour des systèmes faiblement couplés, car changer le moindre paramètre (par example, changer un réel en entier) induit un changement de la signature du type et imposera donc à tous les clients de s'adapter.
-				\item \textbf{Différent niveau de support :} On peut trouver SOAP presque automatisé dans certains langages et IDEs (Java, PHP,...etc), mais beaucoup moins supporté dans d'autres, notamment dans les langages au typage dynamique tel que Python et Javascript.
-				\end{itemize}
-				
-	Ainsi, plusieurs entreprises s'orientent vers REST, et autres ont abandonné leurs services SOAP en faveur de REST, on peut citer comme exemple Google qui a mit fin à son API SOAP en 2009.
-		\newpage
+\subsection{Caractéristiques d'un Service Web}
+Dans un Service Web complet on trouve les caractéristiques suivantes :\cite{refTutorialPointsWS}
+\begin{itemize}
+	\item Il ne dépends d'aucun Système ou langage.
+	\item Il est accessible par un réseau (Internet/Intranet).
+	\item Il dispose d'une interface publique permettant au clients d'invoquer des procédures ou méthodes sur des objets distants, l'annuaire du service contient la descriptions de ces fonctionnalités et comment les utiliser.
+	\item Utilise un système de messagerie standard (souvent basés sur XML).
+	\item Les fonctionnalités utilisées par le service sont regroupées en un nombre limité de \emph{gros grains} qui sont exposés ensuite au client et ainsi permettre une interaction plus simple avec le service. Par example, regrouper des fonctions de bas niveau (petites graines) en une seule fonction de haut niveau, et exposer celle ci sur le réseau.
+	\item Son système est \emph{faiblement couplé} : Le consommateur de ce service n'est pas directement lié au service, ce service peut changer au fil du temps sans perturber le client, ou peut même disparaitre et le client trouvera un autre service en cherchant dans son annuaire.
+\end{itemize}
+		
+%=================================================================
+%=========================== PARTIE HTTP ==========================
+%=================================================================
+\newpage
+\section{Le protocole HTTP}
+Dans le modèle Client-serveur, les clients et les serveurs échangent des messages dans un modèle de messagerie de type requête-réponse : le client envoie une requête et le serveur renvoie une réponse.
+Pour gérer ces messages et définir un format commun entre eux, on utilise le protocole HTTP.
 
-		\section{REST}
-		Une autre alternative à SOAP est REST, un
-		***Presenter REST comme une alternative au Services Web qui utilisent SOAP
-		\subsection{Définition}
-				REST est un terme signifiant \textbf{REpresentational State Transfer}, provenant de la thèse de doctorat de Roy Fielding, publiée en 2000.
+\subsection{HTTP (Hyper Text Transfer Protocol)}
+C'est un protocole qui décrit le contenu et la mise en forme des requêtes et des réponses échangées entre le client web et le serveur web. 
+Lorsqu'un client, généralement un navigateur web, envoie une requête à un serveur web, il utilise un URL combinée avec un "verbe" HTTP pour spécifier le type de message et l'action que doit prendre le serveur sur une ressource.
+
+\subsection{Methodes HTTP}
+HTTP propose plusieurs verbes (ou méthodes), mais les plus importants sont : 
+\begin{itemize}
+	\item \textbf{GET} : Obtenir des données, un navigateur web envoie une requête GET au serveur web pour demander des pages HTML par example.
+	\item \textbf{POST} : Envoyer des fichiers ou de données vers le serveur web, comme des données de formulaires.
+	\item \textbf{PUT} : Envoyer des ressources ou du contenu vers le serveur web, similaire à POST mais utilisé principalement pour mettre à jour une ressource, PUT doit être idempotente : c'est à dire qu'envoyer plusieurs fois la même requête produit le même résultat que la première.
+	\item \textbf{DELETE} : c'est une requête  qui supprime la ressource indiquée.
+\end{itemize}
+
+\subsection{HTTPS}
+Le protocole HTTP est certes extrêmement flexible, mais il n'est pas sécurisé. Les messages de demande transmettent au serveur des informations en texte brut pouvant être interceptées et lues. Les réponses du serveur, généralement des pages HTML, ne sont pas chiffrées.
+Pour une communication sécurisée via Internet, le protocole HTTPS (HTTP Secure) est utilisé. HTTPS utilise l'authentification et le chiffrement pour sécuriser les données pendant leur transfert entre le client et le serveur. HTTPS utilise le même processus de demande client-réponse serveur que le protocole HTTP, sauf que le flux de données est chiffré avec le protocole SSL (Secure Socket Layer) avant d'être transporté sur le réseau.
+
+%=================================================================
+%=========================== PARTIE SOAP ==========================
+%=================================================================
+\newpage
+\section{Services web SOAP} 
+\subsection{Le protocole SOAP}
+SOAP (Simple object Access Protocol) est un protocole de communication standardisé par le W3C. 
+Il définit un format pour l'envoi des messages (basé sur XML) sous forme d'enveloppe et de son contenu, qui peuvent être envoyés par divers protocoles de transport tel que HTTP et SMTP.
 				
-				%Dans l'architecture REST, un serveur fournit l'accès à des ressources (pièces d'information) et les présente.
-				REST n'est pas exactement une architecture, mais un ensemble de contraintes qui, lorsqu'elles sont appliquées à la conception d'un système, créent un style architectural logiciel qui délimite les rôles des ressources et des représentations et la façon dont le protocole de transport (souvent HTTP) est utilisé. 
-				Un serveur qui implémente REST fournit et contrôle l'accès à des ressources (pièces d'information) et les présente aux clients.
+SOAP s'appuie donc sur des standards très connus, ce qui lui a donné une grande portabilité et interopérabilité comparé à ses prédécesseurs (COBRA, DCOM, JAVA RMI...etc).
+				
+\subsection{Structure de message SOAP}
+Un message SOAP est un document XML contenant les éléments suivants : \cite{refTutorialPointsSOAP}
+\begin{itemize}
+	\item \textbf{Enveloppe} : Définit le début et fin du message, elle contient contient la spécification des espaces de désignation (namespace\FancyFootNote{Un namespace est un préfixe identifiant de manière unique la signification d'un terme pour éviter toute ambiguïté.}) et le codage des données. c'est un élément obligatoire.
+	\item \textbf{Header (Entête)} : Contient des informations ou options supplémentaires pour le traitement du message comme l'encodage, elle est optionnelle.
+	\item \textbf{Body ( Corps )} : Contient les données XML du message à transporter, un élément obligatoire.
+	\item \textbf{Fault (Gestion d'erreurs)} : Fournit des informations sur les erreurs qui peuvent se produire au traitement de l'information, un élément qui peut être optionnel.
+\end{itemize}
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=1]{img/soapmessagebody.png}
+	\end{center}	
+	\label{Structure message SOAP}
+	\caption{Structure message SOAP}		
+	\centering
+\end{figure}			
+Un message SOAP est un peu lourd, mais reste simple à comprendre et à utiliser, sa structure offre une fiabilité par rapport au format de données, ainsi qu'un moyen de gérer les erreurs grâce au SOAP Fault.
+\newpage
+\subsection{Inconvenients}
+Bien que SOAP soit une solution standardisée pour l'accès aux Services Web, on peut noter certains inconvénients :
+\begin{itemize}
+	\item \textbf{Lourdeur :} L'utilisation d'XML et la structure des messages SOAP est assez verbeuse, XML nécessite aussi d'être parsé\FancyFootNote{Parser XML: Lire le document XML et identifier les fonctions de chaque pièce de ce document, tout en vérifiant sa syntaxe.}, ce qui peut rendre SOAP moins rapide comparé aux autres solutions lorsqu'il nécessite des communications répétées avec le serveur.
+	\item \textbf{limité uniquement à XML :} Les messages SOAP et WSDL (XML) sont fortement typé, bien que ce soit un point fort de XML, ce n'est pas très adapté pour des systèmes faiblement couplés, car changer le moindre paramètre (par example, changer un réel en entier) induit un changement de la signature du type et imposera donc à tous les clients de s'adapter.
+	\item \textbf{Différent niveau de support :} On peut trouver SOAP presque automatisé dans certains langages et IDEs (Java, PHP,...etc), mais beaucoup moins supporté dans d'autres, notamment dans les langages au typage dynamique tel que Python et Javascript.
+\end{itemize}
+				
+Ainsi, plusieurs entreprises s'orientent vers REST, et autres ont abandonné leurs services SOAP en faveur de REST, on peut citer comme exemple Google qui a mit fin à son API SOAP en 2009.
+\newpage
+
+\section{REST}
+Une autre alternative à SOAP est REST, un
+***Presenter REST comme une alternative au Services Web qui utilisent SOAP
+\subsection{Définition}
+REST est un terme signifiant \textbf{REpresentational State Transfer}, provenant de la thèse de doctorat de Roy Fielding, publiée en 2000.
+				
+%Dans l'architecture REST, un serveur fournit l'accès à des ressources (pièces d'information) et les présente.
+REST n'est pas exactement une architecture, mais un ensemble de contraintes qui, lorsqu'elles sont appliquées à la conception d'un système, créent un style architectural logiciel qui délimite les rôles des ressources et des représentations et la façon dont le protocole de transport (souvent HTTP) est utilisé. 
+Un serveur qui implémente REST fournit et contrôle l'accès à des ressources (pièces d'information) et les présente aux clients.
 			
-				Un système basé sur REST peut être implémenté dans n'importe quel réseau et architecture disponible en minimisant la complexité de l'implémentation, de la communication et de la distribution.
-			\subsection{Les Ressources}
-			Une ressource est du contenu identifié par des URI \FancyFootNote{Uniform Resource Identifiers: Une chaine de caractère servant à identifier une ressource en ayant une certaine hiérarchie, par example on peut représenter les livres de catégorie Informatique par "/livre/informatique/"} qui peut être du fichier texte, page HTML, image, vidéos ou une donnée commerciale dynamique.
+Un système basé sur REST peut être implémenté dans n'importe quel réseau et architecture disponible en minimisant la complexité de l'implémentation, de la communication et de la distribution.
+\subsection{Les Ressources}
+Une ressource est du contenu identifié par des URI \FancyFootNote{Uniform Resource Identifiers: Une chaine de caractère servant à identifier une ressource en ayant une certaine hiérarchie, par example on peut représenter les livres de catégorie Informatique par "/livre/informatique/"} qui peut être un fichier texte, page HTML, image, vidéos...etc.
 REST fournit au client l'accès aux ressources. Il utilise diverses représentations pour représenter une ressource comme le texte, JSON et XML. Aujourd'hui JSON est le format le plus populaire utilisé dans les services REST.
 
-			\subsection{Service web full-REST}
-		Les service Web RESTful sont des services web basés sur l'architecture REST, en d'autres termes des services qui respectent les contraintes de REST.
+\subsection{Service web full-REST}
+Les service Web RESTful sont des services web basés sur l'architecture REST, en d'autres termes des services qui respectent les contraintes de REST.
 Ces services sont conçus pour fonctionner au mieux sur le Web, ils sont légers, maintenables, évolutifs et facilement extensibles et sont donc souvent utilisés pour implémenter des APIs pour des applications web.\cite{refTutorialPointsREST}
 \newline 
 En résumé, une API est qualifiée de RESTful si elle respecte les critères de REST.
@@ -142,108 +171,91 @@ En résumé, une API est qualifiée de RESTful si elle respecte les critères de
 Elle définit ainsi un système de requête/réponses entre le client et le serveur à partir de ces points.
 
 \newpage
-			\subsection{Critères REST}
-			Une API RESTful complète doit vérifier six (06) critères :
+\subsection{Critères REST}
+Une API RESTful complète doit vérifier six (06) critères :
 \begin{itemize}
-\item \textbf{Orientée client-serveur}.
-
-\item \textbf{Sans état} : Le serveur ne doit avoir aucune idée de l'état du client entre deux requêtes. Du point de vue du serveur, chaque requête est une entité distincte et indépendante des autre,  le service ne devrait donc pas avoir besoin de garder les sessions des utilisateurs.
-
-\item \textbf{Cachable} : un client doit être capable de garder en mémoire des informations sans avoir constamment besoin de demander tout au serveur, tel que les images, polices d'écritures, ...etc.
-
-\item \textbf{Interface uniforme}: permet à tout composant qui comprend le protocole HTTP d'interagir avec l'application, et avoir la possibilité de modifier l'implémentation coté serveur sans affecter l'interface.
-
-\item \textbf{Avoir un système de couche}: isolation des différents composants de l'application pour bien organiser leurs responsabilités en prenant en charge l'évolutivité. Chaque couche représente un système borné qui traite une problématique spécifique de l'application.
-
-\item \textbf{Fournir un code à la demande: }  Le serveur peut être capable d'étendre les fonctionnalités d'un client en transmettant une "logique" qu'il peut exécuter, comme des Applets Java ou des scripts en Javascript.
-
+	\item \textbf{Orientée client-serveur}.
+	      
+	\item \textbf{Sans état} : Le serveur ne doit avoir aucune idée de l'état du client entre deux requêtes. Du point de vue du serveur, chaque requête est une entité distincte et indépendante des autre,  le service ne devrait donc pas avoir besoin de garder les sessions des utilisateurs.
+	      
+	\item \textbf{Mise en cache} : un client doit être capable de garder en mémoire des informations sans avoir constamment besoin de demander tout au serveur, tel que les images, polices d'écritures, ...etc.
+	      
+	\item \textbf{Interface uniforme}: permet à tout composant qui comprend le protocole HTTP d'interagir avec l'application, et avoir la possibilité de modifier l'implémentation coté serveur sans affecter l'interface.
+	      
+	\item \textbf{Avoir un système de couche}: isolation des différents composants de l'application pour bien organiser leurs responsabilités en prenant en charge l'évolutivité. Chaque couche représente un système borné qui traite une problématique spécifique de l'application.
+	      
+	\item \textbf{Fournir un code à la demande: }  Le serveur peut être capable d'étendre les fonctionnalités d'un client en transmettant une "logique" qu'il peut exécuter, comme des Applets Java ou des scripts en Javascript.
+	      
 \end{itemize}
 Ces contraintes ne dictent pas quel type de technologie utiliser; Ils définissent seulement comment les données sont transférées entre les composants.
-			\subsection{Le protocole HTTP}
-			Dans le modèle Client-serveur, les clients et les serveurs échangent des messages dans un modèle de messagerie de type requête-réponse : le client envoie une requête et le serveur renvoie une réponse.
-Pour gérer ces messages et définir un format commun entre eux, on utilise le protocole HTTP.
 
-\textbf{HTTP (Hyper Text Transfer Protocol)} est un protocole qui décrit le contenu et la mise en forme des requêtes et des réponses échangées entre le client web et le serveur web. 
-Lorsqu'un client, généralement un navigateur web, envoie une requête à un serveur web, il utilise un URL combinée avec un "verbe" HTTP pour spécifier le type de message et l'action que doit prendre le serveur sur une ressource.
-
-HTTP propose plusieurs verbes (ou méthodes), mais les plus importants sont : 
+\subsection{Architecture}
+Dans REST, les interactions entre clients et services sont améliorées par le recours à un nombre limité d'opérations. L'affectation aux ressources de leurs propres identifiants URI (Universal Resource Identifiers) uniques autorise une grande souplesse. L'architecture se résume en 5 règles à suivre dans implémentation.\cite{refRegles}
 \begin{itemize}
-	\item \textbf{GET} : Obtenir des données, un navigateur web envoie une requête GET au serveur web pour demander des pages HTML par example.
-	\item \textbf{POST} : Envoyer des fichiers ou de données vers le serveur web, comme des données de formulaires.
-	\item \textbf{PUT} : Envoyer des ressources ou du contenu vers le serveur web, principalement pour mettre à jour une ressource.
-	\item \textbf{DELETE} : c'est une requête  qui supprime la ressource indiquée.
-\end{itemize}
-Le protocole HTTP est certes extrêmement flexible, mais il n'est pas sécurisé. Les messages de demande transmettent au serveur des informations en texte brut pouvant être interceptées et lues. Les réponses du serveur, généralement des pages HTML, ne sont pas chiffrées.
-Pour une communication sécurisée via Internet, le protocole HTTPS (HTTP Secure) est utilisé. HTTPS utilise l'authentification et le chiffrement pour sécuriser les données pendant leur transfert entre le client et le serveur. HTTPS utilise le même processus de demande client-réponse serveur que le protocole HTTP, sauf que le flux de données est chiffré avec le protocole SSL (Secure Socket Layer) avant d'être transporté sur le réseau.
-
-					\subsection{Architecture}
-			Dans REST, les interactions entre clients et services sont améliorées par le recours à un nombre limité d'opérations. L'affectation aux ressources de leurs propres identifiants URI (Universal Resource Identifiers) uniques autorise une grande souplesse. L'architecture se résume en 5 règles à suivre dans implémentation.\cite{refRegles}
-		\begin{itemize}
-		\item \textbf{Règle 1} : l'URI comme identifiant des ressources\newline
-Afin d'identifier une ressource, REST se base sur les URI. Une application se doit de construire ses URI (et donc ses URL) de manière précise et statique, en tenant compte des contraintes REST et de futures changements.
+	\item \textbf{Règle 1} : l'URI comme identifiant des ressources\newline
+	      Afin d'identifier une ressource, REST se base sur les URI. Une application se doit de construire ses URI (et donc ses URL) de manière précise et statique, en tenant compte des contraintes REST et de futures changements.
 	\item \textbf{Règle 2} : les verbes HTTP comme identifiant des opérations\newline
-Utiliser les verbes HTTP existants plutôt que d'inclure l'opération dans l'URI de la ressource. Ainsi, généralement pour une ressource, il y a 4 opérations possibles: Create, Read, Update et Delete, on utilisera les verbes correspondant : POST, GET, PUT et DELETE.
-Comme chaque verbe possède une signification, REST permet d'éviter toute ambiguïté.
+	      Utiliser les verbes HTTP existants plutôt que d'inclure l'opération dans l'URI de la ressource. Ainsi, généralement pour une ressource, il y a 4 opérations possibles: Create, Read, Update et Delete, on utilisera les verbes correspondant : POST, GET, PUT et DELETE.
+	      Comme chaque verbe possède une signification, REST permet d'éviter toute ambiguïté.
 	\item \textbf{Règle 3} : les réponses HTTP comme représentation des ressources\newline
-Une ressource peut avoir plusieurs représentations dans des formats divers : HTML, XML, CSV, JSON, etc. C'est au client de définir quel format de réponse il souhaite recevoir via l'entête \emph{Accept} de la requête HTTP, comme il est possible de définir plusieurs formats.
+	      Une ressource peut avoir plusieurs représentations dans des formats divers : HTML, XML, CSV, JSON, etc. C'est au client de définir quel format de réponse il souhaite recevoir via l'entête \emph{Accept} de la requête HTTP, comme il est possible de définir plusieurs formats.
 	\item \textbf{Règle 4} : les liens comme relation entre ressources\newline
-Les liens d'une ressource vers une indiquent la présence d'une relation. Il est cependant possible de la décrire afin d'améliorer la compréhension du système. Un attribut rel doit être spécifié sur tous les liens.
+	      Les liens d'une ressource vers une indiquent la présence d'une relation. Il est cependant possible de la décrire afin d'améliorer la compréhension du système. Un attribut rel doit être spécifié sur tous les liens.
 	\item \textbf{Règle 5 :} Un paramètre comme jeton d'authentification\newline
-Pour authentifier une requête, les APIs non-triviales utilisent le jeton d'authentification\FancyFootNote{Un jeton est généralement une suite de caractères uniques à l'utilisateur, par laquelle le serveur peut identifier et ainsi authentifier ses requêtes}. Chaque requête est envoyée avec un jeton passé en paramètre ou dans l'entête. Ce jeton temporaire peut être obtenu en envoyant une première requête authentification puis en le combinant avec les requêtes suivantes.
-		\end{itemize}
-			\subsection{Le format JSON}
+	      Pour authentifier une requête, les APIs non-triviales utilisent le jeton d'authentification\FancyFootNote{Un jeton est généralement une suite de caractères uniques à l'utilisateur, par laquelle le serveur peut identifier et ainsi authentifier ses requêtes}. Chaque requête est envoyée avec un jeton passé en paramètre ou dans l'entête. Ce jeton temporaire peut être obtenu en envoyant une première requête authentification puis en le combinant avec les requêtes suivantes.
+\end{itemize}
+\subsection{Le format JSON}
 JSON (JavaScript Object Notation) est un format léger d'échange de données. Il est basé sur un sous-ensemble du langage de programmation. C’est un format texte indépendant de tout langage.
 Ces propriétés font de lui un langage d'échange de données idéal, qui est facile à lire ou à écrire pour des humains. Il est aisément analysable ou générable par des machines. 
 JSON se base sur deux structures:
 \begin{itemize}
-
-			\item Une collection de couples nom/valeur. 
-			\item Une liste de valeurs ordonnées. 
+	
+	\item Une collection de couples nom/valeur. 
+	\item Une liste de valeurs ordonnées. 
 \end{itemize}
 Ces structures prennent les formes suivantes :
 \begin{itemize}
-\item Un objet, qui est un ensemble de couples nom/valeur non ordonnés. 
-\item Un tableau est une collection de valeurs ordonnées. 
-\item Une valeur peut être soit une chaîne de caractères entre guillemets, un nombre, un booléen, un objet ou un tableau. Ces structures peuvent être imbriquées.
-
-** example de format JSON
+	\item Un objet, qui est un ensemble de couples nom/valeur non ordonnés. 
+	\item Un tableau est une collection de valeurs ordonnées. 
+	\item Une valeur peut être soit une chaîne de caractères entre guillemets, un nombre, un booléen, un objet ou un tableau. Ces structures peuvent être imbriquées.
+	      
+	      ** example de format JSON
 \end{itemize}
 
-			\subsection{Avantages}
-	REST devient de plus en plus utilisé dans les entreprises aujourd'hui, les principales motivations pour ce choix sont:\cite{refSOAPvsREST}
-			\begin{itemize}
-\item Plus grande simplicité d'implémentation, aucun besoin d'outils pour interagir avec.
-\item Courbe d'apprentissage plus petite pour les développeurs.
-\item Utilisation de multiples formats pour l'échange de données (XML, JSON, HTML), notamment le format JSON qui est plus léger que HTML et plus adapté à certains langages (comme Javascript).
-\item Plus proche de la conception et de la philosophie initiale du Web (URI, GET, POST, PUT et DELETE).
-\item Pas de gestion d'états du client sur le serveur.
-\item Favorise la compatibilité au niveau de la couche de présentation.
-\item Peut être implémenté localement.
-\item Utilise l'URI comme représentation de ses ressources, ce qui lui donne une flexibilité d'évolution (changer l'implémentation sans changer l'URL et donc sans affecter le client).
-			\end{itemize}
-			\subsection{Limites}
-			\begin{itemize}
-			\item Difficile de respecter l'autorisation et la sécurité
-			\item Ne convient pas pour gérer une grande quantité de données
-			\item Moins sécurisé comparé à SOAP
-			\item Il est sans état
-			\item Ne peut pas être utilisé lorsque les interactions client et serveur sont essentielles
-			\item Ne peut pas être utilisé pour les transactions impliquant plusieurs appels
-			\end{itemize}
-			\subsection{REST vs SOAP}
-			** points à mentionner : 
-	\begin{itemize}
+\subsection{Avantages}
+REST devient de plus en plus utilisé dans les entreprises aujourd'hui, les principales motivations pour ce choix sont:\cite{refSOAPvsREST}
+\begin{itemize}
+	\item Plus grande simplicité d'implémentation, aucun besoin d'outils pour interagir avec.
+	\item Courbe d'apprentissage plus petite pour les développeurs.
+	\item Utilisation de multiples formats pour l'échange de données (XML, JSON, HTML), notamment le format JSON qui est plus léger que HTML et plus adapté à certains langages (comme Javascript).
+	\item Plus proche de la conception et de la philosophie initiale du Web (URI, GET, POST, PUT et DELETE).
+	\item Pas de gestion d'états du client sur le serveur.
+	\item Favorise la compatibilité au niveau de la couche de présentation.
+	\item Peut être implémenté localement.
+	\item Utilise l'URI comme représentation de ses ressources, ce qui lui donne une flexibilité d'évolution (changer l'implémentation sans changer l'URL et donc sans affecter le client).
+\end{itemize}
+\subsection{Limites}
+\begin{itemize}
+	\item Difficile de respecter l'autorisation et la sécurité
+	\item Ne convient pas pour gérer une grande quantité de données
+	\item Moins sécurisé comparé à SOAP
+	\item Il est sans état
+	\item Ne peut pas être utilisé lorsque les interactions client et serveur sont essentielles
+	\item Ne peut pas être utilisé pour les transactions impliquant plusieurs appels
+\end{itemize}
+\subsection{REST vs SOAP}
+** points à mentionner : 
+\begin{itemize}
 	\item expliquer que REST est un style architectural, SOAP un protocol
 	\item REST n'est pas lié à XML contrairement à SOAP
 	\item SOAP est strictement typé et a une spécification standard plus strict pendant que REST donne le concept et est moins restreint dans l'implementation 
 	\item SOAP a un gestion des erreur par défaut ( vu dans son enveloppe ), expliquer utilité pour un example de transaction banquaire
-	\end{itemize}				 
+\end{itemize}				 
 			
 conclusion : SOAP peut être utile pour des applications d'entreprises demandant une haute sécurité "unless you have a good reason, use REST" 
-		\section{Examples et applications}
-			Deux-Trois Api connues, example avec Google Maps
-		\section{GraphQL et GRPC}
+\section{Examples et applications}
+Deux-Trois Api connues, example avec Google Maps
+\section{GraphQL et GRPC}
 			
-		\section{Conclusion : Pourquoi choisir REST}
-			\paragraph{(Intro et conclusion à la fin + exemples d'utilisation comme arguments)}
-	
+\section{Conclusion : Pourquoi choisir REST}
+\paragraph{(Intro et conclusion à la fin + exemples d'utilisation comme arguments)}

@@ -2,40 +2,40 @@
 **
 **Un graphe sert mieux à définir l'existence d'une relation entre objets tels qu'une ligne entre deux stations de métro, une relation d'amitié dans un réseau social ou encore une rue entre deux carrefours
 
-	\section{Généralités sur les graphes}
-	La théorie des graphes est très probablement née en 1735 lorsque Leonhard Euler (1707 - 1783) résout le problème des sept ponts de Königsberg. 
+\section{Généralités sur les graphes}
+La théorie des graphes est très probablement née en 1735 lorsque Leonhard Euler (1707 - 1783) résout le problème des sept ponts de Königsberg. 
 L’énoncé de ce problème est: La ville de Königsberg est une ville autour d'un fleuve, elle compte quatre berges et sept ponts les reliant. Le but du jeu est de savoir s'il existe un chemin permettant d'emprunter tous les ponts une fois et une seule et revenir au point de départ. Le problème s'appelle, de façon plus formelle, la recherche d'un cycle eulérien dans un graphe. Euler a démontré que ce problème n'avait pas de solution.
 
-	\subsection{Définitions}
-	\textbf{Graphe :} Un graphe est composé de sommets (\textbf{vertices}) ou noeuds (\textbf{nodes}), et d'arcs (\textbf{edges}) ou d’arêtes (\textbf{links}) reliant certains de ces sommets ou noeuds.
-	Un graphe G est défini de manière formelle par un couple (S,A) où :
-	\begin{itemize}
+\subsection{Définitions}
+\textbf{Graphe :} Un graphe est composé de sommets (\textbf{vertices}) ou noeuds (\textbf{nodes}), et d'arcs (\textbf{edges}) ou d’arêtes (\textbf{links}) reliant certains de ces sommets ou noeuds.
+Un graphe G est défini de manière formelle par un couple (S,A) où :
+\begin{itemize}
 	\item S est un ensemble fini d'éléments. Chacun de ces éléments est appelé sommet du graphe.
 	\item A est un sous ensemble (éventuellement nul) de SxS. Chacun de ces éléments de A est appelé arc ou arête.
-	\end{itemize}
-	Chaque arc est associé un poids qui le décrit. Par exemple, dans un réseau social il peut définir la nature de la relation (ami, famille, collègue) et dans un réseau routier la longueur d'une rue. Parfois le terme coût est utilisé. 
+\end{itemize}
+Chaque arc est associé un poids qui le décrit. Par exemple, dans un réseau social il peut définir la nature de la relation (ami, famille, collègue) et dans un réseau routier la longueur d'une rue. Parfois le terme coût est utilisé. 
 	
-	\textbf{Graphe connexe: } De manière intuitive, la notion de connexité est triviale, mais importante dans notre cas. Un graphe est connexe si on peut atteindre n'importe quel sommet à partir d'un sommet quelconque en parcourant différentes arêtes.
+\textbf{Graphe connexe: } De manière intuitive, la notion de connexité est triviale, mais importante dans notre cas. Un graphe est connexe si on peut atteindre n'importe quel sommet à partir d'un sommet quelconque en parcourant différentes arêtes.
 	
-	\textbf{Graphe directionnel:} Aussi appelé graphe orienté, digraphe ou un réseau dirigé, est un graphe où les sommets (noeuds) sont connectés ensemble, et tous les bords sont dirigés d'un sommet à l'autre. Les bords sont généralement des flèches dessinées indiquant la direction En revanche, un graphe où les bords sont bidirectionnels est appelé un graphique non orienté.
+\textbf{Graphe directionnel:} Aussi appelé graphe orienté, digraphe ou un réseau dirigé, est un graphe où les sommets (noeuds) sont connectés ensemble, et tous les bords sont dirigés d'un sommet à l'autre. Les bords sont généralement des flèches dessinées indiquant la direction En revanche, un graphe où les bords sont bidirectionnels est appelé un graphique non orienté.
 
-	\textbf{Chemin:} Un chemin est une séquence finie et alternée de sommets et d'arcs, débutant et finissant par des sommets, telle que chaque arc est sortant d'un sommet est incident au sommet suivant dans la séquence (cela correspond à la notion de chaîne \emph{orientée}).
+\textbf{Chemin:} Un chemin est une séquence finie et alternée de sommets et d'arcs, débutant et finissant par des sommets, telle que chaque arc est sortant d'un sommet est incident au sommet suivant dans la séquence (cela correspond à la notion de chaîne \emph{orientée}).
 
 	
 	
-	\section{Avantages d'utilisation d'un graphe}
-	\subsection{Domaines d'utilisation des graphes}
-	Un graphe sert avant tout à manipuler des concepts, et à établir un lien entre ces concepts. N'importe quel problème comportant des objets avec des relations entre ces objets peut être modélisé par un graphe.
+\section{Avantages d'utilisation d'un graphe}
+\subsection{Domaines d'utilisation des graphes}
+Un graphe sert avant tout à manipuler des concepts, et à établir un lien entre ces concepts. N'importe quel problème comportant des objets avec des relations entre ces objets peut être modélisé par un graphe.
 Les graphes sont donc des outils très puissants et largement répandus qui se prêtent bien à la résolution de nombreux problèmes. Voici quelques uns :
 
-	\subsection{Recherche de chemins (PathFinding)}
-	Un cas très classique, notamment dans le domaine du jeu vidéo. Chaque nœud représente une position et chaque arête est un chemin entre deux positions, ou en remplaçant les nœuds par des adresses et les arêtes par des routes, on obtient le graphe utilisé par les GPS ou Google Map par exemple.
+\subsection{Recherche de chemins (PathFinding)}
+Un cas très classique, notamment dans le domaine du jeu vidéo. Chaque nœud représente une position et chaque arête est un chemin entre deux positions, ou en remplaçant les nœuds par des adresses et les arêtes par des routes, on obtient le graphe utilisé par les GPS ou Google Map par exemple.
 La recherche de chemins est aussi utilisée en biologique, communications (réseaux de télécommunications) et réseau hydrographique.
 Il est courant de chercher le chemin le plus court entre deux positions dans la plupart de ces domaines, nous nous intéressons particulièrement à ce cas d'utilisation, que nous discutons en détail dans la section suivante.
 
 
-	\subsection{L'ordonnancement de tâches:}
-	On peut représenter chacune des tâches à effectuer par un nœud, et les dépendances entre chacune des tâches par les arêtes. On résout ce problème avec un tri topologique.
+\subsection{L'ordonnancement de tâches:}
+On peut représenter chacune des tâches à effectuer par un nœud, et les dépendances entre chacune des tâches par les arêtes. On résout ce problème avec un tri topologique.
 On cite l'exemple de l'automatisation des tâches informatiques qui consiste à planifier et à synchroniser les travaux \emph{batch}, quelle que soit leur nature et quels que soient les systèmes d'exploitation.
 
 \subsection{Les systèmes de recommandation:}
@@ -46,67 +46,67 @@ Le but est de pouvoir identifier les communautés formées, les centres d'intér
 
 
 \section{Recherche de Chemin:}
-	% Intro
-	Il est difficile de retracer l'histoire du problème du plus court chemin. On peut imaginer que même dans les sociétés très primitives, trouver des chemins courts était essentiel. Comparé à d'autres problèmes d'optimisation combinatoire, comme l'algorithme de Kruskal, l'affectation et le transport, la recherche mathématique dans le problème du chemin le plus court a commencé relativement tard. Cela pourrait être dû au fait que le problème est élémentaire et relativement facile, ce qui est également illustré par le fait qu'au moment où le problème est apparu, plusieurs chercheurs ont développé indépendamment méthodes similaires.
+% Intro
+Il est difficile de retracer l'histoire du problème du plus court chemin. On peut imaginer que même dans les sociétés très primitives, trouver des chemins courts était essentiel. Comparé à d'autres problèmes d'optimisation combinatoire, comme l'algorithme de Kruskal, l'affectation et le transport, la recherche mathématique dans le problème du chemin le plus court a commencé relativement tard. Cela pourrait être dû au fait que le problème est élémentaire et relativement facile, ce qui est également illustré par le fait qu'au moment où le problème est apparu, plusieurs chercheurs ont développé indépendamment méthodes similaires.
 Les problèmes de chemin ont été étudiés au début des années 1950 dans le contexte de \emph{routage alternatif}, c'est-à-dire, trouver une deuxième route plus courte si la première est bloqué. À cette époque, les appels interurbains aux États-Unis étaient automatisés et il fallait trouver automatiquement d'autres itinéraires pour les appels téléphoniques sur le réseau téléphonique américain.
 	
-	\subsection{Définition:}
-	La recherche du plus court chemin est la capacité pour un système d'intelligence artificielle de déduire le chemin approprié autour des obstacles pour atteindre un point de destination tout en évitant les obstacles et en parcourant la distance la plus petite possible. La complexité de l'analyse peut augmenter à mesure que d'autres circonstances doivent être analysées en prenant en compte en considération différentes contraintes:
-	\begin{itemize}
+\subsection{Définition:}
+La recherche du plus court chemin est la capacité pour un système d'intelligence artificielle de déduire le chemin approprié autour des obstacles pour atteindre un point de destination tout en évitant les obstacles et en parcourant la distance la plus petite possible. La complexité de l'analyse peut augmenter à mesure que d'autres circonstances doivent être analysées en prenant en compte en considération différentes contraintes:
+\begin{itemize}
 	\item \textbf{Poids:} certains algorithmes n'acceptent que des arcs dont le poids est positif.
 	\item \textbf{Chemins calculés:} Il existe des algorithmes qui calculent le plus court chemin de nœud à nœud, entre toutes les paires de nœuds ou encore d'un nœud vers tous les autres.
 	\item \textbf{Prise en compte d'informations externes:} l'utilisation d'une connaissance externe à la structure du graphe peut parfois accélérer la recherche.
-	\end{itemize}
+\end{itemize}
 
 
 
 
 
 
-	\section{Données collectées}
-	\subsection{ETO (Entreprise de Transport d'Oran)}
-	\begin{itemize}
+\section{Données collectées}
+\subsection{ETO (Entreprise de Transport d'Oran)}
+\begin{itemize}
 	\item Nous avons été acceuilis par un des responsable de l'ETO, qui nous a fourni plusieurs informations sur ( comment marche chaque ligne, frequences, horaires, temps d'été/hiver...etc)
 	\item Parler des données des lignes de l'ETO qu'il nous a fourni
 	\item Parler des inconvenients ? Adresses non completes, informations mal classées,...
 	\item Remerciements .
-	\end{itemize}
-	\subsection{DTW (Direction Transport)}
-	** To be done
-	\subsection{Données supplémentaires}
-	Données qu'on a ajouté nous-même, parler de l'idée du crowd-sourcing.
-	\subsection{Traitement de données}
-	Comment on a utiliser ces données (ex : trouver coordonnées, calculer distance avec les coordonnées), et les outils/programmes écrits pour automatiser.. si possible).
+\end{itemize}
+\subsection{DTW (Direction Transport)}
+** To be done
+\subsection{Données supplémentaires}
+Données qu'on a ajouté nous-même, parler de l'idée du crowd-sourcing.
+\subsection{Traitement de données}
+Comment on a utiliser ces données (ex : trouver coordonnées, calculer distance avec les coordonnées), et les outils/programmes écrits pour automatiser.. si possible).
 	
-	** Nous serons contraint d'utiliser les adresses données comme premiere version, vu l'absence de données GPS, nous (*ajouter une fonctionnalité pour pouvoir integrer aisément les coordonnées GPS au dessus des données existantes.
+** Nous serons contraint d'utiliser les adresses données comme premiere version, vu l'absence de données GPS, nous (*ajouter une fonctionnalité pour pouvoir integrer aisément les coordonnées GPS au dessus des données existantes.
 
 
-	\section{Construction du graphe}
-	\subsection{Différente approches}
-	\begin{itemize}
+\section{Construction du graphe}
+\subsection{Différente approches}
+\begin{itemize}
 	\item \textbf{Outils Open Source (OpenTripPlanner} : 
-		Il existe plusieurs outils qui proposent ce service, en particulier OpenTripPlanner : Un projet Open Source qui permet de créer un réseau routier à partir de données GTFS \FancyFootNote{GTFS (General Transit Feed Specification : ...}, ces données seront ensuite intégrées avec OpenStreetMap et stockée sur le serveur, qui exposera une API REST pour questionner le serveur : Recherche de Chemin, Possibilité d'intégrer les horaires, ...etc.
-		
-		Vu la nature un peu particulière du réseau d'Oran, et la non-disponibilité des données (Données officielles des lignes et données (adresses) sur OpenStreetMap), cette solution ne sera pas envisagée. 
-		Cependant, l'application prendra une architecture flexible permettant d'intégrer, au futur, de tels outils rapidement au cas de nécessité.
+	      Il existe plusieurs outils qui proposent ce service, en particulier OpenTripPlanner : Un projet Open Source qui permet de créer un réseau routier à partir de données GTFS \FancyFootNote{GTFS (General Transit Feed Specification : ...}, ces données seront ensuite intégrées avec OpenStreetMap et stockée sur le serveur, qui exposera une API REST pour questionner le serveur : Recherche de Chemin, Possibilité d'intégrer les horaires, ...etc.
+	      		
+	      Vu la nature un peu particulière du réseau d'Oran, et la non-disponibilité des données (Données officielles des lignes et données (adresses) sur OpenStreetMap), cette solution ne sera pas envisagée. 
+	      Cependant, l'application prendra une architecture flexible permettant d'intégrer, au futur, de tels outils rapidement au cas de nécessité.
 	\item \textbf{Représentation indépendante de chaque ligne}
-	Une des approches considérées était de représenter chaque ligne indépendamment, l'algorithme du service aura à chercher des points de liaison entre ces lignes.
-	L'avantage principal de cette approche est la facilité de manipulation de ces données de lignes, en ajoutant/supprimant des lignes sans conflits.
-	Cette approche présente par contre un inconvénient majeure au niveau de performance, vu que l'utilisation d'un algorithme de PathFinding requiert l'utilisation de plusieurs tables (lignes) à chaque requête. Ce qui nous a mené à l'approche suivante.
+	      Une des approches considérées était de représenter chaque ligne indépendamment, l'algorithme du service aura à chercher des points de liaison entre ces lignes.
+	      L'avantage principal de cette approche est la facilité de manipulation de ces données de lignes, en ajoutant/supprimant des lignes sans conflits.
+	      Cette approche présente par contre un inconvénient majeure au niveau de performance, vu que l'utilisation d'un algorithme de PathFinding requiert l'utilisation de plusieurs tables (lignes) à chaque requête. Ce qui nous a mené à l'approche suivante.
 	\item \textbf{Représentation en graphe}:
-	
-	\begin{itemize}
-	\item Representation la plus intuitive
-	\item Permet un accès plus rapide, en stockant le graphe déja construit (i.e stocker dans une base de données orientée graphe)
-	\item Avantages utilisation des algorithmes de recherche de chemin efficaces, meilleures performances...etc
-	\item Citer les inconvenients (*Proposer les solutions et changements faits pour contrer ça) Inconvénients lors de la modification, modification d'une station peut affecter plusieurs lignes, modification d'une ligne peut poser plusieurs conflits ou imposer la reconstruction du graphe...
-	\end{itemize}
-
-	\end{itemize}
-	\subsection{Représentation choisie}
-	décrire la representation, ainsi que les avantages de celle ci ( ou les inconvenients des autres)
-	\subsection{Résultat final}
-	\subsection{Contraintes}
-	Parler de quelques limitations (Espace, complexité d'ajout...etc)
+	      	
+	      \begin{itemize}
+	      	\item Representation la plus intuitive
+	      	\item Permet un accès plus rapide, en stockant le graphe déja construit (i.e stocker dans une base de données orientée graphe)
+	      	\item Avantages utilisation des algorithmes de recherche de chemin efficaces, meilleures performances...etc
+	      	\item Citer les inconvenients (*Proposer les solutions et changements faits pour contrer ça) Inconvénients lors de la modification, modification d'une station peut affecter plusieurs lignes, modification d'une ligne peut poser plusieurs conflits ou imposer la reconstruction du graphe...
+	      \end{itemize}
+	      
+\end{itemize}
+\subsection{Représentation choisie}
+décrire la representation, ainsi que les avantages de celle ci ( ou les inconvenients des autres)
+\subsection{Résultat final}
+\subsection{Contraintes}
+Parler de quelques limitations (Espace, complexité d'ajout...etc)
 
 				
