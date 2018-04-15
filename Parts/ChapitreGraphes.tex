@@ -13,16 +13,56 @@ L’énoncé de ce problème est: La ville de Königsberg est une ville autour d
 	\item S est un ensemble fini d'éléments. Chacun de ces éléments est appelé sommet du graphe.
 	\item A est un sous ensemble (éventuellement nul) de SxS. Chacun de ces éléments de A est appelé arc ou arête.
 	\end{itemize}
-	Chaque arc est associé un poids qui le décrit. Par exemple, dans un réseau social il peut définir la nature de la relation (ami, famille, collègue) et dans un réseau routier la longueur d’une rue. Parfois le terme coût est utilisé. 
+	Chaque arc est associé un poids qui le décrit. Par exemple, dans un réseau social il peut définir la nature de la relation (ami, famille, collègue) et dans un réseau routier la longueur d'une rue. Parfois le terme coût est utilisé. 
 	
-	\textbf{Graphe connexe: } De manière intuitive, la notion de connexité est triviale, mais importante dans notre cas. Un graphe est connexe si on peut atteindre n’importe quel sommet à partir d’un sommet quelconque en parcourant différentes arêtes.
+	\textbf{Graphe connexe: } De manière intuitive, la notion de connexité est triviale, mais importante dans notre cas. Un graphe est connexe si on peut atteindre n'importe quel sommet à partir d'un sommet quelconque en parcourant différentes arêtes.
+	
+	\textbf{Graphe directionnel:} Aussi appelé graphe orienté, digraphe ou un réseau dirigé, est un graphe où les sommets (noeuds) sont connectés ensemble, et tous les bords sont dirigés d'un sommet à l'autre. Les bords sont généralement des flèches dessinées indiquant la direction En revanche, un graphe où les bords sont bidirectionnels est appelé un graphique non orienté.
+
+	\textbf{Chemin:} Un chemin est une séquence finie et alternée de sommets et d'arcs, débutant et finissant par des sommets, telle que chaque arc est sortant d'un sommet est incident au sommet suivant dans la séquence (cela correspond à la notion de chaîne \emph{orientée}).
+
+	
 	
 	\section{Avantages d'utilisation d'un graphe}
 	\subsection{Domaines d'utilisation des graphes}
-	Citer certains domaines qui utilisent des graphes
-	\subsection{Recherche de chemins}
-	Ce qu'est un chemin, caractéristiques d'un chemin dans un graphe. Parler des algorithmes connus : Djikstra, Bellmand Ford et quelques contraintes (poids..etc)
+	Un graphe sert avant tout à manipuler des concepts, et à établir un lien entre ces concepts. N'importe quel problème comportant des objets avec des relations entre ces objets peut être modélisé par un graphe.
+Les graphes sont donc des outils très puissants et largement répandus qui se prêtent bien à la résolution de nombreux problèmes. Voici quelques uns :
+
+	\subsection{Recherche de chemins (PathFinding)}
+	Un cas très classique, notamment dans le domaine du jeu vidéo. Chaque nœud représente une position et chaque arête est un chemin entre deux positions, ou en remplaçant les nœuds par des adresses et les arêtes par des routes, on obtient le graphe utilisé par les GPS ou Google Map par exemple.
+La recherche de chemins est aussi utilisée en biologique, communications (réseaux de télécommunications) et réseau hydrographique.
+Il est courant de chercher le chemin le plus court entre deux positions dans la plupart de ces domaines, nous nous intéressons particulièrement à ce cas d'utilisation, que nous discutons en détail dans la section suivante.
+
+
+	\subsection{L'ordonnancement de tâches:}
+	On peut représenter chacune des tâches à effectuer par un nœud, et les dépendances entre chacune des tâches par les arêtes. On résout ce problème avec un tri topologique.
+On cite l'exemple de l'automatisation des tâches informatiques qui consiste à planifier et à synchroniser les travaux \emph{batch}, quelle que soit leur nature et quels que soient les systèmes d'exploitation.
+
+\subsection{Les systèmes de recommandation:}
+C'est une forme spécifique de filtrage de l'information qui a pour but de présenter à un utilisateur des éléments qui sont susceptibles de l'intéresser, et ce, en se basant sur ses préférences et son comportement.
+Les moteurs de recommandation font usage des graphes pour représenter des individus ou objets et leurs différents liens, cet outil est très utilisés en sciences sociales, comme dans les réseaux sociaux le graphe social de Facebook qui représente les associations entre des personnes, le réseau LinkedIn qui est un graphe de relations entre des professionnels...etc.
+
+Le but est de pouvoir identifier les communautés formées, les centres d'intérêt commun, en suggérant à l'utilisateur les choses qu'il est susceptible d'aimer, les personnes qu'il connaît peut-être, et avant tout (et surtout) pour créer des publicités ciblées adaptées à chacun.
+
+
+\section{Recherche de Chemin:}
+	% Intro
+	Il est difficile de retracer l'histoire du problème du plus court chemin. On peut imaginer que même dans les sociétés très primitives, trouver des chemins courts était essentiel. Comparé à d'autres problèmes d'optimisation combinatoire, comme l'algorithme de Kruskal, l'affectation et le transport, la recherche mathématique dans le problème du chemin le plus court a commencé relativement tard. Cela pourrait être dû au fait que le problème est élémentaire et relativement facile, ce qui est également illustré par le fait qu'au moment où le problème est apparu, plusieurs chercheurs ont développé indépendamment méthodes similaires.
+Les problèmes de chemin ont été étudiés au début des années 1950 dans le contexte de \emph{routage alternatif}, c'est-à-dire, trouver une deuxième route plus courte si la première est bloqué. À cette époque, les appels interurbains aux États-Unis étaient automatisés et il fallait trouver automatiquement d'autres itinéraires pour les appels téléphoniques sur le réseau téléphonique américain.
 	
+	\subsection{Définition:}
+	La recherche du plus court chemin est la capacité pour un système d'intelligence artificielle de déduire le chemin approprié autour des obstacles pour atteindre un point de destination tout en évitant les obstacles et en parcourant la distance la plus petite possible. La complexité de l'analyse peut augmenter à mesure que d'autres circonstances doivent être analysées en prenant en compte en considération différentes contraintes:
+	\begin{itemize}
+	\item \textbf{Poids:} certains algorithmes n'acceptent que des arcs dont le poids est positif.
+	\item \textbf{Chemins calculés:} Il existe des algorithmes qui calculent le plus court chemin de nœud à nœud, entre toutes les paires de nœuds ou encore d'un nœud vers tous les autres.
+	\item \textbf{Prise en compte d'informations externes:} l'utilisation d'une connaissance externe à la structure du graphe peut parfois accélérer la recherche.
+	\end{itemize}
+
+
+
+
+
+
 	\section{Données collectées}
 	\subsection{ETO (Entreprise de Transport d'Oran)}
 	\begin{itemize}
