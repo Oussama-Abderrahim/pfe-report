@@ -93,18 +93,19 @@ Comment on a utiliser ces données (ex : trouver coordonnées, calculer distance
 	      Une des approches considérées était de représenter chaque ligne indépendamment, l'algorithme du service aura à chercher des points de liaison entre ces lignes.
 	      L'avantage principal de cette approche est la facilité de manipulation de ces données de lignes, en ajoutant/supprimant des lignes sans conflits.
 	      Cette approche présente par contre un inconvénient majeure au niveau de performance, vu que l'utilisation d'un algorithme de PathFinding requiert l'utilisation de plusieurs tables (lignes) à chaque requête. Ce qui nous a mené à l'approche suivante.
-	\item \textbf{Représentation en graphe}:
-	      	
-	      \begin{itemize}
-	      	\item Representation la plus intuitive
-	      	\item Permet un accès plus rapide, en stockant le graphe déja construit (i.e stocker dans une base de données orientée graphe)
-	      	\item Avantages utilisation des algorithmes de recherche de chemin efficaces, meilleures performances...etc
-	      	\item Citer les inconvenients (*Proposer les solutions et changements faits pour contrer ça) Inconvénients lors de la modification, modification d'une station peut affecter plusieurs lignes, modification d'une ligne peut poser plusieurs conflits ou imposer la reconstruction du graphe...
-	      \end{itemize}
-	      
+	\item \textbf{Représentation en graphe (Base de donnée orientée graphe}: Nous avons finalement opté vers une représentation en graphe, qui est la plus intuitive dans notre cas, et qui permet aussi un accès plus rapide et simple en parcourant un graphe pré-calculé, tout en tirant les meilleures performances des différents algorithmes de recherche de chemins.
+	On utilisera pour cela une base de donnée orientée graphe, qui permet de stocker en permanence le graphe, mais aussi de fournir plusieurs opérations pour créer, modifier et parcourir nos graphes.
+	
+	On a, cependant, noté certaines contraintes suivant cette représentation, 
+	
+	*** lors de la modification, modification d'une station peut affecter plusieurs lignes, modification d'une ligne peut poser plusieurs conflits ou imposer la reconstruction du graphe...
+	     
 \end{itemize}
 \subsection{Représentation choisie}
-décrire la representation, ainsi que les avantages de celle ci ( ou les inconvenients des autres)
+	\begin{itemize}
+	\item Présenter en détail la representation
+	\end{itemize}
+
 \subsection{Résultat final}
 \subsection{Contraintes}
 Parler de quelques limitations (Espace, complexité d'ajout...etc)
