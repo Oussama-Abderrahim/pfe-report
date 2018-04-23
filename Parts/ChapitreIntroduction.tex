@@ -1,3 +1,5 @@
+\renewcommand\labelitemi{$\bullet$}
+\renewcommand\labelitemii{$\circ$}
 \chapter{Introduction générale}
 \newpage	
 \section{Motivation}
@@ -31,7 +33,7 @@ Offrir un guide de transport évolué a pour apport :
 
 \section{Problématique}
 
-La création d'un outil qui aide à la décision présente plusieurs problématiques, avant de commencer le projet, nous sommes amenés à répondre aux questions suivantes :
+La création d'un outil qui aide à cette décision présente plusieurs problématiques, avant de commencer le projet, nous sommes amenés à répondre aux questions suivantes :
 \begin{itemize}
 	\item Quels sont ces différents facteurs et critères à considérer lors de ce choix ?
 	\item Quelles sont les différents usagers des transports communs, et quel est le besoin de chaque profile ?
@@ -67,27 +69,52 @@ Elle propose 3 modes d'utilisation :
 CityMapper couvre en ce moment 36 villes dont Londres, Berlin, Tokyo, Paris et New York...etc.  Un de ses avantages est la possibilité de prévoir un trajet en avance et de le télécharger pour qu'il soit disponible hors connexion.
 
 \section{Solution proposée}
-Au moment de rédiger ce mémoire, aucune application n'offre ce service en Algérie, cependant, ** Parler de l'application Yassir ? pour dire que l'utilisation des outils de cartographie et la recherche de chemin à Oran sont fonctionnels.
-		
-		
-**Nous proposons de développer une application Web full-REST (**Motiver pourquoi) qui aura pour fonctionnalités principales : 
+Au moment de rédiger ce mémoire, aucune application n'offre ce service en Algérie. ***
+
+De ce fait, nous proposons de développer une application Web full-REST qui proposera les fonctionnalités suivante : 
+
 \begin{itemize}
-	\item Citer les fonctionnalités.
-	\item Fixer les buts de l'application (cerner le problème)
-	\item L'application Web exposera un Service Web --> permettre l'utilisation de l'application sur n'importe quelle plateforme 
-	\item Développer ensuite une interface Web responsive pour utiliser l'application.
-	\item Développer une interface administrateur pour faciliter la manipulation de la  base de donnée.
-	\item Parler ici des objectifs du projet, representation et tout.
+	\item Calculer un chemin entre deux lieux saisis par l'utilisateur.
+	\item Proposer un chemin optimal faisant usage de plusieurs moyens de transport publique, tout en donnant la main à l'utilisateur pour choisir les moyens désirés.
+	\item Prendre en compte la possibilité de marche dans les chemins suggérés.
+	\item Se baser sur différents critères dans ce choix, nous prendrons les 04 critères suivants : 
+	\begin{itemize}
+		\item Minimum de temps.
+		\item Minimum de marche.
+		\item Minimum de correspondance.
+		\item Minimum de cout.
+	\end{itemize}	 
 \end{itemize}
-		 
+
+Ce projet sera composé de 04 parties :
+\begin{description}
+	\item[Conception de base de donnée: ] Nous étudierons le problème pour enfin proposer une bonne représentation des données que nous pourrons facilement utiliser dans la recherche de chemin.
+	( *** Est ce qu'on cite la bdd orienté graphe ici ? *** )
+	
+	\item[Service Web: ] En ce moment, les Services Web sont une tendance sur le Web, presque indispensable dans toute application non triviale: Nous commencerons donc par créer une API REST complète de l'application afin qu'elle soit facilement extensible et portable sur différentes plateformes par la suite.
+	
+	\item[Interface Administrateur: ] Implémenter une application indépendante qui va faciliter la  communication avec l'API pour l'ajout et modification des lignes de transport et autres informations nécessaire à l'application.
+	
+	
+	\item[Interface Web: ] Implémenter une Application Web client afin de visualiser les fonctionnalités de l'API.
+\end{description}
+
+Vu le grand nombre de fonctionnalités et la complexité de cette problématique, nous limiterons la version initiale de l'application à un premier algorithme de recherche simple mais applicable sur la ville d'Oran.
+
+L'architecture de l'application devra être suffisamment flexible pour pouvoir améliorer la recherche de chemin, et ajouter progressivement des améliorations ou de nouvelles critères.
+	 
 		 
 \newpage
 \section{Plan du rapport}
 
 **Parler des points suivants 
 \begin{itemize}
-\item On présentera tout au long du Chapitre 2 ce qu'est un service Web, ses caracteristiques et avantages, ainsi que parler de deux technologies concurrente dans la création des Service Web, **et nous choisirons la plus adaptée à notre projet.
+\item On présentera tout au long du Chapitre 2 ce qu'est un service Web, ses caractéristiques et avantages. 
+Nous explorerons ensuite deux manières concurrentes pour implémenter des Services Web : SOAP et REST. 
+Nous débattrons brièvement les points forts de chacun afin de justifier notre décision d'utiliser REST.
+
 \item Chapitre 3 : c'est compliqué.
+
 \item Nous présenterons ensuite dans le chapitre 4 les differentes technologies qu'on a utilisé, ainsi qu'un aperçu des représentations utilisée et des détails implémentations. ***qui seront accompagnées par des captures d'écran décrivant le fonctionnement de l'application.**
 \item Nous parlerons enfin dans le chapitre 5 sur les differentes perspectives et futur stuff
 \end{itemize}
