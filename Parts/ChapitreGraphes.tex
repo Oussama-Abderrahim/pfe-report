@@ -27,7 +27,11 @@ Chaque arc est associé à un poids ou une étiquette qui le décrit. Par exempl
 Un graphe où les bords sont bidirectionnels est appelé un graphique non orienté.
 
 \item[Chemin] : Un chemin est une séquence finie et alternée de sommets et d'arcs, débutant et finissant par des sommets, tel que chaque arc sortant d'un sommet est incident au sommet suivant dans la séquence (cela correspond à la notion de chaîne \emph{orientée}).
-
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.75\textwidth]{img/cheminGraphe.png}
+	\caption{Exemple de chemin orienté}
+\end{figure}
 \end{description}
 
 	
@@ -69,6 +73,34 @@ Le choix de la méthode de l'analyse et sa complexité peut augmenter à mesure 
 	\item \textbf{Poids:} certains algorithmes n'acceptent que des arcs dont le poids est positif.
 	\item \textbf{Chemins calculés:} Il existe des algorithmes qui calculent le plus court chemin de nœud à nœud, entre toutes les paires de nœuds ou encore d'un nœud vers tous les autres.
 	\item \textbf{Prise en compte d'informations externes:} l'utilisation d'une connaissance externe à la structure du graphe peut parfois accélérer la recherche.
+\end{itemize}
+
+\subsection{Domaines d'utilisation :}
+Le problème du plus court chemin est parmi les problèmes les plus étudiés de la théorie des graphes ,on le retrouve dans beaucoup de domaines :
+\begin{itemize}
+\item\textbf{Economie :}problèmes d’investissement
+\item\textbf{Gestion :} gestion des projets
+\item\textbf{Optimisation des réseaux :} (réseaux routiers, de télécommunications, de distribution)
+\item\textbf{Réseaux informatiques et protocoles de routage :} (protocole OSPF : Open Shortest Path First) 
+\item\textbf{En Biologie :} il est utilisé pour trouver le modèle de réseau dans la propagation d'une maladie infectieuse.
+\item\textbf{Cartographie:} Pour mesurer le chemin le plus court entre deux lieux ou villes.
+\item\textbf{Jeux vidéo}.
+\item\textbf{En robotique}.
+\end{itemize}
+
+\subsection{Les algorithmes de recherche de chemin}
+**deux types principalement : à fixation d'étiquettes (Djikstra) et correction  (Bellman Ford ) \newline
+(Parler de complexité) \newline
+Les algorithmes de calcul d'itinéraires origine-destination(s) sont de complexité polynomiale et on les répartit classiquement en deux familles : ceux à fixation d'étiquettes (algorithme de Dijkstra) et ceux à correction d'étiquettes (algorithme de Bellman-Ford).
+Malgré leur complexité polynomiale, ces algorithmes peuvent néanmoins engendrer des temps de calculs importants pour des graphes de grande taille, ce qui a suscité le développement des techniques d'accélération (  visant souvent l'optimalité )comme l'algorithme A*, le parcours bidirectionnel, ainsi que les méthodes de pré traitement.
+
+Nous nous interesserons ( .... parcours bidirectionnel ..etc) 
+
+\subsection{L'algorithme (utilisé)}
+\begin{itemize}
+\item présenter l'algorithme
+\item Parler de Complexité et pourquoi avoir choisi
+\item Code/algorithme de .. l'algorithme.
 \end{itemize}
 
 \section{Données collectées}
