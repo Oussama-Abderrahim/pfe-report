@@ -79,7 +79,8 @@ Le résultat de cette collecte sont comme suit :
 \begin{itemize}
 	\item Nous avons été acceuilis par un des responsable de l'ETO, qui nous a fourni plusieurs informations sur ( comment marche chaque ligne, frequences, horaires, temps d'été/hiver...etc)
 	\item Parler des données des lignes de l'ETO qu'il nous a fourni
-	\item Parler des inconvenients ? Adresses non completes, informations mal classées,...
+	\item les stations ont des noms, donc besoin de stocker nom "commun" et addresse.
+	\item Parler des inconvenients, adresses non completes, informations mal classées,... donc besoin de traiter et de completer
 	\item Remerciements .
 \end{itemize}
 
@@ -113,10 +114,31 @@ Comment on a utiliser ces données (ex : trouver coordonnées, calculer distance
 \end{itemize}
 \subsection{Représentation choisie}
 	\begin{itemize}
-	\item Présenter en détail la representation
+	\item Présenter en détail la représentation
+	\item donner la structure du graphe ( trouver une façon pour representer proprement ces informations : )
+	\begin{itemize}
+		 \item Noeuds representent station
+		 \item Arcs representent un tronçon/chemin entre deux stations
+		 \item Arcs étiquetés par le type du transport ( BusSegment, TramSegment, WalkSegment. ..) 
+		 \item Representer chaque bus séparemment ( pour faciliter la recherche et filtre ) 
+		 \item Noeuds (Stations) ont les attributs suivants : 
+		 \begin{itemize}
+		 	\item Nom.
+		 	\item Adresse.
+		 	\item Tableau coordonnées (pour chaque direction) avec indicateur de direction.
+		 \end{itemize}
+		 \item Arcs ont les attributs suivants :
+		 \begin{itemize}
+		 		\item Dist : Distance entre les deux stations
+		 		\item Time: Temps moyen pour passer de la première station à la deuxieme
+		 		\item Bus : ( pour les arcs de type Bus ) nom/id du bus.
+		 		** remarque : infos du bus ( temps d'arret, prix ..etc) sont stockés sépareraient.
+		 \end{itemize}
+	\end{itemize}
 	\end{itemize}
 
 \subsection{Résultat final}
+	** Capture d'ecran d'un graphe example.
 \subsection{Contraintes}
 Parler de quelques limitations (Espace, complexité d'ajout...etc)
 
