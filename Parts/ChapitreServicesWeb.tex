@@ -155,7 +155,8 @@ REST est un terme signifiant \textbf{REpresentational State Transfer}, provenant
 REST n'est pas exactement une architecture, mais un ensemble de contraintes qui, lorsqu'elles sont appliquées à la conception d'un système, créent un style architectural logiciel qui délimite les rôles des ressources et des représentations et la façon dont le protocole de transport (souvent HTTP) est utilisé. 
 Un serveur qui implémente REST fournit et contrôle l'accès à des ressources (pièces d'information) et les présente aux clients.
 			
-Un système basé sur REST peut être implémenté dans n'importe quel réseau et architecture disponible en minimisant la complexité de l'implémentation, de la communication et de la distribution.
+Un système basé sur REST peut être implémenté dans n'importe quel réseau et architecture disponible en minimisant la complexité de l'implémentation, de la communication et de la distribution.\cite{richardson2008restful}
+
 \subsection{Les Ressources}
 Une ressource est du contenu identifié par des URI \FancyFootNote{Uniform Resource Identifiers: Une chaine de caractère servant à identifier une ressource en ayant une certaine hiérarchie, par example on peut représenter les livres de catégorie Informatique par "/livre/informatique/"} qui peut être un fichier texte, page HTML, image, vidéos...etc.
 REST fournit au client l'accès aux ressources. Il utilise diverses représentations pour représenter une ressource comme le texte, JSON et XML. Aujourd'hui JSON est le format le plus populaire utilisé dans les services REST.
@@ -182,7 +183,7 @@ Une API RESTful complète doit vérifier six (06) critères :
 	      
 	\item \textbf{Interface uniforme}: permet à tout composant qui comprend le protocole HTTP d'interagir avec l'application, et avoir la possibilité de modifier l'implémentation coté serveur sans affecter l'interface.
 	      
-	\item \textbf{Avoir un système de couche}: isolation des différents composants de l'application pour bien organiser leurs responsabilités en prenant en charge l'évolutivité. Chaque couche représente un système borné qui traite une problématique spécifique de l'application.
+	\item \textbf{Avoir un système de couche}: isolation des différents composants de l'application pour bien organiser leurs responsabilités en prenant en charge leur éventuelles évolution. Chaque couche représente un système borné qui traite une problématique spécifique de l'application.
 	      
 	\item \textbf{Fournir un code à la demande: }  Le serveur peut être capable d'étendre les fonctionnalités d'un client en transmettant une "logique" qu'il peut exécuter, comme des Applets Java ou des scripts en Javascript.
 	      
