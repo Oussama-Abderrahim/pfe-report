@@ -1,19 +1,103 @@
-	\chapter{Développement}
-		\section{Technologies utilisées}
-		\subsection{NodeJs}
-			Pour l'API, parler des avantages : performances, moteur V8, flexibilités...  
-		\subsection{Neo4J}
-			Pourquoi choisir une BDD orienté Graph, pourquoi Neo4J , ..etc.
-			plus connue, big community
-			Neo4J utilise l'algorithme 
-		\subsection{MongoDB}
+\chapter{Développement}
+\section{Technologies utilisées}
+\subsection{NodeJs}
+Pour l'API, parler des avantages : performances, moteur V8, flexibilités...  
+\subsection{Neo4J}
+Pourquoi choisir une BDD orienté Graph, pourquoi Neo4J , ..etc.
+plus connue, big community
+Neo4J utilise l'algorithme 
+
+** \textbf{Cypher : } présenter le language de requete avec quelques exemples
+\subsection{MongoDB}
 		
-	\section{Déroulement d'une requête}
+\section{Déroulement d'une requête}
 	
-	\section{Documentation de l'API :}
-		\subsection{Points d'entrée de l'API}
-		\subsection{Format des requêtes}
-		\subsection{Format des réponses}
-	\section{Recherche de chemin}
+\section{Implémentation de l'API}
+\subsection{Ressources exposées}
+Notre API définit principalement 3 ressources:
+\begin{enumerate}
+	\item \textbf{Station:} Ressource qui représente les différentes stations du réseau, elle accepte 3 requêtes différentes de type GET  : 
+	      \begin{itemize}
+	      	\item \emph{\textbf{/api/station}}: Retourner toutes les stations.
+	      	\item \emph{\textbf{/api/station/\{id\}}}: Retourner une station par identifiant.
+	      	\item \emph{\textbf{/api/station?match=\{name\}}}: Retourner toutes les stations dont le nom contient le paramètre \emph{match}, peut être utilisée pour la recherche lors du choix du chemin, par exemple.
+	      \end{itemize}
+	      			
+	      Cette ressource accepte aussi des requêtes de type POST (création), PUT (mise à jour) et DELETE (suppression)  pour les client admin (authentifiés).
+	\item \textbf{Ligne:} \emph{\textbf{/api/line}} : Ressource qui représente les différentes lignes de transport entre stations, elle accepte des requêtes de type GET du coté client, aussi des requêtes POST, PUT et DELETE du coté admin pour gérer les lignes.
+	\item \textbf{Direction:}  \emph{\textbf{/api/direction}} : Ressource représentant les chemins, elle accepte seulement des requêtes de type GET, les détails de ces requêtes et leurs réponses sont détaillés dans la section \ref{SectionPathFinding}
+\end{enumerate}
+\subsection{Description des formats des ressources}
+% Format JSON 
+\lstset{style=JSON}
+
+\begin{enumerate}
+%-------------------------------------------------------------------
+	\item \textbf{Station:}
+	      \begin{lstlisting}[caption=Format JSON de Station]
+{
+  "id": 0,
+  "name": "string",
+  "address": "string",
+  "coordLat": 0,
+  "coordLon": 0
+}		
+\end{lstlisting}
+%-------------------------------------------------------------------
+	\item \textbf{Line:}	     
+\begin{lstlisting}[caption=Format JSON de Line]
+{
+  "id": 0,
+  "name": "string",
+  "bus": {
+    "name": "string",
+    "price": 0,
+    "frequence": 0,
+    "avgWaitTime": 0
+  },
+  "lineStations": [
+    {
+      "stationID": 0,
+      "distFromPrev": 0,
+      "timeFromPrev": 0
+    }
+  ]
+}
+\end{lstlisting}
+%-------------------------------------------------------------------
+\end{enumerate}
+
+\section{Recherche de chemin}
+	L'implémentation de l'application du coté serveur permet de calculer un ensemble de chemins optimaux entre deux stations identifiées par un identifiant. Le calcul se déroule en plusieurs étapes :
+	\subsection{Déroulement d'une requête}
+		** Figure du diagramme de Sequence
+		\begin{enumerate}
+		\item L'API reçoit la requête de chemin, vérifie les paramètres et met en forme les données, pour les passer au module qui calcule le chemin (PathFinder).
+		\item Le module PathFinder formule la requête Cypher et l'envoi au serveur de la base de donnée Neo4j.
+		La requête est comme suit : 		
+\begin{lstlisting}[style=cypher, caption=Requête Cypher des plus courts chemins]
+MATCH p = AllShortestPaths((A:Station)-[*..20]->(B:Station))
+WHERE A.name = {startParam} AND B.name = {endParam}
+	AND ALL(rel IN relationships(p) 
+	WHERE type(rel) IN {transportsParam})
+
+WITH p, RELATIONSHIPS(p) as segments
+WITH EXTRACT (segment in segments| StartNode(segment)) AS startNodes,
+EXTRACT (segment in segments| EndNode(segment)) AS endNodes,
+RELATIONSHIPS(p) as segments
+            
+RETURN segments, startNodes, endNodes
+\end{lstlisting}
+			Nous pouvons depuis cette requête filtrer les différents transports à inclure dans le chemin facilement, puisque chaque moyen de transport est désigné par ses propres arcs étiquetés dans le graphe.
+		\item Neo4J retourne ainsi une liste de chemins optimaux, le module va ensuite évaluer chaque chemin :
+			\begin{itemize}
+			\item Évaluer le temps et cout estimé de chaque chemin.
+			\item Trier les chemins selon le critère de la requête, en cas d'égalité considérer les autres critères.
+			\item Structurer chaque chemin en Objets Path, détaillé dans la section suivante.
+			\item Minimiser le chemin en regroupant les étapes intermédiaires (tel que deux arrêts utilisant le même Bus).
+			\end{itemize}
+		\item Retourner l'objet à l'API qui l'envoi sous forme de réponse HTTP.
+		\end{enumerate}
+\label{SectionPathFinding}
 	
-	\section{Implémentation}
+\section{Implémentation}

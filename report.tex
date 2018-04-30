@@ -1,19 +1,75 @@
- \documentclass[a4paper, 12pt]{report}
+ \documentclass[
+ a4paper,
+12pt,			% font size
+headsepline
+]{report}
 
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}		% Pour afficher les caracteres internationaux
+\usepackage[T1]{fontenc}			% Pour l'encodage de caracteres
 \usepackage[french]{babel}
+
 \usepackage{lmodern} % Pour changer le pack de police
 \usepackage{makeidx}
 \usepackage{layout}
 
 \usepackage{graphicx}   % For images 
 
+\usepackage{listings} 	% for Code listing
+
+\usepackage{xcolor}
+%----------------------------------------------------------------------------------------
+%	CodeListing
+%----------------------------------------------------------------------------------------
+
+\definecolor{commentcolor}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{primary}{rgb}{0,0.6,0}
+\definecolor{secondary}{rgb}{0,0.6,0}
+
+\lstdefinestyle{JSON}{
+	string=[s]{"}{"},
+	stringstyle=\color{blue},
+	comment=[l]{:},
+	commentstyle=\color{black},
+} 
+
+ 
+\lstdefinestyle{cypher}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{commentcolor},
+    keywordstyle=\color{primary},
+    keywordstyle = [2]{\color{secondary}},
+    morekeywords = [1]{MATCH, AllShortestPaths, WHERE, ALL, IN},
+    morekeywords = [2]{WITH,EXTRACT,RETURN,AND},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=Cypher}
+
+
 % Bibliography 
 \usepackage[backend=bibtex]{biblatex}
-\bibliography{bibliographie}
+\addbibresource{bibliographie}
 
-% SETTINGS
+
+%----------------------------------------------------------------------------------------
+%	MARGIN SETTINGS
+%----------------------------------------------------------------------------------------
+
 \usepackage[top=1in, bottom=1in, left=1in,right=1in,footskip=0.5in,
 headheight=15.5pt]{geometry} 
 
@@ -26,9 +82,9 @@ headheight=15.5pt]{geometry}
     linkcolor=black,  %choose some color if you want links to stand out
 }
 
-% =========  Text Style ============= % 
-%\usepackage{pslatex} % for times new roman, old package, but works
-
+%----------------------------------------------------------------------------------------
+%	TEXT STYLES
+%----------------------------------------------------------------------------------------
 \usepackage{float} %used for figure placement with H as a parameter
 \usepackage{setspace}
 \usepackage{float}
@@ -37,34 +93,27 @@ headheight=15.5pt]{geometry}
 \usepackage[font=small,labelfont=bf]{caption}
 \def\figurename{\textbf{Figure }}
 
-%======= HEADERS/FOOTERS ====== % 
-\usepackage{fancyhdr}
-%\usepackage{titleps}
-\fancypagestyle{plain} { 
-	\fancyhead[R]{}
-	% Left footer
-	\fancyfoot[L]{\emph{Département Informatique, Université des Sciences et Technologies d'Oran USTO}}
-	% Right footer ( \thepage is page number ) 
-	\fancyfoot[R]{\thepage}
-	\fancyfoot[C]{}
-	
-	\renewcommand{\headrulewidth}{0.4pt}
-	\renewcommand{\footrulewidth}{0.4pt}
-}
+%----------------------------------------------------------------------------------------
+%	HEADERS/FOOTERS
+%----------------------------------------------------------------------------------------
 
-\fancypagestyle{plain_nofoot} 
-{
-	\fancyhf{}
-	\fancyhead[R]{}
-	\fancyhead[L]{\rightmark}
-	\fancyfoot[R]{\thepage}
-    \renewcommand{\headrulewidth}{1pt}
-    \renewcommand{\footrulewidth}{0pt}
-}
+\usepackage{scrlayer-scrpage}
+
+\automark{chapter}
+\automark*{section}
+\clearpairofpagestyles
+\ihead{\headmark}
+\ohead{\pagemark}
+%\renewcommand{\headrulewidth}{0.4pt}
+%\renewcommand{\footrulewidth}{0.4pt}
+
+\ifoot{}% Inner footer
+\ofoot{}% Outer footer
+
 % Pour supprimer le footer en présence des footnotes
 \newcommand{\FancyFootNote}[1]{
     \footnote{#1}
-    \thispagestyle{plain_nofoot} %change pagestyle for this page only.
+%    \thispagestyle{plain_nofoot} %change pagestyle for this page only.
 }
 
 % ====================================================%
@@ -82,15 +131,28 @@ headheight=15.5pt]{geometry}
 \maketitle
 %	\layout			% verifier dimensions/ structure de la page
 
-\pagestyle{fancy}	
+%\pagestyle{fancy}	
 
 \chapter*{Abstract} 
 
-\pagestyle{plain}	
+%\pagestyle{plain}	
+
+
+%----------------------------------------------------------------------------------------
+%	LIST OF CONTENTS/FIGURES/TABLES PAGES
+%----------------------------------------------------------------------------------------
 
 \pdfbookmark[0]{Contents}{contents}
-\tableofcontents
+\tableofcontents % Prints the main table of contents
+
+\listoffigures % Prints the list of figures
+
+\listoftables % Prints the list of tables
 	
+%----------------------------------------------------------------------------------------
+%	REPORT CONTENT - CHAPTERS
+%----------------------------------------------------------------------------------------
+
 \pagenumbering{arabic} %reset numbering to normal for the main content
 	
 % Chapitre1/intro
@@ -105,9 +167,7 @@ headheight=15.5pt]{geometry}
 \chapter{Conclusion}
 Evaluer le résultat 
 
-\newpage
-left blank
-\newpage
-\listoffigures
-\printbibliography
+
+\printbibliography[heading=bibintoc]
+
 \end{document}
