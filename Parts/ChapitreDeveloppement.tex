@@ -10,7 +10,30 @@ Neo4J utilise l'algorithme
 ** \textbf{Cypher : } présenter le language de requete avec quelques exemples
 \subsection{MongoDB}
 		
-\section{Déroulement d'une requête}
+\section{Structure de l'application}
+	\subsection{L'architecture MVC (Model-View-Controller)}
+	L'application suit une architecture MVC qui est un modèle d'architecture qui sépare une application en 3 composants logiques: \textbf{Model}, \textbf{View}, \textbf{Controller}.
+	Chaque composant est construit pour gérer un aspect spécifique de l'application, on peut résumer le rôle de chacun comme suit :
+	\begin{enumerate}
+	\item \textbf{Models: } Ces composants correspondent à tout ce qui est relié aux données, un model peut représenter une classe d'objets ou une structure de données échangée entre Views et Controllers, ainsi que la logique manipulant ces données tel que des calculs de moyennes, les différentes opérations d'ajout, modification et suppression dans une base de données.
+	\item \textbf{Controller: } Le Controller joue le rôle d'une interface entre le Model et les Views afin de traiter les requêtes venant du View (Par exemple un clique de bouton), manipuler les données du Model et enfin les rendre au View pour qu'elles soient présentées.
+	\item \textbf{Views:} Les views sont utilisés pour l'interface utilisateur (UI) de l'application, ceci inclut les composants d'interface (Textes, boutons, formulaires...etc.), ainsi que certaines logiques de mise en forme et affichage des données.
+	\end{enumerate}
+	
+	MVC est une des architectures les plus utilisées pour créer des projets évolutifs et extensibles.	Il existe plusieurs variantes du MVC et d'autres architectures similaires tel que le MVVM (Model-View-ViewModel) et le MVP (Model-View-Presenter).
+	\cite{refMVC}
+	\subsection{Composants de l'application}
+	** Placer diagramme Here
+	
+	\begin{description}
+	\item[Models:] \begin{itemize}
+		\item Station :
+		\item Line :
+		\item Path :
+	\end{itemize}
+	\end{description}
+	
+	
 	
 \section{Implémentation de l'API}
 \subsection{Ressources exposées}
@@ -100,4 +123,48 @@ RETURN segments, startNodes, endNodes
 		\end{enumerate}
 \label{SectionPathFinding}
 	
+	\subsection{Format des requêtes}
+	
+	\subsection{Format des réponses}
+	L'API retourne un tableau des chemins (Objets Path) en format JSON, ces objets contiennent les informations suivantes :
+	\begin{itemize}
+	\item Le temps, prix et distance totale du chemin.
+	\item Les moyens de transport utilisés dans ce chemin.
+	\item La liste des étapes à suivre dans ce chemin, chaque étape contenant les données suivantes:
+	\begin{itemize}
+		\item La station de départ et la station d'arrivée.
+		\item Les stations intermédiaires entre station de départ et d'arrivée.
+		\item Le prix, temps estimé et distance à parcourir de l'étape.
+		\item Le transport à prendre (ou type de l'étape).
+	\end{itemize}
+	\end{itemize}
+\begin{lstlisting}[caption=Format JSON de Path (chemin)]
+{
+  "totalDist": 0,
+  "totalPrice": 0,
+  "totalTime": 0,
+  "steps": [
+    {
+      "sourceStation": {
+        "id": 0,
+        "name": "string",
+        "address": "string",
+        "coordLat": 0,
+        "coordLon": 0
+      },
+      "destStation": {
+        "id": 0,
+        "name": "string",
+        "address": "string",
+        "coordLat": 0,
+        "coordLon": 0
+      },
+      "price": 0,
+      "time": 0,
+      "type": "string",
+      "name": "string"
+    }
+  ]
+}
+\end{lstlisting}
 \section{Implémentation}
