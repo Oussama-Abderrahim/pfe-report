@@ -10,26 +10,26 @@
 \section{Avant les services web}
 Parler brièvement des prédécesseurs (COBRA, DCOM) middlewares et protocoles, XML-RPC.\newline
 		
-Vers les années 90s, les technologies Web et les technologies des systèmes distribués ont commencé à gagner en popularité. Les technologies Web étaient principalement conçus pour envoyer des informations d'utilisateurs à un autre, en HTML par exemple. Les technologies de systèmes distribués, cependant, étaient principalement conçus pour connecter des ordinateurs, ou plus spécifiquement des applications exécutées sur ces machines, et donc leur permettre de s'échanger des informations ou collaborer sur des tâches.
-Chacune de ces deux technologies avait des objectifs différents, et évoluait vers un chemin différent. Ainsi, les Services Web sont apparu avec but de rassembler ces deux technologies sur un seul objectif commun reliant les deux.\cite{W3Road}
+Vers les années 90, les technologies web et les technologies des systèmes distribués ont commencé à gagner en popularité. Les technologies web étaient principalement conçus pour envoyer des informations d'utilisateurs à un autre, en HTML par exemple. Les technologies de systèmes distribués, cependant, étaient principalement conçus pour connecter des ordinateurs, ou plus spécifiquement des applications exécutées sur ces machines, et donc leur permettre de s'échanger des informations ou collaborer sur des tâches.
+Chacune de ces deux technologies avait des objectifs différents, et évoluait vers un chemin différent. Ainsi, les services web sont apparu avec but de rassembler ces deux technologies sur un seul objectif commun reliant les deux.\cite{W3Road}
 
 \section{Définition}
-Un Service Web est un programme dynamique qui utilise le schéma Client-Serveur pour permettre la communication et l'échange de données entre des applications à travers un réseau (Internet par exemple).
-Il utilise un système de messagerie standard\FancyFootNote{Un protocole standard est un protocole formalisé (fixé) accepté par une autorité (comme la W3C) ou la plupart des parties qui l'implémentent.} comme XML mais n'est lié à aucun système d'exploitation ou langage de programmation.
+Un service web est un programme dynamique qui utilise le schéma Client-Serveur pour permettre la communication et l'échange de données entre des applications à travers un réseau (Internet par exemple).
+Il utilise un système de messagerie standard\FancyFootNote{Standard: un protocole standard est un protocole formalisé (fixé) accepté par une autorité (comme la W3C) ou la plupart des parties qui l'implémentent.} comme XML mais n'est lié à aucun système d'exploitation ou langage de programmation.
 
 Quelques définitions officielles :
 \begin{enumerate}
 	\item W3C :
-	      un Service Web est un composant logiciel conçu pour permettre l'interaction interopérable entre machines à travers un réseau. Il a une interface décrite en un format compris par une machine (Spécifiquement WSDL). Les autres systèmes interagissent avec le Service Web d'une manière définie par sa description en utilisant des messages SOAP, généralement transmis en utilisant HTTP avec un XML sérialisé en parallèle avec d'autres Standard du Web.\cite{W3}
+	      un service web est un composant logiciel conçu pour permettre l'interaction interopérable entre machines à travers un réseau. Il a une interface décrite en un format compris par une machine (spécifiquement WSDL). Les autres systèmes interagissent avec le service web d'une manière définie par sa description en utilisant des messages SOAP, généralement transmis en utilisant HTTP avec un XML sérialisé en parallèle avec d'autres standard du web.\cite{W3}
 	\item Wikipedia : un service web (ou service de la toile) est un protocole d'interface informatique de la famille des technologies web permettant la communication et l'échange de données entre applications et systèmes hétérogènes dans des environnements distribués. Il s'agit donc d'un ensemble de fonctionnalités exposées sur internet ou sur un intranet, par et pour des applications ou machines, sans intervention humaine, de manière synchrone ou asynchrone. Le protocole de communication est défini dans le cadre de la norme SOAP dans la signature du service exposé (WSDL). Actuellement, le protocole de transport est essentiellement HTTP(S).\cite{Wikipedia}
 \end{enumerate}
 
 \section{Principe et objectifs}
-\subsection{Pourquoi les services Web ?}
+\subsection{Pourquoi les services web ?}
 Les services web ont été conçus pour permettre l'interaction interopérable entre machines à travers un réseau, en d'autres termes, permettre à différents systèmes de fonctionner et communiquer entre eux.\newline
 Puisque différentes applications peuvent être écrites en différents langages et architectures, et sont souvent ramenées à subir plusieurs changements, l’interaction directe entre ces applications est souvent difficile voire pas possible, un service web implémenté pour une application ou ressource offre donc un moyen compréhensible par les autres machines d'accéder au service de cette application et ce, indépendamment de la technologie implémentée par cette application.
 \cite{refTutorialPointsWS}
-\subsection{Fonctionnement général d'un Service Web}
+\subsection{Fonctionnement général d'un service web}
 Un service web est un agent réalisé par un fournisseur de services, cet agent joue le rôle d'un intermédiaire entre ce service et les demandeurs extérieurs, ou clients, qui communiquent à travers leur \emph{agent de requête}. 
 \newline			
 Un service web permet donc de recevoir des messages d'un agent de requête, qu'il traduit ou transmit au service dans un format compris par le fournisseur du service.\newline La figure \ref{Généralite_figure} résume le rôle de ces différents acteurs.
@@ -44,7 +44,7 @@ Un service web permet donc de recevoir des messages d'un agent de requête, qu'i
 Dans la figure \ref{Generalite_figure}, l'agent de requête et l'agent du service utilisent le même format de message, basé sur l'ensemble de standards et de protocoles ouverts déjà existants, tel que le XML.
 Ces protocoles sont implémentés par défaut (ou faciles à intégrer) dans la majorité des technologies, ce qui permet la communication entre différentes applications sans contraintes majeures. 
 	
-Ce système est réalisé grâce à plusieurs technologies, les plus connus étant les Services Web type SOAP et les Services Web type REST, détaillés dans les parties 2.5 et 2.6 respectivement.
+Ce système est réalisé grâce à plusieurs technologies, les plus connus étant les services web type SOAP et les services web type REST, détaillés dans les parties 2.5 et 2.6 respectivement.
 	
 \subsection{L'architecture orientée services} 
 L'architecture orientée services (Service Oriented Architecture, SOA) est style architectural qui vise à concevoir des services web extensibles et hautement réutilisables, et les rendre ensuite visibles et accessibles aux consommateurs.
@@ -52,21 +52,21 @@ L'architecture orientée services (Service Oriented Architecture, SOA) est style
 On trouve trois acteurs majeurs dans une architecture SOA de service web :
 \begin{itemize}
 	\item \textbf{Service Provider} : 
-	      c'est le fournisseur du service. il implémente le service et le rend disponible sur le réseau.
+	      c'est le fournisseur du service. Il implémente le service et le rend disponible sur le réseau.
 	\item \textbf{Service requester} :
-	      c'est le consommateur (Client) de ce service. Il utilise un service web existant en ouvrant une connexion réseau et en envoyant des requêtes (par exemple des messages en XML).
+	      c'est le consommateur (client) de ce service. Il utilise un service web existant en ouvrant une connexion réseau et en envoyant des requêtes (par exemple des messages en XML).
 	\item \textbf{Annuaire service registry} : 
-	      c'est un annuaire de services. ce registre fournit un endroit central où les développeurs peuvent publier leur nouveau service web, ou trouver d'autres existants.\newline 
+	      c'est un annuaire de services. Ce registre fournit un endroit central où les développeurs peuvent publier leur nouveau service web, ou trouver d'autres existants.\newline 
 \end{itemize}
 
-Les services Web emploient un ensemble de technologies qui ont été conçues en respectant une structure en couches sans être dépendantes entre elles. Cette pile, appelée "Pile de protocoles de services web", peut évoluer, mais elle est principalement formée de quatre couches : \cite{refTutorialPointsWS}
+Les services web emploient un ensemble de technologies qui ont été conçues en respectant une structure en couches sans être dépendantes entre elles. Cette pile, appelée "Pile de protocoles de services web", peut évoluer, mais elle est principalement formée de quatre couches : \cite{refTutorialPointsWS}
 \begin{description}
-	\item[Couche transport] : cette couche est responsable du transport des messages échangés entre les applications, cette couche utilise généralement le protocole HTTP, mais d'autres tels que SMTP, FTP ou BEEP peuvent être utilisés.
-	\item [Couche communication (Messaging)] : cette couche est responsable de la représentation et formatage des messages échangés entre applications, et ceci afin d'assurer qu'ils soient compris par chaque extrémité. Cette couche utilise principalement XML (ou un dérivé de ce dernier comme XML-RPC et SOAP), mais peuvent aussi utiliser d'autres formats standard suivant l'architecture, les services REST peuvent envoyer en simple texte, JSON ou XML par exemple.
-	\item[Couche description de service] : cette interface est responsable de la description de l'interface publique du Service Web, cette description est réalisée en utilisant le WSDL.\newline
-	      \texttt{WSDL : (Web Services Description Language)} : c'est un langage de description standard basé sur XML, développé en jointure par Microsoft et IBM. Il permet de décrire différentes informations sur le Service Web tel que la liste de ses fonctions, comment interagir avec et les invoquer, les ports et protocoles utilisés...etc.
+	\item[Couche transport] : cette couche est responsable du transport des messages échangés entre les applications. Elle utilise généralement le protocole HTTP, mais d'autres tels que SMTP, FTP ou BEEP peuvent être utilisés.
+	\item [Couche communication (Messaging)] : cette couche est responsable de la représentation et formatage des messages échangés entre applications, et ceci afin d'assurer qu'ils soient compris par chaque extrémité. Elle utilise principalement XML (ou un dérivé de ce dernier comme XML-RPC et SOAP), mais peut aussi utiliser d'autres formats standard suivant l'architecture, les services REST peuvent envoyer en simple texte, JSON ou XML par exemple.
+	\item[Couche description de service] : cette couche est responsable de la description de l'interface publique du service web, cette description est réalisée en utilisant le WSDL.\newline
+	      \texttt{WSDL : (Web Services Description Language)} : c'est un langage de description standard basé sur XML, développé en jointure par Microsoft et IBM. Il permet de décrire différentes informations sur le service web tel que la liste de ses fonctions, comment interagir avec et les invoquer, les ports et protocoles utilisés...etc.
 	\item[Couche découverte de service] : cette couche est responsable de centraliser les services dans un registre commun, et fournir des fonctionnalités de recherche/publication de services web. Ce service est assuré par l'annuaire UDDI.\newline
-	      \texttt{UDDI (Universal Description, Discovery and Integration)} : c'est un annuaire de services web, ce protocole, basé sur XML, comporte deux sections en WSDL : les descriptions de ces services et des définitions de ports pour manipuler et rechercher dans l'annuaire.
+	      \texttt{UDDI (Universal Description, Discovery and Integration)} : c'est un annuaire de services web. Ce protocole, basé sur XML, comporte deux sections en WSDL : les descriptions de ces services et des définitions de ports pour manipuler et rechercher dans l'annuaire.
 \end{description}
 			
 \subsection{Caractéristiques d'un Service Web}
@@ -77,7 +77,7 @@ Dans un Service Web complet on trouve les caractéristiques suivantes :\cite{ref
 	\item Il dispose d'une interface publique permettant aux clients d'invoquer des procédures ou méthodes sur des objets distants, l'annuaire du service contient la description de ces fonctionnalités et comment les utiliser.
 	\item Utilise un système de messagerie standard (souvent basé sur XML).
 	\item Les fonctionnalités utilisées par le service sont regroupées en un nombre limité de \emph{gros grains} qui sont exposés ensuite au client et ainsi permettre une interaction plus simple avec le service. Par exemple, regrouper des fonctions de bas niveau (petites graines) en une seule fonction de haut niveau, et exposer celle-ci sur le réseau.
-	\item Son système est \emph{faiblement couplé} : le consommateur de ce service n'est pas directement lié au service, ce service peut changer au fil du temps sans perturber le client, ou peut même disparaitre et le client trouvera un autre service en cherchant dans son annuaire.
+	\item Son système est \emph{faiblement couplé} : le consommateur de ce service n'est pas directement lié au service. Le service peut changer au fil du temps sans perturber le client, ou peut même disparaitre et le client trouvera un autre service en cherchant dans son annuaire.
 \end{itemize}
 		
 %=================================================================
@@ -85,7 +85,7 @@ Dans un Service Web complet on trouve les caractéristiques suivantes :\cite{ref
 %=================================================================
 \newpage
 \section{Le protocole HTTP}
-Dans le modèle client-serveur, les clients et les serveurs échangent des messages dans un modèle de messagerie de type requête-réponse : le client envoie une requête et le serveur renvoie une réponse.
+Dans le modèle client-serveur, les clients et les serveurs échangent des messages dans un modèle de messagerie de type requête-réponse: le client envoie une requête et le serveur renvoie une réponse.
 Pour gérer ces messages et définir un format commun entre eux, on utilise le protocole HTTP.
 
 \subsection{HTTP (Hyper Text Transfer Protocol)}
@@ -103,7 +103,7 @@ HTTP propose plusieurs verbes (ou méthodes), mais les plus importants sont :
 
 \subsection{HTTPS}
 Le protocole HTTP est certes extrêmement flexible, mais il n'est pas sécurisé. Les messages de demande transmettent au serveur des informations en texte brut pouvant être interceptées et lues. Les réponses du serveur, généralement des pages HTML, ne sont pas chiffrées.
-Pour une communication sécurisée via Internet, le protocole HTTPS (HTTP Secure) est utilisé. HTTPS utilise l'authentification et le chiffrement pour sécuriser les données pendant leur transfert entre le client et le serveur. HTTPS utilise le même processus de demande client-réponse serveur que le protocole HTTP, sauf que le flux de données est chiffré avec le protocole SSL (Secure Socket Layer) avant d'être transporté sur le réseau.
+Pour une communication sécurisée via Internet, le protocole HTTPS (HTTP Secure) est utilisé. \newline Il utilise l'authentification et le chiffrement pour sécuriser les données pendant leur transfert entre le client et le serveur. Ce protocole utilise le même processus de demande client-réponse serveur que le protocole HTTP, sauf que le flux de données est chiffré avec le protocole SSL (Secure Socket Layer) avant d'être transporté sur le réseau.
 
 %=================================================================
 %=========================== PARTIE SOAP ==========================
@@ -111,7 +111,7 @@ Pour une communication sécurisée via Internet, le protocole HTTPS (HTTP Secure
 \newpage
 \section{Services web SOAP} 
 \subsection{Le protocole SOAP}
-SOAP (Simple object Access Protocol) est un protocole de communication standardisé par le W3C. 
+SOAP (Simple Object Access Protocol) est un protocole de communication standardisé par le W3C. 
 Il définit un format pour l'envoi des messages (basé sur XML) sous forme d'enveloppe et de son contenu, qui peuvent être envoyées par divers protocoles de transport tel que HTTP et SMTP.
 				
 SOAP s'appuie donc sur des standards très connus, ce qui lui a donné une grande portabilité et interopérabilité comparée à ses prédécesseurs (COBRA, DCOM, JAVA RMI...etc).
@@ -121,7 +121,7 @@ Un message SOAP est un document XML contenant les éléments suivants : \cite{re
 \begin{itemize}
 	\item \textbf{Enveloppe} : définit le début et fin du message, elle contient contient la spécification des espaces de désignation (namespace\FancyFootNote{Un namespace est un préfixe identifiant de manière unique la signification d'un terme pour éviter toute ambiguïté.}) et le codage des données. c'est un élément obligatoire.
 	\item \textbf{Header (Entête)} : contient des informations ou options supplémentaires pour le traitement du message comme l'encodage, elle est optionnelle.
-	\item \textbf{Body ( Corps )} : contient les données XML du message à transporter, un élément obligatoire.
+	\item \textbf{Body (Corps)} : contient les données XML du message à transporter, un élément obligatoire.
 	\item \textbf{Fault (Gestion d'erreurs)} : fournit des informations sur les erreurs qui peuvent se produire au traitement de l'information, un élément qui peut être optionnel.
 \end{itemize}
 \begin{figure}[h]
@@ -132,14 +132,14 @@ Un message SOAP est un document XML contenant les éléments suivants : \cite{re
 	\caption{Structure message SOAP}		
 	\centering
 \end{figure}			
-Un message SOAP est un peu lourd, mais reste simple à comprendre et à utiliser, sa structure offre une fiabilité par rapport au format de données, ainsi qu'un moyen de gérer les erreurs grâce au SOAP Fault.
+Un message SOAP est un peu lourd, mais reste simple à comprendre et à utiliser. Sa structure offre une fiabilité par rapport au format de données, ainsi qu'un moyen de gérer les erreurs grâce au SOAP Fault.
 \newpage
 \subsection{Inconvenients}
 Bien que SOAP soit une solution standardisée pour l'accès aux Services Web, on peut noter certains inconvénients :
 \begin{itemize}
-	\item \textbf{Lourdeur :} l'utilisation d'XML et la structure des messages SOAP sont assez verbeuse, XML nécessite aussi d'être parsé\FancyFootNote{Parser XML: Lire le document XML et identifier les fonctions de chaque pièce de ce document, tout en vérifiant sa syntaxe.}, ce qui peut rendre SOAP moins rapide comparé aux autres solutions lorsqu'il nécessite des communications répétées avec le serveur.
-	\item \textbf{limité uniquement à XML :} les messages SOAP et WSDL (XML) sont fortement typés, bien que ce soit un point fort de XML, ce n'est pas très adapté pour des systèmes faiblement couplés, car changer le moindre paramètre (par exemple, changer un réel en entier) induit un changement de la signature du type et imposera donc à tous les clients de s'adapter.
-	\item \textbf{Différents niveaux de support :} on peut trouver SOAP presque automatisé dans certains langages et IDEs (Java, PHP,...etc), mais beaucoup moins supporté dans d'autres, notamment dans les langages au typage dynamique tel que Python et Javascript.
+	\item \textbf{Lourdeur:} l'utilisation d'XML et la structure des messages SOAP sont assez verbeuse, XML nécessite aussi d'être parsé\FancyFootNote{Parser XML: Lire le document XML et identifier les fonctions de chaque pièce de ce document, tout en vérifiant sa syntaxe.}, ce qui peut rendre SOAP moins rapide comparé aux autres solutions lorsqu'il nécessite des communications répétées avec le serveur.
+	\item \textbf{Limité uniquement à XML:} les messages SOAP et WSDL (XML) sont fortement typés. Bien que ce soit un point fort de XML, ce n'est pas très adapté pour des systèmes faiblement couplés. Changer le moindre paramètre (par exemple, changer un réel en entier) induit un changement de la signature du type et imposera donc à tous les clients de s'adapter.
+	\item \textbf{Différents niveaux de support:} on peut trouver SOAP presque automatisé dans certains langages et IDEs (Java, PHP,...etc), mais beaucoup moins supporté dans d'autres, notamment dans les langages au typage dynamique tel que Python et Javascript.
 \end{itemize}
 				
 Ainsi, plusieurs entreprises s'orientent vers REST, et autres ont abandonné leurs services SOAP en faveur de REST, on peut citer comme exemple Google qui a mit fin à son API SOAP en 2009.
@@ -162,8 +162,8 @@ Une ressource est du contenu identifié par des URI \FancyFootNote{Uniform Resou
 REST fournit au client l'accès aux ressources. Il utilise diverses représentations pour représenter une ressource comme le texte, JSON et XML. Aujourd'hui JSON est le format le plus populaire utilisé dans les services REST.
 
 \subsection{Service web full-REST}
-Les services Web RESTful sont des services web basés sur l'architecture REST, en d'autres termes des services qui respectent les contraintes de REST.
-Ces services sont conçus pour fonctionner au mieux sur le Web, ils sont légers, maintenables, évolutifs et facilement extensibles et sont donc souvent utilisés pour implémenter des APIs pour des applications web.\cite{refTutorialPointsREST}
+Les services web RESTful sont des services web basés sur l'architecture REST, en d'autres termes des services qui respectent les contraintes de REST.
+Ces services sont conçus pour fonctionner au mieux sur le web, ils sont légers, maintenables, évolutifs et facilement extensibles et sont donc souvent utilisés pour implémenter des APIs pour des applications web.\cite{refTutorialPointsREST}
 \newline 
 En résumé, une API est qualifiée de RESTful si elle respecte les critères de REST.
 \newline

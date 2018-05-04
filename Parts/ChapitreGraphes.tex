@@ -108,20 +108,28 @@ Afin de mieux tester notre application, nous avons tenté de collecter un maximu
 Le résultat de cette collecte est comme suit :
 
 \subsection{ETO (Entreprise de Transport d'Oran)}
+
+%what they did gave u
+Nous avons été bien accueillis par l'un des responsables de l'ETO que nous remercions de nous avoir bien expliquer le fonctionnement des lignes de notre région ainsi que d'avoir fourni plusieurs informations utiles, tel que:
 \begin{itemize}
-	\item Nous avons été accueillis par un des responsable de l'ETO, qui nous a fourni plusieurs informations sur ( comment marche chaque ligne, fréquences, horaires, temps d'été/hiver...etc)
-	\item Parler des données des lignes de l'ETO qu'il nous a fourni
-	\item les stations ont des noms, donc besoin de stocker nom "commun" et adresse.
-	\item Parler des inconvénients, adresses non complètes, informations mal classées,... donc besoin de traiter et de compléter
-	\item Remerciements. %Kappa.
+	\item La liste des lignes et leur longueur totale.
+	\item Les différents horaires de travail (été/hiver/fin de semaine...etc).
+	\item La fréquence des bus et les différentes contraintes spécifique à notre région.
+	\item Nombre de bus desservant chaque ligne .
+	\item Le nom de chaque station.
 \end{itemize}
 
-\begin{itemize}
-	\item Nous avons été bien accueillis par ..., 
-	\item Il nous a fourni des informations utiles sur le fonctionnement des lignes, tel que les horaires de travail, la difference entre saisons, la fréquence des Bus et les différentes contraintes spécifique à notre région: qui nous ont permis de bien tracer les spécifications et 
-	\item Malheureusement c'etait pas suffisant..
-	\
-\end{itemize}
+% but that wasnt enough
+En plus du catalogue qu'on a reçu, leurs informations nous ont permis de bien tracer les spécifications et les particularités de ces lignes.
+Cependant, ces informations n'ont pas été suffisantes pour notre travail, en effet:
+	\begin{itemize}
+	\item On avait besoin de noms plus significatifs pour chaque station qui sont connues par des noms communs entre les habitants seulement
+	\item Avoir les adresses exacte et les coordonnées de chaque station.
+	\item La distance entre chaque station.
+	\end{itemize}
+	
+%thx again for trying
+On remercie encore l'ETO pour tous cela, néanmoins  ces données doivent être traitées, réorganisées et complétées avant qu'elles puissent être intégrées dans notre application.  
 
 \subsection{Données supplémentaires}
 Données qu'on a ajouté nous-même, parler de l'idée du crowd-sourcing.
@@ -135,7 +143,7 @@ Comment on a utilisé ces données (exemple : trouver coordonnées, calculer dis
 \subsection{Différentes approches}
 \begin{itemize}
 	\item \textbf{Outils Open Source (OpenTripPlanner} : 
-	      Il existe plusieurs outils qui proposent ce service, en particulier OpenTripPlanner : un projet Open Source qui permet de créer un réseau routier à partir de données GTFS \FancyFootNote{GTFS (General Transit Feed Specification : ...}, ces données seront ensuite intégrées avec OpenStreetMap et stockée sur le serveur, qui exposera une API REST pour questionner le serveur : recherche de Chemin, possibilité d'intégrer les horaires, ...etc.
+	      Il existe plusieurs outils qui proposent ce service, en particulier OpenTripPlanner : un projet Open Source qui permet de créer un réseau routier à partir de données GTFS \FancyFootNote{GTFS (General Transit Feed Specification : ...}, ces données seront ensuite intégrées avec OpenStreetMap et stockées sur le serveur, qui exposera une API REST pour questionner le serveur : recherche de Chemin, possibilité d'intégrer les horaires, ...etc.
 	      		
 	      Vu la nature un peu particulière du réseau d'Oran, et la non-disponibilité des données (Données officielles des lignes et données (adresses) sur OpenStreetMap), cette solution ne sera pas envisagée. 
 	      Cependant, l'application prendra une architecture flexible permettant d'intégrer, au futur, de tels outils rapidement au cas de nécessité.
@@ -156,11 +164,11 @@ Comment on a utilisé ces données (exemple : trouver coordonnées, calculer dis
 	\item Présenter en détail la représentation
 	\item Donner la structure du graphe ( trouver une façon pour représenter proprement ces informations : )
 	\begin{itemize}
-		 \item Noeuds représentent station
+		 \item  représentent station
 		 \item Arcs representent un tronçon/chemin entre deux stations
 		 \item Arcs étiquetés par le type du transport ( BusSegment, TramSegment, WalkSegment. ..) 
-		 \item Repéesenter chaque bus séparémment ( pour faciliter la recherche et filtre ) 
-		 \item Noeuds (Stations) ont les attributs suivants : 
+		 \item Représenter chaque bus séparément ( pour faciliter la recherche et filtre ) 
+		 \item Nœuds (Stations) ont les attributs suivants : 
 		 \begin{itemize}
 		 	\item Nom.
 		 	\item Adresse.
