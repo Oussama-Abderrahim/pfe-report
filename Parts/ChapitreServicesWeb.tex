@@ -46,28 +46,7 @@ Ces protocoles sont implémentés par défaut (ou faciles à intégrer) dans la 
 	
 Ce système est réalisé grâce à plusieurs technologies, les plus connus étant les services web type SOAP et les services web type REST, détaillés dans les parties 2.5 et 2.6 respectivement.
 	
-\subsection{L'architecture orientée services} 
-L'architecture orientée services (Service Oriented Architecture, SOA) est style architectural qui vise à concevoir des services web extensibles et hautement réutilisables, et les rendre ensuite visibles et accessibles aux consommateurs.
-				
-On trouve trois acteurs majeurs dans une architecture SOA de service web :
-\begin{itemize}
-	\item \textbf{Service Provider} : 
-	      c'est le fournisseur du service. Il implémente le service et le rend disponible sur le réseau.
-	\item \textbf{Service requester} :
-	      c'est le consommateur (client) de ce service. Il utilise un service web existant en ouvrant une connexion réseau et en envoyant des requêtes (par exemple des messages en XML).
-	\item \textbf{Annuaire service registry} : 
-	      c'est un annuaire de services. Ce registre fournit un endroit central où les développeurs peuvent publier leur nouveau service web, ou trouver d'autres existants.\newline 
-\end{itemize}
 
-Les services web emploient un ensemble de technologies qui ont été conçues en respectant une structure en couches sans être dépendantes entre elles. Cette pile, appelée "Pile de protocoles de services web", peut évoluer, mais elle est principalement formée de quatre couches : \cite{refTutorialPointsWS}
-\begin{description}
-	\item[Couche transport] : cette couche est responsable du transport des messages échangés entre les applications. Elle utilise généralement le protocole HTTP, mais d'autres tels que SMTP, FTP ou BEEP peuvent être utilisés.
-	\item [Couche communication (Messaging)] : cette couche est responsable de la représentation et formatage des messages échangés entre applications, et ceci afin d'assurer qu'ils soient compris par chaque extrémité. Elle utilise principalement XML (ou un dérivé de ce dernier comme XML-RPC et SOAP), mais peut aussi utiliser d'autres formats standard suivant l'architecture, les services REST peuvent envoyer en simple texte, JSON ou XML par exemple.
-	\item[Couche description de service] : cette couche est responsable de la description de l'interface publique du service web, cette description est réalisée en utilisant le WSDL.\newline
-	      \texttt{WSDL : (Web Services Description Language)} : c'est un langage de description standard basé sur XML, développé en jointure par Microsoft et IBM. Il permet de décrire différentes informations sur le service web tel que la liste de ses fonctions, comment interagir avec et les invoquer, les ports et protocoles utilisés...etc.
-	\item[Couche découverte de service] : cette couche est responsable de centraliser les services dans un registre commun, et fournir des fonctionnalités de recherche/publication de services web. Ce service est assuré par l'annuaire UDDI.\newline
-	      \texttt{UDDI (Universal Description, Discovery and Integration)} : c'est un annuaire de services web. Ce protocole, basé sur XML, comporte deux sections en WSDL : les descriptions de ces services et des définitions de ports pour manipuler et rechercher dans l'annuaire.
-\end{description}
 			
 \subsection{Caractéristiques d'un Service Web}
 Dans un Service Web complet on trouve les caractéristiques suivantes :\cite{refTutorialPointsWS}
@@ -133,6 +112,30 @@ Un message SOAP est un document XML contenant les éléments suivants : \cite{re
 	\centering
 \end{figure}			
 Un message SOAP est un peu lourd, mais reste simple à comprendre et à utiliser. Sa structure offre une fiabilité par rapport au format de données, ainsi qu'un moyen de gérer les erreurs grâce au SOAP Fault.
+
+\subsection{L'architecture orientée services} 
+L'architecture orientée services (Service Oriented Architecture, SOA) est style architectural qui vise à concevoir des services web extensibles et hautement réutilisables, et les rendre ensuite visibles et accessibles aux consommateurs.
+				
+On trouve trois acteurs majeurs dans une architecture SOA de service web :
+\begin{itemize}
+	\item \textbf{Service Provider} : 
+	      c'est le fournisseur du service. Il implémente le service et le rend disponible sur le réseau.
+	\item \textbf{Service requester} :
+	      c'est le consommateur (client) de ce service. Il utilise un service web existant en ouvrant une connexion réseau et en envoyant des requêtes (par exemple des messages en XML).
+	\item \textbf{Annuaire service registry} : 
+	      c'est un annuaire de services. Ce registre fournit un endroit central où les développeurs peuvent publier leur nouveau service web, ou trouver d'autres existants.\newline 
+\end{itemize}
+
+Les services web emploient un ensemble de technologies qui ont été conçues en respectant une structure en couches sans être dépendantes entre elles. Cette pile, appelée "Pile de protocoles de services web", peut évoluer, mais elle est principalement formée de quatre couches : \cite{refTutorialPointsWS}
+\begin{description}
+	\item[Couche transport] : cette couche est responsable du transport des messages échangés entre les applications. Elle utilise généralement le protocole HTTP, mais d'autres tels que SMTP, FTP ou BEEP peuvent être utilisés.
+	\item [Couche communication (Messaging)] : cette couche est responsable de la représentation et formatage des messages échangés entre applications, et ceci afin d'assurer qu'ils soient compris par chaque extrémité. Elle utilise principalement XML (ou un dérivé de ce dernier comme XML-RPC et SOAP), mais peut aussi utiliser d'autres formats standard suivant l'architecture, les services REST peuvent envoyer en simple texte, JSON ou XML par exemple.
+	\item[Couche description de service] : cette couche est responsable de la description de l'interface publique du service web, cette description est réalisée en utilisant le WSDL.\newline
+	      \texttt{WSDL : (Web Services Description Language)} : c'est un langage de description standard basé sur XML, développé en jointure par Microsoft et IBM. Il permet de décrire différentes informations sur le service web tel que la liste de ses fonctions, comment interagir avec et les invoquer, les ports et protocoles utilisés...etc.
+	\item[Couche découverte de service] : cette couche est responsable de centraliser les services dans un registre commun, et fournir des fonctionnalités de recherche/publication de services web. Ce service est assuré par l'annuaire UDDI.\newline
+	      \texttt{UDDI (Universal Description, Discovery and Integration)} : c'est un annuaire de services web. Ce protocole, basé sur XML, comporte deux sections en WSDL : les descriptions de ces services et des définitions de ports pour manipuler et rechercher dans l'annuaire.
+\end{description}
+
 \newpage
 \subsection{Inconvenients}
 Bien que SOAP soit une solution standardisée pour l'accès aux Services Web, on peut noter certains inconvénients :
@@ -153,7 +156,7 @@ REST est un terme signifiant \textbf{REpresentational State Transfer}, provenant
 				
 %Dans l'architecture REST, un serveur fournit l'accès à des ressources (pièces d'information) et les présente.
 REST n'est pas exactement une architecture, mais un ensemble de contraintes qui, lorsqu'elles sont appliquées à la conception d'un système, créent un style architectural logiciel qui délimite les rôles des ressources et des représentations et la façon dont le protocole de transport (souvent HTTP) est utilisé. 
-Un serveur qui implémente REST fournit et contrôle l'accès à des ressources (pièces d'information) et les présente aux clients.
+Un serveur qui implémente REST fournit et contrôle l'accès à des ressources (piè 	ces d'information) et les présente aux clients.
 			
 Un système basé sur REST peut être implémenté dans n'importe quel réseau et architecture disponible en minimisant la complexité de l'implémentation, de la communication et de la distribution.\cite{richardson2008restful}
 
@@ -191,18 +194,18 @@ Une API RESTful complète doit vérifier six (06) critères :
 Ces contraintes ne dictent pas quel type de technologie utiliser; Ils définissent seulement comment les données sont transférées entre les composants.
 
 \subsection{Architecture}
-Dans REST, les interactions entre clients et services sont améliorées par le recours à un nombre limité d'opérations. L'affectation aux ressources de leurs propres identifiants URI (Universal Resource Identifiers) uniques autorise une grande souplesse. L'architecture se résume en 5 règles à suivre dans implémentation.\cite{refRegles}
+Dans REST, les interactions entre clients et services sont améliorées par le recours à un nombre limité d'opérations. L'affectation aux ressources de leurs propres identifiants URI uniques autorise une grande souplesse. L'architecture se résume en 5 règles à suivre dans implémentation.\cite{refRegles}
 \begin{itemize}
-	\item \textbf{Règle 1} : l'URI comme identifiant des ressources\newline
+	\item \textbf{Règle 1} : l'URI comme identifiant des ressources.\newline
 	      Afin d'identifier une ressource, REST se base sur les URI. Une application se doit construire ses URI (et donc ses URL) de manière précise et statique, en tenant compte des contraintes REST et de futurs changements.
-	\item \textbf{Règle 2} : les verbes HTTP comme identifiant des opérations\newline
+	\item \textbf{Règle 2} : les verbes HTTP comme identifiant des opérations.\newline
 	      Utiliser les verbes HTTP existants plutôt que d'inclure l'opération dans l'URI de la ressource. Ainsi, généralement pour une ressource, il y a 4 opérations possibles: Create, Read, Update et Delete, on utilisera les verbes correspondants : POST, GET, PUT et DELETE.
 	      Comme chaque verbe possède une signification, REST permet d'éviter toute ambiguïté.
-	\item \textbf{Règle 3} : les réponses HTTP comme représentation des ressources\newline
+	\item \textbf{Règle 3} : les réponses HTTP comme représentation des ressources.\newline
 	      Une ressource peut avoir plusieurs représentations dans des formats divers : HTML, XML, CSV, JSON, etc. C'est au client de définir quel format de réponse il souhaite recevoir via l'entête \emph{Accept} de la requête HTTP, comme il est possible de définir plusieurs formats.
-	\item \textbf{Règle 4} : les liens comme relation entre ressources\newline
+	\item \textbf{Règle 4} : les liens comme relation entre ressources.\newline
 	      Les liens d'une ressource vers une indiquent la présence d'une relation. Il est cependant possible de la décrire afin d'améliorer la compréhension du système. Un attribut rel doit être spécifié sur tous les liens.
-	\item \textbf{Règle 5 :} un paramètre comme jeton d'authentification\newline
+	\item \textbf{Règle 5 :} un paramètre comme jeton d'authentification.\newline
 	      Pour authentifier une requête, les APIs non-triviales utilisent le jeton d'authentification\FancyFootNote{Un jeton est généralement une suite de caractères uniques à l'utilisateur, par laquelle le serveur peut identifier et ainsi authentifier ses requêtes}. Chaque requête est envoyée avec un jeton passé en paramètre ou dans l'entête. Ce jeton temporaire peut être obtenu en envoyant une première requête authentification puis en le combinant avec les requêtes suivantes.
 \end{itemize}
 \subsection{Le format JSON}
@@ -220,8 +223,44 @@ Ces structures prennent les formes suivantes :
 	\item Un tableau est une collection de valeurs ordonnées. 
 	\item Une valeur peut être soit une chaîne de caractères entre guillemets, un nombre, un booléen, un objet ou un tableau. Ces structures peuvent être imbriquées.
 	      
-	      ** exemple de format JSON
+	      
 \end{itemize}
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}[b]{0.55\linewidth}
+      \begin{lstlisting}[caption=Exemple en XML]
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+   <fleuves>
+      <fleuve>
+         <continent>Asie</continent>
+         <embouchure>
+        	 Mer de Laptev
+         </embouchure>
+         <longueur>4400</longueur>
+         <nom>Lena</nom>
+      </fleuve>
+     
+   </fleuves>
+</root>
+    \end{lstlisting}
+  \end{subfigure}\hfill%  
+  \begin{subfigure}[b]{0.40\linewidth}
+      \begin{lstlisting}[caption=Equivalent en JSON]
+{
+    "fleuves": [{
+    "nom": "Léna",
+    "longueur": "4400",
+    "continent": "Asie",
+    "embouchure": "Mer de Laptev"
+        }
+    ]
+}       
+    \end{lstlisting}
+\end{subfigure}\hfill%
+\caption{Exemples de données en XML et JSON.}
+\end{figure}
+
 
 \subsection{Avantages}
 REST devient de plus en plus utilisé dans les entreprises aujourd'hui, les principales motivations pour ce choix sont:\cite{refSOAPvsREST}
