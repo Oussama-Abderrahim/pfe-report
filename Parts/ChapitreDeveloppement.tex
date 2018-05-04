@@ -23,31 +23,41 @@ Neo4J utilise l'algorithme
 	MVC est une des architectures les plus utilisées pour créer des projets évolutifs et extensibles.	Il existe plusieurs variantes du MVC et d'autres architectures similaires tel que le MVVM (Model-View-ViewModel) et le MVP (Model-View-Presenter).
 	\cite{refMVC}
 	\subsection{Composants de l'application}
-	** Placer diagramme Here
+	** Placer diagramme de classe global Here
 	
 	\begin{enumerate}
 	\item \textbf{Models:}
 	 \begin{itemize}
-		\item Station :
-		\item Line :
+		\item \textbf{Station} : ...
+		\item \textbf{Line} : ...
 			\begin{itemize}
-			\item Bus :
+			\item \textbf{Bus} : représente un Bus ainsi que les différents facteurs estimés (temps d'attente moyen, fréquence ...etc.).
 			\end{itemize}
-		\item Path :
+		\item \textbf{Path} : représente une suggestion de chemin, contient les informations globales tel que le prix et temps total du chemin, ainsi qu'une liste d'objets Step.
 			\begin{itemize}
-			\item Step :
+			\item \textbf{Step} : représente une étape d'un itinéraire utilisant le même moyen de transport, comporte la station de départ et d'arrivée, les stations intermédiaires et les informations sur le temps, cout et distance à parcourir.
 			\end{itemize}
-		\item Models du graphe : 
+			le format de cet objet est détaillé dans la section \ref{ref:formatReponse}
+		\item \textbf{Models du graphe} : 
+		Afin d'avoir une application facilement extensible, nous avons séparé les Models relatifs au graphe des Models de l'application, ce qui permettra de modifier la représentation du graphe sans affecter l'application.
 			\begin{itemize}
-			\item GrapheNode : Represente un noeud.
-			\item GrapheSegment : Represente un arc entre deux noeuds.
+			\item GrapheNode : Represente un noeud, communique avec la base de donnée pour créer et manipuler les noeuds.
+			\item GrapheSegment : Represente un arc entre deux noeuds, communique avec la base de donnée pour créer plusieurs relations (lignes de transport) ou les supprimer.
 			\end{itemize}
 	\end{itemize}
+	
+	\item \textbf{Controller :} dans le cas de notre application, le controller est le \emph{router} de l'application, ce dernier permet de définir les differents points terminaux (endpoints) de l'application et les identifier par une URI, les détails de l'API sont décrits dans la section suivante.
+	Nous avons utilisé dans l'implémentation \textbf{ExpressJs} : un framework d'application minimaliste et très flexible qui propose un ensemble de fonctionnalités stables pour les applications web, en l'occurrence l'implémentation des APIs (Express.Router). Au moment d'écrire ce rapport, c'est l'outil le plus connu et le plus utilisé avec NodeJs.
+	
+	\item \textbf{Views :} les Views dans ce projet consistent en deux applications séparées : une application client pour demander le chemin et consulter les lignes, et une application admin pour insérer et modifier les lignes des différents transports.
+	Ces deux applications sont des \emph{Single Page Applications} : une application dynamique qui tourne sur un navigateur web.
+	Nous ne détaillerons pas l'implémentation de ces applications car ce n'est pas l'objectif principal de ce projet, un aperçu du résultat final est donné dans la section \ref{ref:Implementation}
 	\end{enumerate}
 	
 	
 	
 \section{Implémentation de l'API}
+\label{ref:API}
 \subsection{Ressources exposées}
 Notre API définit principalement 3 ressources:
 \begin{enumerate}
@@ -136,8 +146,9 @@ RETURN segments, startNodes, endNodes
 \label{SectionPathFinding}
 	
 	\subsection{Format des requêtes}
-	
+	**Montrer une requete HTTP du chemin avec les parametres ? 
 	\subsection{Format des réponses}
+	\label{ref:formatReponse}
 	L'API retourne un tableau des chemins (Objets Path) en format JSON, ces objets contiennent les informations suivantes :
 	\begin{itemize}
 	\item Le temps, prix et distance totale du chemin.
@@ -179,4 +190,6 @@ RETURN segments, startNodes, endNodes
   ]
 }
 \end{lstlisting}
+
 \section{Implémentation}
+\label{ref:Implementation}

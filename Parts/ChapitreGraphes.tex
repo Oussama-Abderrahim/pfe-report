@@ -59,11 +59,6 @@ Le but est de pouvoir identifier les communautés formées, les centres d'intér
 
 
 \section{Recherche de Chemin:}
-% Intro
-( Intro à revoir ) \newline
-\emph{Il est difficile de retracer l'histoire du problème du plus court chemin. On peut imaginer que même dans les sociétés très primitives, trouver des chemins courts était essentiel. Comparé à d'autres problèmes d'optimisation combinatoire, comme l'algorithme de Kruskal, l'affectation et le transport, la recherche mathématique dans le problème du chemin le plus court a commencé relativement tard. Cela pourrait être dû au fait que le problème est élémentaire et relativement facile, ce qui est également illustré par le fait qu'au moment où le problème est apparu, plusieurs chercheurs ont développé indépendamment méthodes similaires.
-Les problèmes de chemin ont été étudiés au début des années 1950 dans le contexte de \emph{routage alternatif}, c'est-à-dire, trouver une deuxième route plus courte si la première est bloquée. À cette époque, les appels interurbains aux États-Unis étaient automatisés et il fallait trouver automatiquement d'autres itinéraires pour les appels téléphoniques sur le réseau téléphonique américain.
-}
 
 \subsection{Définition:}
 La recherche du plus court chemin est la capacité pour un système de déduire le chemin approprié autour des obstacles pour atteindre un point de destination tout en évitant les obstacles et en parcourant la distance la plus petite possible.
@@ -89,14 +84,14 @@ Le problème du plus court chemin est parmi les problèmes les plus étudiés de
 \end{itemize}
 
 \subsection{Les algorithmes de recherche de chemin}
-**deux types principalement : à fixation d'étiquettes (Djikstra) et correction  (Bellman Ford ) \newline
-(Parler de complexité) \newline
+(Reste à détailler brievement les differents algorithmes) \newline
 Les algorithmes de calcul d'itinéraires origine-destination(s) sont de complexité polynomiale et on les répartit classiquement en deux familles : ceux à fixation d'étiquettes (algorithme de Dijkstra) et ceux à correction d'étiquettes (algorithme de Bellman-Ford).
 Malgré leur complexité polynomiale, ces algorithmes peuvent néanmoins engendrer des temps de calculs importants pour des graphes de grande taille, ce qui a suscité le développement des techniques d'accélération (visant souvent l'optimalité) comme l'algorithme A*, le parcours bidirectionnel, ainsi que les méthodes de pré-traitement.
+\newline
 
-Nous nous interesserons ( .... parcours bidirectionnel ..etc) 
+** Parler de A* et son éfficacité, puis expliquer pourquoi on l'utilise pas ( à mettre dans les perspectives ) à cause de la fonction d'heuristique qui est difficile à concevoir sans une bonne connaissance de ce probleme (dans les limites du temps du projet), considerer donc une approche plus simple utilisant l'algorithme BFS qui est facile à mettre en oeuvre et à "customiser" à nos besoins.
 
-\subsection{L'algorithme (utilisé)}
+\subsection{L'algorithme BFS (Breadth-First-Search)}
 \begin{itemize}
 \item présenter l'algorithme
 \item Parler de complexité et pourquoi avoir choisi
@@ -110,37 +105,45 @@ Le résultat de cette collecte est comme suit :
 \subsection{ETO (Entreprise de Transport d'Oran)}
 
 %what they did gave u
-Nous avons été bien accueillis par l'un des responsables de l'ETO que nous remercions de nous avoir bien expliquer le fonctionnement des lignes de notre région ainsi que d'avoir fourni plusieurs informations utiles, tel que:
+Nous avons été bien accueillis par l'un des responsables de l'ETO que nous remercions de nous avoir bien expliqué le fonctionnement des lignes de notre région ainsi que d'avoir fourni plusieurs informations utiles, tel que:
 \begin{itemize}
 	\item La liste des lignes et leur longueur totale.
 	\item Les différents horaires de travail (été/hiver/fin de semaine...etc).
-	\item La fréquence des bus et les différentes contraintes spécifique à notre région.
-	\item Nombre de bus desservant chaque ligne .
+	\item La fréquence des bus et les différentes contraintes spécifiques à notre région.
+	\item Le nombre de bus desservant chaque ligne .
 	\item Le nom de chaque station.
 \end{itemize}
 
 % but that wasnt enough
-En plus du catalogue qu'on a reçu, leurs informations nous ont permis de bien tracer les spécifications et les particularités de ces lignes.
+En plus du catalogue que nous avons reçu, leurs informations nous ont permis de bien tracer les spécifications et les particularités de ces lignes.
 Cependant, ces informations n'ont pas été suffisantes pour notre travail, en effet:
 	\begin{itemize}
-	\item On avait besoin de noms plus significatifs pour chaque station qui sont connues par des noms communs entre les habitants seulement
-	\item Avoir les adresses exacte et les coordonnées de chaque station.
-	\item La distance entre chaque station.
+	\item Nous avions besoin de noms plus significatifs pour chaque station, car les noms fournis étaient des noms communs connues par les habitants seulement.
+	\item Le catalogue ne contenant pas les adresses exacte ou les coordonnées de chaque station.
+	\item Pas d'informations sur la distance entre chaque station.
 	\end{itemize}
 	
 %thx again for trying
-On remercie encore l'ETO pour tous cela, néanmoins  ces données doivent être traitées, réorganisées et complétées avant qu'elles puissent être intégrées dans notre application.  
+Nous remercions encore l'ETO pour leur assistance, néanmoins ces données doivent être traitées d'avantage, réorganisées et complétées avant qu'elles puissent être intégrées dans notre application.
 
-\subsection{Données supplémentaires}
-Données qu'on a ajouté nous-même, parler de l'idée du crowd-sourcing.
+** Aperçu du deuxieme tableau global reçu pour la frequence et lignes.
 
 \subsection{Traitement de données}
-Comment on a utilisé ces données (exemple : trouver coordonnées, calculer distance avec les coordonnées), et les outils/programmes écrits pour automatiser.. si possible).
-	
-** Nous serons contraints d'utiliser les adresses données comme premiere version, vu l'absence de données GPS, nous (*ajouter une fonctionnalité pour pouvoir intégrer aisément les coordonnées GPS au dessus des données existantes.
 
+** Image du avant et après
+
+\begin{itemize}
+	\item **Par manque de données, nous ne pouvons pas importer directement ces lignes vers l'application, d'où nécessite d'implémenter une Interface pour mieux introduire les lignes et stations, aperçu du résultat dans la section \ref{ref:Implementation} du chapitre 4.
+\end{itemize}
+
+\subsection{Données supplémentaire}
+	\begin{itemize}
+		\item Parler des données de Tramway récupérées depuis le site de Setram.
+		\item Parler de l'idée du crowd-sourcing
+	\end{itemize}
+	
 \section{Construction du graphe}
-\subsection{Différentes approches}
+\subsection{Différentes approches pour stocker le graphe}
 \begin{itemize}
 	\item \textbf{Outils Open Source (OpenTripPlanner} : 
 	      Il existe plusieurs outils qui proposent ce service, en particulier OpenTripPlanner : un projet Open Source qui permet de créer un réseau routier à partir de données GTFS \FancyFootNote{GTFS (General Transit Feed Specification : ...}, ces données seront ensuite intégrées avec OpenStreetMap et stockées sur le serveur, qui exposera une API REST pour questionner le serveur : recherche de Chemin, possibilité d'intégrer les horaires, ...etc.
@@ -151,20 +154,19 @@ Comment on a utilisé ces données (exemple : trouver coordonnées, calculer dis
 	      Une des approches considérées était de représenter chaque ligne indépendamment, l'algorithme du service aura à chercher des points de liaison entre ces lignes.
 	      L'avantage principal de cette approche est la facilité de manipulation de ces données de lignes, en ajoutant/supprimant des lignes sans conflit.
 	      Cette approche présente par contre un inconvénient majeur au niveau de performance, vu que l'utilisation d'un algorithme de PathFinding requiert l'utilisation de plusieurs tables (lignes) à chaque requête. Ce qui nous a menés à l'approche suivante.
-	\item \textbf{Représentation en graphe (Base de données orientée graphe}: nous avons finalement opté vers une représentation en graphe, qui est la plus intuitive dans notre cas, et qui permet aussi un accès plus rapide et simple en parcourant un graphe précalculé, tout en tirant les meilleures performances des différents algorithmes de recherche de chemins.
+	\item \textbf{Représentation en graphe (Base de données orientée graphe}: nous avons finalement opté vers une représentation en graphe, qui est la plus intuitive dans notre cas, et qui permet aussi un accès plus rapide et simple en parcourant un graphe déjà construit, tout en tirant les meilleures performances des différents algorithmes de recherche de chemins.
 	On utilisera pour cela une base de données orientée graphe, qui permet de stocker en permanence le graphe, mais aussi de fournir plusieurs opérations pour créer, modifier et parcourir nos graphes.
 	
-	On a, cependant, noté certaines contraintes suivant cette représentation, 
-	
-	*** lors de la modification, modification d'une station peut affecter plusieurs lignes, modification d'une ligne peut poser plusieurs conflits ou imposer la reconstruction du graphe...
+	Nous a, cependant, noté certaines difficultés suivant cette représentation, notamment dans la modification ou suppression de lignes où le changement ou suppression d'une seule station peut affecter plusieurs autres lignes ou par example l'ajout d'une station au milieu d'une ligne impliquera la suppression de plusieurs arcs.
+	Comme première solution, nous avons décidés de restreindre les modifications et suppressions de nœuds aux stations qui ne sont reliées à aucune ligne, et pour les lignes, de supprimer toute la ligne et reconstruire les arcs à chaque modification.
 	     
 \end{itemize}
-\subsection{Représentation choisie}
+\subsection{Représentation choisie du graphe}
 	\begin{itemize}
 	\item Présenter en détail la représentation
 	\item Donner la structure du graphe ( trouver une façon pour représenter proprement ces informations : )
 	\begin{itemize}
-		 \item  représentent station
+		 \item  neouds représentent station
 		 \item Arcs representent un tronçon/chemin entre deux stations
 		 \item Arcs étiquetés par le type du transport ( BusSegment, TramSegment, WalkSegment. ..) 
 		 \item Représenter chaque bus séparément ( pour faciliter la recherche et filtre ) 
@@ -189,4 +191,5 @@ Comment on a utilisé ces données (exemple : trouver coordonnées, calculer dis
 
 \subsection{Conclusion}
 
-Malgré les différentes contraintes (données manquantes, horraires non régulières...etc.), bla bla 
+** Malgré les différentes contraintes (données manquantes, horaires non régulières...etc.), la représentation choisie reste suffisante et facilement extensible pour de futures améliorations.
+\newpage
