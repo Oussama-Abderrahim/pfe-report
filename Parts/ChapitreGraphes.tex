@@ -84,12 +84,15 @@ Le problème du plus court chemin est parmi les problèmes les plus étudiés de
 \end{itemize}
 
 \subsection{Les algorithmes de recherche de chemin}
-(Reste à détailler brievement les differents algorithmes) \newline
 Les algorithmes de calcul d'itinéraires origine-destination(s) sont de complexité polynomiale et on les répartit classiquement en deux familles : ceux à fixation d'étiquettes (algorithme de Dijkstra) et ceux à correction d'étiquettes (algorithme de Bellman-Ford).
-Malgré leur complexité polynomiale, ces algorithmes peuvent néanmoins engendrer des temps de calculs importants pour des graphes de grande taille, ce qui a suscité le développement des techniques d'accélération (visant souvent l'optimalité) comme l'algorithme A*, le parcours bidirectionnel, ainsi que les méthodes de pré-traitement.
+Malgré leur complexité polynomiale, ces algorithmes peuvent néanmoins engendrer des temps de calculs importants pour des graphes de grande taille, ce qui a suscité le développement des techniques d'accélération (visant souvent l'optimalité plutôt qu'un meilleur chemin) comme l'algorithme A* qui est le plus célèbre, le parcours en largeur/profondeur bidirectionnel, ainsi que les méthodes de pré-traitement.
 \newline
 
-** Parler de A* et son éfficacité, puis expliquer pourquoi on l'utilise pas ( à mettre dans les perspectives ) à cause de la fonction d'heuristique qui est difficile à concevoir sans une bonne connaissance de ce probleme (dans les limites du temps du projet), considerer donc une approche plus simple utilisant l'algorithme BFS qui est facile à mettre en oeuvre et à "customiser" à nos besoins.
+Dans notre cas, et vu que le graphe de la première version est statique (ne changera pas après avoir calculé le chemin), le choix le plus pertinent serait l'\textbf{algorithme A*}.
+Cependant, ce dernier nécessite une fonction d'heuristique pour estimer le meilleur nœud suivant, ce qui sera difficile à concevoir sans une bonne connaissance de notre problème et dans les limites du temps de ce projet.
+De ce fait, nous avons opté pour une approche plus simple utilisant l'algorithme BFS qui est simple à implémenter et à adapter à nos besoins, pour ainsi avoir rapidement une version minimale de l'application.
+
+Nous avons pris en compte la possibilité de changer l'algorithme de recherche dans de futures version de l'application, en prenant une structure plus flexible qui sera expliquée dans le chapitre suivant.
 
 \subsection{L'algorithme BFS (Breadth-First-Search)}
 \begin{itemize}

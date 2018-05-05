@@ -76,20 +76,27 @@ Notre API définit principalement 3 ressources:
 % Format JSON 
 \lstset{style=JSON}
 
-\begin{enumerate}
+\begin{figure}[h!]
 %-------------------------------------------------------------------
-	\item \textbf{Station:}
-	      \begin{lstlisting}[caption=Format JSON de Station]
+\begin{subfigure}[b]{0.45\linewidth}
+\begin{lstlisting}[caption=Format JSON de Station]
 {
-  "id": 0,
-  "name": "string",
-  "address": "string",
-  "coordLat": 0,
-  "coordLon": 0
-}		
+	ID: 1,
+	name: "string",
+	address: "string",
+	coords: 
+	[
+	  {
+	  	  direction: "string",
+  		  lat: 0.00,
+   		  lon: 0.00
+	  }
+	]
+}
 \end{lstlisting}
+\end{subfigure}\hfill%  
 %-------------------------------------------------------------------
-	\item \textbf{Line:}	     
+\begin{subfigure}[b]{0.45\linewidth}
 \begin{lstlisting}[caption=Format JSON de Line]
 {
   "id": 0,
@@ -109,8 +116,9 @@ Notre API définit principalement 3 ressources:
   ]
 }
 \end{lstlisting}
+\end{subfigure}\hfill%  
 %-------------------------------------------------------------------
-\end{enumerate}
+\end{figure}
 
 \section{Recherche de chemin}
 	L'implémentation de l'application du coté serveur permet de calculer un ensemble de chemins optimaux entre deux stations identifiées par un identifiant. Le calcul se déroule en plusieurs étapes :
