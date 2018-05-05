@@ -1,16 +1,12 @@
 \chapter{Les Services Web}
-\newpage
-\section{Introduction} 
-\paragraph{(Laisser l'introduction et conclusion à la fin)}
-\begin{itemize}
-	\item Web passé de centré interaction utilisateur à plus d'interaction entre applications..
-	\item avant les services web
-\end{itemize}
+
+Depuis son apparition, le Web ne cesse d'évoluer. Il est vite passé d'une technologie centrée interaction entre utilisateurs à des communications entre machines et applications, les machines communiquent entre eux plus que nous, utilisateurs, communiquent avec ces machines.
+Nous verrons dans ce chapitre l'ensemble de technologies et standards qui permettent à une application d'accéder et communiquer facilement avec d'autres applications afin d'utiliser ses \emph{services}.
 		
 \section{Avant les services web}
-Parler brièvement des prédécesseurs (COBRA, DCOM) middlewares et protocoles, XML-RPC.\newline
+Avant de passer aux services web et leur importance, il est important de comprendre l'histoire et les motivations qui ont menés à ce standard.
 		
-Vers les années 90, les technologies web et les technologies des systèmes distribués ont commencé à gagner en popularité. Les technologies web étaient principalement conçus pour envoyer des informations d'utilisateurs à un autre, en HTML par exemple. Les technologies de systèmes distribués, cependant, étaient principalement conçus pour connecter des ordinateurs, ou plus spécifiquement des applications exécutées sur ces machines, et donc leur permettre de s'échanger des informations ou collaborer sur des tâches.
+Vers les années 90, les technologies web et les technologies des systèmes distribués ont commencé à gagner en popularité. Les technologies web étaient principalement conçus pour délivrer des informations d'utilisateurs à un autre par Internet, en un document HTML contenant ces informations, ou un mail contenant une pièce jointe par exemple. Les technologies de systèmes distribués, cependant, étaient principalement conçus pour connecter des ordinateurs, ou plus spécifiquement des applications exécutées sur ces machines, et donc leur permettre de s'échanger des informations ou collaborer sur des tâches.
 Chacune de ces deux technologies avait des objectifs différents, et évoluait vers un chemin différent. Ainsi, les services web sont apparu avec but de rassembler ces deux technologies sur un seul objectif commun reliant les deux.\cite{W3Road}
 
 \section{Définition}
@@ -32,11 +28,11 @@ Puisque différentes applications peuvent être écrites en différents langages
 \subsection{Fonctionnement général d'un service web}
 Un service web est un agent réalisé par un fournisseur de services, cet agent joue le rôle d'un intermédiaire entre ce service et les demandeurs extérieurs, ou clients, qui communiquent à travers leur \emph{agent de requête}. 
 \newline			
-Un service web permet donc de recevoir des messages d'un agent de requête, qu'il traduit ou transmit au service dans un format compris par le fournisseur du service.\newline La figure \ref{Généralite_figure} résume le rôle de ces différents acteurs.
+Un service web permet donc de recevoir des messages d'un agent de requête, qu'il traduit ou transmit au service dans un format compris par le fournisseur du service.\newline La figure \ref{Generalite_figure} résume le rôle de ces différents acteurs.
 \begin{figure}[h]
 	\center
 	\includegraphics[scale=0.5]{img/Whatisaserviceweb.png}
-	\caption{Generalités Services Web}		
+	\caption{Généralités Services Web}		
 	\label{Generalite_figure}
 	\centering
 \end{figure}						
@@ -126,7 +122,14 @@ On trouve trois acteurs majeurs dans une architecture SOA de service web :
 	      c'est un annuaire de services. Ce registre fournit un endroit central où les développeurs peuvent publier leur nouveau service web, ou trouver d'autres existants.\newline 
 \end{itemize}
 
-Les services web emploient un ensemble de technologies qui ont été conçues en respectant une structure en couches sans être dépendantes entre elles. Cette pile, appelée "Pile de protocoles de services web", peut évoluer, mais elle est principalement formée de quatre couches : \cite{refTutorialPointsWS}
+\begin{figure}[h]
+	\center
+	\includegraphics[scale=0.71]{img/SOA.png}
+	\caption{Composants d'une architecture orientée services}		
+	\centering
+\end{figure}		
+
+Les services web emploient un ensemble de technologies qui ont été conçues en respectant une structure en couches sans être dépendantes entre elles. Cette pile, appelée \textbf{Pile de protocoles de services web}, peut évoluer, mais elle est principalement formée de quatre couches : \cite{refTutorialPointsWS}
 \begin{description}
 	\item[Couche transport] : cette couche est responsable du transport des messages échangés entre les applications. Elle utilise généralement le protocole HTTP, mais d'autres tels que SMTP, FTP ou BEEP peuvent être utilisés.
 	\item [Couche communication (Messaging)] : cette couche est responsable de la représentation et formatage des messages échangés entre applications, et ceci afin d'assurer qu'ils soient compris par chaque extrémité. Elle utilise principalement XML (ou un dérivé de ce dernier comme XML-RPC et SOAP), mais peut aussi utiliser d'autres formats standard suivant l'architecture, les services REST peuvent envoyer en simple texte, JSON ou XML par exemple.
@@ -136,32 +139,33 @@ Les services web emploient un ensemble de technologies qui ont été conçues en
 	      \texttt{UDDI (Universal Description, Discovery and Integration)} : c'est un annuaire de services web. Ce protocole, basé sur XML, comporte deux sections en WSDL : les descriptions de ces services et des définitions de ports pour manipuler et rechercher dans l'annuaire.
 \end{description}
 
-\newpage
-\subsection{Inconvenients}
-Bien que SOAP soit une solution standardisée pour l'accès aux Services Web, on peut noter certains inconvénients :
+SOAP est très souvent utilisé avec l'architecture orientée service pour la couche transport et messagerie, combiné avec WSDL et UDDI, on parle de la pile WS-* ( ou \textbf{WS-* stack} en anglais) comme un paradigme ou solution dans la conception de Services Web.
+
+\subsection{Inconvénients}
+Bien que SOAP, et plus en général l'architecture SOA, soit une solution standardisée pour la création de Services Web, on peut noter certains inconvénients :
 \begin{itemize}
 	\item \textbf{Lourdeur:} l'utilisation d'XML et la structure des messages SOAP sont assez verbeuse, XML nécessite aussi d'être parsé\FancyFootNote{Parser XML: Lire le document XML et identifier les fonctions de chaque pièce de ce document, tout en vérifiant sa syntaxe.}, ce qui peut rendre SOAP moins rapide comparé aux autres solutions lorsqu'il nécessite des communications répétées avec le serveur.
 	\item \textbf{Limité uniquement à XML:} les messages SOAP et WSDL (XML) sont fortement typés. Bien que ce soit un point fort de XML, ce n'est pas très adapté pour des systèmes faiblement couplés. Changer le moindre paramètre (par exemple, changer un réel en entier) induit un changement de la signature du type et imposera donc à tous les clients de s'adapter.
 	\item \textbf{Différents niveaux de support:} on peut trouver SOAP presque automatisé dans certains langages et IDEs (Java, PHP,...etc), mais beaucoup moins supporté dans d'autres, notamment dans les langages au typage dynamique tel que Python et Javascript.
 \end{itemize}
-				
+
+En résumé, SOAP et l'architecture qui vient avec sont plus adaptés pour des applications coté entreprises nécessitant une grande robustesse et sécurité sans se soucier des couts engendrés par ce choix.
 Ainsi, plusieurs entreprises s'orientent vers REST, et autres ont abandonné leurs services SOAP en faveur de REST, on peut citer comme exemple Google qui a mit fin à son API SOAP en 2009.
 \newpage
 
 \section{REST}
-Une autre alternative à SOAP est REST, un
-***Presenter REST comme une alternative aux Services Web qui utilisent SOAP
+Une autre alternative à SOAP et la pile WS-* est REST, un style d'architecture pensée pour être plus proche et plus adapté aux Web. Nous définissons dans cette section ce qu'est REST, les services full-REST et les différents principes qu'ils apportent.
+
 \subsection{Définition}
 REST est un terme signifiant \textbf{REpresentational State Transfer}, provenant de la thèse de doctorat de Roy Fielding, publiée en 2000.
-				
-%Dans l'architecture REST, un serveur fournit l'accès à des ressources (pièces d'information) et les présente.
+
 REST n'est pas exactement une architecture, mais un ensemble de contraintes qui, lorsqu'elles sont appliquées à la conception d'un système, créent un style architectural logiciel qui délimite les rôles des ressources et des représentations et la façon dont le protocole de transport (souvent HTTP) est utilisé. 
 Un serveur qui implémente REST fournit et contrôle l'accès à des ressources (piè 	ces d'information) et les présente aux clients.
 			
 Un système basé sur REST peut être implémenté dans n'importe quel réseau et architecture disponible en minimisant la complexité de l'implémentation, de la communication et de la distribution.\cite{richardson2008restful}
 
 \subsection{Les ressources}
-Une ressource est du contenu identifié par des URI \FancyFootNote{Uniform Resource Identifiers: une chaine de caractère servant à identifier une ressource en ayant une certaine hiérarchie, par exemple on peut représenter les livres de catégorie Informatique par "/livre/informatique/"} qui peut être un fichier texte, page HTML, image, vidéos...etc.
+Une ressource est du contenu identifié par des URI \FancyFootNote{URI (Uniform Resource Identifier): une chaine de caractère servant à identifier une ressource en ayant une certaine hiérarchie, par exemple on peut représenter les livres de catégorie Informatique par "/livre/informatique/"} qui peut être un fichier texte, page HTML, image, vidéos...etc.
 REST fournit au client l'accès aux ressources. Il utilise diverses représentations pour représenter une ressource comme le texte, JSON et XML. Aujourd'hui JSON est le format le plus populaire utilisé dans les services REST.
 
 \subsection{Service web full-REST}
@@ -223,40 +227,45 @@ Ces structures prennent les formes suivantes :
 	\item Un tableau est une collection de valeurs ordonnées. 
 	\item Une valeur peut être soit une chaîne de caractères entre guillemets, un nombre, un booléen, un objet ou un tableau. Ces structures peuvent être imbriquées.
 	      
-	      
 \end{itemize}
+
+\lstset{style=JSON}
+
 \begin{figure}[h!]
   \centering
-  \begin{subfigure}[b]{0.55\linewidth}
+  \begin{subfigure}[b]{0.52\linewidth}
       \begin{lstlisting}[caption=Exemple en XML]
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
-   <fleuves>
-      <fleuve>
-         <continent>Asie</continent>
+  <fleuves>
+     <fleuve>
+       <continent>Asie</continent>
          <embouchure>
-        	 Mer de Laptev
+          Mer de Laptev
          </embouchure>
          <longueur>4400</longueur>
          <nom>Lena</nom>
-      </fleuve>
-     
-   </fleuves>
+    </fleuve>
+    ...
+  </fleuves>
 </root>
-    \end{lstlisting}
+\end{lstlisting}
   \end{subfigure}\hfill%  
   \begin{subfigure}[b]{0.40\linewidth}
       \begin{lstlisting}[caption=Equivalent en JSON]
 {
-    "fleuves": [{
-    "nom": "Léna",
-    "longueur": "4400",
-    "continent": "Asie",
-    "embouchure": "Mer de Laptev"
-        }
-    ]
+  "fleuves":
+  [
+    {
+      "nom": "Lena",
+      "longueur": "4400",
+      "continent": "Asie",
+      "embouchure": "Mer de Laptev"
+    },
+    ...
+  ]
 }       
-    \end{lstlisting}
+\end{lstlisting}
 \end{subfigure}\hfill%
 \caption{Exemples de données en XML et JSON.}
 \end{figure}
@@ -292,7 +301,7 @@ REST devient de plus en plus utilisé dans les entreprises aujourd'hui, les prin
 	\item SOAP a une gestion des erreurs par défaut ( vu dans son enveloppe ), expliquer utilité pour un exemple de transaction bancaire
 \end{itemize}				 
 			
-conclusion : SOAP peut être utile pour des applications d'entreprises demandant une haute sécurité "unless you have a good reason, use REST" 
+(a faire) conclusion : SOAP peut être utile pour des applications d'entreprises demandant une haute sécurité "unless you have a good reason, use REST" 
 \section{Exemples et applications}
 Deux-Trois Api connues, exemple avec Google Maps
 \section{GraphQL et GRPC}
