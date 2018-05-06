@@ -28,8 +28,8 @@ Neo4J utilise l'algorithme
 	\begin{enumerate}
 	\item \textbf{Models:}
 	 \begin{itemize}
-		\item \textbf{Station} : ...
-		\item \textbf{Line} : ...
+		\item \textbf{Station} : représente une station avec son nom, adresse et coordonnées.
+		\item \textbf{Line} : représente une ligne de transport, le format complet est décrit dans la partie \ref{ref:resources}.
 			\begin{itemize}
 			\item \textbf{Bus} : représente un Bus ainsi que les différents facteurs estimés (temps d'attente moyen, fréquence ...etc.).
 			\end{itemize}
@@ -41,17 +41,19 @@ Neo4J utilise l'algorithme
 		\item \textbf{Models du graphe} : 
 		Afin d'avoir une application facilement extensible, nous avons séparé les Models relatifs au graphe des Models de l'application, ce qui permettra de modifier la représentation du graphe sans affecter l'application.
 			\begin{itemize}
-			\item GrapheNode : Represente un noeud, communique avec la base de donnée pour créer et manipuler les noeuds.
-			\item GrapheSegment : Represente un arc entre deux noeuds, communique avec la base de donnée pour créer plusieurs relations (lignes de transport) ou les supprimer.
+			\item \textbf{GrapheNode} : représente un nœud, communique avec la base de donnée pour créer et manipuler les nœuds.
+			\item \textbf{GrapheSegment} : représente un arc entre deux nœuds, communique avec la base de donnée pour créer plusieurs relations (lignes de transport) ou les supprimer.
 			\end{itemize}
 	\end{itemize}
 	
-	\item \textbf{Controller :} dans le cas de notre application, le controller est le \emph{router} de l'application, ce dernier permet de définir les differents points terminaux (endpoints) de l'application et les identifier par une URI, les détails de l'API sont décrits dans la section suivante.
-	Nous avons utilisé dans l'implémentation \textbf{ExpressJs} : un framework d'application minimaliste et très flexible qui propose un ensemble de fonctionnalités stables pour les applications web, en l'occurrence l'implémentation des APIs (Express.Router). Au moment d'écrire ce rapport, c'est l'outil le plus connu et le plus utilisé avec NodeJs.
+	\item \textbf{Controller :} dans le cas de notre application, le controller est le \emph{router} de l'application, ce dernier permet de définir les différents points terminaux (endpoints) de l'application et les identifier par une URI, les détails de l'API sont décrits dans la section suivante.
+
+Nous avons utilisé dans l'implémentation \textbf{ExpressJs} : un framework d'application minimaliste et très flexible qui propose un ensemble de fonctionnalités stables pour les applications web, en l'occurrence l'implémentation des APIs (Express.Router). Au moment d'écrire ce rapport, c'est l'outil le plus connu et le plus utilisé avec NodeJs.
 	
 	\item \textbf{Views :} les Views dans ce projet consistent en deux applications séparées : une application client pour demander le chemin et consulter les lignes, et une application admin pour insérer et modifier les lignes des différents transports.
-	Ces deux applications sont des \emph{Single Page Applications} : une application dynamique qui tourne sur un navigateur web.
-	Nous ne détaillerons pas l'implémentation de ces applications car ce n'est pas l'objectif principal de ce projet, un aperçu du résultat final est donné dans la section \ref{ref:Implementation}
+
+Ces deux applications sont des \emph{Single Page Applications} : une application dynamique qui tourne sur un navigateur web.
+Nous ne détaillerons pas l'implémentation de ces applications car ce n'est pas l'objectif principal de ce projet, un aperçu du résultat final est donné dans la section \ref{ref:Implementation}.
 	\end{enumerate}
 	
 	
@@ -73,6 +75,7 @@ Notre API définit principalement 3 ressources:
 	\item \textbf{Direction:}  \emph{\textbf{/api/direction}} : Ressource représentant les chemins, elle accepte seulement des requêtes de type GET, les détails de ces requêtes et leurs réponses sont détaillés dans la section \ref{SectionPathFinding}
 \end{enumerate}
 \subsection{Description des formats des ressources}
+\label{ref:resources}
 % Format JSON 
 \lstset{style=JSON}
 
