@@ -129,7 +129,11 @@ Cependant, ces informations n'ont pas été suffisantes pour notre travail, en e
 %thx again for trying
 Nous remercions encore l'ETO pour leur assistance, néanmoins ces données doivent être traitées d'avantage, réorganisées et complétées avant qu'elles puissent être intégrées dans notre application.
 
-** Aperçu du deuxieme tableau global reçu pour la frequence et lignes.
+\begin{figure}
+	\center
+	\includegraphics[scale=0.7]{img/LignesETO.png}
+	\caption{Échantillon de données reçues par l'ETO.}
+\end{figure}
 
 \subsection{Traitement de données}
 
@@ -149,7 +153,7 @@ Nous remercions encore l'ETO pour leur assistance, néanmoins ces données doive
 \subsection{Différentes approches pour stocker le graphe}
 \begin{itemize}
 	\item \textbf{Outils Open Source (OpenTripPlanner} : 
-	      Il existe plusieurs outils qui proposent ce service, en particulier OpenTripPlanner : un projet Open Source qui permet de créer un réseau routier à partir de données GTFS \FancyFootNote{GTFS (General Transit Feed Specification : ...}, ces données seront ensuite intégrées avec OpenStreetMap et stockées sur le serveur, qui exposera une API REST pour questionner le serveur : recherche de Chemin, possibilité d'intégrer les horaires, ...etc.
+	      Il existe plusieurs outils qui proposent ce service, en particulier OpenTripPlanner : un projet Open Source qui permet de créer un réseau routier à partir de données GTFS \FancyFootNote{GTFS (General Transit Feed Specification ou spécification générale pour les flux relatifs aux transports en commun) : est un format informatique standardisé pour communiquer des horaires de transports en commun et les informations géographiques associées.}, ces données seront ensuite intégrées avec OpenStreetMap et stockées sur le serveur, qui exposera une API REST pour questionner le serveur : recherche de Chemin, possibilité d'intégrer les horaires, ...etc.
 	      		
 	      Vu la nature un peu particulière du réseau d'Oran, et la non-disponibilité des données (Données officielles des lignes et données (adresses) sur OpenStreetMap), cette solution ne sera pas envisagée. 
 	      Cependant, l'application prendra une architecture flexible permettant d'intégrer, au futur, de tels outils rapidement au cas de nécessité.
