@@ -21,6 +21,9 @@ Un graphe G est défini de manière formelle par un couple (S,A) où :
 \end{itemize}
 Chaque arc est associé à un poids ou une étiquette qui le décrit. Par exemple, dans un réseau social il peut définir la nature de la relation (ami, famille, collègue) et dans un réseau routier la longueur d'une rue. Parfois le terme coût est utilisé.
 
+\item[Successeurs et prédécesseurs:] dans un arc (x, y) d'un graphe, le sommet \emph{y} est appelé \textbf{successeur} de \emph{x} et \emph{x} est dit \textbf{prédécesseur} de \emph{y}.\newline
+les sommets \emph{x} et \emph{y} sont des sommets voisins (ou adjacents).
+
 \item[Graphe connexe] : un graphe est connexe si on peut atteindre n'importe quel sommet à partir d'un sommet quelconque en parcourant différentes arêtes.
 
 \item[Graphe directionnel] : aussi appelé graphe orienté, digraphe ou un réseau dirigé, c'est un graphe où les sommets (nœuds) sont connectés ensemble, et tous les bords sont dirigés d'un sommet à l'autre. Les bords sont généralement des flèches dessinées indiquant la direction.
@@ -29,7 +32,7 @@ Un graphe où les bords sont bidirectionnels est appelé un graphique non orient
 \item[Chemin] : un chemin est une séquence finie et alternée de sommets et d'arcs, débutant et finissant par des sommets, tel que chaque arc sortant d'un sommet est incident au sommet suivant dans la séquence (cela correspond à la notion de chaîne \emph{orientée}).
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.75\textwidth]{img/cheminGraphe.png}
+	\includegraphics[width=0.55\textwidth]{img/cheminGraphe.png}
 	\caption{Exemple de chemin orienté}
 \end{figure}
 \end{description}
@@ -95,11 +98,30 @@ De ce fait, nous avons opté pour une approche plus simple utilisant l'algorithm
 Nous avons pris en compte la possibilité de changer l'algorithme de recherche dans de futures version de l'application, en prenant une structure plus flexible qui sera expliquée dans le chapitre suivant.
 
 \subsection{L'algorithme BFS (Breadth-First-Search)}
-\begin{itemize}
-\item présenter l'algorithme
-\item Parler de complexité et pourquoi avoir choisi
-\item Code/algorithme de .. l'algorithme.
-\end{itemize}
+
+
+\begin{enumerate}
+	\item \textbf{Présentation}: BFS est un algorithme de parcours ou de recherche dans un arbre ou graphe, il commence d'un nœud source (ou la racine de l'arbre) et explore ses nœuds successeurs d'abord, 
+
+Cet algorithme est très similaire au parcours par largeur d'un arbre, sauf qu'un graphe peut avoir des cycles, donc pour éviter de recalculer le même nœud deux fois, il garde une liste de nœuds visités.
+
+	\item \textbf{Complexité:} la complexité temporelle de l'algorithme est de O(V+E), où V est le nombre de sommets et E le nombre d'arcs.
+	
+	\item \textbf{Étapes de l'algorithme:}
+		L'algorithme effectue un parcours en largeur sur le graphe, en d'autre mot un parcours par niveau, il traite tous les nœuds voisins du nœud de départ avant de passer aux nœuds voisins des nœuds visités.
+\begin{figure}
+	\center
+	\includegraphics[scale=0.6]{img/BFS.jpg}
+	\caption{Déroulement d'un parcours BFS.}
+\end{figure}		
+L'algorithme utilise une file pour mémoriser les nœuds suivants à visiter se résumé en les règles suivantes:
+	\begin{enumerate}
+		\item Visiter le nœud suivant non visité du nœud courant, le marquer comme visité, traiter le nœud et l'insérer dans la file.
+		\item Si aucun autre nœud voisin n'est trouvé, retirer le premier nœud de la file.
+		\item Répéter les étapes (a) et (b) jusqu'à ce que la file soit vide.\cite{refBFS}
+	\end{enumerate}
+	Le BFS traverse donc seulement les nœuds qui peuvent être atteints depuis le nœud de départ.
+\end{enumerate}
 
 \section{Collecte de données}
 Afin de mieux tester notre application, nous avons tenté de collecter un maximum de données réelles, à commencer par contacter l'Entreprise de Transport d'Oran, puis ensuite traiter ces informations et ajouter d'autres que nous avons collectés par nous-mêmes.
@@ -193,6 +215,8 @@ Nous remercions encore l'ETO pour leur assistance, néanmoins ces données doive
 	\end{itemize}
 	\end{itemize}
 
+\subsection{Cas de la marche:}
+Parler du probleme, approche qu'on propose, avantages et inconvenients, perspectives.
 \subsection{Résultat final}
 	** Capture d'écran d'un graphe exemple.
 
