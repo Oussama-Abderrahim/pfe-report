@@ -92,7 +92,7 @@ Malgré leur complexité polynomiale, ces algorithmes peuvent néanmoins engendr
 \newline
 
 Dans notre cas, et vu que le graphe de la première version est statique (ne changera pas après avoir calculé le chemin), le choix le plus pertinent serait l'\textbf{algorithme A*}.
-Cependant, ce dernier nécessite une fonction d'heuristique pour estimer le meilleur nœud suivant, ce qui sera difficile à concevoir sans une bonne connaissance de notre problème et dans les limites du temps de ce projet.
+Cependant, ce dernier nécessite une fonction heuristique\FancyFootNote{Fonction heuristique: } pour estimer le meilleur nœud suivant, ce qui sera difficile à concevoir sans une bonne connaissance de notre problème et dans les limites du temps de ce projet.
 De ce fait, nous avons opté pour une approche plus simple utilisant l'algorithme BFS qui est simple à implémenter et à adapter à nos besoins, pour ainsi avoir rapidement une version minimale de l'application.
 
 Nous avons pris en compte la possibilité de changer l'algorithme de recherche dans de futures version de l'application, en prenant une structure plus flexible qui sera expliquée dans le chapitre suivant.

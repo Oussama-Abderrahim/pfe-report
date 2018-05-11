@@ -60,12 +60,14 @@ Dans un Service Web complet on trouve les caractéristiques suivantes :\cite{ref
 %=================================================================
 \newpage
 \section{Le protocole HTTP}
+Avant de passer aux architectures des services web, il est essentiel d'avoir une idée sur le protocole HTTP, qui est le protocole le plus utilisé sur Internet, et donc le plus souvent utilisé dans les architectures décrites dans les sections suivantes.
+
 Dans le modèle client-serveur, les clients et les serveurs échangent des messages dans un modèle de messagerie de type requête-réponse: le client envoie une requête et le serveur renvoie une réponse.
 Pour gérer ces messages et définir un format commun entre eux, on utilise le protocole HTTP.
 
 \subsection{HTTP (Hyper Text Transfer Protocol)}
 C'est un protocole qui décrit le contenu et la mise en forme des requêtes et des réponses échangées entre le client web et le serveur web. 
-Lorsqu'un client, généralement un navigateur web, envoie une requête à un serveur web, il utilise un URL combiné avec un "verbe" HTTP pour spécifier le type de message et l'action que doit prendre le serveur sur une ressource.
+Lorsqu'un client, généralement un navigateur web, envoie une requête à un serveur web, il utilise un URL combiné avec un \emph{verbe} HTTP pour spécifier le type de message et l'action que doit prendre le serveur sur une ressource, cette requête est appelée une requête HTTP. Le serveur répond ainsi avec un \emph{réponse HTTP} avec un code HTTP décrivant l'état de la réponse, et le résultat en cas de succès.
 
 \subsection{Méthodes HTTP}
 HTTP propose plusieurs verbes (ou méthodes), mais les plus importants sont : 
@@ -77,8 +79,13 @@ HTTP propose plusieurs verbes (ou méthodes), mais les plus importants sont :
 \end{itemize}
 
 \subsection{HTTPS}
-Le protocole HTTP est certes extrêmement flexible, mais il n'est pas sécurisé. Les messages de demande transmettent au serveur des informations en texte brut pouvant être interceptées et lues. Les réponses du serveur, généralement des pages HTML, ne sont pas chiffrées.
-Pour une communication sécurisée via Internet, le protocole HTTPS (HTTP Secure) est utilisé. \newline Il utilise l'authentification et le chiffrement pour sécuriser les données pendant leur transfert entre le client et le serveur. Ce protocole utilise le même processus de demande client-réponse serveur que le protocole HTTP, sauf que le flux de données est chiffré avec le protocole SSL (Secure Socket Layer) avant d'être transporté sur le réseau.
+Le protocole HTTP est certes extrêmement flexible, mais il n'est pas sécurisé.
+Pour une communication sécurisée via Internet, le protocole HTTPS (HTTP Secure) est utilisé. \newline
+Ce protocole utilise le même processus de demande client-réponse serveur que le protocole HTTP, sauf que le flux de données est chiffré avec le protocole SSL (Secure Socket Layer) avant d'être transporté sur le réseau.
+
+\subsection{HTTP/2:}
+HTTP/2 est une révision majeure du protocole HTTP, c'est la première nouvelle version de HTTP depuis HTTP 1.1, qui a été standardisé en 1997. Il a été approuvé puis publié en 2015.
+Les objectifs principaux de HTTP/2 étaient de rester compatible avec HTTP 1.1 (méthodes, codes HTTP, et les différentes entêtes par exemple), tout en ajoutant de nouvelles fonctionnalités et en diminuant la latence pour ainsi améliorer les temps de chargements de pages web.
 
 %=================================================================
 %=========================== PARTIE SOAP ==========================
@@ -94,7 +101,7 @@ SOAP s'appuie donc sur des standards très connus, ce qui lui a donné une grand
 \subsection{Structure de message SOAP}
 Un message SOAP est un document XML contenant les éléments suivants : \cite{refTutorialPointsSOAP}
 \begin{itemize}
-	\item \textbf{Enveloppe} : définit le début et fin du message, elle contient contient la spécification des espaces de désignation (namespace\FancyFootNote{Un namespace est un préfixe identifiant de manière unique la signification d'un terme pour éviter toute ambiguïté.}) et le codage des données. c'est un élément obligatoire.
+	\item \textbf{Enveloppe} : définit le début et fin du message, elle contient contient la spécification des espaces de désignation (namespace\FancyFootNote{Un namespace est un préfixe identifiant de manière unique la signification d'un terme, ou une portion de code en programmation, pour éviter toute ambiguïté.}) et le codage des données. c'est un élément obligatoire.
 	\item \textbf{Header (Entête)} : contient des informations ou options supplémentaires pour le traitement du message comme l'encodage, elle est optionnelle.
 	\item \textbf{Body (Corps)} : contient les données XML du message à transporter, un élément obligatoire.
 	\item \textbf{Fault (Gestion d'erreurs)} : fournit des informations sur les erreurs qui peuvent se produire au traitement de l'information, un élément qui peut être optionnel.
@@ -150,6 +157,7 @@ Bien que SOAP, et plus en général l'architecture SOA, soit une solution standa
 \end{itemize}
 
 En résumé, SOAP et l'architecture qui vient avec sont plus adaptés pour des applications coté entreprises nécessitant une grande robustesse et sécurité sans se soucier des couts engendrés par ce choix.
+
 Ainsi, plusieurs entreprises s'orientent vers REST, et autres ont abandonné leurs services SOAP en faveur de REST, on peut citer comme exemple Google qui a mit fin à son API SOAP en 2009.
 \newpage
 
@@ -304,9 +312,28 @@ REST devient de plus en plus utilisé dans les entreprises aujourd'hui, les prin
 (a faire) conclusion : SOAP peut être utile pour des applications d'entreprises demandant une haute sécurité "unless you have a good reason, use REST" 
 \section{Exemples et applications}
 Deux-Trois Api connues, exemple avec Google Maps
-\section{GraphQL et GRPC}
-			
+\section{XML-RPC, gRPG et GraphQL}
+\begin{description}
+\item[XML-RPC:] c'est un protocole RPC
+ \FancyFootNote{\textbf{RPC }(Remote Procedure Call): c'est un protocole qu'un programme peut utiliser pour demander un service d'un autre programme situé dans une machine distante sans avoir à comprendre son système de façon similaire à un appel de fonction locale.}
+qui utilise XML pour encoder ses messages et les envoyer, généralement, par HTTP.
+C'est une deuxième manière plus simple d'implémenter RPC en utilisant XML, SOAP étant la première. Nous ne considérons pas ce protocole car malgré sa simplicité, il est moins flexible nécessitant une dépendance étroite entre le client et serveur, contrairement aux clients REST qui sont \emph{faiblement couplés}.
+
+Il existe aussi JSON-RPC qui est similaire à XML-RPC.
+
+\item[gRPC: ] c'est un framework RPC initialement développé par Google. Il utilise le protocole HTTP/2 pour le transport, Protocol Buffers comme langage de description d'interface, et offre plusieurs fonctionnalités telles que l'authentification, Il permet la construction de liaisons client/serveur multiplateforme pour de nombreux langages.
+Nous n'avons pas considéré d'utiliser gRPC du fait qu'il soit encore nouveau au moment d'écrire ce rapport, mais aussi parce qu'il est plus adapté pour des architectures en \emph{micro-services}.
+
+\item[GraphQL:] c'est un langage de requête open-source pour les APIs, une spécification sur comment satisfaire ces requêtes avec les données existantes ainsi qu'une description complète et fortement typé de toutes les données de l'API.
+Développé initialement par Facebook en 2012, et finalement publié en 2016, son langage de requête permet au client de consulter la description complète des ressources, et de demander exactement les données dont il a besoin en une seule requête, et donc sans avoir à faire plusieurs requêtes avec le serveur ni avoir à récupérer des attributs en plus, ce qui est un des inconvénients de REST.
+Cette technologie est encore nouvelle au moment d'écrire ce rapport, mais promet d'être un bon remplaçant de REST.
+
+
+La technologie reste nouvelle, son implémentation n'est donc pas très bien supportée et ses avantages ne sont pas très signifiants pour notre application, nous avons donc choisi de la laisser comme perspective. 
+De plus, GraphQL peut être ajouté comme une couche supplémentaire sur une ou plusieurs APIs, ce qui rend possible d'implémenter une API GraphQL au dessus de notre API REST dans de futures version sans avoir à modifier ou écraser l'implémentation courante.
+\end{description}
+
 \section{Conclusion : pourquoi choisir REST}
-	Après avoir exploré les deux technologies, nous avons choisi d'implémenter notre Service Web en utilisant REST qui est plus simple à mettre au point mais aussi plus flexible que SOAP, ce qui permettra d'améliorer ce projet plus rapidement.
+	Après avoir exploré les différentes technologies, nous avons choisi d'implémenter notre Service Web en utilisant REST qui est plus simple à mettre au point mais aussi plus flexible que SOAP, ce qui permettra d'améliorer et faire évoluer ensuite ce projet plus rapidement.
 	
 	Il existe encore certains principes qui n'ont pas été cités dans ce chapitre, bien qu'il n'existe pas réellement une manière absolue pour implémenter une API REST, il existe certaines \emph{bonnes pratiques} que nous tâcherons d'implémenter dans ce projet. Le résultat ainsi que les détails d'implémentation seront décrits dans les chapitres suivants.
