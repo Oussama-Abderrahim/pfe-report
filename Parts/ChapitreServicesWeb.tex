@@ -301,18 +301,44 @@ REST devient de plus en plus utilisé dans les entreprises aujourd'hui, les prin
 	\item Ne peut pas être utilisé pour les transactions impliquant plusieurs appels
 \end{itemize}
 \subsection{REST vs SOAP}
-** points à mentionner : 
+On ne peut comparer directement REST et SOAP, le premier étant un style architectural et le deuxième un protocole. Dans ce cas nous comparons plutôt les services web RESTful avec les services web utilisant SOAP, WSDL et UDDI.
+Nous résumons les plus importantes différences dans la table \ref{tableSoapVsRest}.
 \begin{itemize}
-	\item expliquer que REST est un style architectural, SOAP un protocole
-	\item REST n'est pas lié à XML contrairement à SOAP
 	\item SOAP est strictement typé et a une spécification standard plus stricte pendant que REST donne le concept et est moins restreint dans l'implementation 
 	\item SOAP a une gestion des erreurs par défaut ( vu dans son enveloppe ), expliquer utilité pour un exemple de transaction bancaire
-\end{itemize}				 
-			
+\end{itemize}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|m{0.5\textwidth}|m{0.5\textwidth}|}
+\hline
+\rowcolor[HTML]{EFEFEF} 
+\multicolumn{1}{|c|}{\cellcolor[HTML]{EFEFEF}{\color[HTML]{000000} SOAP}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}{\color[HTML]{000000} REST}} \\ \hline
+
+\begin{tabular}[m]{m{0.5\textwidth}m{0.5\textwidth}}
+SOAP est un standard, l'interaction avec\\  
+des services SOAP est toujours la même:\\ 
+WDSL, XML et des enveloppes SOAP.
+\end{tabular} 
+& 
+\begin{tabular}[c]{@{}l@{}}
+REST n'a pas de standard en termes d'intégration et implémentation\\
+qui décrit quels formats utiliser ou quelles méthodes utiliser.\\ 
+Cependant, cet inconvénient peut être résolu avec une bonne \\ 
+documentation et un respect de certaines bonnes pratiques.
+\end{tabular} \\ \hline
+ &  \\ \hline
+ &  \\ \hline
+\end{tabular}
+\caption{My caption}
+\label{my-label}
+\end{table}
+
 (a faire) conclusion : SOAP peut être utile pour des applications d'entreprises demandant une haute sécurité "unless you have a good reason, use REST" 
 \section{Exemples et applications}
 Deux-Trois Api connues, exemple avec Google Maps
 \section{XML-RPC, gRPG et GraphQL}
+SOAP et REST ne sont les seules technologies autour des services web, nous citons XML-RPC qui est un des pionniers et gRPC ou GraphQL qui sont deux nouvelles technologies récentes, nous présentons brièvement dans les points suivants ces différentes technologies, ainsi que pourquoi nous ne les avons pas considérées.
 \begin{description}
 \item[XML-RPC:] c'est un protocole RPC
  \FancyFootNote{\textbf{RPC }(Remote Procedure Call): c'est un protocole qu'un programme peut utiliser pour demander un service d'un autre programme situé dans une machine distante sans avoir à comprendre son système de façon similaire à un appel de fonction locale.}
@@ -334,6 +360,6 @@ De plus, GraphQL peut être ajouté comme une couche supplémentaire sur une ou 
 \end{description}
 
 \section{Conclusion : pourquoi choisir REST}
-	Après avoir exploré les différentes technologies, nous avons choisi d'implémenter notre Service Web en utilisant REST qui est plus simple à mettre au point mais aussi plus flexible que SOAP, ce qui permettra d'améliorer et faire évoluer ensuite ce projet plus rapidement.
+	Après avoir exploré les différentes technologies, nous avons choisi d'implémenter notre Service Web en utilisant REST qui est le plus adapté pour des APIs web mais aussi le plus simple à mettre au point mais aussi plus flexible que SOAP, ce qui permettra d'améliorer et faire évoluer ensuite ce projet plus rapidement.
 	
 	Il existe encore certains principes qui n'ont pas été cités dans ce chapitre, bien qu'il n'existe pas réellement une manière absolue pour implémenter une API REST, il existe certaines \emph{bonnes pratiques} que nous tâcherons d'implémenter dans ce projet. Le résultat ainsi que les détails d'implémentation seront décrits dans les chapitres suivants.
