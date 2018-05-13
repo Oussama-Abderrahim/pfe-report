@@ -308,31 +308,20 @@ Nous résumons les plus importantes différences dans la table \ref{tableSoapVsR
 	\item SOAP a une gestion des erreurs par défaut ( vu dans son enveloppe ), expliquer utilité pour un exemple de transaction bancaire
 \end{itemize}
 
-\begin{table}[h!]
-\centering
-\begin{tabular}{|m{0.5\textwidth}|m{0.5\textwidth}|}
+
+\begin{tabu} to \textwidth { | X[l] | X[l] | }
 \hline
 \rowcolor[HTML]{EFEFEF} 
-\multicolumn{1}{|c|}{\cellcolor[HTML]{EFEFEF}{\color[HTML]{000000} SOAP}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}{\color[HTML]{000000} REST}} \\ \hline
-
-\begin{tabular}[m]{m{0.5\textwidth}m{0.5\textwidth}}
-SOAP est un standard, l'interaction avec\\  
-des services SOAP est toujours la même:\\ 
-WDSL, XML et des enveloppes SOAP.
-\end{tabular} 
-& 
-\begin{tabular}[c]{@{}l@{}}
-REST n'a pas de standard en termes d'intégration et implémentation\\
-qui décrit quels formats utiliser ou quelles méthodes utiliser.\\ 
-Cependant, cet inconvénient peut être résolu avec une bonne \\ 
-documentation et un respect de certaines bonnes pratiques.
-\end{tabular} \\ \hline
- &  \\ \hline
- &  \\ \hline
-\end{tabular}
-\caption{My caption}
-\label{my-label}
-\end{table}
+SOAP & REST \\
+\hline
+   SOAP est un standard, l'interaction avec des services SOAP est toujours la même: WDSL, XML et des enveloppes SOAP.
+   &
+   REST n'a pas de standard en termes d'intégration et implémentation qui décrit quels formats utiliser ou quelles méthodes utiliser.
+Cependant, cet inconvénient peut être résolu avec une bonne documentation et un respect de certaines bonnes pratiques. \\
+   \hline
+   item 21  & item 22   \\
+   \hline
+\end{tabu}
 
 (a faire) conclusion : SOAP peut être utile pour des applications d'entreprises demandant une haute sécurité "unless you have a good reason, use REST" 
 \section{Exemples et applications}
