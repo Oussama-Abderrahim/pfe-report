@@ -303,10 +303,10 @@ REST devient de plus en plus utilisé dans les entreprises aujourd'hui, les prin
 \subsection{REST vs SOAP}
 On ne peut comparer directement REST et SOAP, le premier étant un style architectural et le deuxième un protocole. Dans ce cas nous comparons plutôt les services web RESTful avec les services web utilisant SOAP, WSDL et UDDI.
 Nous résumons les plus importantes différences dans la table \ref{tableSoapVsRest}.
-\begin{itemize}
-	\item SOAP est strictement typé et a une spécification standard plus stricte pendant que REST donne le concept et est moins restreint dans l'implementation 
-	\item SOAP a une gestion des erreurs par défaut ( vu dans son enveloppe ), expliquer utilité pour un exemple de transaction bancaire
-\end{itemize}
+%\begin{itemize}
+%	\item SOAP est strictement typé et a une spécification standard plus stricte pendant que REST donne le concept et est moins restreint dans l'implementation 
+%	\item SOAP a une gestion des erreurs par défaut ( vu dans son enveloppe ), expliquer utilité pour un exemple de transaction bancaire
+%\end{itemize}
 
 
 \begin{tabu} to \textwidth { | X[l] | X[l] | }
@@ -316,16 +316,22 @@ SOAP & REST \\
 \hline
    SOAP est un standard, l'interaction avec des services SOAP est toujours la même: WDSL, XML et des enveloppes SOAP.
    &
-   REST n'a pas de standard en termes d'intégration et implémentation qui décrit quels formats utiliser ou quelles méthodes utiliser.
-Cependant, cet inconvénient peut être résolu avec une bonne documentation et un respect de certaines bonnes pratiques. \\
+   REST n'a pas de standard en termes d'implémentation qui décrit quels formats utiliser ou quelles méthodes utiliser. \\
    \hline
-   item 21  & item 22   \\
+   Les données d'un service SOAP ont une structure bien définie et fortement typée grâce à XML et WSDL.
+   &  
+   Les données dans un service REST peuvent avoir n'importe quel format: texte, XML, JSON ..etc, voire plusieurs selon le besoin du client, donnant une meilleure flexibilité et liberté, et des alternatives plus légères que le XML.\\
    \hline
 \end{tabu}
 
-(a faire) conclusion : SOAP peut être utile pour des applications d'entreprises demandant une haute sécurité "unless you have a good reason, use REST" 
-\section{Exemples et applications}
-Deux-Trois Api connues, exemple avec Google Maps
+On note que l'avantage principal de SOAP est sa spécification standard en XML qui le rend fiable. Cependant, les services REST peuvent aisément remédier à cet inconvénient avec une bonne documentation des APIs et un respect de certaines bonnes pratiques.
+
+
+En conclusion, SOAP peut être utile pour des applications d'entreprises ou celles qui demandant une haute sécurité et stabilité, mais il est moins adapté pour des APIs Web que REST qui lui a été créé selon la philosophie et spécifications de ce dernier.
+
+%\section{Exemples et applications}
+%Deux-Trois Api connues, exemple avec Google Maps
+
 \section{XML-RPC, gRPG et GraphQL}
 SOAP et REST ne sont les seules technologies autour des services web, nous citons XML-RPC qui est un des pionniers et gRPC ou GraphQL qui sont deux nouvelles technologies récentes, nous présentons brièvement dans les points suivants ces différentes technologies, ainsi que pourquoi nous ne les avons pas considérées.
 \begin{description}
