@@ -353,11 +353,10 @@ SOAP et REST ne sont les seules technologies autour des services web, nous citon
  \FancyFootNote{\textbf{RPC }(Remote Procedure Call): c'est un protocole qu'un programme peut utiliser pour demander un service d'un autre programme situé dans une machine distante sans avoir à comprendre son système de façon similaire à un appel de fonction locale.}
 qui utilise XML pour encoder ses messages et les envoyer, généralement, par HTTP.
 C'est une deuxième manière plus simple d'implémenter RPC en utilisant XML, SOAP étant la première. Nous ne considérons pas ce protocole car malgré sa simplicité, il est moins flexible nécessitant une dépendance étroite entre le client et serveur, contrairement aux clients REST qui sont \emph{faiblement couplés}.
-
-Il existe aussi JSON-RPC qui est similaire à XML-RPC.
+Il existe aussi JSON-RPC qui est similaire à XML-RPC\cite{XMLRPC}
 
 \item[gRPC: ] c'est un framework RPC initialement développé par Google. Il utilise le protocole HTTP/2 pour le transport, Protocol Buffers comme langage de description d'interface, et offre plusieurs fonctionnalités telles que l'authentification, Il permet la construction de liaisons client/serveur multiplateforme pour de nombreux langages.
-Nous n'avons pas considéré d'utiliser gRPC du fait qu'il soit encore nouveau au moment d'écrire ce rapport, mais aussi parce qu'il est plus adapté pour des architectures en \emph{micro-services}.
+Nous n'avons pas considéré d'utiliser gRPC du fait qu'il soit encore nouveau au moment d'écrire ce rapport, mais aussi parce qu'il est plus adapté pour des architectures en \emph{micro-services}.\cite{gRPC}
 
 \item[GraphQL:] c'est un langage de requête open-source pour les APIs, une spécification sur comment satisfaire ces requêtes avec les données existantes ainsi qu'une description complète et fortement typé de toutes les données de l'API.
 Développé initialement par Facebook en 2012, et finalement publié en 2016, son langage de requête permet au client de consulter la description complète des ressources, et de demander exactement les données dont il a besoin en une seule requête, et donc sans avoir à faire plusieurs requêtes avec le serveur ni avoir à récupérer des attributs en plus, ce qui résout les problèmes d'overfetching et underfetching cités dans les limites de REST.
@@ -365,7 +364,7 @@ Cette technologie est encore nouvelle au moment d'écrire ce rapport, mais prome
 
 
 La technologie reste nouvelle, son implémentation n'est donc pas très bien supportée et ses avantages ne sont pas très signifiants pour notre application, nous avons donc choisi de la laisser comme perspective. 
-De plus, GraphQL peut être ajouté comme une couche supplémentaire sur une ou plusieurs APIs, ce qui rend possible d'implémenter une API GraphQL au dessus de notre API REST dans de futures version sans avoir à modifier ou écraser l'implémentation courante.
+De plus, GraphQL peut être ajouté comme une couche supplémentaire sur une ou plusieurs APIs, ce qui rend possible d'implémenter une API GraphQL au dessus de notre API REST dans de futures version sans avoir à modifier ou écraser l'implémentation courante.\cite{GraphQL}
 \end{description}
 
 \section{Conclusion : pourquoi choisir REST}
