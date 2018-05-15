@@ -63,7 +63,7 @@ Dans un Service Web complet on trouve les caractéristiques suivantes :\cite{ref
 Avant de passer aux architectures des services web, il est essentiel d'avoir une idée sur le protocole HTTP, qui est le protocole le plus utilisé sur Internet, et donc le plus souvent utilisé dans les architectures décrites dans les sections suivantes.
 
 Dans le modèle client-serveur, les clients et les serveurs échangent des messages dans un modèle de messagerie de type requête-réponse: le client envoie une requête et le serveur renvoie une réponse.
-Pour gérer ces messages et définir un format commun entre eux, on utilise le protocole HTTP.
+Pour gérer ces messages et définir un format commun entre eux, on utilise le protocole HTTP\cite{HTTP}.
 
 \subsection{HTTP (Hyper Text Transfer Protocol)}
 C'est un protocole qui décrit le contenu et la mise en forme des requêtes et des réponses échangées entre le client web et le serveur web. 
@@ -188,7 +188,7 @@ Elle définit ainsi un système de requête/réponses entre le client et le serv
 
 \newpage
 \subsection{Critères REST}
-Une API RESTful complète doit vérifier six (06) critères :
+Une API RESTful complète doit vérifier six (06) critères: \cite{refTutorialPointsREST}
 \begin{itemize}
 	\item \textbf{Orientée client-serveur}.
 	      
@@ -200,7 +200,7 @@ Une API RESTful complète doit vérifier six (06) critères :
 	      
 	\item \textbf{Avoir un système de couche}: isolation des différents composants de l'application pour bien organiser leurs responsabilités en prenant en charge leurs éventuelles évolution. Chaque couche représente un système borné qui traite une problématique spécifique de l'application.
 	      
-	\item \textbf{Fournir un code à la demande: } le serveur peut être capable d'étendre les fonctionnalités d'un client en transmettant une "logique" qu'il peut exécuter, comme des Applets Java ou des scripts en Javascript.
+	\item \textbf{Fournir un code à la demande: } le serveur peut être capable d'étendre les fonctionnalités d'un client en transmettant une \emph{logique} qu'il peut exécuter, comme des Applets Java ou des scripts en Javascript.
 	      
 \end{itemize}
 Ces contraintes ne dictent pas quel type de technologie utiliser; Ils définissent seulement comment les données sont transférées entre les composants.
@@ -216,7 +216,9 @@ Dans REST, les interactions entre clients et services sont améliorées par le r
 	\item \textbf{Règle 3} : les réponses HTTP comme représentation des ressources.\newline
 	      Une ressource peut avoir plusieurs représentations dans des formats divers : HTML, XML, CSV, JSON, etc. C'est au client de définir quel format de réponse il souhaite recevoir via l'entête \emph{Accept} de la requête HTTP, comme il est possible de définir plusieurs formats.
 	\item \textbf{Règle 4} : les liens comme relation entre ressources.\newline
-	      Les liens d'une ressource vers une indiquent la présence d'une relation. Il est cependant possible de la décrire afin d'améliorer la compréhension du système. Un attribut rel doit être spécifié sur tous les liens.
+	Les liens d'une ressource vers une indiquent la présence d'une relation de cette ressource vers des autres. Il est aussi possible de la décrire afin d'améliorer la compréhension du système.
+	L'exemple dans la figure \ref{ref:JSONXML} décrit l'utilisation d'un attribut pour spécifier le lien vers une autre ressource.
+	
 	\item \textbf{Règle 5 :} un paramètre comme jeton d'authentification.\newline
 	      Pour authentifier une requête, les APIs non-triviales utilisent le jeton d'authentification\FancyFootNote{Un jeton est généralement une suite de caractères uniques à l'utilisateur, par laquelle le serveur peut identifier et ainsi authentifier ses requêtes}. Chaque requête est envoyée avec un jeton passé en paramètre ou dans l'entête. Ce jeton temporaire peut être obtenu en envoyant une première requête authentification puis en le combinant avec les requêtes suivantes.
 \end{itemize}
@@ -247,12 +249,16 @@ Ces structures prennent les formes suivantes :
 <root>
   <fleuves>
      <fleuve>
-       <continent>Asie</continent>
-         <embouchure>
+       <continent>
+        <link rel="continent" 
+       		href="api/continent/5">
+       	Asie
+       </continent>
+       <embouchure>
           Mer de Laptev
-         </embouchure>
-         <longueur>4400</longueur>
-         <nom>Lena</nom>
+       </embouchure>
+       <longueur>4400</longueur>
+       <nom>Lena</nom>
     </fleuve>
     ...
   </fleuves>
@@ -267,7 +273,10 @@ Ces structures prennent les formes suivantes :
     {
       "nom": "Lena",
       "longueur": "4400",
-      "continent": "Asie",
+      "continent": {
+      	name: "Asie",
+      	url: "api/continent/5"
+      },
       "embouchure": "Mer de Laptev"
     },
     ...
@@ -276,6 +285,7 @@ Ces structures prennent les formes suivantes :
 \end{lstlisting}
 \end{subfigure}\hfill%
 \caption{Exemples de données en XML et JSON.}
+\label{ref:JSONXML}
 \end{figure}
 
 
@@ -312,7 +322,7 @@ Nous résumons les plus importantes différences dans la table \ref{tableSoapVsR
 %	\item SOAP a une gestion des erreurs par défaut ( vu dans son enveloppe ), expliquer utilité pour un exemple de transaction bancaire
 %\end{itemize}
 
-
+(** Table à mettre en forme et compléter)\newline
 \begin{tabu} to \textwidth { | X[l] | X[l] | }
 \hline
 \rowcolor[HTML]{EFEFEF} 
@@ -323,21 +333,21 @@ SOAP & REST \\
    REST n'a pas de standard en termes d'implémentation qui décrit quels formats utiliser ou quelles méthodes utiliser. \\
    \hline
    Les données d'un service SOAP ont une structure bien définie et fortement typée grâce à XML et WSDL.
+   Cependant, SOAP est limité uniquement à XML qui est parfois plus lourds et moins lisible comparé à JSON par exemple.
    &  
    Les données dans un service REST peuvent avoir n'importe quel format: texte, XML, JSON ..etc, voire plusieurs selon le besoin du client, donnant une meilleure flexibilité et liberté, et des alternatives plus légères que le XML.\\
    \hline
-   
 \end{tabu}
    \label{tableSoapVsRest}
 
 On note que l'avantage principal du protocole SOAP est sa spécification standard en XML qui le rend fiable au long terme. Cependant, les services REST peuvent aisément remédier à cet inconvénient avec une bonne documentation des APIs et un respect de certaines bonnes pratiques.
 \newline
-En conclusion, SOAP est une solution lourde qui peut être utile pour des applications d'entreprises ou celles qui demandant une haute sécurité et stabilité, mais il est moins adapté pour des APIs Web par rapport à REST qui lui a été créé selon la philosophie et spécifications de ce dernier.
+En conclusion, SOAP est une solution lourde qui peut être utile pour des applications d'entreprises ou celles qui demandant une haute sécurité et stabilité. Il est cependant beaucoup moins adapté pour des APIs web par rapport à REST qui lui a été créé selon la philosophie et spécifications du web.
 
 %\section{Exemples et applications}
 %Deux-Trois Api connues, exemple avec Google Maps
 \section{XML-RPC, gRPG et GraphQL}
-SOAP et REST ne sont les seules technologies autour des services web, nous citons XML-RPC qui est un des pionniers et gRPC ou GraphQL qui sont deux nouvelles technologies récentes, nous présentons brièvement dans les points suivants ces différentes technologies, ainsi que pourquoi nous ne les utiliserons pas :
+SOAP et REST ne sont les seules technologies autour des services web, nous citons XML-RPC qui est un des pionniers et gRPC ou GraphQL qui sont deux technologies récentes, nous présentons brièvement dans les points suivants ces différentes technologies, ainsi que pourquoi nous ne les utiliserons pas :
 \begin{description}
 \item[XML-RPC:] c'est un protocole RPC
  \FancyFootNote{\textbf{RPC }(Remote Procedure Call): c'est un protocole qu'un programme peut utiliser pour demander un service d'un autre programme situé dans une machine distante sans avoir à comprendre son système de façon similaire à un appel de fonction locale.}

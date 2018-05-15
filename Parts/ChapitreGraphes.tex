@@ -190,7 +190,7 @@ Nous remercions encore l'ETO pour leur assistance, néanmoins ces données doive
 	\item \textbf{Représentation en graphe (Base de données orientée graphe}: nous avons finalement opté vers une représentation en graphe, qui est la plus intuitive dans notre cas, et qui permet aussi un accès plus rapide et simple en parcourant un graphe déjà construit, tout en tirant les meilleures performances des différents algorithmes de recherche de chemins.
 	On utilisera pour cela une base de données orientée graphe, qui permet de stocker en permanence le graphe, mais aussi de fournir plusieurs opérations pour créer, modifier et parcourir nos graphes.
 	
-	Nous a, cependant, noté certaines difficultés suivant cette représentation, notamment dans la modification ou suppression de lignes où le changement ou suppression d'une seule station peut affecter plusieurs autres lignes ou par example l'ajout d'une station au milieu d'une ligne impliquera la suppression de plusieurs arcs.
+	Nous avons, cependant, noté certaines difficultés suivant cette représentation, notamment dans la modification ou suppression de lignes où le changement ou suppression d'une seule station peut affecter plusieurs autres lignes ou par example l'ajout d'une station au milieu d'une ligne impliquera la suppression de plusieurs arcs.
 	Comme première solution, nous avons décidés de restreindre les modifications et suppressions de nœuds aux stations qui ne sont reliées à aucune ligne, et pour les lignes, de supprimer toute la ligne et reconstruire les arcs à chaque modification.
 	     
 \end{itemize}
