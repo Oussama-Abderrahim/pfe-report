@@ -291,16 +291,20 @@ REST devient de plus en plus utilisé dans les entreprises aujourd'hui, les prin
 	\item Peut être implémenté localement.
 	\item Utilise l'URI comme représentation de ses ressources, ce qui lui donne une flexibilité d'évolution (changer l'implémentation sans changer l'URL et donc sans affecter le client).
 \end{itemize}
-\subsection{Limites}
+
+\section{SOAP vs REST}
+
+\subsection{Limites de REST}
 \begin{itemize}
-	\item Difficile de respecter l'autorisation et la sécurité
-	\item Ne convient pas pour gérer une grande quantité de données
-	\item Moins sécurisé comparé à SOAP
-	\item Il est sans état
-	\item Ne peut pas être utilisé lorsque les interactions client et serveur sont essentielles
-	\item Ne peut pas être utilisé pour les transactions impliquant plusieurs appels
+	\item Difficile de respecter l'autorisation et la sécurité par rapport à SOAP.
+	\item Ne convient pas pour gérer une grande quantité de données structurées
+	\item Il est moins adapté lorsque les interactions sont essentielles entre le client et serveur ou lorsque les transactions impliquent plusieurs appels continus.
+	\item \textbf{Overfetching :} un des inconvénients de REST est qu'il est pas possible de limiter les données retournées pas le serveur, par exemple un client peut avoir besoin d'une liste de noms et d'emails d'utilisateurs, mais l'API finira par retourner un tableau entier d'utilisateur contenant toutes les autres informations, ce qui peut affecter largement les performances dans de grandes applications. On peut y remédier en créant des ressources spécifiques à ce client, ou en implémentant des paramètres dans les requêtes pour filtrer ces données.
+	\item \textbf{UnderFetching :} c'est un problème qui survient lorsque le client doit afficher plusieurs données en relation, par exemple une liste d'amis détaillées d'un utilisateur, le client commence par une requête qui retourne l'utilisateur, puis pour chaque ami de l'utilisateur, faire une autre requête pour récupérer les données de l'ami, ceci mène à un grand nombre de requêtes entre client et serveur pour des utilisations très simples.
+	Ce problème peut être résolu de la même manière que l'overfetching, cependant, celà mène souvent à un grand nombre de ressources à maintenir, ainsi qu'une dépendance plus forte entre client et serveur.
 \end{itemize}
-\subsection{REST vs SOAP}
+
+\subsection{Comparaison avec SOAP}
 On ne peut comparer directement REST et SOAP, le premier étant un style architectural et le deuxième un protocole. Dans ce cas nous comparons plutôt les services web RESTful avec les services web utilisant SOAP, WSDL et UDDI.
 Nous résumons les plus importantes différences dans la table \ref{tableSoapVsRest}.
 %\begin{itemize}
@@ -322,18 +326,18 @@ SOAP & REST \\
    &  
    Les données dans un service REST peuvent avoir n'importe quel format: texte, XML, JSON ..etc, voire plusieurs selon le besoin du client, donnant une meilleure flexibilité et liberté, et des alternatives plus légères que le XML.\\
    \hline
+   
 \end{tabu}
+   \label{tableSoapVsRest}
 
-On note que l'avantage principal de SOAP est sa spécification standard en XML qui le rend fiable. Cependant, les services REST peuvent aisément remédier à cet inconvénient avec une bonne documentation des APIs et un respect de certaines bonnes pratiques.
-
-
-En conclusion, SOAP peut être utile pour des applications d'entreprises ou celles qui demandant une haute sécurité et stabilité, mais il est moins adapté pour des APIs Web que REST qui lui a été créé selon la philosophie et spécifications de ce dernier.
+On note que l'avantage principal du protocole SOAP est sa spécification standard en XML qui le rend fiable au long terme. Cependant, les services REST peuvent aisément remédier à cet inconvénient avec une bonne documentation des APIs et un respect de certaines bonnes pratiques.
+\newline
+En conclusion, SOAP est une solution lourde qui peut être utile pour des applications d'entreprises ou celles qui demandant une haute sécurité et stabilité, mais il est moins adapté pour des APIs Web par rapport à REST qui lui a été créé selon la philosophie et spécifications de ce dernier.
 
 %\section{Exemples et applications}
 %Deux-Trois Api connues, exemple avec Google Maps
-
 \section{XML-RPC, gRPG et GraphQL}
-SOAP et REST ne sont les seules technologies autour des services web, nous citons XML-RPC qui est un des pionniers et gRPC ou GraphQL qui sont deux nouvelles technologies récentes, nous présentons brièvement dans les points suivants ces différentes technologies, ainsi que pourquoi nous ne les avons pas considérées.
+SOAP et REST ne sont les seules technologies autour des services web, nous citons XML-RPC qui est un des pionniers et gRPC ou GraphQL qui sont deux nouvelles technologies récentes, nous présentons brièvement dans les points suivants ces différentes technologies, ainsi que pourquoi nous ne les utiliserons pas :
 \begin{description}
 \item[XML-RPC:] c'est un protocole RPC
  \FancyFootNote{\textbf{RPC }(Remote Procedure Call): c'est un protocole qu'un programme peut utiliser pour demander un service d'un autre programme situé dans une machine distante sans avoir à comprendre son système de façon similaire à un appel de fonction locale.}
@@ -346,7 +350,7 @@ Il existe aussi JSON-RPC qui est similaire à XML-RPC.
 Nous n'avons pas considéré d'utiliser gRPC du fait qu'il soit encore nouveau au moment d'écrire ce rapport, mais aussi parce qu'il est plus adapté pour des architectures en \emph{micro-services}.
 
 \item[GraphQL:] c'est un langage de requête open-source pour les APIs, une spécification sur comment satisfaire ces requêtes avec les données existantes ainsi qu'une description complète et fortement typé de toutes les données de l'API.
-Développé initialement par Facebook en 2012, et finalement publié en 2016, son langage de requête permet au client de consulter la description complète des ressources, et de demander exactement les données dont il a besoin en une seule requête, et donc sans avoir à faire plusieurs requêtes avec le serveur ni avoir à récupérer des attributs en plus, ce qui est un des inconvénients de REST.
+Développé initialement par Facebook en 2012, et finalement publié en 2016, son langage de requête permet au client de consulter la description complète des ressources, et de demander exactement les données dont il a besoin en une seule requête, et donc sans avoir à faire plusieurs requêtes avec le serveur ni avoir à récupérer des attributs en plus, ce qui résout les problèmes d'overfetching et underfetching cités dans les limites de REST.
 Cette technologie est encore nouvelle au moment d'écrire ce rapport, mais promet d'être un bon remplaçant de REST.
 
 
