@@ -13,11 +13,11 @@ Chacune de ces deux technologies avait des objectifs différents, et évoluait v
 Un service web est un programme dynamique qui utilise le schéma Client-Serveur pour permettre la communication et l'échange de données entre des applications à travers un réseau (Intranet ou Internet).
 Il utilise un système de messagerie standard\FancyFootNote{Protocole standard: un protocole standard est un protocole formalisé (fixé) accepté par une autorité (comme la W3C dans le web) où la plupart des parties qui l'implémentent.} comme XML mais n'est lié à aucun système d'exploitation ou langage de programmation.
 
-Quelques définitions officielles :
+Voici quelques autres définitions :
 \begin{enumerate}
 	\item W3C :
 	      un service web est un composant logiciel conçu pour permettre l'interaction interopérable entre machines à travers un réseau. Il a une interface décrite en un format compris par une machine (spécifiquement WSDL). Les autres systèmes interagissent avec le service web d'une manière définie par sa description en utilisant des messages SOAP, généralement transmis en utilisant HTTP avec un XML sérialisé en parallèle avec d'autres standard du web\cite{W3}.
-	\item Wikipedia : un service web (ou service de la toile) est un protocole d'interface informatique de la famille des technologies web permettant la communication et l'échange de données entre applications et systèmes hétérogènes dans des environnements distribués. Il s'agit donc d'un ensemble de fonctionnalités exposées sur internet ou sur un intranet, par et pour des applications ou machines, sans intervention humaine, de manière synchrone ou asynchrone. Le protocole de communication est défini dans le cadre de la norme SOAP dans la signature du service exposé (WSDL). Actuellement, le protocole de transport est essentiellement HTTP(S)\cite{Wikipedia}.
+	\item Wikipedia : un service web (ou service de la toile) est un protocole d'interface informatique de la famille des technologies web permettant la communication et l'échange de données entre applications et systèmes hétérogènes dans des environnements distribués. Il s'agit donc d'un ensemble de fonctionnalités exposées sur internet ou sur un intranet, par et pour des applications ou machines, sans intervention humaine, de manière synchrone ou asynchrone. Le protocole de communication est défini dans le cadre de la norme SOAP dans la signature du service exposé (WSDL). Actuellement, le protocole de transport est essentiellement HTTP(S).
 \end{enumerate}
 
 \section{Principe et objectifs}
@@ -32,9 +32,8 @@ Un service web permet donc de recevoir des messages d'un agent de requête, qu'i
 \begin{figure}[h]
 	\center
 	\includegraphics[scale=0.5]{img/Whatisaserviceweb.png}
-	\caption{Généralités Services Web}		
+	\caption{Fonctionnement d'un Service Web}		
 	\label{Generalite_figure}
-	\centering
 \end{figure}						
 \newline
 Dans la figure \ref{Generalite_figure}, l'agent de requête et l'agent du service utilisent le même format de message, basé sur l'ensemble de standards et de protocoles ouverts déjà existants, tel que le XML.

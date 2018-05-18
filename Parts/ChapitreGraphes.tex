@@ -1,5 +1,7 @@
 \chapter{Représentation du réseau routier}
-Un graphe sert mieux à définir l'existence d'une relation entre objets tels qu'une ligne entre deux stations de métro, ce qui est la représentation optimale pour nos données. Dans ce chapitre, nous présenterons en première partie les définitions relatives aux graphes et recherche de chemins, ensuite nous discuterons les différentes approches de représentation prises en compte et les spécifications de nos données, enfin nous détaillerons la représentation choisie en donnant des exemples.
+Un graphe sert mieux à définir l'existence d'une relation entre objets tels qu'une ligne entre deux stations de métro, ce qui est la représentation optimale pour nos données. 
+
+Dans ce chapitre, nous présenterons en première partie les définitions relatives aux graphes et recherche de chemins, ensuite nous passerons à la collecte de données et les différentes approches de représentation prises en compte, enfin nous détaillerons la représentation choisie en donnant des exemples.
 
 \section{Généralités sur les graphes}
 La théorie des graphes est très probablement née en 1735 lorsque Leonhard Euler (1707 - 1783) résout le problème des sept ponts de Königsberg. 
@@ -13,23 +15,25 @@ L'énoncé de ce problème est: la ville de \emph{Königsberg} est une ville aut
 
 \subsection{Définitions}
 \begin{description}
-\item[Graphe]: un graphe est composé de sommets (\textbf{vertices}) ou noeuds (\textbf{nodes}), et d'arcs (\textbf{edges}) ou d'arêtes (\textbf{links}) reliant certains de ces sommets ou noeuds.
+\item[Graphe]: un graphe est composé de sommets (\textbf{vertices}), et d'arêtes (\textbf{edges}) reliant certains de ces sommets.
 Un graphe G est défini de manière formelle par un couple (S,A) où :
 \begin{itemize}
 	\item S est un ensemble fini d'éléments. Chacun de ces éléments est appelé sommet du graphe.
-	\item A est un sous-ensemble (éventuellement nul) de SxS. Chacun de ces éléments de A est appelé arc ou arête.
+	\item A est un sous-ensemble (éventuellement nul) de SxS. Chacun de ces éléments de A est appelé arête.
 \end{itemize}
-Chaque arc est associé à un poids ou une étiquette qui le décrit. Par exemple, dans un réseau social il peut définir la nature de la relation (ami, famille, collègue) et dans un réseau routier la longueur d'une rue. Parfois le terme coût est utilisé.
+\item[Arête :] c'est un connexion entre deux sommets A et B, dans le cas où ce lien est orienté, le terme \textbf{arc} est généralement utilisé.
+
+\item[Poids:] chaque arc est associé à un poids ou une étiquette qui le décrit. Par exemple, dans un réseau social il peut définir la nature de la relation (ami, famille, collègue) et dans un réseau routier la longueur d'une rue. Parfois le terme \textbf{coût} est utilisé pour décrire le poids.
 
 \item[Successeurs et prédécesseurs:] dans un arc (x, y) d'un graphe, le sommet \emph{y} est appelé \textbf{successeur} de \emph{x} et \emph{x} est dit \textbf{prédécesseur} de \emph{y}.\newline
 les sommets \emph{x} et \emph{y} sont des sommets voisins (ou adjacents).
 
 \item[Graphe connexe] : un graphe est connexe si on peut atteindre n'importe quel sommet à partir d'un sommet quelconque en parcourant différentes arêtes.
 
-\item[Graphe directionnel] : aussi appelé graphe orienté, digraphe ou un réseau dirigé, c'est un graphe où les sommets (nœuds) sont connectés ensemble, et tous les bords sont dirigés d'un sommet à l'autre. Les bords sont généralement des flèches dessinées indiquant la direction.
-Un graphe où les bords sont bidirectionnels est appelé un graphique non orienté.
+\item[Graphe directionnel] : aussi appelé graphe orienté, digraphe ou un réseau dirigé, c'est un graphe où tous les sommets sont reliés par des arcs orientés.
+Un graphe où les bords sont bidirectionnels est appelé un graphe non-orienté.
 
-\item[Chemin] : un chemin est une séquence finie et alternée de sommets et d'arcs, débutant et finissant par des sommets, tel que chaque arc sortant d'un sommet est incident au sommet suivant dans la séquence (cela correspond à la notion de chaîne \emph{orientée}).
+\item[Chemin] : un chemin est une suite finie et consécutive de sommets et d'arcs, débutant et finissant par des sommets, tel que chaque arc sortant d'un sommet est incident (entrant) au sommet suivant dans cette sequence.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.55\textwidth]{img/cheminGraphe.png}
@@ -44,22 +48,26 @@ Un graphe où les bords sont bidirectionnels est appelé un graphique non orient
 Un graphe sert avant tout à manipuler des concepts, et à établir un lien entre ces concepts. N'importe quel problème comportant des objets avec des relations entre ces objets peut être modélisé par un graphe.
 Les graphes sont donc des outils très puissants et largement répandus qui se prêtent bien à la résolution de nombreux problèmes. Voici quelques-uns :
 
-\subsection{Recherche de chemin (PathFinding)}
-Un cas très fréquent. Chaque nœud représente une position et chaque arête est un chemin entre deux positions, ou en remplaçant les nœuds par des adresses et les arêtes par des routes, on obtient le graphe utilisé par les GPS ou Google Map par exemple.
-La recherche de chemins est aussi utilisée en biologique, communications (réseaux de télécommunications), réseau hydrographique...etc.
+\begin{description}
+
+
+\item[Recherche de chemin (PathFinding)]
+Un cas très fréquent. Chaque nœud représente une position et chaque arête est un chemin entre deux positions, ou en remplaçant les nœuds par des adresses et les arêtes par des routes, on obtient le graphe utilisé par les GPS ou les outils de cartographie tel que Google Map.
+La recherche de chemins est aussi utilisée en biologie, communications (réseaux de télécommunications)...etc.
 Il est courant de chercher le chemin le plus court entre deux positions dans la plupart de ces domaines, nous nous intéressons particulièrement à ce cas d'utilisation, que nous discutons en détail dans la section suivante.
 
 
-\subsection{L'ordonnancement de tâches:}
+\item[L'ordonnancement de tâches:]
 On peut représenter chacune des tâches à effectuer par un nœud, et les dépendances entre chacune de ces tâches par des arêtes.
 On cite l'exemple de l'ordonnancement des projets, les graphes permettent de planifier les différentes tâches d'un projet, détecter les tâches pouvant être effectuées simultanément et estimer la durée totale du projet.
 
-\subsection{Les systèmes de recommandation:}
+\item[Les systèmes de recommandation:]
 C'est une forme spécifique de filtrage de l'information qui a pour but de présenter à un utilisateur des éléments qui sont susceptibles de l'intéresser, en se basant sur ses préférences et son comportement.
 Les moteurs de recommandation font usage des graphes pour représenter des individus ou objets et leurs différents liens. Cet outil est très utilisé en sciences sociales, par exemple le graphe social de Facebook qui représente les associations entre des personnes ou le réseau LinkedIn qui est un graphe de relations entre des professionnels...etc.
 
 Le but est de pouvoir identifier les communautés formées, les centres d'intérêts communs, en suggérant à l'utilisateur les choses qu'il est susceptible d'aimer, les personnes qu'il connaît peut-être, et avant tout (et surtout) pour créer des publicités ciblées adaptées à chacun.
 
+\end{description}
 
 \section{Recherche de Chemin:}
 
@@ -82,8 +90,6 @@ Le problème du plus court chemin est parmi les problèmes les plus étudiés de
 \item\textbf{Réseaux informatiques et protocoles de routage:}   protocole OSPF: Open Shortest Path First.
 \item\textbf{Biologie:} il est utilisé pour trouver le modèle de réseau dans la propagation d'une maladie infectieuse, par exemple.
 \item\textbf{Cartographie:} pour mesurer le chemin le plus court entre deux lieux ou villes.
-\item\textbf{Jeux vidéo}.
-\item\textbf{robotique}.
 \end{itemize}
 
 \subsection{Les algorithmes de recherche de chemin}
@@ -159,9 +165,9 @@ Nous remercions encore l'ETO pour leur assistance, néanmoins ces données doive
 
 \subsection{Données supplémentaire}
 	\begin{itemize}
-		\item Nous avons cherché sur le net des sources supplémentaires pouvant nous aider pour compléter ces données, nous avons réussi à trouver une liste des lieux d'Oran avec des noms plus connus et des adresses ( ? ), la figure ** montre un aperçu de cette liste.
-		\item Parler des données de Tramway récupérées depuis le site web de Setram.
-		\item Parler de l'idée du crowd-sourcing
+		\item Malgré l'absence de données officielles, nous avons réussi à trouver sur le net différentes sources supplémentaires pouvant nous aider pour compléter nos données : notamment des listes des différents lieux de la ville d'Oran 
+		\item Le site officiel de la Setram (Société d'Exploitation des Tramways) a été suffisant pour récupérer toutes les données concernant la ligne du Tramway, ses horaires et même les temps d'attente pour chaque arrêt.
+		\item Nous avons discuté certaines solutions pour assurer l'intégrité des données et leurs mise à jour constantes. Une des solutions proposées est d'ajouter une fonctionnalité permettant à des utilisateurs ou une autorité de signaler un changement de lignes, une estimation de temps trop imprécise ou suggérer des chemins que l'application n'a pas calculé, ceci permettra de faire fonctionner et évoluer cette application à l'aide de \emph{crowdsourcing} seulement.
 	\end{itemize}
 
 \subsection{Traitement de données}
