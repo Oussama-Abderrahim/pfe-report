@@ -165,38 +165,47 @@ Nous remercions encore l'ETO pour leur assistance, néanmoins ces données doive
 
 \subsection{Données supplémentaire}
 	\begin{itemize}
-		\item Malgré l'absence de données officielles, nous avons réussi à trouver sur le net différentes sources supplémentaires pouvant nous aider pour compléter nos données : notamment des listes des différents lieux de la ville d'Oran 
+		\item Malgré l'absence de données officielles, nous avons réussi à trouver sur le net différentes sources supplémentaires pouvant nous aider pour compléter nos données : notamment des listes de différents lieux de la ville d'Oran contenant des noms complets et des adresses permettant de compléter les données de l'ETO.
 		\item Le site officiel de la Setram (Société d'Exploitation des Tramways) a été suffisant pour récupérer toutes les données concernant la ligne du Tramway, ses horaires et même les temps d'attente pour chaque arrêt.
 		\item Nous avons discuté certaines solutions pour assurer l'intégrité des données et leurs mise à jour constantes. Une des solutions proposées est d'ajouter une fonctionnalité permettant à des utilisateurs ou une autorité de signaler un changement de lignes, une estimation de temps trop imprécise ou suggérer des chemins que l'application n'a pas calculé, ceci permettra de faire fonctionner et évoluer cette application à l'aide de \emph{crowdsourcing} seulement.
 	\end{itemize}
 
 \subsection{Traitement de données}
-** Image du avant et après
+Les données obtenues de l'ETO et du net ont permis de rassembler les informations suivantes :
+\begin{itemize}
+	\item Différentes informations sur le fonctionnement de lignes.
+	\item Liste des lignes de bus publiques et les stations desservies, les noms des stations étant toujours pas claires et sans adresses.
+	\item Longueur totale de chaque ligne, fréquence et nombre de bus de chaque ligne.\newline 
+\end{itemize}
+
+Depuis les informations ci-dessus nous avons déduit d'autres informations utiles, notamment :
 
 \begin{itemize}
-	\item La figure ** montre un exemple des données après 
-	\item Par manque de données, nous ne pouvons pas importer directement ces lignes vers l'application, il était donc nécessaire d'implémenter une interface dans l'application pour mieux introduire les lignes et stations, aperçu du résultat dans la section \ref{ref:Implementation} du chapitre 4.
-	
-	\item 
+	\item \textbf{Temps d'attente : } Les bus n'ayant pas de calendrier précis, nous avons utilisé la distance totale, fréquence et nombre de bus pour déduire approximativement le temps d'attente dans chaque arrêt entre deux bus.
+	\item \textbf{Coordonnées GPS :} Afin d'afficher les stations sur une carte, les coordonnées GPS, ou au moins des adresses précises permettant de générer les coordonnées avec un outil de cartographie, sont nécessaires. Cependant, les données que nous avons ne sont pas suffisantes. 
+	Ainsi, pour mieux introduire les lignes et stations dans l'application, il a été nécessaire d'implémenter une fonctionnalité dans l'application administrateur qui permettrait de marquer les stations sur une carte et enregistrer les informations nécessaires automatiquement, aperçu de cette interface est donné dans la section \ref{ref:Implementation}.
 \end{itemize}
 
 	
 \section{Construction du graphe}
+Avoir avoir présenté quelques généralités sur graphe, et discuté les données que nous avons collecté, nous passons aux différents détails sur comment on construit notre graphe et comment le stocker.
 \subsection{Différentes approches pour stocker le graphe}
 \begin{itemize}
 	\item \textbf{Outils Open Source (OpenTripPlanner} : 
 	      Il existe plusieurs outils qui proposent ce service, en particulier OpenTripPlanner : un projet Open Source qui permet de créer un réseau routier à partir de données GTFS \FancyFootNote{GTFS (General Transit Feed Specification ou spécification générale pour les flux relatifs aux transports en commun) : est un format informatique standardisé pour communiquer des horaires de transports en commun et les informations géographiques associées.}, ces données seront ensuite intégrées avec OpenStreetMap et stockées sur le serveur, qui exposera une API REST pour questionner le serveur : recherche de Chemin, possibilité d'intégrer les horaires, ...etc.
 	      		
 	      Vu la nature un peu particulière du réseau d'Oran, et la non-disponibilité des données (Données officielles des lignes et données (adresses) sur OpenStreetMap), cette solution ne sera pas envisagée. 
-	      Cependant, l'application prendra une architecture flexible permettant d'intégrer, au futur, de tels outils rapidement au cas de nécessité.
-	\item \textbf{Représentation indépendante de chaque ligne}
+	      Cependant, l'application prendra une architecture flexible permettant d'intégrer, au futur, de tels outils rapidement si une solution est possible.
+	\item \textbf{Représentation indépendante de chaque ligne en tables SQL}
 	      Une des approches considérées était de représenter chaque ligne indépendamment, l'algorithme du service aura à chercher des points de liaison entre ces lignes.
 	      L'avantage principal de cette approche est la facilité de manipulation de ces données de lignes, en ajoutant/supprimant des lignes sans conflit.
-	      Cette approche présente par contre un inconvénient majeur au niveau de performance, vu que l'utilisation d'un algorithme de PathFinding requiert l'utilisation de plusieurs tables (lignes) à chaque requête. Ce qui nous a menés à l'approche suivante.
-	\item \textbf{Représentation en graphe (Base de données orientée graphe}: nous avons finalement opté vers une représentation en graphe, qui est la plus intuitive dans notre cas, et qui permet aussi un accès plus rapide et simple en parcourant un graphe déjà construit, tout en tirant les meilleures performances des différents algorithmes de recherche de chemins.
-	On utilisera pour cela une base de données orientée graphe, qui permet de stocker en permanence le graphe, mais aussi de fournir plusieurs opérations pour créer, modifier et parcourir nos graphes.
+	      Cette approche présente par contre un inconvénient majeur au niveau de performance, vu que l'utilisation d'un algorithme de PathFinding requiert l'utilisation de plusieurs tables (lignes) à chaque requête.
+	      
+	\item \textbf{Utiliser une base de données orientée graphe}: nous avons finalement choisi d'utiliser une base de données orientée graphe qui permet de stocker en permanence le graphe, mais aussi de fournir plusieurs opérations pour créer, modifier et le parcourir pour rechercher des chemins ou effectuer certains calculs.
 	
-	Nous avons, cependant, noté certaines difficultés suivant cette représentation, notamment dans la modification ou suppression de lignes où le changement ou suppression d'une seule station peut affecter plusieurs autres lignes ou par example l'ajout d'une station au milieu d'une ligne impliquera la suppression de plusieurs arcs.
+Comparé au stockage par tables SQL, cette approche offre un accès plus rapide et simple en parcourant un graphe déjà construit tout en tirant les meilleures performances des différents algorithmes de recherche de chemins.
+
+	Nous avons, cependant, noté certaines difficultés suivant cette représentation, notamment dans la modification ou suppression de lignes où le changement ou la suppression d'une seule station peut affecter plusieurs autres lignes ou par example l'ajout d'une station au milieu d'une ligne impliquera la suppression de plusieurs arcs.
 	Comme première solution, nous avons décidés de restreindre les modifications et suppressions de nœuds aux stations qui ne sont reliées à aucune ligne, et pour les lignes, de supprimer toute la ligne et reconstruire les arcs à chaque modification.
 	     
 \end{itemize}
