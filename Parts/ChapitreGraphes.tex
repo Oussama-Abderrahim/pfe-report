@@ -77,7 +77,7 @@ Le choix de la méthode de l'analyse et sa complexité peuvent augmenter à mesu
 
 \begin{itemize}
 	\item \textbf{Poids:} certains algorithmes n'acceptent que des arcs dont le poids est positif.
-	\item \textbf{Chemins calculés:} il existe des algorithmes qui calculent le plus court chemin de nœud à nœud, entre toutes les paires de nœuds ou encore d'un nœud vers tous les autres.
+	\item \textbf{Type d'algorithme:} il existe des algorithmes qui calculent le plus court chemin de nœud à nœud, entre toutes les paires de nœuds ou encore d'un nœud vers tous les autres.
 	\item \textbf{Prise en compte d'informations externes:} l'utilisation d'une connaissance externe à la structure du graphe peut parfois accélérer la recherche.
 \end{itemize}
 
@@ -87,7 +87,7 @@ Le problème du plus court chemin est parmi les problèmes les plus étudiés de
 \item\textbf{Economie:} problèmes d’investissement
 \item\textbf{Gestion:} gestion des projets
 \item\textbf{Optimisation des réseaux:} réseaux routiers, de télécommunications, de distribution.
-\item\textbf{Réseaux informatiques et protocoles de routage:}   protocole OSPF: Open Shortest Path First.
+\item\textbf{Réseaux informatiques et protocoles de routage:} les protocoles de routages permettant de trouver les meilleurs chemins pour passer les paquets réseaux utilisent ces algorithmes, tel que le protocole OSPF (Open Shortest Path First).
 \item\textbf{Biologie:} il est utilisé pour trouver le modèle de réseau dans la propagation d'une maladie infectieuse, par exemple.
 \item\textbf{Cartographie:} pour mesurer le chemin le plus court entre deux lieux ou villes.
 \end{itemize}
@@ -178,7 +178,7 @@ Les données obtenues de l'ETO et du net ont permis de rassembler les informatio
 	\item Longueur totale de chaque ligne, fréquence et nombre de bus de chaque ligne.\newline 
 \end{itemize}
 
-Depuis les informations ci-dessus nous avons déduit d'autres informations utiles, notamment :
+Depuis ces informations nous avons déduit d'autres informations utiles, notamment :
 
 \begin{itemize}
 	\item \textbf{Temps d'attente : } Les bus n'ayant pas de calendrier précis, nous avons utilisé la distance totale, fréquence et nombre de bus pour déduire approximativement le temps d'attente dans chaque arrêt entre deux bus.
@@ -214,7 +214,7 @@ Comparé au stockage par tables SQL, cette approche offre un accès plus rapide 
 	\item Présenter en détail la représentation
 	\item Donner la structure du graphe ( trouver une façon pour représenter proprement ces informations : )
 	\begin{itemize}
-		 \item  neouds représentent station
+ 		 \item  neouds représentent station
 		 \item Arcs representent un tronçon/chemin entre deux stations
 		 \item Arcs étiquetés par le type du transport ( BusSegment, TramSegment, WalkSegment. ..) 
 		 \item Représenter chaque bus séparément ( pour faciliter la recherche et filtre ) 
