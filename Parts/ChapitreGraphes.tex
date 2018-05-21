@@ -93,8 +93,13 @@ Le problème du plus court chemin est parmi les problèmes les plus étudiés de
 \end{itemize}
 
 \subsection{Les algorithmes de recherche de chemin}
-Les algorithmes de calcul d'itinéraires origine-destination(s) sont de complexité polynomiale et on les répartit classiquement en deux familles : ceux à fixation d'étiquettes (algorithme de Dijkstra) et ceux à correction d'étiquettes (algorithme de Bellman-Ford).
-Malgré leur complexité polynomiale, ces algorithmes peuvent néanmoins engendrer des temps de calculs importants pour des graphes de grande taille, ce qui a suscité le développement des techniques d'accélération (visant souvent l'optimalité plutôt qu'un meilleur chemin) comme l'algorithme A* qui est le plus célèbre, le parcours en largeur/profondeur bidirectionnel, ainsi que les méthodes de pré-traitement.
+Les algorithmes de calcul d'itinéraires origine-destination(s) sont de complexité polynomiale et on les répartit classiquement en deux familles : 
+\begin{itemize}
+	\item \textbf{A fixation d'étiquette:} 
+	\item \textbf{A correction d'étiquette:} 
+\end{itemize}
+
+Malgré leur complexité polynomiale, ces algorithmes peuvent néanmoins engendrer des temps de calculs importants pour des graphes de grande taille, ce qui a suscité le développement des techniques d'accélération (visant souvent l'optimalité plutôt qu'un meilleur chemin) comme l'algorithme A* qui est le plus célèbre, le parcours en largeur/profondeur, le parcours bidirectionnel, ainsi que les méthodes de pré-traitement (pré-calculer les meilleurs chemins dans tout les nœuds).
 \newline
 
 Dans notre cas, et vu que le graphe de la première version est statique (ne changera pas après avoir calculé le chemin), le choix le plus pertinent serait l'\textbf{algorithme A*}.
@@ -104,7 +109,6 @@ De ce fait, nous avons opté pour une approche plus simple utilisant l'algorithm
 Nous avons pris en compte la possibilité de changer l'algorithme de recherche dans de futures version de l'application, en prenant une structure plus flexible qui sera expliquée dans le chapitre suivant.
 
 \subsection{L'algorithme BFS (Breadth-First-Search)}
-
 
 \begin{enumerate}
 	\item \textbf{Présentation}: BFS est un algorithme de parcours ou de recherche dans un arbre ou graphe, il commence d'un nœud source (ou la racine de l'arbre) et explore ses nœuds successeurs d'abord, 
@@ -210,17 +214,20 @@ Comparé au stockage par tables SQL, cette approche offre un accès plus rapide 
 	     
 \end{itemize}
 \subsection{Représentation choisie du graphe}
+La figure \ref{fig:structGraph} présente la structure utilisée pour représenter toutes nos données dans le graphe:
+\begin{itemize}
+	\item Chaque nœud avec l'étiquette \emph{:Station} représenterait une station de transport quelconque.
+	\item Chaque arc entre stations représente le passage d'un transport public entre ces deux stations, ces arcs sont étiquetés par le type du transport (Bus, Tramway,..etc.), chaque type contient les différentes données de chaque transport comme le nom du Bus.
+\end{itemize}
+
 \begin{figure}[h!]
 	\center
 	\includegraphics[width=\textwidth]{img/structureGraphe.png}
 	\caption{Représentation en graphe du réseau routier}
+	\label{fig:structGraph}
 \end{figure}
+
 	\begin{itemize}
-	\item Présenter en détail la représentation
-	\item Donner la structure du graphe ( trouver une façon pour représenter proprement ces informations : )
-	\begin{itemize}
- 		 \item  neouds représentent station
-		 \item Arcs representent un tronçon/chemin entre deux stations
 		 \item Arcs étiquetés par le type du transport ( BusSegment, TramSegment, WalkSegment. ..) 
 		 \item Représenter chaque bus séparément ( pour faciliter la recherche et filtre ) 
 		 \item Nœuds (Stations) ont les attributs suivants : 
@@ -237,12 +244,24 @@ Comparé au stockage par tables SQL, cette approche offre un accès plus rapide 
 		 		** remarque : infos du bus ( temps d'arrêt, prix ..etc) sont stockés sépareraient.
 		 \end{itemize}
 	\end{itemize}
-	\end{itemize}
 
-\subsection{Cas de la marche:}
-Parler du probleme, approche qu'on propose, avantages et inconvenients, perspectives.
+
+\subsection{Cas de la marche}
+Afin de pouvoir intégrer la marche dans la recherche de chemin, il est nécessaire de pouvoir détecter les arrêts les plus proches de chaque arrêt pendant le traitement, et essayer de considérer les arrêts les plus proches de chaque nœud visité.\newline 
+Cette solution s'avère difficile à appliquer dans la version actuelle du projet, nous avons donc choisi de représenter la possibilité de marcher avec un arc similaire aux arcs de transports.\newline
+Ces arcs sont automatiquement ajoutés à la création de chaque ligne en calculant toutes les distances entre le début et fin de la ligne ajoutée avec le début et fin de chaque autre ligne, et ajouter un arc dans les deux sens si la distance est inférieur à 1Km (valeur arbitraire).
+Un exemple de cet arc est donné dans la figure \ref{fig:structGraph}.
+
+Cette approche permet d'intégrer la marche de façon minimale sans affecter les performances et sans avoir à calculer des distances pendant la recherche du chemin.
+Il sera possible d'améliorer cette fonctionnalité après avoir implémenté la recherche de plus proches stations pendant directement dans le graphe (voir perspectives dans chapitre 5).
+
 \subsection{Résultat final}
-	** Capture d'écran d'un graphe exemple.
+
+\begin{figure}
+	\center
+	\includegraphics[width=0.8\textwidth]{img/GrapheNeo4j.png}
+	\caption{Aperçu d'un graphe de transport}
+\end{figure}
 
 \subsection{Conclusion}
 
