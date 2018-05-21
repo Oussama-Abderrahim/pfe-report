@@ -103,8 +103,8 @@ Malgré leur complexité polynomiale, ces algorithmes peuvent néanmoins engendr
 \newline
 
 Dans notre cas, et vu que le graphe de la première version est statique (ne changera pas après avoir calculé le chemin), le choix le plus pertinent serait l'\textbf{algorithme A*}.
-Cependant, ce dernier nécessite une fonction heuristique\FancyFootNote{Fonction heuristique: } pour estimer le meilleur nœud suivant, ce qui sera difficile à concevoir sans une bonne connaissance de notre problème et dans les limites du temps de ce projet.
-De ce fait, nous avons opté pour une approche plus simple utilisant l'algorithme BFS qui est simple à implémenter et à adapter à nos besoins, pour ainsi avoir rapidement une version minimale de l'application.
+Cependant, ce dernier nécessite une fonction heuristique\FancyFootNote{Heuristique: une méthode de calcul qui fournit rapidement une solution réalisable, pas nécessairement optimale ou exacte, pour un problème d'optimisation difficile.} pour estimer le meilleur nœud suivant, ce qui sera difficile à concevoir sans une bonne connaissance de notre problème et dans les limites du temps de ce projet.
+De ce fait, nous avons opté pour une approche plus simple utilisant l'algorithme BFS qui est simple à implémenter et à adapter à nos besoins, pour ainsi avoir rapidement une version minimale de l'application, cet algorithme sera présenté dans la section suivante.
 
 Nous avons pris en compte la possibilité de changer l'algorithme de recherche dans de futures version de l'application, en prenant une structure plus flexible qui sera expliquée dans le chapitre suivant.
 
@@ -227,23 +227,32 @@ La figure \ref{fig:structGraph} présente la structure utilisée pour représent
 	\label{fig:structGraph}
 \end{figure}
 
-	\begin{itemize}
-		 \item Arcs étiquetés par le type du transport ( BusSegment, TramSegment, WalkSegment. ..) 
-		 \item Représenter chaque bus séparément ( pour faciliter la recherche et filtre ) 
-		 \item Nœuds (Stations) ont les attributs suivants : 
-		 \begin{itemize}
-		 	\item Nom.
-		 	\item Adresse.
-		 	\item Tableau de coordonnées (pour chaque direction) avec indicateur de direction.
-		 \end{itemize}
-		 \item Arcs ont les attributs suivants :
-		 \begin{itemize}
-		 		\item Dist : distance entre les deux stations
-		 		\item Time: temps moyen pour passer de la première station à la deuxieme
-		 		\item Bus : ( pour les arcs de type Bus ) nom/id du bus.
-		 		** remarque : infos du bus ( temps d'arrêt, prix ..etc) sont stockés sépareraient.
-		 \end{itemize}
-	\end{itemize}
+Un aperçu des données représentées dans le graphe est donné dans la figure \ref{fig:structGraph}. Les données concernant les bus (temps d'arrêt, prix...etc.) seront représentés séparément comme des nœuds étiquetés dans le graphe ou dans une base de données différente.
+
+%
+%	\begin{itemize}
+%		 \item Arcs étiquetés par le type du transport ( BusSegment, TramSegment, WalkSegment. ..) 
+%		 \item Représenter chaque bus séparément ( pour faciliter la recherche et filtre ) 
+%		 \item Nœuds (Stations) ont les attributs suivants : 
+%		 \begin{itemize}
+%		 	\item Nom.
+%		 	\item Adresse.
+%		 	\item Tableau de coordonnées (pour chaque direction) avec indicateur de direction.
+%		 \end{itemize}
+%		 \item Arcs ont les attributs suivants :
+%		 \begin{itemize}
+%		 		\item Dist : distance entre les deux stations
+%		 		\item Time: temps moyen pour passer de la première station à la deuxieme
+%		 		\item Bus : ( pour les arcs de type Bus ) nom/id du bus.
+%		 		** remarque : infos du bus ( temps d'arrêt, prix ..etc) sont stockés sépareraient.
+%		 \end{itemize}
+%	\end{itemize}
+
+\begin{figure}
+	\center
+	\includegraphics[width=0.8\textwidth]{img/GrapheNeo4j.png}
+	\caption{Aperçu d'un graphe de transport}
+\end{figure}
 
 
 \subsection{Cas de la marche}
@@ -254,14 +263,6 @@ Un exemple de cet arc est donné dans la figure \ref{fig:structGraph}.
 
 Cette approche permet d'intégrer la marche de façon minimale sans affecter les performances et sans avoir à calculer des distances pendant la recherche du chemin.
 Il sera possible d'améliorer cette fonctionnalité après avoir implémenté la recherche de plus proches stations pendant directement dans le graphe (voir perspectives dans chapitre 5).
-
-\subsection{Résultat final}
-
-\begin{figure}
-	\center
-	\includegraphics[width=0.8\textwidth]{img/GrapheNeo4j.png}
-	\caption{Aperçu d'un graphe de transport}
-\end{figure}
 
 \subsection{Conclusion}
 
