@@ -1,12 +1,15 @@
 \chapter{Les Services Web}
 
-Depuis son apparition, le Web ne cesse d'évoluer. Il est vite passé d'une technologie centrée interaction entre utilisateurs à des communications entre machines et applications. Les machines communiquent désormais entre eux plus que nous, utilisateurs, communiquent avec ces machines.
-Nous verrons dans ce chapitre l'ensemble de technologies et standards qui permettent à une application d'accéder et communiquer facilement avec d'autres applications afin d'utiliser leurs \emph{services}.
+Depuis son apparition, le Web ne cesse d'évoluer. Il est vite passé d'une technologie centrée présentation aux utilisateurs, où les sites web ne consistaient qu'en une page statique dont l'utilisateur est spectateur, à des applications plus complexes demandant plus d'interaction et une communication et coordination avec d'autres machines et applications.
+
+Les machines communiquent désormais entre eux plus que nous communiquons avec ces machines.
+Nous verrons dans ce chapitre l'ensemble de technologies et standards qui permettent à une application d'accéder et communiquer facilement avec d'autres applications sur d'autres machines afin d'utiliser leurs \emph{services}.
 		
 \section{Avant les services web}
 Avant de passer aux services web et leur importance, il est important de comprendre l'histoire et les motivations qui ont menés à ce standard.
 		
-Vers les années 90, les technologies web et les technologies des systèmes distribués ont commencé à gagner en popularité. Les technologies web étaient principalement conçues pour délivrer des informations d'un utilisateur à un autre par Internet, en un document HTML contenant des informations, ou un mail contenant une pièce jointe par exemple. Les technologies de systèmes distribués, cependant, étaient principalement conçues pour connecter des ordinateurs, ou plus spécifiquement des applications exécutées sur ces machines, et donc leur permettre de s'échanger des informations ou collaborer sur des tâches.
+Vers les années 90, les technologies web et les technologies des systèmes distribués ont commencé à gagner en popularité. Les technologies web étaient principalement conçues pour délivrer des informations d'un utilisateur à un autre par Internet, en un document HTML contenant des informations, ou utilisant un service Internet pour envoyer un mail contenant une pièce jointe par exemple. 
+Les technologies de systèmes distribués, cependant, étaient principalement conçues pour connecter des ordinateurs, ou plus spécifiquement des applications exécutées sur ces machines, et donc leur permettre de s'échanger des informations ou collaborer sur des tâches.
 Chacune de ces deux technologies avait des objectifs différents, et évoluait vers un chemin différent. Ainsi, les services web sont apparu avec but de rassembler ces deux technologies sur un seul objectif commun reliant les deux\cite{W3Road}.
 
 \section{Définition}
@@ -23,7 +26,7 @@ Voici quelques autres définitions :
 \section{Principe et objectifs}
 \subsection{Pourquoi les services web ?}
 Les services web ont été conçus pour permettre l'interaction interopérable entre machines à travers un réseau, en d'autres termes, permettre à différents systèmes de fonctionner et communiquer entre eux.\newline
-Puisque différentes applications peuvent être écrites en différents langages et architectures, et sont souvent ramenées à subir plusieurs changements, l’interaction directe entre ces applications est souvent difficile voire pas possible, un service web implémenté pour une application ou ressource offre donc un moyen compréhensible par les autres machines d'accéder au service de cette application et ce, indépendamment de la technologie implémentée par cette application\cite{refTutorialPointsWS}.
+Puisque différentes applications peuvent être écrites en différents langages et architectures, et sont souvent ramenées à subir plusieurs changements, l’interaction directe entre ces applications est souvent difficile voire impossible, un service web implémenté pour une application ou ressource offre donc un moyen compréhensible par les autres machines d'accéder au service de cette application et ce, indépendamment de la technologie implémentée par cette application\cite{refTutorialPointsWS}.
 
 \subsection{Fonctionnement général d'un service web}
 Un service web est un \emph{agent} réalisé par un fournisseur de services, cet agent joue le rôle d'un intermédiaire entre ce service et les demandeurs extérieurs, dits clients, qui communiquent à travers leur \emph{agent de requête}. 
@@ -49,7 +52,7 @@ Dans un Service Web complet on trouve les caractéristiques suivantes \cite{refT
 	\item Il est accessible par un réseau (Internet/Intranet).
 	\item Il dispose d'une interface publique permettant aux clients d'invoquer des procédures ou méthodes sur des objets distants, parfois un annuaire du service contient la description de ces fonctionnalités et comment les utiliser.
 	\item Utilise un système de messagerie standard (souvent basé sur XML).
-	\item Les fonctionnalités utilisées par le service sont regroupées en un nombre limité de \emph{gros grains} qui sont exposés ensuite au client et ainsi permettre une interaction plus simple avec le service. Par exemple, regrouper des fonctions de bas niveau (petites graines) en une seule fonction de haut niveau, et exposer celle-ci dans le service.
+	\item Les fonctionnalités utilisées par le service sont regroupées en un nombre limité de \emph{gros grains} qui sont exposés ensuite au client et ainsi permettre une interaction plus simple avec le service. Par exemple, regrouper des fonctions de bas niveau (petits grains) en une seule fonction de haut niveau, et exposer celle-ci dans le service.
 	\item Son système est \emph{faiblement couplé} : le consommateur de ce service n'est pas directement lié au service. Le service peut changer au fil du temps sans perturber le client, ou peut même disparaitre et le client trouvera un autre service similaire.
 \end{itemize}
 		
@@ -65,25 +68,18 @@ Pour gérer ces messages et définir un format commun entre eux, on utilise le p
 
 \subsection{HTTP (Hyper Text Transfer Protocol)}
 C'est un protocole qui décrit le contenu et la mise en forme des requêtes et des réponses échangées entre le client web et le serveur web. 
-Lorsqu'un client, généralement un navigateur web, envoie une requête à un serveur web, il utilise un URL combiné avec un \emph{verbe} HTTP pour spécifier le type de message et l'action que doit prendre le serveur sur une ressource, cette requête est appelée une \textbf{requête HTTP}. Le serveur répond ainsi avec un \textbf{réponse HTTP} avec un code HTTP décrivant l'état de la réponse, et le résultat en cas de succès dans le corps de cette réponse.
+Lorsqu'un client, généralement un navigateur web, envoie une requête à un serveur web, il utilise une URL combiné avec un \emph{verbe} HTTP pour spécifier le type de message et l'action que doit prendre le serveur sur une ressource, cette requête est appelée une \textbf{requête HTTP}. Le serveur répond ainsi avec un \textbf{réponse HTTP} avec un code HTTP décrivant l'état de la réponse, et le résultat en cas de succès dans le corps de cette réponse.
 
 \subsection{Méthodes HTTP}
 HTTP propose plusieurs verbes (ou méthodes), mais les plus importants sont : 
 \begin{itemize}
-	\item \textbf{GET} : obtenir des données, un navigateur web envoie une requête GET au serveur web pour demander des pages HTML par exemple.
+	\item \textbf{GET} : obtenir des données, le client d'un navigateur web par exemple envoie une requête GET au serveur web pour demander des pages HTML.
 	\item \textbf{POST} : envoyer des fichiers ou des données vers le serveur web, comme des données de formulaires.
 	\item \textbf{PUT} : envoyer des ressources ou du contenu vers le serveur web, similaire à POST mais utilisé principalement pour mettre à jour une ressource, PUT doit être idempotente : c'est-à-dire qu'envoyer plusieurs fois la même requête produit le même résultat que la première.
 	\item \textbf{DELETE} : c'est une requête  qui supprime la ressource indiquée.
 \end{itemize}
 
-\subsection{HTTPS}
-Le protocole HTTP est certes extrêmement flexible, mais il n'est pas sécurisé.
-Pour une communication sécurisée via Internet, le protocole HTTPS (HTTP Secure) est utilisé. \newline
-Ce protocole utilise le même processus de demande client-réponse serveur que le protocole HTTP, sauf que le flux de données est chiffré avec le protocole SSL (Secure Socket Layer) avant d'être transporté sur le réseau.
-
-\subsection{HTTP/2:}
-HTTP/2 est une révision majeure du protocole HTTP, c'est la première nouvelle version de HTTP depuis HTTP 1.1, qui a été standardisé en 1997. Il a été approuvé puis publié en 2015.
-Les objectifs principaux de HTTP/2 étaient de rester compatible avec HTTP 1.1 (méthodes, codes HTTP et les différentes entêtes par exemple), tout en ajoutant de nouvelles fonctionnalités et en diminuant la latence pour ainsi améliorer les temps de chargements de pages web.
+Il existe d'autres variantes et version de HTTP, notamment HTTP 1.1, HTTP/2, et le HTTPS (HTTP Secure).
 
 %=================================================================
 %=========================== PARTIE SOAP ==========================
@@ -93,17 +89,17 @@ Les objectifs principaux de HTTP/2 étaient de rester compatible avec HTTP 1.1 (
 \label{section:Soap}
 \subsection{Le protocole SOAP}
 SOAP (Simple Object Access Protocol) est un protocole de communication standardisé par le W3C. 
-Il définit un format pour l'envoi des messages (basé sur XML) sous forme d'enveloppe et de son contenu, qui peuvent être envoyées par divers protocoles de transport tel que HTTP et SMTP.
+Il définit un format pour l'envoi des messages (basé sur XML) sous forme d'enveloppe et de son contenu, qui peuvent être envoyées par divers protocoles de transport tel que HTTP et SMTP (Simple Mail Transfer Protocol).
 				
 SOAP s'appuie donc sur des standards très connus, ce qui lui a donné une grande portabilité et interopérabilité comparée à ses prédécesseurs au moment de son apparition (pour citer: COBRA, DCOM, JAVA-RMI...etc).
 				
 \subsection{Structure de message SOAP}
 Un message SOAP est un document XML contenant les éléments suivants \cite{refTutorialPointsSOAP} : 
 \begin{itemize}
-	\item \textbf{Enveloppe} : définit le début et fin du message, elle contient contient la spécification des espaces de désignation (namespace\FancyFootNote{Un namespace est un préfixe identifiant de manière unique la signification d'un terme, ou une portion de code en programmation, pour éviter toute ambiguïté.}) et le codage des données. c'est un élément obligatoire.
+	\item \textbf{Enveloppe} : définit le début et fin du message, elle contient la spécification des espaces de désignation (namespace\FancyFootNote{Un namespace est un préfixe identifiant de manière unique la signification d'un terme, ou une portion de code en programmation, pour éviter toute ambiguïté.}) et le codage des données. c'est un élément obligatoire.
 	\item \textbf{Header (Entête)} : contient des informations ou options supplémentaires pour le traitement du message comme l'encodage, elle est optionnelle.
 	\item \textbf{Body (Corps)} : contient les données XML du message à transporter, un élément obligatoire.
-	\item \textbf{Fault (Gestion d'erreurs)} : fournit des informations sur les erreurs qui peuvent se produire au traitement de l'information, un élément qui peut être optionnel.
+	\item \textbf{Fault (Gestion d'erreurs)} : fournit des informations sur les erreurs qui peuvent se produire durant traitement de l'information, un élément optionnel.
 \end{itemize}
 \begin{figure}[h]
 	\begin{center}
@@ -118,7 +114,7 @@ Un message SOAP est un peu lourd, mais reste simple à comprendre et à utiliser
 \subsection{L'architecture orientée services}
 Pour mieux comprendre l'utilisation de SOAP, il est important de connaitre l'architecture orientée services dont SOAP fait partie.
 
-L'architecture orientée services (Service Oriented Architecture, SOA) est style architectural qui vise à concevoir des services web extensibles et hautement réutilisables, et les rendre ensuite visibles et accessibles aux consommateurs.
+L'architecture orientée services (Service Oriented Architecture, SOA) est un style architectural qui vise à concevoir des services web extensibles et hautement réutilisables, et les rendre ensuite visibles et accessibles aux consommateurs.
 				
 On trouve trois acteurs majeurs dans une architecture SOA de service web :
 \begin{itemize}
@@ -140,9 +136,9 @@ On trouve trois acteurs majeurs dans une architecture SOA de service web :
 Les services web emploient un ensemble de technologies qui ont été conçues en respectant une structure en couches sans être dépendantes entre elles. Cette pile, appelée \textbf{Pile de protocoles de services web}, peut évoluer, mais elle est principalement formée de quatre couches \cite{refTutorialPointsWS} :
 \begin{description}
 	\item[Couche transport] : cette couche est responsable du transport des messages échangés entre les applications. Elle utilise généralement le protocole HTTP, mais d'autres tels que SMTP, FTP ou BEEP peuvent être utilisés.
-	\item [Couche communication (Messaging)] : cette couche est responsable de la représentation et formatage des messages échangés entre applications, et ceci afin d'assurer qu'ils soient compris par chaque extrémité. Elle utilise principalement XML (ou un dérivé de ce dernier comme SOAP), mais peut aussi utiliser d'autres formats standard suivant les principes, les services REST peuvent envoyer en simple texte, JSON ou XML par exemple.
+	\item [Couche communication (Messaging)] : cette couche est responsable de la représentation et formatage des messages échangés entre applications, et ceci afin d'assurer qu'ils soient compris par chaque extrémité. Elle utilise principalement XML (ou un dérivé de ce dernier comme SOAP dont l'enveloppe est en XML), mais peut aussi utiliser d'autres formats standard suivant les principes, d'autres services peuvent envoyer en simple texte, JSON ou XML par exemple.
 	\item[Couche description de service] : cette couche est responsable de la description de l'interface publique du service web, cette description est réalisée en utilisant le WSDL.\newline
-	      \texttt{WSDL (Web Services Description Language)} : c'est un langage de description standard basé sur XML, développé en jointure par Microsoft et IBM. Il permet de décrire différentes informations sur le service web tel que la liste de ses fonctions, comment interagir avec eux et comment les invoquer, les ports et protocoles utilisés...etc.
+	      \texttt{WSDL (Web Services Description Language)} : c'est un langage de description standard basé sur XML, développé conjointement par Microsoft et IBM. Il permet de décrire différentes informations sur le service web tel que la liste de ses fonctions, comment interagir avec eux et comment les invoquer, les ports et protocoles utilisés...etc.
 	\item[Couche découverte de service] : cette couche est responsable de centraliser les services dans un registre commun, et fournir des fonctionnalités de recherche/publication de services web. Ce service est assuré par l'annuaire UDDI.\newline
 	      \texttt{UDDI (Universal Description, Discovery and Integration)} : c'est un annuaire de services web. Ce protocole, basé sur XML, comporte deux sections en WSDL : les descriptions de ces services et des définitions de ports pour manipuler et rechercher dans l'annuaire.
 \end{description}
@@ -159,7 +155,7 @@ Bien que SOAP, et plus en général l'architecture SOA, soit une solution standa
 
 En résumé, SOAP et l'architecture qui vient avec sont des solutions lourdes adaptées pour des applications coté entreprises nécessitant une grande robustesse et sécurité sans se soucier des couts engendrés par ce choix.
 
-Cependant, plusieurs entreprises s'orientent désormais vers REST, et autres ont abandonné leurs services SOAP en faveur de REST, on peut citer comme exemple Google qui a mit fin à son API SOAP en 2009.
+Cependant, plusieurs entreprises s'orientent désormais vers REST, et d'autres ont abandonné leurs services SOAP en faveur de REST, on peut citer comme exemple Google qui a mit fin à leurs APIs SOAP en 2009.
 \newpage
 
 \section{REST}
@@ -179,7 +175,7 @@ Une ressource est du contenu identifié par des URI \FancyFootNote{URI (Uniform 
 REST fournit au client l'accès aux ressources. Il utilise diverses représentations pour représenter une ressource comme du texte brut, JSON et XML. Aujourd'hui JSON est le format le plus populaire utilisé dans les services REST.
 
 \subsection{Service web full-REST}
-Les services web RESTful sont des services web basés sur l'architecture REST, en d'autres termes des services qui respectent les contraintes de REST.
+Appelés aussi services web RESTful, ce sont des services web basés sur l'architecture REST, en d'autres termes des services qui respectent les contraintes de REST.
 Ces services sont conçus pour fonctionner au mieux sur le web, ils sont légers, maintenables, évolutifs et facilement extensibles et sont donc souvent utilisés pour implémenter des APIs pour des applications web.\cite{refTutorialPointsREST}
 \newline 
 En résumé, une API est qualifiée de RESTful si elle respecte les critères de REST.
@@ -212,22 +208,22 @@ Dans REST, les interactions entre clients et services sont améliorées par le r
 L'architecture REST se résume en 5 règles à suivre dans implémentation \cite{refRegles} :
 \begin{itemize}
 	\item \textbf{Règle 1} : l'URI comme identifiant des ressources.\newline
-	      Afin d'identifier une ressource, REST se base sur les URI. Une application se doit construire ses URI (et donc ses URL) de manière précise, sémantique et statique en tenant compte des contraintes REST et de futurs changements.
+	      Afin d'identifier une ressource, REST se base sur les URI. Une application se doit de construire ses URI (et donc ses URL) de manière précise, sémantique et statique en tenant compte des contraintes REST et de futurs changements.
 	\item \textbf{Règle 2} : les verbes HTTP comme identifiant des opérations.\newline
 	      Utiliser les verbes HTTP existants plutôt que d'inclure l'opération dans l'URI de la ressource. Ainsi, généralement pour une ressource, il y a 4 opérations possibles: Create, Read, Update et Delete, on utilisera les verbes HTTP correspondants : POST, GET, PUT et DELETE.
 	      Comme chaque verbe possède une signification, REST permet d'éviter toute ambiguïté.
 	\item \textbf{Règle 3} : les réponses HTTP comme représentation des ressources.\newline
 	      Une ressource peut avoir plusieurs représentations dans des formats divers : HTML, XML, CSV, JSON, etc. C'est au client de définir quel format de réponse il souhaite recevoir via l'entête \emph{Accept} de la requête HTTP, comme il est possible de définir plusieurs formats.
 	\item \textbf{Règle 4} : les liens comme relation entre ressources.\newline
-	Les liens d'une ressource vers une indiquent la présence d'une relation de cette ressource vers des autres. Il est aussi possible de la décrire afin d'améliorer la compréhension du système.
-	L'exemple dans la figure \ref{ref:JSONXML} décrit l'utilisation d'un attribut pour spécifier le lien vers une autre ressource.
+	Les liens d'une ressource vers une autre indiquent la présence d'une relation de cette ressource vers des autres. Il est aussi possible de la décrire afin d'améliorer la compréhension du système.
+	L'exemple dans la figure \ref{fig:JSONXML} décrit l'utilisation d'un attribut pour spécifier le lien vers une autre ressource.
 	
 	\item \textbf{Règle 5 :} un paramètre comme jeton d'authentification.\newline
 	      Pour authentifier une requête, les APIs non-triviales utilisent le jeton d'authentification\FancyFootNote{Un jeton (token) est généralement une suite de caractères uniques à l'utilisateur, par laquelle le serveur peut identifier et ainsi authentifier ses requêtes}. Chaque requête est envoyée avec un jeton passé en paramètre ou dans l'entête HTTP. Ce jeton temporaire peut être obtenu en envoyant une première requête authentification puis en l'incluant dans les requêtes suivantes.
 \end{itemize}
 \subsection{Le format JSON}
 JSON (JavaScript Object Notation) est un format léger d'échange de données. Il est basé sur un sous-ensemble du langage de programmation Javascript. C'est un format texte indépendant de tout langage.
-Ces propriétés font de lui un langage d'échange de données idéales, qui est facile à lire ou à écrire pour des humains. 
+Ces propriétés font de lui un langage d'échange de données idéal, qui est facile à lire ou à écrire pour des humains. 
 JSON se base sur deux structures:
 \begin{itemize}
 	\item Une collection de couples nom/valeur. 
@@ -238,8 +234,8 @@ Ces structures prennent les formes suivantes :
 	\item Un objet, qui est un ensemble de couples nom/valeur non ordonnés. 
 	\item Un tableau est une collection de valeurs ordonnées. 
 	\item Une valeur peut être soit une chaîne de caractères entre guillemets, un nombre, un booléen, un objet ou un tableau. Ces structures peuvent être imbriquées.
-	      
 \end{itemize}
+La figure \ref{fig:JSONXML} donne un exemple de données XML et leur équivalent en JSON.
 
 \lstset{style=JSON}
 
@@ -287,14 +283,14 @@ Ces structures prennent les formes suivantes :
 \end{lstlisting}
 \end{subfigure}\hfill%
 \caption{Exemples de données en XML et JSON.}
-\label{ref:JSONXML}
+\label{fig:JSONXML}
 \end{figure}
 
 
 \subsection{Avantages}
 REST devient de plus en plus utilisé dans les entreprises aujourd'hui, les principales motivations pour ce choix sont \cite{refSOAPvsREST} :
 \begin{itemize}
-	\item Plus grande simplicité d'implémentation et utilisation, peut être implémenté localement et aucun besoin d'outils pour interagir avec des APIs REST.
+	\item Plus grande simplicité d'implémentation et d'utilisation, peut être implémenté localement et aucun besoin d'outils pour interagir avec des APIs REST.
 	\item Courbe d'apprentissage plus petite pour les développeurs.
 	\item Utilisation de multiples formats pour l'échange de données (XML, JSON, HTML), notamment le format JSON qui est plus léger que XML et plus adapté à certains langages (notamment Javascript).
 	\item Plus proche de la conception et de la philosophie initiale du Web (URI, Méthodes HTTP, ...etc.).
@@ -322,8 +318,7 @@ Nous résumons les plus importantes différences dans la table \ref{tableSoapVsR
 %	\item SOAP est strictement typé et a une spécification standard plus stricte pendant que REST donne le concept et est moins restreint dans l'implementation 
 %	\item SOAP a une gestion des erreurs par défaut ( vu dans son enveloppe ), expliquer utilité pour un exemple de transaction bancaire
 %\end{itemize}
-
-\begin{tabu} to \textwidth { | X[l] | X[l] | }
+\begin{tabu} to \textwidth {| X[l] | X[l] |}
 \hline
 \rowcolor[HTML]{EFEFEF} 
 SOAP & REST \\
@@ -340,33 +335,35 @@ SOAP & REST \\
 \end{tabu}
    \label{tableSoapVsRest}
 
-On note que l'avantage principal du protocole SOAP est sa spécification standard en XML qui le rend fiable au long terme. Cependant, les services REST peuvent aisément remédier à cet inconvénient avec une bonne documentation des APIs et un respect de certaines bonnes pratiques.
+On note que l'avantage principal du protocole SOAP est sa spécification standard en XML qui le rend fiable à long terme. Cependant, les services REST peuvent aisément remédier à cet inconvénient avec une bonne documentation des APIs et un respect de certaines bonnes pratiques.
 \newline
-En conclusion, SOAP est une solution lourde qui peut être utile pour des applications d'entreprises ou celles qui demandant une haute sécurité et stabilité. Il est cependant beaucoup moins adapté pour des APIs web par rapport à REST qui lui a été créé selon la philosophie et spécifications du web.
+En conclusion, SOAP est une solution lourde qui peut être utile pour des applications d'entreprises ou celles qui demandent une haute sécurité et stabilité. Il est cependant beaucoup moins adapté pour des APIs web par rapport à REST qui lui a été créé selon la philosophie et spécifications du web.
 
 %\section{Exemples et applications}
 %Deux-Trois Api connues, exemple avec Google Maps
 \section{XML-RPC, gRPG et GraphQL}
-SOAP et REST ne sont pas les seules technologies autour des services web, nous citons XML-RPC qui est un des pionniers et gRPC ou GraphQL qui sont deux technologies récentes, nous présentons brièvement dans les points suivants ces différentes technologies, ainsi que pourquoi nous ne les utiliserons pas :
-\begin{description}
-\item[XML-RPC:] c'est un protocole RPC
- \FancyFootNote{\textbf{RPC }(Remote Procedure Call): c'est un protocole qu'un programme peut utiliser pour demander un service d'un autre programme situé dans une machine distante sans avoir à comprendre son système de façon similaire à un appel de fonction locale.}
-qui utilise XML pour encoder ses messages et les envoyer par HTTP.
-C'est une deuxième manière plus simple d'implémenter RPC en utilisant XML, SOAP étant la première. Nous ne considérons pas ce protocole car malgré sa simplicité, il est moins flexible nécessitant une dépendance forte entre le client et serveur, contrairement aux clients REST qui sont \emph{faiblement couplés}.
-Il existe aussi JSON-RPC qui est similaire à XML-RPC \cite{XMLRPC}.
+SOAP et REST ne sont pas les seules technologies autour des services web, nous citons XML-RPC\cite{XMLRPC} qui est un des pionniers et gRPC\cite{gRPC} ou GraphQL\cite{GraphQL} qui sont deux technologies récentes. Dans ce chapitre nous nous sommes focalisés sur les plus connues et les plus rependues qui sont SOAP et REST.
 
-\item[gRPC: ] c'est un framework RPC initialement développé par Google. Il utilise le protocole HTTP/2 pour le transport, Protocol Buffers comme langage de description d'interface, et offre plusieurs fonctionnalités utiles telles que l'authentification, Il permet la construction de liaisons client/serveur multiplateforme pour de nombreux langages.
-Nous n'avons pas considéré d'utiliser gRPC du fait qu'il soit encore nouveau au moment d'écrire ce rapport, mais aussi parce qu'il est plus adapté pour des architectures en \emph{micro-services} \cite{gRPC}.
-
-\item[GraphQL:] c'est un langage de requête open-source pour les APIs, une spécification sur comment satisfaire ces requêtes avec les données existantes ainsi qu'une description complète et fortement typé de toutes les données de l'API.
-Développé initialement par Facebook en 2012, et finalement déclaré prêt pour la production en 2016, son langage de requête permet au client de consulter la description complète des ressources, et de demander exactement les données dont il a besoin en une seule requête, et donc sans avoir à faire plusieurs requêtes avec le serveur ni avoir à récupérer des attributs en plus, ce qui résout les problèmes d'overfetching et underfetching cités dans les limites de REST.
-Cette technologie est encore nouvelle au moment d'écrire ce rapport, mais promet d'être un bon remplaçant de REST.
-
-Cependant, vu que la technologie est nouvelle, son implémentation n'est donc pas encore très bien supportée et ses avantages ne sont pas très signifiants pour notre application, nous avons donc choisi de la laisser comme perspective du projet.
-De plus, GraphQL peut être ajouté comme une couche supplémentaire sur une ou plusieurs APIs, ce qui rend possible d'implémenter une API GraphQL au dessus de notre API REST dans de futures version sans avoir à modifier ou écraser l'implémentation courante \cite{GraphQL}.
-\end{description}
+%
+%\begin{description}
+%\item[XML-RPC:] c'est un protocole RPC
+% \FancyFootNote{\textbf{RPC }(Remote Procedure Call): c'est un protocole qu'un programme peut utiliser pour demander un service d'un autre programme situé dans une machine distante sans avoir à comprendre son système de façon similaire à un appel de fonction locale.}
+%qui utilise XML pour encoder ses messages et les envoyer par HTTP.
+%C'est une deuxième manière plus simple d'implémenter RPC en utilisant XML, SOAP étant la première. Nous ne considérons pas ce protocole car malgré sa simplicité, il est moins flexible nécessitant une dépendance forte entre le client et serveur, contrairement aux clients REST qui sont \emph{faiblement couplés}.
+%Il existe aussi JSON-RPC qui est similaire à XML-RPC \cite{XMLRPC}.
+%
+%\item[gRPC: ] c'est un framework RPC initialement développé par Google. Il utilise le protocole HTTP/2 pour le transport, Protocol Buffers comme langage de description d'interface, et offre plusieurs fonctionnalités utiles telles que l'authentification, Il permet la construction de liaisons client/serveur multiplateforme pour de nombreux langages.
+%Nous n'avons pas considéré d'utiliser gRPC du fait qu'il soit encore nouveau au moment d'écrire ce rapport, mais aussi parce qu'il est plus adapté pour des architectures en \emph{micro-services} \cite{gRPC}.
+%
+%\item[GraphQL:] c'est un langage de requête open-source pour les APIs, une spécification sur comment satisfaire ces requêtes avec les données existantes ainsi qu'une description complète et fortement typé de toutes les données de l'API.
+%Développé initialement par Facebook en 2012, et finalement déclaré prêt pour la production en 2016, son langage de requête permet au client de consulter la description complète des ressources, et de demander exactement les données dont il a besoin en une seule requête, et donc sans avoir à faire plusieurs requêtes avec le serveur ni avoir à récupérer des attributs en plus, ce qui résout les problèmes d'overfetching et underfetching cités dans les limites de REST.
+%Cette technologie est encore nouvelle au moment d'écrire ce rapport, mais promet d'être un bon remplaçant de REST.
+%
+%Cependant, vu que la technologie est nouvelle, son implémentation n'est donc pas encore très bien supportée et ses avantages ne sont pas très signifiants pour notre application, nous avons donc choisi de la laisser comme perspective du projet.
+%De plus, GraphQL peut être ajouté comme une couche supplémentaire sur une ou plusieurs APIs, ce qui rend possible d'implémenter une API GraphQL au dessus de notre API REST dans de futures version sans avoir à modifier ou écraser l'implémentation courante \cite{GraphQL}.
+%\end{description}
 
 \section{Conclusion : pourquoi choisir REST}
-	Après avoir exploré les différentes technologies, nous avons choisi d'implémenter notre Service Web en utilisant REST qui est le plus adapté pour des APIs web mais aussi le plus flexible et le plus simple à mettre au point, ce qui permettra d'améliorer et faire évoluer ensuite ce projet plus rapidement.
+	Après avoir exploré les différentes technologies, nous avons choisi d'implémenter notre Service Web en utilisant REST qui est le plus adapté pour des APIs web mais aussi le plus flexible et le plus simple à mettre en place, ce qui permettra d'améliorer et faire évoluer ensuite ce projet plus rapidement.
 	
-	Il existe encore certaines autres technologies, et certains autres principes de REST qui n'ont pas été cités dans ce chapitre, bien qu'il n'existe pas réellement une manière absolue pour implémenter une API REST, il existe certaines \emph{bonnes pratiques} que nous tâcherons d'implémenter dans ce projet. Le résultat ainsi que les détails d'implémentation seront décrits dans les chapitres suivants.
+	Il existe encore certaines autres technologies, et certains autres principes de REST qui n'ont pas été cités dans ce chapitre, bien qu'il n'existe pas réellement une manière absolue pour implémenter une API REST, il existe certaines \emph{bonnes pratiques} que nous tâcherons de respecter dans ce projet. Le résultat ainsi que les détails d'implémentation seront décrits dans les chapitres suivants.

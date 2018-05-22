@@ -227,7 +227,8 @@ La figure \ref{fig:structGraph} présente la structure utilisée pour représent
 	\label{fig:structGraph}
 \end{figure}
 
-Un aperçu des données représentées dans le graphe est donné dans la figure \ref{fig:structGraph}. Les données concernant les bus (temps d'arrêt, prix...etc.) seront représentés séparément comme des nœuds étiquetés dans le graphe ou dans une base de données différente.
+Un aperçu des données représentées dans le graphe est donné dans la figure \ref{fig:structGraph}. Les données concernant les bus (temps d'arrêt, prix...etc.) seront représentés séparément comme des nœuds étiquetés dans le graphe ou dans une base de données différente. \newline
+Nous avons choisi de ne garder que les données les plus importantes dans cette première version, nous pouvons ajouter d'autres propriétés et informations dans le graphe au fur et à mesure que l'application évolue.
 
 %
 %	\begin{itemize}
@@ -262,9 +263,9 @@ Ces arcs sont automatiquement ajoutés à la création de chaque ligne en calcul
 Un exemple de cet arc est donné dans la figure \ref{fig:structGraph}.
 
 Cette approche permet d'intégrer la marche de façon minimale sans affecter les performances et sans avoir à calculer des distances pendant la recherche du chemin.
-Il sera possible d'améliorer cette fonctionnalité après avoir implémenté la recherche de plus proches stations pendant directement dans le graphe (voir perspectives dans chapitre 5).
+Il sera possible d'améliorer cette fonctionnalité après avoir implémenté la recherche de plus proches stations pendant directement dans le graphe (voir chapitre des perspectives).
 
 \subsection{Conclusion}
-
-** Malgré les différentes contraintes (données manquantes, horaires non régulières...etc.), la représentation choisie reste suffisante et facilement extensible pour de futures améliorations.
+Nous avons, dans ce chapitre, présenté les différentes généralités sur les graphes et données collectés ainsi que comment on construit notre graphe pour ce projet.
+Malgré les différentes contraintes (complexité du problème, manque de données, spécificités des lignes d'Oran), la représentation choisie pour cette première version reste suffisante et facilement extensible pour de futures améliorations.
 \newpage

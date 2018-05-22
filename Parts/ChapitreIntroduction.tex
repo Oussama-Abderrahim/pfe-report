@@ -1,9 +1,8 @@
 \renewcommand\labelitemi{$\bullet$}
 \renewcommand\labelitemii{$\circ$}
 \chapter{Introduction générale}
-\newpage	
-\section{Motivation}
-La population mondiale connaît une très forte croissance depuis 1900. Il y avait 1,5 milliard d’hommes au début du siècle, 2,5 milliards en 1950, et aujourd’hui en 2018 : 7,4 milliards. Les villes se sont développées, au cours des 19e et 20e siècles, sur des carrefours de communication, des fleuves ou sur des littoraux. Des banlieues se sont également développées autour des grandes villes. Avec ce développement, un réseau de transport public a été nécessaire pour permettre de lier les éléments essentiels de ces villes. Mais cette demande croissante de transport a engendré de nouveaux problèmes. Parmi eux, le fait que les usagers nécessitent souvent un moyen pour s’orienter et se renseigner.
+
+%La population mondiale connaît une très forte croissance depuis 1900. Il y avait 1,5 milliard d'hommes au début du siècle, 2,5 milliards en 1950, et aujourd’hui en 2018 : 7,4 milliards. Les villes se sont développées, au cours des 19e et 20e siècles, sur des carrefours de communication, des fleuves ou sur des littoraux. Des banlieues se sont également développées autour des grandes villes. Avec ce développement, un réseau de transport public a été nécessaire pour permettre de lier les éléments essentiels de ces villes. Mais cette demande croissante de transport a engendré de nouveaux problèmes. Parmi eux, le fait que les usagers nécessitent souvent un moyen pour s’orienter et se renseigner.
 
 L’informatique a apporté plusieurs solutions à ce problème. Il existe en effet plusieurs moyens de visualisation cartographique. On cite OpenStreetMap et Google Maps comme exemple, qui permettent la manipulation et visualisation de données géographiques du monde entier, de tracer des itinéraires entre deux points et d’aider les utilisateurs à marquer et trouver leurs magasins, hôtel ou un autre lieu favori. Cependant, ces outils ne proposent généralement qu’un seul moyen de transport. De plus, certaines de ces fonctionnalités ne sont pas adaptées pour tous les pays, voire non disponibles. Ajouté à ça un nombre immense de lignes de bus, par exemple, avec des noms très peu significatifs et une organisation aléatoire des lignes qui changent fréquemment : des facteurs contribuant encore plus à la confusion des usagers.
 
@@ -61,9 +60,9 @@ Elle propose 3 modes d'utilisation :
 CityMapper couvre en ce moment 36 villes dont Londres, Berlin, Tokyo, Paris et New York...etc.  Un de ses avantages est la possibilité de prévoir un trajet en avance et de le télécharger pour qu'il soit disponible hors connexion.
 
 \section{Solutions proposée}
-Au moment de rédiger ce mémoire, aucune application n'offre ce service en Algérie. ***
+Au moment de rédiger ce mémoire, aucune application n'offre ce service en Algérie.
 
-De ce fait, nous proposons de développer une application Web full-REST qui proposera les fonctionnalitées suivantes : 
+De ce fait, nous proposons de développer une application Web full-REST qui proposera les fonctionnalités suivantes : 
 
 \begin{itemize}
 	\item Calculer un chemin entre deux lieux saisis par l'utilisateur.
@@ -84,7 +83,7 @@ Ce projet sera composé de 04 parties :
 
 	\item[Service Web: ] en ce moment, les Services Web sont une tendance sur le Web, presque indispensable dans toute application non triviale: nous commencerons donc par créer une API REST complète de l'application afin qu'elle soit facilement extensible et portable sur différentes plateformes par la suite.
 	
-	\item[Interface Administratrice: ] implémenter une application indépendante qui va faciliter la  communication avec l'API pour l'ajout et modification des lignes de transport et autres informations nécessaires à l'application.
+	\item[Interface d'administrateur: ] implémenter une application indépendante qui va faciliter la  communication avec l'API pour l'ajout et modification des lignes de transport et autres informations nécessaires à l'application.
 	
 	
 	\item[Interface Web: ] implémenter une Application Web client afin de visualiser les fonctionnalités de l'API.
