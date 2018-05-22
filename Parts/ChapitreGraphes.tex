@@ -84,28 +84,30 @@ Le choix de la méthode de l'analyse et sa complexité peuvent augmenter à mesu
 \subsection{Domaines d'utilisation :}
 Le problème du plus court chemin est parmi les problèmes les plus étudiés de la théorie des graphes, on le retrouve dans beaucoup de domaines :
 \begin{itemize}
-\item\textbf{Economie:} problèmes d’investissement
-\item\textbf{Gestion:} gestion des projets
 \item\textbf{Optimisation des réseaux:} réseaux routiers, de télécommunications, de distribution.
 \item\textbf{Réseaux informatiques et protocoles de routage: } les protocoles de routages permettant de trouver les meilleurs chemins pour passer les paquets réseaux utilisent ces algorithmes, tel que le protocole OSPF (Open Shortest Path First).
-\item\textbf{Biologie:} il est utilisé pour trouver le modèle de réseau dans la propagation d'une maladie infectieuse, par exemple.
+\item\textbf{Biologie:} il est utilisé pour étudier la propagation d'une maladie infectieuse, par exemple.
 \item\textbf{Cartographie:} pour mesurer le chemin le plus court entre deux lieux ou villes.
 \end{itemize}
 
 \subsection{Les algorithmes de recherche de chemin}
-Les algorithmes de calcul d'itinéraires origine-destination(s) sont de complexité polynomiale et on les répartit classiquement en deux familles : 
+Les algorithmes de calcul d'itinéraires origine-destination(s) sont des algorithmes qui permettent de calculer le plus court chemin d'un sommet source vers tous les autres sommets avec une complexité polynomiale.\newline
+ On les répartit classiquement en deux familles : 
 \begin{itemize}
-	\item \textbf{A fixation d'étiquette:} 
-	\item \textbf{A correction d'étiquette:} 
+	\item \textbf{A fixation d'étiquette} (Label setting algorithms): Ce type d'algorithme choisissent à chaque itération un sommet x, et calculent sa valeur définitive V[x]. Cette valeur V[x], appelée étiquette, sert à définir la valeur du plus court chemin vers le sommet x.
+	L'avantage principal de ces algorithmes est qu'il est possible d'arrêter la recherche de chemin dès atteinte du nœud destination puisque son étiquette sera fixée définitivement.
+	L'algorithme à correction d'étiquette le plus célèbre est l'algorithme de \textbf{Djikstra}.
+	
+	\item \textbf{A correction d'étiquette} (Label correcting algorithms): Ces algorithmes peuvent affiner et corriger les étiquettes de chaque sommet jusqu'à la dernière itération.
+	Ils ne sont pas forcément moins performants que les algorithmes à fixation d'étiquette, et ont une utilisation plus générale, lors de présence de poids négatives dans le graphe où l'algorithme de Djikstra, par exemple, n'est pas utilisable.\newline
+	Un exemple bien connu est l'algorithme de \textbf{Bellman-Ford}.
 \end{itemize}
 
-Malgré leur complexité polynomiale, ces algorithmes peuvent néanmoins engendrer des temps de calculs importants pour des graphes de grande taille, ce qui a suscité le développement des techniques d'accélération (visant souvent l'optimalité plutôt qu'un meilleur chemin) comme l'algorithme A* qui est le plus célèbre, le parcours en largeur/profondeur, le parcours bidirectionnel, ainsi que les méthodes de pré-traitement (pré-calculer les meilleurs chemins dans tout les nœuds).
-\newline
+Malgré leur complexité polynomiale, ces algorithmes peuvent engendrer des temps de calculs importants pour des graphes de grande taille, ce qui a suscité le développement des techniques d'accélération (visant souvent l'optimalité plutôt qu'un meilleur chemin) comme l'algorithme A* qui est le plus célèbre, le parcours en largeur/profondeur, le parcours bidirectionnel, ainsi que les méthodes de pré-traitement (pré-calculer les meilleurs chemins dans tout les nœuds par exemple).
 
 Dans notre cas, et vu que le graphe de la première version est statique (ne changera pas après avoir calculé le chemin), le choix le plus pertinent serait l'\textbf{algorithme A*}.
 Cependant, ce dernier nécessite une fonction heuristique\FancyFootNote{Heuristique: une méthode de calcul qui fournit rapidement une solution réalisable, pas nécessairement optimale ou exacte, pour un problème d'optimisation difficile.} pour estimer le meilleur nœud suivant, ce qui sera difficile à concevoir sans une bonne connaissance de notre problème et dans les limites du temps de ce projet.
-De ce fait, nous avons opté pour une approche plus simple utilisant l'algorithme BFS qui est simple à implémenter et à adapter à nos besoins, pour ainsi avoir rapidement une version minimale de l'application, cet algorithme sera présenté dans la section suivante.
-
+De ce fait, nous avons opté pour une approche plus simple utilisant l'algorithme BFS qui est simple à implémenter et à adapter à nos besoins, pour ainsi avoir rapidement une version minimale de l'application, cet algorithme sera présenté dans la section suivante.\newline
 Nous avons pris en compte la possibilité de changer l'algorithme de recherche dans de futures version de l'application, en prenant une structure plus flexible qui sera expliquée dans le chapitre suivant.
 
 \subsection{L'algorithme BFS (Breadth-First-Search)}
