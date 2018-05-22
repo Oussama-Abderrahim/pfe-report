@@ -1,7 +1,7 @@
 \chapter{Représentation du réseau routier}
-Un graphe sert mieux à définir l'existence d'une relation entre objets tels qu'une ligne entre deux stations de métro, ce qui est la représentation optimale pour nos données. 
+Un graphe sert mieux à définir l'existence d'une relation entre objets tel qu'une ligne entre deux stations de métro, ce qui est la représentation optimale pour nos données. 
 
-Dans ce chapitre, nous présenterons en première partie les définitions relatives aux graphes et recherche de chemins, ensuite nous passerons à la collecte de données et les différentes approches de représentation prises en compte, enfin nous détaillerons la représentation choisie en donnant des exemples.
+Dans ce chapitre, nous présenterons en première partie les définitions relatives aux graphes et recherche de chemins, ensuite nous passerons à la collecte de données et les différentes approches de représentation prises en compte, enfin nous détaillerons la représentation choisie, tout en donnant des exemples.
 
 \section{Généralités sur les graphes}
 La théorie des graphes est très probablement née en 1735 lorsque Leonhard Euler (1707 - 1783) résout le problème des sept ponts de Königsberg. 
@@ -33,7 +33,7 @@ les sommets \emph{x} et \emph{y} sont des sommets voisins (ou adjacents).
 \item[Graphe directionnel] : aussi appelé graphe orienté, digraphe ou un réseau dirigé, c'est un graphe où tous les sommets sont reliés par des arcs orientés.
 Un graphe où les bords sont bidirectionnels est appelé un graphe non-orienté.
 
-\item[Chemin] : un chemin est une suite finie et consécutive de sommets et d'arcs, débutant et finissant par des sommets, tel que chaque arc sortant d'un sommet est incident (entrant) au sommet suivant dans cette séquence.
+\item[Chemin] : un chemin est une suite finie et consécutive de sommets et d'arcs, débutant et finissant par des sommets, tel que chaque arc sortant d'un sommet est incident (entrant) au sommet suivant dans cette sequence.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.55\textwidth]{img/cheminGraphe.png}
@@ -51,7 +51,7 @@ Les graphes sont donc des outils très puissants et largement répandus qui se p
 \begin{description}
 
 
-\item[Recherche de chemin (PathFinding):]
+\item[Recherche de chemin (PathFinding)]
 Un cas très fréquent. Chaque nœud représente une position et chaque arête est un chemin entre deux positions, ou en remplaçant les nœuds par des adresses et les arêtes par des routes, on obtient le graphe utilisé par les GPS ou les outils de cartographie tel que Google Map.
 La recherche de chemins est aussi utilisée en biologie, communications (réseaux de télécommunications)...etc.
 Il est courant de chercher le chemin le plus court entre deux positions dans la plupart de ces domaines, nous nous intéressons particulièrement à ce cas d'utilisation, que nous discutons en détail dans la section suivante.
@@ -77,7 +77,7 @@ Le choix de la méthode de l'analyse et sa complexité peuvent augmenter à mesu
 
 \begin{itemize}
 	\item \textbf{Poids:} certains algorithmes n'acceptent que des arcs dont le poids est positif.
-	\item \textbf{Chemins calculés:} il existe des algorithmes qui calculent le plus court chemin de nœud à nœud, entre toutes les paires de nœuds ou encore d'un nœud vers tous les autres.
+	\item \textbf{Type d'algorithme:} il existe des algorithmes qui calculent le plus court chemin de nœud à nœud, entre toutes les paires de nœuds ou encore d'un nœud vers tous les autres.
 	\item \textbf{Prise en compte d'informations externes:} l'utilisation d'une connaissance externe à la structure du graphe peut parfois accélérer la recherche.
 \end{itemize}
 
@@ -87,24 +87,28 @@ Le problème du plus court chemin est parmi les problèmes les plus étudiés de
 \item\textbf{Economie:} problèmes d’investissement
 \item\textbf{Gestion:} gestion des projets
 \item\textbf{Optimisation des réseaux:} réseaux routiers, de télécommunications, de distribution.
-\item\textbf{Réseaux informatiques et protocoles de routage:}   comme le protocole OSPF (Open Shortest Path First).
+\item\textbf{Réseaux informatiques et protocoles de routage: } les protocoles de routages permettant de trouver les meilleurs chemins pour passer les paquets réseaux utilisent ces algorithmes, tel que le protocole OSPF (Open Shortest Path First).
 \item\textbf{Biologie:} il est utilisé pour trouver le modèle de réseau dans la propagation d'une maladie infectieuse, par exemple.
 \item\textbf{Cartographie:} pour mesurer le chemin le plus court entre deux lieux ou villes.
 \end{itemize}
 
 \subsection{Les algorithmes de recherche de chemin}
-Les algorithmes de calcul d'itinéraires origine-destination(s) sont de complexité polynomiale et on les répartit classiquement en deux familles : ceux à fixation d'étiquettes (algorithme de Dijkstra) et ceux à correction d'étiquettes (algorithme de Bellman-Ford).
-Malgré leur complexité polynomiale, ces algorithmes peuvent néanmoins engendrer des temps de calculs importants pour des graphes de grande taille, ce qui a suscité le développement des techniques d'accélération (visant souvent l'optimalité plutôt qu'un meilleur chemin) comme l'algorithme A* qui est le plus célèbre, le parcours en largeur/profondeur bidirectionnel, ainsi que les méthodes de pré-traitement.
+Les algorithmes de calcul d'itinéraires origine-destination(s) sont de complexité polynomiale et on les répartit classiquement en deux familles : 
+\begin{itemize}
+	\item \textbf{A fixation d'étiquette:} 
+	\item \textbf{A correction d'étiquette:} 
+\end{itemize}
+
+Malgré leur complexité polynomiale, ces algorithmes peuvent néanmoins engendrer des temps de calculs importants pour des graphes de grande taille, ce qui a suscité le développement des techniques d'accélération (visant souvent l'optimalité plutôt qu'un meilleur chemin) comme l'algorithme A* qui est le plus célèbre, le parcours en largeur/profondeur, le parcours bidirectionnel, ainsi que les méthodes de pré-traitement (pré-calculer les meilleurs chemins dans tout les nœuds).
 \newline
 
 Dans notre cas, et vu que le graphe de la première version est statique (ne changera pas après avoir calculé le chemin), le choix le plus pertinent serait l'\textbf{algorithme A*}.
-Cependant, ce dernier nécessite une fonction heuristique\FancyFootNote{Fonction heuristique: } pour estimer le meilleur nœud suivant, ce qui sera difficile à concevoir sans une bonne connaissance de notre problème et dans les limites du temps de ce projet.
-De ce fait, nous avons opté pour une approche plus simple utilisant l'algorithme BFS qui est simple à implémenter et à adapter à nos besoins, pour ainsi avoir rapidement une version minimale de l'application.
+Cependant, ce dernier nécessite une fonction heuristique\FancyFootNote{Heuristique: une méthode de calcul qui fournit rapidement une solution réalisable, pas nécessairement optimale ou exacte, pour un problème d'optimisation difficile.} pour estimer le meilleur nœud suivant, ce qui sera difficile à concevoir sans une bonne connaissance de notre problème et dans les limites du temps de ce projet.
+De ce fait, nous avons opté pour une approche plus simple utilisant l'algorithme BFS qui est simple à implémenter et à adapter à nos besoins, pour ainsi avoir rapidement une version minimale de l'application, cet algorithme sera présenté dans la section suivante.
 
 Nous avons pris en compte la possibilité de changer l'algorithme de recherche dans de futures version de l'application, en prenant une structure plus flexible qui sera expliquée dans le chapitre suivant.
 
 \subsection{L'algorithme BFS (Breadth-First-Search)}
-
 
 \begin{enumerate}
 	\item \textbf{Présentation}: BFS est un algorithme de parcours ou de recherche dans un arbre ou graphe, il commence d'un nœud source (ou la racine de l'arbre) et explore ses nœuds successeurs d'abord, 
@@ -178,7 +182,7 @@ Les données obtenues de l'ETO et du net ont permis de rassembler les informatio
 	\item Longueur totale de chaque ligne, fréquence et nombre de bus de chaque ligne.\newline 
 \end{itemize}
 
-Depuis les informations ci-dessus nous avons déduit d'autres informations utiles, notamment :
+Depuis ces informations nous avons déduit d'autres informations utiles, notamment :
 
 \begin{itemize}
 	\item \textbf{Temps d'attente : } Les bus n'ayant pas de calendrier précis, nous avons utilisé la distance totale, fréquence et nombre de bus pour déduire approximativement le temps d'attente dans chaque arrêt entre deux bus.
