@@ -1,12 +1,26 @@
 \chapter{Développement}
 \section{Technologies utilisées}
 \subsection{NodeJs}
-%Pour l'API, parler des avantages : performances, moteur V8, flexibilités...  
-Javascript.
+Aux alentours de 2010 Google a commencé à rendre JavaScript et son moteur d'exécution V8 plus rapides. Des outils comme Node.js sont ensuite apparus\cite{NodeJs}.\newline
+Node.js est un environnement d'exécution \textbf{JavaScript} construit sur le moteur \emph{V8} de Google Chrome. Il utilise un modèle basé sur l'événementiel (\textbf{event-driven}) et des entrées/sorties non bloquantes, ce qui le rend léger et efficace.
+Il présente plusieurs avantages, notamment :
+\begin{itemize}
+	\item NodeJS et son écosystème permettent de travailler avec JavaScript à la fois sur le frontend et le backend.
+	\item L'approche non bloquante de NodeJs lui permet d'effectuer des entrées/sorties (I/O) de manière asynchrone. La programmation asynchrone est idéal pour une exécution plus rapide de programmes.
+	\item Contrairement aux langages serveur célèbres tel que PHP, ASP.NET, Ruby ou Java. Node Js s'exécute en \emph{monothread}, en d'autres termes les processus de chaque requêtes sont traités dans un seul fil d'exécution, ce qui est très efficace en termes de mémoire.
+	\item NodeJs rassemble une grande communauté très active, ce qui offre un grand nombre de librairies et de support en travaillant avec NodeJs.\newline
+\end{itemize}
+NodeJs est donc un choix idéal pour des développer des APIs REST minimales et flexibles tout en gardant des performances élevées pendant le traitement de requêtes.\newline
+En dernier, bien que NodeJs ne soit pas adapté pour des applications aux calculs intensives, il ne sera pas un inconvénient du fait que les calculs sur le graphe seront effectués principalement dans le SGBD.
 \subsection{Neo4J}
-Pourquoi choisir une BDD orienté Graph, pourquoi Neo4J , ..etc.
-plus connue, big community
-Neo4J utilise l'algorithme 
+Apparu en 2000 et appartient à la société Neo Technology, Neo4j est un système de gestion de bases de données orienté graphe. Son approche est fondée sur la théorie des graphes. Les données sont stockées de manière assez libre (sans modèle prédéfini) dans des nœuds reliés entre eux par des relations.
+
+Ses principaux avantages sont :
+\begin{itemize}
+	\item Neo4J utilise un stockage native du graphe, avec un principe appelé \textbf{index-free adjacency}, ceci permet de stocker des nœuds directement avec ses relations et nœuds adjacents sans avoir à utiliser des indexes pour consulter ses relations.\newline
+	Le stockage native offre de très grande performances de lecture/écriture indépendamment de la taille du graphe (le temps d'accès à chaque noeud est constant).
+\end{itemize}
+
 
 ** \textbf{Cypher : } présenter le language de requete avec quelques exemples
 \subsection{MongoDB}
@@ -50,7 +64,7 @@ MVC est une des architectures les plus utilisées pour créer des projets évolu
 	      	
 	\item \textbf{Controller :} dans le cas de notre application, le controller est le \emph{router} de l'application, ce dernier permet de définir les différents points terminaux (endpoints) de l'application et les identifier par une URI, les détails de l'API sont décrits dans la section suivante.
 	      
-	      Nous avons utilisé dans l'implémentation \textbf{ExpressJs} : un framework\FancyFootNote{Framework : } d'application minimaliste et très flexible qui propose un ensemble de fonctionnalités stables pour les applications web, en l'occurrence l'implémentation des APIs (Express.Router). Au moment d'écrire ce rapport, c'est l'outil le plus connu et le plus utilisé avec NodeJs.
+	      Nous avons utilisé dans l'implémentation \textbf{ExpressJs} : un framework\FancyFootNote{Framework : C'est une sorte d'infrastructure de développement, il désigne un ensemble cohérent de composants logiciels structurels qui sert à créer les fondations ainsi que les grandes lignes de tout ou d'une partie d'un logiciel ou application.} d'application minimaliste et très flexible qui propose un ensemble de fonctionnalités stables pour les applications web, en l'occurrence l'implémentation des APIs (Express.Router). Au moment d'écrire ce rapport, c'est l'outil le plus connu et le plus utilisé avec NodeJs.
 	      	
 	\item \textbf{Views :} les Views dans ce projet consistent en deux applications séparées : une application client pour demander le chemin et consulter les lignes, et une application admin pour insérer et modifier les lignes des différents transports.
 	      
@@ -144,7 +158,7 @@ Une requête de chemin à partir de l'utilisateur jusqu'à l'affichage de la ré
 \begin{enumerate}
 	\item L'API reçoit la requête de chemin, vérifie les paramètres et met en forme les données, pour les passer au module qui calcule le chemin (PathFinder).
 	\item Le module PathFinder formule la requête Cypher et l'envoi au serveur de la base de donnée Neo4j.
-	      La requête est comme suit : 		
+	      Un exemple de cette requête est donné dans la figure \ref{fig:cipherRequest}.
 \begin{figure}[h!]
 	      \begin{lstlisting}[style=cypher]
 MATCH p = AllShortestPaths((A:Station)-[*..20]->(B:Station))
@@ -160,6 +174,7 @@ RELATIONSHIPS(p) as segments
 RETURN segments, startNodes, endNodes
 	      \end{lstlisting}
 \caption{Requête Cypher des plus courts chemins}
+\label{fig:cipherRequest}
 \end{figure}
 	      Nous pouvons depuis cette requête filtrer les différents transports à inclure dans le chemin facilement, puisque chaque moyen de transport est désigné par ses propres arcs étiquetés dans le graphe.
 	\item Neo4J retourne ainsi une liste de chemins optimaux, le module va ensuite évaluer chaque chemin :
@@ -177,7 +192,7 @@ RETURN segments, startNodes, endNodes
 **Montrer une requete HTTP du chemin avec les parametres ? 
 \subsection{Format des réponses}
 \label{ref:formatReponse}
-L'API retourne un tableau des chemins (Objets Path) en format JSON, ces objets contiennent les informations suivantes :
+L'API retourne un tableau des chemins (tableau d'objets Path) en format JSON, ces objets contiennent les informations suivantes :
 \begin{itemize}
 	\item Le temps, prix et distance totale du chemin.
 	\item Les moyens de transport utilisés dans ce chemin.
