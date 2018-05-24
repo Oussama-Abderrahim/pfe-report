@@ -12,18 +12,36 @@ Il présente plusieurs avantages, notamment :
 \end{itemize}
 NodeJs est donc un choix idéal pour des développer des APIs REST minimales et flexibles tout en gardant des performances élevées pendant le traitement de requêtes.\newline
 En dernier, bien que NodeJs ne soit pas adapté pour des applications aux calculs intensives, il ne sera pas un inconvénient du fait que les calculs sur le graphe seront effectués principalement dans le SGBD.
+
+\subsection{MongoDB}
+	MongoDb est un système de base de données NoSQL. Il est orienté documents qui est une évolution des simples bases de données clé-valeur, un document peut être une valeur atomique, paire clé-valeur, un tableau de valeurs ou une compositions de ces derniers.
+
+Son nom vient de Humongous qui veut dire énorme ou immense.
+
 \subsection{Neo4J}
-Apparu en 2000 et appartient à la société Neo Technology, Neo4j est un système de gestion de bases de données orienté graphe. Son approche est fondée sur la théorie des graphes. Les données sont stockées de manière assez libre (sans modèle prédéfini) dans des nœuds reliés entre eux par des relations.
+Apparu en l'année 2000 et appartient à la société Neo Technology, Neo4j est un système de gestion de bases de données (SGBD) orienté graphe. Son approche est fondée sur la théorie des graphes. Les données sont stockées de manière assez libre (sans modèle prédéfini) dans des nœuds reliés entre eux par des relations.
 
 Ses principaux avantages sont :
 \begin{itemize}
 	\item Neo4J utilise un stockage native du graphe, avec un principe appelé \textbf{index-free adjacency}, ceci permet de stocker des nœuds directement avec ses relations et nœuds adjacents sans avoir à utiliser des indexes pour consulter ses relations.\newline
 	Le stockage native offre de très grande performances de lecture/écriture indépendamment de la taille du graphe (le temps d'accès à chaque noeud est constant).
+	\item Neo4J est open-source, et a la plus grande communauté dans les bases de donnée orientées graphe, qui contribuent constamment à son écosystème, ce qui donne un très grand nombre de ressources et de support ainsi qu'une grande liste de pilotes et librairies dans tous les langages courants.
+	\item Neo4J se présente comme une solution dans un très grand nombre de cas d'utilisations, par exemple: Réseaux sociaux, détection de fraude, Réseaux et opérations IT...etc.
+	\item Facile à apprendre et à utiliser: Neo4J dispose d'une interface graphique très moderne et riche, et utilise son propre langage d'interrogation Cypher qui utilise une syntaxe textuelle très intuitive et similaire au SQL.
 \end{itemize}
 
+Neo4J étant le SGBD le plus dominant dans le domaine des orientés graphe, et offrant une grande performance et flexibilité qui satisfait tous les besoins de ce projet, nous n'avons pas eu besoin de considérer les autres systèmes.
 
-** \textbf{Cypher : } présenter le language de requete avec quelques exemples
-\subsection{MongoDB}
+\textbf{Cypher: } c'est un langage de requête déclaratif sur Neo4J. Il permet de décrire la forme du résultat et les contraintes souhaitées à ajouter en optimisant le plan d'exécution pour récupérer les résultats.\newline
+
+Il utilise une syntaxe déclarative avec de l'ASCII Art pour décrire les nœuds et les relations, rendant les requêtes faciles à lire et comprendre. un exemple est donné dans la figue \ref{fig:cypher}.
+
+\begin{figure}
+	\center
+	\includegraphics[width=0.8\textwidth]{img/cypher.png}
+	\label{fig:cypher}
+	\caption{Exemple de requête Cypher.}
+\end{figure}
 		
 \section{Structure de l'application}
 \subsection{L'architecture MVC (Model-View-Controller)}
