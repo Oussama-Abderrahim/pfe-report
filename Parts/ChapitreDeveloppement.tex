@@ -16,7 +16,15 @@ En dernier, bien que NodeJs ne soit pas adapté pour des applications aux calcul
 \subsection{MongoDB}
 	MongoDb est un système de base de données NoSQL. Il est orienté documents qui est une évolution des simples bases de données clé-valeur, un document peut être une valeur atomique, paire clé-valeur, un tableau de valeurs ou une compositions de ces derniers.
 
-Son nom vient de Humongous qui veut dire énorme ou immense.
+Son nom vient de Humongous qui veut dire énorme ou immense, il est capable de gérer de très grandes quantités de données avec une grande facilité d'extension, ses principaux avantages sont:
+
+\begin{itemize}
+	\item Stockage flexible de données sous forme de documents semi-structurés (similaires au JSON), les attributs peuvent varier de document à document et la structure peut changer au fil du temps.
+	\item Facilité de manipulation depuis l'application: MongoDB transforme les documents en object qui peuvent être manipulés avec le langage de programmation utilisé.
+	\item Fournir des méthodes puissantes pour accéder et analyser les données.
+\end{itemize}
+
+En résumé, MongoDB est un SGBD très flexible et simple à utiliser, nous stockerons les informations supplémentaires de notre application en utilisant ce système, tel que les Bus, horaires,...etc.
 
 \subsection{Neo4J}
 Apparu en l'année 2000 et appartient à la société Neo Technology, Neo4j est un système de gestion de bases de données (SGBD) orienté graphe. Son approche est fondée sur la théorie des graphes. Les données sont stockées de manière assez libre (sans modèle prédéfini) dans des nœuds reliés entre eux par des relations.
@@ -39,10 +47,13 @@ Il utilise une syntaxe déclarative avec de l'ASCII Art pour décrire les nœuds
 \begin{figure}
 	\center
 	\includegraphics[width=0.8\textwidth]{img/cypher.png}
-	\label{fig:cypher}
 	\caption{Exemple de requête Cypher.}
+	\label{fig:cypher}
+
 \end{figure}
-		
+\newpage
+\subsection{VueJs}
+\newpage
 \section{Structure de l'application}
 \subsection{L'architecture MVC (Model-View-Controller)}
 L'application suit une architecture MVC qui est un modèle d'architecture qui sépare une application en 3 composants logiques: \textbf{Model}, \textbf{View}, \textbf{Controller}.
@@ -163,7 +174,7 @@ Les ressources principales de notre API sont les stations (\textbf{station}) et 
 	\caption{Description du format des ressources.}
 	\label{fig:formatResources}
 \end{figure}
-
+\newpage
 \section{Recherche de chemin}
 L'implémentation de l'application du coté serveur permet de calculer un ensemble de chemins optimaux entre deux stations identifiées par un identifiant. Le calcul se déroule en plusieurs étapes :
 \subsection{Déroulement d'une requête}
