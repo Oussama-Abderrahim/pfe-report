@@ -39,8 +39,12 @@ MVC est une des architectures les plus utilisées pour créer des projets évolu
 %Il existe plusieurs variantes du MVC et d'autres architectures similaires tel que le MVVM (Model-View-ViewModel) et le MVP (Model-View-Presenter).
 
 \subsection{Composants de l'application}
-** Placer diagramme de classe global Here
-	
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{img/ClassDiagram.png}
+	\caption{Vue d'ensemble des composants de l'application}
+	\label{fig:classDiagram}
+\end{figure}	
 \begin{enumerate}
 	\item \textbf{Models:}
 	      \begin{itemize}
@@ -146,13 +150,14 @@ Les ressources principales de notre API sont les stations (\textbf{station}) et 
 L'implémentation de l'application du coté serveur permet de calculer un ensemble de chemins optimaux entre deux stations identifiées par un identifiant. Le calcul se déroule en plusieurs étapes :
 \subsection{Déroulement d'une requête}
 
-Une requête de chemin à partir de l'utilisateur jusqu'à l'affichage de la réponse passe par plusieurs étapes, la figure \ref{fig:diagSequence} décrit les étapes suivantes :
 \begin{figure}[h!]
 	\center
 	\includegraphics[width=0.99\textwidth]{img/RechercheChemin.png}
-	\label{fig:diagSequence}
 	\caption{Diagramme de séquence pour la recherche de chemins.}
+	\label{fig:diagSequence}
 \end{figure}
+
+Une requête de chemin à partir de l'utilisateur jusqu'à l'affichage de la réponse passe par plusieurs étapes, la figure \ref{fig:diagSequence} décrit les étapes suivantes :
 
 
 \begin{enumerate}
@@ -188,8 +193,8 @@ RETURN segments, startNodes, endNodes
 \end{enumerate}
 \label{SectionPathFinding}
 	
-\subsection{Format des requêtes}
-**Montrer une requete HTTP du chemin avec les parametres ? 
+%\subsection{Format des requêtes}
+%**Montrer une requete HTTP du chemin avec les parametres ? 
 \subsection{Format des réponses}
 \label{ref:formatReponse}
 L'API retourne un tableau des chemins (tableau d'objets Path) en format JSON, ces objets contiennent les informations suivantes :

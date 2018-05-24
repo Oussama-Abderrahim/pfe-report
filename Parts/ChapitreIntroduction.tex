@@ -11,32 +11,21 @@ Cependant, ces outils ne proposent généralement qu'un seul moyen de transport.
 Ajouté à cela un grand nombre de lignes de bus, avec une organisation presque aléatoire de lignes, partagées entre deux entreprises de transport indépendantes (publique et privée), ainsi que des noms très peu significatifs ne donnant aucune indication sur l'itinéraire de chaque bus.\newline
 Ces facteurs contribuent encore à la confusion des usagers et touristes souhaitant utiliser ces transports.
 
-Ces raisons font que trouver un chemin optimal faisant bon usage de différents moyens de transport pour une personne est une tâche bien difficile, car cela demande principalement une connaissance parfaite de toute la ville, chose qui est impossible notamment pour un touriste. 
+\section{Problématique}
+Trouver un chemin optimal faisant bon usage de différents moyens de transport pour une personne est une tâche bien difficile, car cela demande principalement une connaissance parfaite de toute la ville, chose qui est impossible notamment pour un touriste.\newline
 
 Le choix du chemin dépend aussi de plusieurs facteurs : la situation et les préférences de chaque personne, ainsi que le jour du trajet, l'heure et la météo. Par exemple, un usager peut choisir habituellement de marcher vers un arrêt de tramway et
 puis le prendre jusqu'à sa destination, mais préfère, en jour de pluie ou suite à défaut de pouvoir marcher, de prendre deux bus avec un chemin plus long.
 
 Notre but est donc de créer un outil qui aide à cette décision, qui sera ensuite adapté à la ville d'Oran.
 
-
-\section{Intérêt et avantages}
-Offrir un guide de transport évolué a pour apport :
-\begin{itemize}
-	\item Gain considérable de temps, de transports et réduction de dépenses.
-	\item Assurer un meilleur respect d'horaire et d'itinéraires de la part des entreprises de transport, et ainsi avoir plus de confiance de la part des utilisateurs.
-	\item Encourager plus de citoyens à utiliser les transports communs.
-	\item Améliorer la circulation en ville en diminuant le nombre d'utilisateurs de véhicules personnels et ainsi réduire les embouteillages.
-	\item Meilleure expérience aux touristes et visiteurs.
-\end{itemize}
-
-\section{Problématique}
-
+\section{Analyse de besoins}
 La création d'un outil qui aide à cette décision présente plusieurs problématiques, avant de commencer le projet, nous sommes amenés à répondre aux questions suivantes :
 \begin{itemize}
-	\item Quels sont les différents usagers des transports communs, et quel est le besoin de chaque profile ?
-	\item Quels sont ces différents facteurs et critères à considérer lors de ce choix ?
-	\item Quelles sont les différentes difficultés et contraintes qui peuvent affecter ce choix?
-	\item Peut-on offrir une solution informatique évoluée pour assister à ce choix ? Si oui : 
+	\item Quels sont les différents usagers des transports communs, et quel est le besoin de chaque profile?
+	\item Quels sont ces différents facteurs et critères à considérer lors de cette décision?
+	\item Quelles sont les différentes difficultés et contraintes qui peuvent affecter cette décision?
+	\item Peut-on offrir une solution informatique évoluée pour assister à cette décision? Si oui : 
 	      \begin{itemize}
 	      	\item Comment représenter un réseau routier d'une ville comme Oran, et contenant plusieurs moyens de transport ?
 	      	\item Comment calculer un chemin sur ce réseau, et comment déterminer un chemin optimal ?
@@ -44,31 +33,53 @@ La création d'un outil qui aide à cette décision présente plusieurs problém
 	      	\item Comment présenter cette solution aux usagers de manière simple et efficace ?
 	      \end{itemize}
 \end{itemize}
-			
-\section{Applications similaires}			
-\subsection{RATP}
-L'application RATP a été développée 2010 dans le but d'injecter du réseau social dans le réseau souterrain. Aujourd'hui c'est le compagnon de transport pour Paris et l'ile de France.
-Parmi les services qu'elle propose, on cite:
+
+\section{Intérêts et avantages}
+Développer un guide de transport évolué a pour apport :
 \begin{itemize}
-	\item La possibilité de consulter les horaires de passages des différents moyens de transport public desservant Paris et ses environs. 
-	\item Permet de retrouver les stations où les arrêts autour de l'endroit où se trouve l'utilisateur grâce à la géolocalisation.
+	\item Gain considérable de temps et réduction de dépenses.
+	\item Assurer un meilleur respect d'horaire et d'itinéraires de la part des entreprises de transport, et ainsi avoir plus de confiance de la part des utilisateurs.
+	\item Encourager plus de citoyens à utiliser les transports en commun.
+	\item Améliorer la circulation en ville en diminuant le nombre d'utilisateurs de véhicules personnels et ainsi réduire les embouteillages.
+	\item Meilleure expérience pour les touristes et visiteurs de la ville d'Oran, nous citons comme exemple en ce moment l'événement de jeux méditerranéens qui attirera un grand nombre d'étrangers.
 \end{itemize}
-Un avantage particulier avec RATP est le fait qu'il peut être paramétré de manière à émettre des alertes en cas de perturbations ou éventuels retards sur une ligne particulière.
-	
+
+\section{Applications similaires}			
 \subsection{CityMapper}
-CityMapper est une application de transports en commun qui a été lancé à Londres en 2011.
-Elle propose 3 modes d'utilisation : 
+CityMapper est une application de transports en commun qui a été lancée à Londres en 2011.
+Elle propose les fonctionnalités suivantes : 
 \begin{itemize}
-	\item Découvrir de tous les modes de transports en commun dans cette ville.
+	\item Découvrir de tous les moyens de transports en commun dans cette ville.
 	\item Obtenir les différents moyens pour arriver à la destination souhaitée.
 	\item Comparer le temps de chaque trajet.
 \end{itemize}
 
+\begin{figure}[h!]
+	\center
+	\includegraphics[width=0.95\textwidth]{img/citymapper.png}
+	\caption{Application web de CityMapper.}
+\end{figure}
+
 CityMapper couvre en ce moment 36 villes dont Londres, Berlin, Tokyo, Paris et New York...etc.  Un de ses avantages est la possibilité de prévoir un trajet en avance et de le télécharger pour qu'il soit disponible hors connexion.
 
-\section{Solutions proposée}
-Au moment de rédiger ce mémoire, aucune application n'offre ce service en Algérie.
+\subsection{RATP}
+L'application RATP est aujourd'hui le compagnon de transport pour Paris et l'ile de France.
+Parmi les services qu'elle propose, on cite:
+\begin{itemize}
+	\item Possibilité de trouver un itinéraire entre deux lieux, arrêts ou adresses en prenant en compte plusieurs modes de transport, l'horaire de départ/arrivée ainsi que plusieurs critères.
+	\item Possibilité de consulter les horaires de passages des différents moyens de transport public desservant Paris et ses environs. 
+	\item Possibilité de retrouver les stations ou les arrêts les plus proches, et consulter les différents modes de transports de la ville de Paris.
+\end{itemize}
 
+\begin{figure}[h!]
+	\center
+	\includegraphics[width=0.95\textwidth]{img/ratp.png}
+	\caption{Application web de la RATP.}
+\end{figure}
+Un avantage particulier avec RATP est le fait qu'il peut être paramétré de manière à émettre des alertes en cas de perturbations ou éventuels retards sur une ligne particulière du fait qu'elle soit reliée directement au système d'information de la RATP (Régie Autonome des Transports Parisiens).
+
+\section{Solution proposée}
+Au moment de rédiger ce mémoire, aucune application n'offre ce service en Algérie. \newline
 De ce fait, nous proposons de développer une application Web full-REST qui proposera les fonctionnalités suivantes : 
 
 \begin{itemize}
@@ -80,11 +91,10 @@ De ce fait, nous proposons de développer une application Web full-REST qui prop
 		\item Minimum de temps.
 		\item Minimum de marche.
 		\item Minimum de correspondance.
-		\item Minimum de cout.
+		\item Minimum de cout.\newline
 	\end{itemize}	 
 \end{itemize}
-
-Ce projet sera composé de 04 parties :
+Ce projet sera composé de 04 parties :\newline
 \begin{description}
 	\item[Conception et stockage des données: ] nous étudierons le problème pour enfin proposer une bonne représentation des données que nous pourrons facilement utiliser dans la recherche du chemin.
 
@@ -99,15 +109,16 @@ Ce projet sera composé de 04 parties :
 Vu le grand nombre de fonctionnalités et la complexité de cette problématique, nous limiterons la version initiale de l'application à un premier algorithme de recherche simple mais applicable sur la ville d'Oran.
 
 L'architecture de l'application devra être suffisamment flexible pour pouvoir améliorer la recherche du chemin, et ajouter progressivement des améliorations ou de nouveaux critères.
-	 
+\newpage
 \section{Plan du rapport}
 
-Après ce premier chapitre où nous avons présenté les objectifs du projet et la solution proposée; 
+Après ce premier chapitre où nous avons présenté les objectifs du projet et la solution proposée;\newline
 
-Nous présenterons tout au long du Chapitre 2 ce qu'est un service Web, ses caractéristiques et avantages, nous explorerons ensuite deux manières concurrentes pour implémenter des Services Web : SOAP et REST pour débattre brièvement les points forts de chacune afin de justifier notre décision d'utiliser REST.
+Nous présenterons tout au long du Chapitre 2 ce qu'est un service Web, ses caractéristiques et avantages, nous explorerons ensuite deux manières concurrentes pour implémenter des Services Web : SOAP et REST pour débattre brièvement les points forts de chacune afin de justifier notre décision d'utiliser REST.\newline\newline
 
-Le chapitre 3 présentera en première partie les définitions relatives aux graphes et recherche de chemins, et traitera ensuite les différents détails concernant la représentation et stockage des données de l'application. 
+Le chapitre 3 présentera en première partie les notions requises relatives aux graphes et recherche de chemins, et traitera ensuite les différents détails concernant la représentation et stockage des données de l'application, nous parlerons du processus de la collecte de données et le résultat obtenu. \newline\newline
 
-( À faire après chapitre 4) \newline
-Nous présenterons ensuite dans le chapitre 4 les différentes technologies qu'on a utilisé, ainsi qu'un aperçu des représentations utilisées et des détails implémentations. ***qui seront accompagnées par des captures d'écran décrivant le fonctionnement de l'application.**
-Nous parleront	 enfin dans le chapitre 5 sur les différentes perspectives et futur stuff
+
+Nous présenterons ensuite dans le chapitre 4 les différentes technologies qu'on a utilisé, nous expliquerons aussi la structure globale de l'application et les modèles de données que nous avons choisi, ces détails seront accompagnés par des aperçus des interfaces des deux applications.\newline\newline
+
+Nous évaluerons enfin dans le chapitre 5 l'avancement du projet, ainsi que les différentes perspectives et futures possibilités de ce dernier.
