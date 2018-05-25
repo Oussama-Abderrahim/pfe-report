@@ -1,57 +1,59 @@
 \chapter{Développement}
+Après avoir détaillé la représentation des données de ce projet, nous étudierons dans ce chapitre les différentes technologies utilisées dans l'implémentation ainsi que l'architecture utilisée. Nous détaillerons ensuite les formats et modèles de nos données. Enfin, Nous donnerons un aperçu des applications front-end.
 \section{Technologies utilisées}
 \subsection{NodeJs}
-Aux alentours de 2010 Google a commencé à rendre JavaScript et son moteur d'exécution V8 plus rapides. Des outils comme Node.js sont ensuite apparus\cite{NodeJs}.\newline
+Aux alentours de 2010 Google a commencé à rendre JavaScript et son moteur d'exécution V8 plus rapides. Des outils comme Nodejs sont ensuite apparus\cite{NodeJs}.\newline
 Node.js est un environnement d'exécution \textbf{JavaScript} construit sur le moteur \emph{V8} de Google Chrome. Il utilise un modèle basé sur l'événementiel (\textbf{event-driven}) et des entrées/sorties non bloquantes, ce qui le rend léger et efficace.
 Il présente plusieurs avantages, notamment :
 \begin{itemize}
-	\item NodeJS et son écosystème permettent de travailler avec JavaScript à la fois sur le frontend et le backend.
+	\item NodeJs et son écosystème permettent de travailler avec JavaScript à la fois sur le frontend et le backend.
 	\item L'approche non bloquante de NodeJs lui permet d'effectuer des entrées/sorties (I/O) de manière asynchrone. La programmation asynchrone est idéal pour une exécution plus rapide de programmes.
-	\item Contrairement aux langages serveur célèbres tel que PHP, ASP.NET, Ruby ou Java, Node Js s'exécute en \emph{monothread}, en d'autres termes les processus de chaque requêtes sont traités dans un seul fil d'exécution, ce qui est très efficace en termes de mémoire.
+	\item Contrairement aux langages serveur célèbres tel que PHP, ASP.NET, Ruby ou Java, NodeJs s'exécute en \emph{monothread}, en d'autres termes les processus de chaque requêtes sont traités dans un seul fil d'exécution, ce qui est très efficace en termes de mémoire.
 	\item NodeJs rassemble une grande communauté très active, ce qui offre un grand nombre de librairies et de support en travaillant avec NodeJs.\newline
 \end{itemize}
-NodeJs est donc un choix idéal pour des développer des APIs REST minimales et flexibles tout en gardant des performances élevées pendant le traitement de requêtes.\newline
-En dernier, bien que NodeJs ne soit pas adapté pour des applications aux calculs intensives, il ne sera pas un inconvénient du fait que les calculs sur le graphe seront effectués principalement dans le SGBD.
 
+\textbf{ExpressJs :} un framework\FancyFootNote{Framework : C'est une sorte d'infrastructure de développement, il désigne un ensemble cohérent de composants logiciels structurels qui sert à créer les fondations ainsi que les grandes lignes de tout ou d'une partie d'un logiciel ou application.} d'application minimaliste et très flexible qui propose un ensemble de fonctionnalités stables pour les applications web, en l'occurrence l'implémentation des APIs (Express.Router). Au moment d'écrire ce rapport, c'est l'outil le plus connu et le plus utilisé avec NodeJs.
+
+NodeJs est donc un choix idéal pour développer des APIs REST minimales et flexibles tout en gardant des performances élevées pendant le traitement de requêtes.\newline
+En dernier, bien que NodeJs ne soit pas adapté pour des applications aux calculs intensifs, il ne sera pas un inconvénient du fait que les calculs sur le graphe seront effectués principalement dans le SGBD.
 \subsection{MongoDB}
-	MongoDb est un système de base de données NoSQL. Il est orienté documents qui est une évolution des simples bases de données clé-valeur, un document peut être une valeur atomique, paire clé-valeur, un tableau de valeurs ou une compositions de ces derniers.
+	MongoDB \cite{MongoDB} est un système de base de données NoSQL. Il est orienté documents qui est une évolution des simples bases de données clé-valeur. Un document peut être une valeur atomique, paire clé-valeur, un tableau de valeurs ou une compositions de ces derniers.
 
-Son nom vient de Humongous qui veut dire énorme ou immense, il est capable de gérer de très grandes quantités de données avec une grande facilité d'extension, ses principaux avantages sont:
+Son nom vient de Humongous qui veut dire énorme ou immense. Il est capable de gérer de très grandes quantités de données avec une grande facilité d'extension, ses principaux avantages sont:
 
 \begin{itemize}
 	\item Stockage flexible de données sous forme de documents semi-structurés (similaires au JSON), les attributs peuvent varier de document à document et la structure peut changer au fil du temps.
-	\item Facilité de manipulation depuis l'application: MongoDB transforme les documents en object qui peuvent être manipulés avec le langage de programmation utilisé.
-	\item Fournir des méthodes puissantes pour accéder et analyser les données.
+	\item Facilité de manipulation depuis l'application: MongoDB transforme les documents en objets qui peuvent être manipulés avec le langage de programmation utilisé.
+	\item Existence de méthodes puissantes pour accéder et analyser les données.
 \end{itemize}
 
 En résumé, MongoDB est un SGBD très flexible et simple à utiliser, nous stockerons les informations supplémentaires de notre application en utilisant ce système, tel que les Bus, horaires,...etc.
 
-\subsection{Neo4J}
+\subsection{Neo4j}
 Apparu en l'année 2000 et appartient à la société Neo Technology, Neo4j est un système de gestion de bases de données (SGBD) orienté graphe. Son approche est fondée sur la théorie des graphes. Les données sont stockées de manière assez libre (sans modèle prédéfini) dans des nœuds reliés entre eux par des relations.
 
 Ses principaux avantages sont :
 \begin{itemize}
-	\item Neo4J utilise un stockage native du graphe, avec un principe appelé \textbf{index-free adjacency}, ceci permet de stocker des nœuds directement avec ses relations et nœuds adjacents sans avoir à utiliser des indexes pour consulter ses relations.\newline
-	Le stockage native offre de très grande performances de lecture/écriture indépendamment de la taille du graphe (le temps d'accès à chaque noeud est constant).
-	\item Neo4J est open-source, et a la plus grande communauté dans les bases de donnée orientées graphe, qui contribuent constamment à son écosystème, ce qui donne un très grand nombre de ressources et de support ainsi qu'une grande liste de pilotes et librairies dans tous les langages courants.
-	\item Neo4J se présente comme une solution dans un très grand nombre de cas d'utilisations, par exemple: Réseaux sociaux, détection de fraude, Réseaux et opérations IT...etc.
-	\item Facile à apprendre et à utiliser: Neo4J dispose d'une interface graphique très moderne et riche, et utilise son propre langage d'interrogation Cypher qui utilise une syntaxe textuelle très intuitive et similaire au SQL.
+	\item Neo4j utilise un stockage native du graphe, avec un principe appelé \textbf{index-free adjacency}, ceci permet de stocker des nœuds directement avec ses relations et nœuds adjacents sans avoir à utiliser des indexes pour consulter ses relations.\newline
+	Le stockage native offre de très grandes performances de lecture/écriture indépendamment de la taille du graphe (le temps d'accès à chaque noeud est constant).
+	\item Neo4j est open-source, et a la plus grande communauté dans les bases de données orientées graphe, qui contribuent constamment à son écosystème, ce qui donne un très grand nombre de ressources et de support ainsi qu'une grande liste de pilotes et librairies dans tous les langages courants.
+	\item Neo4j se présente comme une solution dans un très grand nombre de cas d'utilisations, par exemple: Réseaux sociaux, détection de fraude, Réseaux et opérations IT...etc.
+	\item Facile à apprendre et à utiliser: Neo4j dispose d'une interface graphique très moderne et riche, et utilise son propre langage d'interrogation Cypher qui utilise une syntaxe textuelle très intuitive et similaire au SQL.
 \end{itemize}
 
-Neo4J étant le SGBD le plus dominant dans le domaine des orientés graphe, et offrant une grande performance et flexibilité qui satisfait tous les besoins de ce projet, nous n'avons pas eu besoin de considérer les autres systèmes.
+Neo4j étant le SGBD le plus dominant dans le domaine des orientés graphe, et offrant une grande performance et flexibilité qui satisfait tous les besoins de ce projet, nous n'avons pas eu besoin de considérer les autres systèmes.
 
-\textbf{Cypher: } c'est un langage de requête déclaratif sur Neo4J. Il permet de décrire la forme du résultat et les contraintes souhaitées à ajouter en optimisant le plan d'exécution pour récupérer les résultats.\newline
+\textbf{Cypher: } c'est un langage de requête déclaratif sur Neo4j. Il permet de décrire la forme du résultat et les contraintes souhaitées à ajouter en optimisant le plan d'exécution pour récupérer les résultats.\newline
 
-Il utilise une syntaxe déclarative avec de l'ASCII Art pour décrire les nœuds et les relations, rendant les requêtes faciles à lire et comprendre. un exemple est donné dans la figue \ref{fig:cypher}.
+Il utilise une syntaxe déclarative avec de l'ASCII Art (des figures et signes utilisant des lettres et caractères spéciaux) pour décrire les nœuds et les relations, rendant les requêtes faciles à lire et comprendre. un exemple est donné dans la figue \ref{fig:cypher}.
 
 \begin{figure}
 	\center
 	\includegraphics[width=0.8\textwidth]{img/cypher.png}
 	\caption{Exemple de requête Cypher.}
 	\label{fig:cypher}
-
 \end{figure}
-\newpage
+
 \subsection{VueJs}
 \newpage
 \section{Structure de l'application}
@@ -69,11 +71,11 @@ MVC est une des architectures les plus utilisées pour créer des projets évolu
 
 \subsection{Composants de l'application}
 
-\begin{figure}
+\begin{sidewaysfigure}
 	\includegraphics[width=\textwidth]{img/ClassDiagram.png}
 	\caption{Vue d'ensemble des composants de l'application}
 	\label{fig:classDiagram}
-\end{figure}	
+\end{sidewaysfigure}	
 \begin{enumerate}
 	\item \textbf{Models:}
 	      \begin{itemize}
@@ -90,16 +92,14 @@ MVC est une des architectures les plus utilisées pour créer des projets évolu
 	      	\item \textbf{Models du graphe} : 
 	      	      Afin d'avoir une application facilement extensible, nous avons séparé les Models relatifs au graphe des Models de l'application, ce qui permettra de modifier la représentation du graphe sans affecter l'application.
 	      	      \begin{itemize}
-	      	      	\item \textbf{GrapheNode} : représente un nœud, communique avec la base de donnée pour créer et manipuler les nœuds.
-	      	      	\item \textbf{GrapheSegment} : représente un arc entre deux nœuds, communique avec la base de donnée pour créer plusieurs relations (lignes de transport) ou les supprimer.
+	      	      	\item \textbf{GrapheNode} : représente un nœud, communique avec la base de données pour créer et manipuler les nœuds.
+	      	      	\item \textbf{GrapheSegment} : représente un arc entre deux nœuds, communique avec la base de données pour créer plusieurs relations (lignes de transport) ou les supprimer.
 	      	      \end{itemize}
 	      \end{itemize}
 	      	
 	\item \textbf{Controller :} dans le cas de notre application, le controller est le \emph{router} de l'application, ce dernier permet de définir les différents points terminaux (endpoints) de l'application et les identifier par une URI, les détails de l'API sont décrits dans la section suivante.
-	      
-	      Nous avons utilisé dans l'implémentation \textbf{ExpressJs} : un framework\FancyFootNote{Framework : C'est une sorte d'infrastructure de développement, il désigne un ensemble cohérent de composants logiciels structurels qui sert à créer les fondations ainsi que les grandes lignes de tout ou d'une partie d'un logiciel ou application.} d'application minimaliste et très flexible qui propose un ensemble de fonctionnalités stables pour les applications web, en l'occurrence l'implémentation des APIs (Express.Router). Au moment d'écrire ce rapport, c'est l'outil le plus connu et le plus utilisé avec NodeJs.
-	      	
-	\item \textbf{Views :} les Views dans ce projet consistent en deux applications séparées : une application client pour demander le chemin et consulter les lignes, et une application admin pour insérer et modifier les lignes des différents transports.
+	     	      	
+	\item \textbf{Views :} les Views dans ce projet consistent en deux applications séparées : une application client pour demander le chemin et consulter les lignes, et une application administrateur pour insérer et modifier les lignes des différents transports.
 	      
 	      Ces deux applications sont des \emph{Single Page Applications} : une application dynamique qui tourne sur un navigateur web.
 	      Nous ne détaillerons pas l'implémentation de ces applications car ce n'est pas l'objectif principal de ce projet, un aperçu du résultat final est donné dans la section \ref{ref:Implementation}.
@@ -114,13 +114,13 @@ Notre API définit principalement 3 ressources:
 \begin{enumerate}
 	\item \textbf{Station:} Ressource qui représente les différentes stations du réseau, elle accepte 3 requêtes différentes de type GET  : 
 	      \begin{itemize}
-	      	\item \emph{\textbf{/api/station}}: Retourner toutes les stations, peut être utilisée pour visualiser toutes les stations par un client ou d'autres utilisations générales, le nombre de stations retournées seront limités et contrôlés par deux paramètres \textbf{limit} et \textbf{offset} afin d'éviter de retourner un très grand nombre de stations en une seule requête.
-	      	\item \emph{\textbf{/api/station/\{id\}}}: Retourner une station par identifiant, le client n'ayant rarement besoin de l'identifiant, cette URI est généralement utilisée dans le coté administrateur.
+	      	\item \emph{\textbf{/api/station}}: retourne toutes les stations, peut être utilisée pour visualiser toutes les stations par un client ou d'autres utilisations générales, le nombre de stations retournées seront limités et contrôlés par deux paramètres \textbf{limit} et \textbf{offset} afin d'éviter de retourner un très grand nombre de stations en une seule requête.
+	      	\item \emph{\textbf{/api/station/\{id\}}}: retourne une station par identifiant, le client n'ayant rarement besoin de l'identifiant, cette URI est généralement utilisée du coté administrateur.
 	      	\item \emph{\textbf{/api/station?match=\{name\}}}: Un paramètre dans la ressource station permet de retourner toutes les stations dont le nom contient la valeur \emph{name}, peut être utilisé pour la recherche et auto-complétion lors du choix du chemin, par exemple.
 	      \end{itemize}
 	      	      			
-	      Cette ressource accepte aussi des requêtes de type POST (création), PUT (mise à jour) et DELETE (suppression)  pour les client admin (authentifiés).
-	\item \textbf{Ligne:} \emph{\textbf{/api/line}} : Ressource qui représente les différentes lignes de transport entre stations, elle accepte des requêtes de type GET du coté client, aussi des requêtes POST, PUT et DELETE du coté admin pour gérer les lignes.
+	      Cette ressource accepte aussi des requêtes de type POST (création), PUT (mise à jour) et DELETE (suppression)  pour les client administrateurs (authentifiés).
+	\item \textbf{Ligne:} \emph{\textbf{/api/line}} : Ressource qui représente les différentes lignes de transport entre stations, elle accepte des requêtes de type GET du coté client, aussi des requêtes POST, PUT et DELETE du coté administrateur pour gérer les lignes.
 	\item \textbf{Direction:}  \emph{\textbf{/api/direction}} : Ressource représentant les chemins, elle accepte seulement des requêtes de type GET, les détails de ces requêtes et leurs réponses sont détaillés dans la section \ref{SectionPathFinding}
 \end{enumerate}
 \subsection{Description des formats des ressources}
@@ -191,7 +191,7 @@ Une requête de chemin à partir de l'utilisateur jusqu'à l'affichage de la ré
 
 \begin{enumerate}
 	\item L'API reçoit la requête de chemin, vérifie les paramètres et met en forme les données, pour les passer au module qui calcule le chemin (PathFinder).
-	\item Le module PathFinder formule la requête Cypher et l'envoi au serveur de la base de donnée Neo4j.
+	\item Le module PathFinder formule la requête Cypher et l'envoi au serveur de la base de données Neo4j.
 	      Un exemple de cette requête est donné dans la figure \ref{fig:cipherRequest}.
 \begin{figure}[h!]
 	      \begin{lstlisting}[style=cypher]
@@ -211,7 +211,7 @@ RETURN segments, startNodes, endNodes
 \label{fig:cipherRequest}
 \end{figure}
 	      Nous pouvons depuis cette requête filtrer les différents transports à inclure dans le chemin facilement, puisque chaque moyen de transport est désigné par ses propres arcs étiquetés dans le graphe.
-	\item Neo4J retourne ainsi une liste de chemins optimaux, le module va ensuite évaluer chaque chemin :
+	\item Neo4j retourne ainsi une liste de chemins optimaux, le module va ensuite évaluer chaque chemin :
 	      \begin{itemize}
 	      	\item Évaluer le temps et cout estimé de chaque chemin.
 	      	\item Trier les chemins selon le critère de la requête, en cas d'égalité considérer les autres critères.
@@ -239,10 +239,9 @@ L'API retourne un tableau des chemins (tableau d'objets Path) en format JSON, ce
 	      \end{itemize}
 \end{itemize}
 
-Un exemple d'une réponse JSON est donné dans la figure \ref{fig:JSONPath}
+Un exemple d'une réponse JSON est donné dans la figure \ref{fig:JSONPath}.
 
 \begin{figure}
-\label{fig:JSONPath}
 \begin{lstlisting}[]
 ( A mettre a jour avec exemple de deux etapes )
 {
@@ -274,6 +273,7 @@ Un exemple d'une réponse JSON est donné dans la figure \ref{fig:JSONPath}
 }
 \end{lstlisting}
 \caption{Format JSON de Path (chemin)}
+\label{fig:JSONPath}
 \end{figure}
 
 \newpage
