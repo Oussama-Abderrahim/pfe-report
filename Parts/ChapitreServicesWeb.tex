@@ -84,7 +84,7 @@ Il existe d'autres variantes et version de HTTP, notamment HTTP 1.1, HTTP/2, et 
 %=================================================================
 %=========================== PARTIE SOAP ==========================
 %=================================================================
-\newpage
+
 \section{Services web SOAP} 
 \label{section:Soap}
 \subsection{Le protocole SOAP}
@@ -101,14 +101,17 @@ Un message SOAP est un document XML contenant les éléments suivants \cite{refT
 	\item \textbf{Body (Corps)} : contient les données XML du message à transporter, un élément obligatoire.
 	\item \textbf{Fault (Gestion d'erreurs)} : fournit des informations sur les erreurs qui peuvent se produire durant traitement de l'information, un élément optionnel.
 \end{itemize}
+Cette structure est résumée dans la figure \ref{fig:structureSOAP}.
+
 \begin{figure}[h]
 	\begin{center}
 		\includegraphics[scale=1]{img/soapmessagebody.png}
 	\end{center}	
-	\label{Structure message SOAP}
-	\caption{Structure message SOAP}		
+	\caption{Structure d'un message SOAP.}
+	\label{fig:structureSOAP}
 	\centering
-\end{figure}			
+\end{figure}
+
 Un message SOAP est un peu lourd, mais reste simple à comprendre et à utiliser. Sa structure offre une grande fiabilité par rapport au format de données, ainsi qu'un moyen de gérer les erreurs grâce au SOAP Fault.
 
 \subsection{L'architecture orientée services}
@@ -125,11 +128,12 @@ On trouve trois acteurs majeurs dans une architecture SOA de service web :
 	\item \textbf{Annuaire service registry} : 
 	      c'est un annuaire de services. Ce registre fournit un emplacement central où les développeurs peuvent publier leur nouveau service web, ou trouver d'autres existants.\newline 
 \end{itemize}
-
+La relation entre ces trois acteurs est décrite dans la figure \ref{fig:SOA}.
 \begin{figure}[h]
 	\center
 	\includegraphics[scale=0.71]{img/SOA.png}
-	\caption{Composants d'une architecture orientée services}		
+	\caption{Composants d'une architecture orientée services}
+	\label{fig:SOA}
 	\centering
 \end{figure}		
 
@@ -184,7 +188,6 @@ En résumé, une API est qualifiée de RESTful si elle respecte les critères de
 \textbf{API Web :} c'est une interface côté serveur qui consiste en un ou plusieurs \emph{points} (endpoints) publiques spécifiant la location d'une ressource et comment y accéder, souvent à travers une URI vers laquelle des requêtes (HTTP) sont envoyées, et par laquelle des réponses serveur sont attendues.
 Elle définit ainsi un système de requête/réponses entre le client et le serveur à partir de ces points.
 
-\newpage
 \subsection{Critères REST}
 Une API RESTful complète doit vérifier six (06) critères: \cite{refTutorialPointsREST}
 \begin{itemize}

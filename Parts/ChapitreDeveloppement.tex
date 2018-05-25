@@ -239,7 +239,10 @@ L'API retourne un tableau des chemins (tableau d'objets Path) en format JSON, ce
 	      \end{itemize}
 \end{itemize}
 
+Un exemple d'une réponse JSON est donné dans la figure \ref{fig:JSONPath}
+
 \begin{figure}
+\label{fig:JSONPath}
 \begin{lstlisting}[]
 ( A mettre a jour avec exemple de deux etapes )
 {
@@ -273,10 +276,11 @@ L'API retourne un tableau des chemins (tableau d'objets Path) en format JSON, ce
 \caption{Format JSON de Path (chemin)}
 \end{figure}
 
-\section{Implémentation}
+\newpage
+\section{Applications Front-End}
 \label{ref:Implementation}
-
-\begin{figure}
+\subsection{Interfaces client}
+\begin{figure}[h!]
 
 	 \begin{subfigure}[b]{\linewidth}
 	 	\includegraphics[width=\linewidth]{img/spuf/acceuil.png}
@@ -304,4 +308,20 @@ L'API retourne un tableau des chemins (tableau d'objets Path) en format JSON, ce
 	 	\caption{Page de réponse détaillée.}	 
 	 \end{subfigure}
 	 \caption{Aperçu de l'application client.}
+\end{figure}
+
+\newpage
+\subsection{Interfaces administrateur}
+
+\begin{figure}[h!]
+	 \begin{subfigure}[b]{\linewidth}
+	 	\includegraphics[width=\linewidth]{img/spuf/addline.png}
+	 	\caption{Page ajout de nouvelles lignes.}
+	 \end{subfigure}
+	 
+	 \begin{subfigure}[b]{\linewidth}
+	 	\includegraphics[width=\linewidth]{img/spuf/createstation.png}
+	 	\caption{Page ajout de nouvelle station.}	 
+	 \end{subfigure}
+	 \caption{Aperçu de l'application administrateur.}
 \end{figure}

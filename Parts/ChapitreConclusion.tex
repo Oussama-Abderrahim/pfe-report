@@ -8,22 +8,26 @@ Nous avons proposé  de développer une application Web full-REST qui propose pl
 Nous avons divisé la résolution de ce problème en 4 parties:
 
 \begin{description}
-\item[Conception et stockage des données:] 
-\item[Service Web:]
-\item[Interface Web:]
-\item[Interface administrateur:]
+\item[Conception et stockage des données:] après avoir collecté les données, traiter et ajouter d'autres, nous les avons représenté sous forme de graphe: chaque noeud représente une station, et chaque arc entre deux stations représente le passage d'un transport.\newline
+Nous avons utilisé une base de donnée orientée graphe pour stocker ce graphe pré-construit, et bénéficier de meilleures performances dans les différentes opérations de lecture/écriture.
+\item[Service Web:] 
+\item[Interface Web:]  nous avons implémenté une interface client, où l'utilisateur peut entrer sa station de départ et d'arrivée, ainsi que les facteurs et le moyens de transports qu'il souhaite.
+Ensuite visualiser le résultat sous forme de étapes avec informations (temps, prix et distance).
+
+\item[Interface administrateur:] nous avons implémenté également une interface admin qui communique avec l'API pour l'ajout et modification des lignes de transport.
+
 \end{description}
 
 
-Lors de ce projet, nous avons fais face à certaines difficultés qui ont attardées la version complète de l'application, on cite en premier lieu la spécificité de nos lignes, le manque de données et la non disponibilité des données GPS, qui a suscité d'implémenter une interface administrateur permettant de mieux organiser nos informations.\newline\newline
+Lors de ce projet, nous avons fait face à certaines difficultés qui ont attardées la version complète de l'application, on cite en premier lieu la spécificité de nos lignes, le manque de données et la non disponibilité des données GPS, qui a suscité d'implémenter une interface administrateur permettant de mieux organiser nos informations.\newline\newline
 Ayant désormais une base solide de l'application, nous pouvons nous focaliser sur les idées et objectifs suivants au futur :
 \begin{itemize}
 	\item \textbf{Compléter les données:} en introduisant la liste complète des lignes et informations de transport pour avoir une application utilisable.
 	
-	\item \textbf{Enrichir les propriétés des stations: }en ajoutant des informations tel que :\newline
+	\item \textbf{Enrichir les propriétés des stations: }en ajoutant des informations tel que :
 		\begin{itemize}
-			\item \textbf{Disponibilité }: possibilité de rendre les stations en cas de travaux (ou autres perturbations) non actives pour quelques jours.
-			\item
+			\item \textbf{Disponibilité:} possibilité de rendre les stations en cas de travaux (ou autres perturbations) non actives pour quelques jours.
+			\item \textbf{Multiples coordonnées :} Pour pouvoir donner avec plus de précision la position des arrêts à prendre, du fait que dans certains cas, les arrêts pour différentes directions sont assez éloignés.
 		\end{itemize}
 		
 	\item \textbf{Ajouter la fonctionnalité de recherche du plus proche arrêt: } pour permettre de trouver un chemin à partir de n'importe quel point : cette fonctionnalité nécessite d'implémenter des \emph{opérations spatiales} sur le graphe. Par ailleurs, Neo4J permet déjà d'intégrer ces opérations facilement grâce à des librairies tel que \textbf{Neo4j Spatial}, et donc il ne sera pas nécessaire d'utiliser d'autres SGBD pour y arriver.

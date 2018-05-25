@@ -1,7 +1,8 @@
 \chapter{Représentation du réseau routier}
-Un graphe sert mieux à définir l'existence d'une relation entre objets tel qu'une ligne entre deux stations de métro, ce qui est la représentation optimale pour nos données. 
+Un graphe sert mieux à définir l'existence d'une relation entre objets tel qu'une ligne entre deux stations, ce qui est la représentation optimale pour nos données. 
 
-Dans ce chapitre, nous présenterons en première partie les définitions relatives aux graphes et recherche de chemins, ensuite nous passerons à la collecte de données et les différentes approches de représentation prises en compte, enfin nous détaillerons la représentation choisie, tout en donnant des exemples.
+Dans ce chapitre, nous présenterons en première partie les définitions relatives aux graphes et recherche de chemins, ensuite nous passerons à la collecte de données et les différentes approches de représentation prises en compte.
+Enfin nous détaillerons la représentation choisie, tout en donnant des exemples.
 
 \section{Généralités sur les graphes}
 La théorie des graphes est très probablement née en 1735 lorsque Leonhard Euler (1707 - 1783) résout le problème des sept ponts de Königsberg. 
@@ -15,29 +16,31 @@ L'énoncé de ce problème est: la ville de \emph{Königsberg} est une ville aut
 
 \subsection{Définitions}
 \begin{description}
-\item[Graphe]: un graphe est composé de sommets (\textbf{vertices}), et d'arêtes (\textbf{edges}) reliant certains de ces sommets.
+\item[Graphe]: un graphe est composé de sommets, et d'arêtes reliant certains de ces sommets.
 Un graphe G est défini de manière formelle par un couple (S,A) où :
 \begin{itemize}
 	\item S est un ensemble fini d'éléments. Chacun de ces éléments est appelé sommet du graphe.
 	\item A est un sous-ensemble (éventuellement nul) de SxS. Chacun de ces éléments de A est appelé arête.
 \end{itemize}
-\item[Arête :] c'est un connexion entre deux sommets A et B, dans le cas où ce lien est orienté, le terme \textbf{arc} est généralement utilisé.
+\item[Arête :] c'est un connexion entre deux sommets A et B. Dans le cas où ce lien est orienté, le terme \textbf{arc} est généralement utilisé.
 
-\item[Poids:] chaque arc est associé à un poids ou une étiquette qui le décrit. Par exemple, dans un réseau social il peut définir la nature de la relation (ami, famille, collègue) et dans un réseau routier la longueur d'une rue. Parfois le terme \textbf{coût} est utilisé pour décrire le poids.
+\item[Poids:] chaque arc/arrête est associé à un poids ou une étiquette qui le décrit. Par exemple, dans un réseau social il peut définir la nature de la relation (ami, famille, collègue) et dans un réseau routier la longueur d'une rue. Parfois le terme \textbf{coût} est utilisé pour décrire le poids.
 
 \item[Successeurs et prédécesseurs:] dans un arc (x, y) d'un graphe, le sommet \emph{y} est appelé \textbf{successeur} de \emph{x} et \emph{x} est dit \textbf{prédécesseur} de \emph{y}.\newline
 les sommets \emph{x} et \emph{y} sont des sommets voisins (ou adjacents).
 
-\item[Graphe connexe] : un graphe est connexe si on peut atteindre n'importe quel sommet à partir d'un sommet quelconque en parcourant différentes arêtes.
+\item[Graphe connexe] : un graphe est connexe si on peut atteindre n'importe quel sommet à partir d'un sommet quelconque en parcourant différentes arêtes/arcs.
 
-\item[Graphe directionnel] : aussi appelé graphe orienté, digraphe ou un réseau dirigé, c'est un graphe où tous les sommets sont reliés par des arcs orientés.
-Un graphe où les bords sont bidirectionnels est appelé un graphe non-orienté.
+\item[Graphe directionnel] : aussi appelé graphe orienté, digraphe ou un réseau dirigé, c'est un graphe où tous les sommets sont reliés par des arcs.
+Un graphe où les sommets sont reliés par des arêtes est appelé un graphe non-orienté
 
-\item[Chemin] : un chemin est une suite finie et consécutive de sommets et d'arcs, débutant et finissant par des sommets, tel que chaque arc sortant d'un sommet est incident (entrant) au sommet suivant dans cette sequence.
+\item[Chemin] : un chemin est une suite finie et consécutive de sommets et d'arcs, ou d'arcs uniquement, débutant et finissant par un sommet source et un sommet destination, tel que chaque arc sortant d'un sommet est incident (entrant) au sommet suivant dans cette séquence.
+La figure \ref{fig:chemin} donne un exemple d'un chemin orienté.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.55\textwidth]{img/cheminGraphe.png}
 	\caption{Exemple de chemin orienté}
+	\label{fig:chemin}
 \end{figure}
 \end{description}
 
@@ -54,11 +57,11 @@ Les graphes sont donc des outils très puissants et largement répandus qui se p
 \item[Recherche de chemin (PathFinding)]
 Un cas très fréquent. Chaque nœud représente une position et chaque arête est un chemin entre deux positions, ou en remplaçant les nœuds par des adresses et les arêtes par des routes, on obtient le graphe utilisé par les GPS ou les outils de cartographie tel que Google Map.
 La recherche de chemins est aussi utilisée en biologie, communications (réseaux de télécommunications)...etc.
-Il est courant de chercher le chemin le plus court entre deux positions dans la plupart de ces domaines, nous nous intéressons particulièrement à ce cas d'utilisation, que nous discutons en détail dans la section suivante.
+Il est courant de chercher le chemin le plus court entre deux positions dans la plupart de ces domaines, nous nous intéressons particulièrement à ce cas d'utilisation, que nous discuterons en détail dans la section suivante.
 
 
 \item[L'ordonnancement de tâches:]
-On peut représenter chacune des tâches à effectuer par un nœud, et les dépendances entre chacune de ces tâches par des arêtes.
+On peut représenter chacune des tâches à effectuer par un nœud, et les dépendances entre chacune de ces tâches par des arcs.
 On cite l'exemple de l'ordonnancement des projets, les graphes permettent de planifier les différentes tâches d'un projet, détecter les tâches pouvant être effectuées simultanément et estimer la durée totale du projet.
 
 \item[Les systèmes de recommandation:]
@@ -113,26 +116,26 @@ Nous avons pris en compte la possibilité de changer l'algorithme de recherche d
 \subsection{L'algorithme BFS (Breadth-First-Search)}
 
 \begin{enumerate}
-	\item \textbf{Présentation}: BFS est un algorithme de parcours ou de recherche dans un arbre ou graphe, il commence d'un nœud source (ou la racine de l'arbre) et explore ses nœuds successeurs d'abord, 
+	\item \textbf{Présentation}: BFS\cite{refBFS} est un algorithme de parcours ou de recherche dans un arbre ou graphe, il commence d'un nœud source (ou la racine de l'arbre) et explore ses nœuds successeurs d'abord, 
 
 Cet algorithme est très similaire au parcours par largeur d'un arbre, sauf qu'un graphe peut avoir des cycles, donc pour éviter de recalculer le même nœud deux fois, il garde une liste de nœuds visités.
 
 	\item \textbf{Complexité:} la complexité temporelle de l'algorithme est de O(V+E), où V est le nombre de sommets et E le nombre d'arcs.
 	
 	\item \textbf{Étapes de l'algorithme:}
-		L'algorithme effectue un parcours en largeur sur le graphe, en d'autre mot un parcours par niveau, il traite tous les nœuds voisins du nœud de départ avant de passer aux nœuds voisins des nœuds visités.
+		L'algorithme effectue un parcours en largeur sur le graphe, en d'autres mot un parcours par niveau, il traite tous les nœuds voisins du nœud de départ avant de passer aux nœuds voisins des nœuds visités.
 \begin{figure}
 	\center
 	\includegraphics[scale=0.6]{img/BFS.jpg}
 	\caption{Déroulement d'un parcours BFS.}
 \end{figure}		
-L'algorithme utilise une file pour mémoriser les nœuds suivants à visiter se résumé en les règles suivantes:
+L'algorithme utilise une file pour mémoriser les nœuds suivants à visiter, les étapes de l'algorithme se résument en les règles suivantes:
 	\begin{enumerate}
 		\item Visiter le nœud suivant non visité du nœud courant, le marquer comme visité, traiter le nœud et l'insérer dans la file.
 		\item Si aucun autre nœud voisin n'est trouvé, retirer le premier nœud de la file.
 		\item Répéter les étapes (a) et (b) jusqu'à ce que la file soit vide.
 	\end{enumerate}
-	Le BFS traverse donc seulement les nœuds qui peuvent être atteints depuis le nœud de départ\cite{refBFS}.
+	Le BFS traverse donc seulement les nœuds qui peuvent être atteints depuis le nœud de départ.
 \end{enumerate}
 
 \section{Collecte de données}
@@ -146,8 +149,8 @@ Nous avons été bien accueillis par l'un des responsables de l'ETO que nous rem
 \begin{itemize}
 	\item La liste des lignes et leur longueur totale.
 	\item Les différents horaires de travail (été/hiver/fin de semaine...etc).
-	\item La fréquence des bus et les différentes contraintes spécifiques à notre région.
-	\item Le nombre de bus desservant chaque ligne .
+	\item La fréquence des bus et les différentes contraintes spécifiques à notre région, comme le manque de calendrier d'horaires qui décrivent le temps de passage de chaque bus.
+	\item Le nombre de bus desservant chaque ligne.
 	\item Le nom de chaque station.
 \end{itemize}
 
@@ -161,7 +164,7 @@ Cependant, ces informations n'ont pas été suffisantes pour notre travail, en e
 	\end{itemize}
 	
 %thx again for trying
-Nous remercions encore l'ETO pour leur assistance, néanmoins ces données doivent être traitées d'avantage, réorganisées et complétées avant qu'elles puissent être intégrées dans notre application.
+Nous remercions encore l'ETO pour leur assistance, néanmoins ces données doivent être traitées davantage, réorganisées et complétées avant qu'elles puissent être intégrées dans notre application.
 
 \begin{figure}
 	\center
@@ -173,11 +176,11 @@ Nous remercions encore l'ETO pour leur assistance, néanmoins ces données doive
 	\begin{itemize}
 		\item Malgré l'absence de données officielles, nous avons réussi à trouver sur le net différentes sources supplémentaires pouvant nous aider pour compléter nos données : notamment des listes de différents lieux de la ville d'Oran contenant des noms complets et des adresses permettant de compléter les données de l'ETO.
 		\item Le site officiel de la Setram (Société d'Exploitation des Tramways) a été suffisant pour récupérer toutes les données concernant la ligne du Tramway, ses horaires et même les temps d'attente pour chaque arrêt.
-		\item Nous avons discuté certaines solutions pour assurer l'intégrité des données et leurs mise à jour constantes. Une des solutions proposées est d'ajouter une fonctionnalité permettant à des utilisateurs ou une autorité de signaler un changement de lignes, une estimation de temps trop imprécise ou suggérer des chemins que l'application n'a pas calculé, ceci permettra de faire fonctionner et évoluer cette application à l'aide de \emph{crowdsourcing} seulement.
+		\item Pour assurer l'intégrité des données et leurs mise à jour constantes, une des solutions proposées est d'ajouter une fonctionnalité permettant à des utilisateurs ou à une autorité de signaler un changement de lignes, une estimation de temps trop imprécise ou suggérer des chemins que l'application n'a pas calculé, ceci permettra de faire fonctionner et évoluer cette application à l'aide de \emph{crowdsourcing}\FancyFootNote{crowdsourcing: ou production participative, c'est l'utilisation de connaissance d'un grand nombre de personnes comme une communauté d'internautes ou des utilisateurs d'un produit, pour réaliser une tâche traditionnellement faite par des employés.} seulement.
 	\end{itemize}
 
 \subsection{Traitement de données}
-Les données obtenues de l'ETO et du net ont permis de rassembler les informations suivantes :
+Les données obtenues de l'ETO et de l'Internet ont permis de rassembler les informations suivantes :
 \begin{itemize}
 	\item Différentes informations sur le fonctionnement de lignes.
 	\item Liste des lignes de bus publiques et les stations desservies, les noms des stations étant toujours pas claires et sans adresses.
@@ -189,15 +192,15 @@ Depuis ces informations nous avons déduit d'autres informations utiles, notamme
 \begin{itemize}
 	\item \textbf{Temps d'attente : } Les bus n'ayant pas de calendrier précis, nous avons utilisé la distance totale, fréquence et nombre de bus pour déduire approximativement le temps d'attente dans chaque arrêt entre deux bus.
 	\item \textbf{Coordonnées GPS :} Afin d'afficher les stations sur une carte, les coordonnées GPS, ou au moins des adresses précises permettant de générer les coordonnées avec un outil de cartographie, sont nécessaires. Cependant, les données que nous avons ne sont pas suffisantes. 
-	Ainsi, pour mieux introduire les lignes et stations dans l'application, il a été nécessaire d'implémenter une fonctionnalité dans l'application administrateur qui permettrait de marquer les stations sur une carte et enregistrer les informations nécessaires automatiquement, aperçu de cette interface est donné dans la section \ref{ref:Implementation}.
+	Ainsi, pour mieux introduire les lignes et stations dans l'application, il a été nécessaire d'implémenter une fonctionnalité dans l'application administrateur qui permettrait de marquer les stations sur une carte et enregistrer les informations nécessaires automatiquement. L'aperçu de cette interface est donné dans la section \ref{ref:Implementation}.
 \end{itemize}
 
 	
 \section{Construction du graphe}
-Avoir avoir présenté quelques généralités sur graphe, et discuté les données que nous avons collecté, nous passons aux différents détails sur comment on construit notre graphe et comment le stocker.
+Après avoir présenté quelques généralités sur graphe, et détaillé les données que nous avons collecté, nous passons aux différents détails sur comment est construit notre graphe et comment le stocker.
 \subsection{Différentes approches pour stocker le graphe}
 \begin{itemize}
-	\item \textbf{Outils Open Source (OpenTripPlanner} : 
+	\item \textbf{Outils Open Source (OpenTripPlanner)} : 
 	      Il existe plusieurs outils qui proposent ce service, en particulier OpenTripPlanner : un projet Open Source qui permet de créer un réseau routier à partir de données GTFS \FancyFootNote{GTFS (General Transit Feed Specification ou spécification générale pour les flux relatifs aux transports en commun) : est un format informatique standardisé pour communiquer des horaires de transports en commun et les informations géographiques associées.}, ces données seront ensuite intégrées avec OpenStreetMap et stockées sur le serveur, qui exposera une API REST pour questionner le serveur : recherche de Chemin, possibilité d'intégrer les horaires, ...etc.
 	      		
 	      Vu la nature un peu particulière du réseau d'Oran, et la non-disponibilité des données (Données officielles des lignes et données (adresses) sur OpenStreetMap), cette solution ne sera pas envisagée. 
@@ -205,14 +208,14 @@ Avoir avoir présenté quelques généralités sur graphe, et discuté les donn�
 	\item \textbf{Représentation indépendante de chaque ligne en tables SQL}
 	      Une des approches considérées était de représenter chaque ligne indépendamment, l'algorithme du service aura à chercher des points de liaison entre ces lignes.
 	      L'avantage principal de cette approche est la facilité de manipulation de ces données de lignes, en ajoutant/supprimant des lignes sans conflit.
-	      Cette approche présente par contre un inconvénient majeur au niveau de performance, vu que l'utilisation d'un algorithme de PathFinding requiert l'utilisation de plusieurs tables (lignes) à chaque requête.
+	      Cette approche présente par contre un inconvénient majeur au niveau des performances, vu que l'utilisation d'un algorithme de PathFinding requiert l'utilisation de plusieurs tables (lignes) à chaque requête.
 	      
-	\item \textbf{Utiliser une base de données orientée graphe}: nous avons finalement choisi d'utiliser une base de données orientée graphe qui permet de stocker en permanence le graphe, mais aussi de fournir plusieurs opérations pour créer, modifier et le parcourir pour rechercher des chemins ou effectuer certains calculs.
+	\item \textbf{Utiliser une base de données orientée graphe}: nous avons finalement choisi d'utiliser une base de données orientée graphe qui permet de stocker en permanence le graphe, mais aussi de fournir plusieurs opérations pour créer des nœuds et des relations, les modifier et les parcourir pour rechercher des chemins ou effectuer certains calculs.
 	
 Comparé au stockage par tables SQL, cette approche offre un accès plus rapide et simple en parcourant un graphe déjà construit tout en tirant les meilleures performances des différents algorithmes de recherche de chemins.
 
-	Nous avons, cependant, noté certaines difficultés suivant cette représentation, notamment dans la modification ou suppression de lignes où le changement ou la suppression d'une seule station peut affecter plusieurs autres lignes ou par example l'ajout d'une station au milieu d'une ligne impliquera la suppression de plusieurs arcs.
-	Comme première solution, nous avons décidés de restreindre les modifications et suppressions de nœuds aux stations qui ne sont reliées à aucune ligne, et pour les lignes, de supprimer toute la ligne et reconstruire les arcs à chaque modification.
+	Nous avons, cependant, noté certaines difficultés suivant cette représentation, notamment dans la modification ou suppression de lignes où le changement ou la suppression d'une seule station peut affecter plusieurs autres lignes.\newline
+	Ainsi, comme l'ajout d'une station au milieu d'une ligne impliquera la suppression de plusieurs arcs, nous avons décidé, comme première solution, de restreindre les modifications et suppressions de nœuds aux stations qui ne sont reliées à aucune ligne, et pour les lignes, de supprimer toute la ligne et reconstruire les arcs à chaque modification.
 	     
 \end{itemize}
 \subsection{Représentation choisie du graphe}
@@ -229,7 +232,13 @@ La figure \ref{fig:structGraph} présente la structure utilisée pour représent
 	\label{fig:structGraph}
 \end{figure}
 
-Un aperçu des données représentées dans le graphe est donné dans la figure \ref{fig:structGraph}. Les données concernant les bus (temps d'arrêt, prix...etc.) seront représentés séparément comme des nœuds étiquetés dans le graphe ou dans une base de données différente. \newline
+\begin{figure}[h!]
+	\center
+	\includegraphics[width=\textwidth]{img/GrapheNeo4j.png}
+	\caption{Aperçu d'un graphe de transport}
+\end{figure}
+
+\textbf{Arcs de bus: } Chaque arc contient uniquement l'identifiant du Bus qui le concerne, les autres informations de chaque bus (temps d'arrêt, prix...etc.) peuvent être représentés séparément comme d'autres nœuds étiquetés dans le graphe ou stockés ailleurs dans une base de données différente. \newline
 Nous avons choisi de ne garder que les données les plus importantes dans cette première version, nous pouvons ajouter d'autres propriétés et informations dans le graphe au fur et à mesure que l'application évolue.
 
 %
@@ -251,13 +260,6 @@ Nous avons choisi de ne garder que les données les plus importantes dans cette 
 %		 \end{itemize}
 %	\end{itemize}
 
-\begin{figure}
-	\center
-	\includegraphics[width=0.8\textwidth]{img/GrapheNeo4j.png}
-	\caption{Aperçu d'un graphe de transport}
-\end{figure}
-
-
 \subsection{Cas de la marche}
 Afin de pouvoir intégrer la marche dans la recherche de chemin, il est nécessaire de pouvoir détecter les arrêts les plus proches de chaque arrêt pendant le traitement, et essayer de considérer les arrêts les plus proches de chaque nœud visité.\newline 
 Cette solution s'avère difficile à appliquer dans la version actuelle du projet, nous avons donc choisi de représenter la possibilité de marcher avec un arc similaire aux arcs de transports.\newline
@@ -265,9 +267,9 @@ Ces arcs sont automatiquement ajoutés à la création de chaque ligne en calcul
 Un exemple de cet arc est donné dans la figure \ref{fig:structGraph}.
 
 Cette approche permet d'intégrer la marche de façon minimale sans affecter les performances et sans avoir à calculer des distances pendant la recherche du chemin.
-Il sera possible d'améliorer cette fonctionnalité après avoir implémenté la recherche de plus proches stations pendant directement dans le graphe (voir chapitre des perspectives).
+Il sera possible d'améliorer cette fonctionnalité après avoir implémenté la recherche des plus proches stations directement dans le graphe à partir d'un point donné, sans avoir à comparer toutes les stations (voir chapitre des perspectives).
 
-\subsection{Conclusion}
-Nous avons, dans ce chapitre, présenté les différentes généralités sur les graphes et données collectés ainsi que comment on construit notre graphe pour ce projet.
+\section{Conclusion}
+Nous avons, dans ce chapitre, présenté les différentes généralités sur les graphes et données collectés ainsi que comment est construit notre graphe pour ce projet.
 Malgré les différentes contraintes (complexité du problème, manque de données, spécificités des lignes d'Oran), la représentation choisie pour cette première version reste suffisante et facilement extensible pour de futures améliorations.
 \newpage
