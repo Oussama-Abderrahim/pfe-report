@@ -55,7 +55,16 @@ Il utilise une syntaxe déclarative avec de l'ASCII Art (des figures et signes u
 \end{figure}
 
 \subsection{VueJs}
-\newpage
+Vue est un framework évolutif pour construire des interfaces utilisateur. Il a été conçu et pensé pour pouvoir être adopté de manière incrémentale. Le cœur de la bibliothèque est concentré uniquement sur la partie vue, le reste (Routage, gestion d'état...) étant fourni dans des bibliothèques complémentaires, et il est simple de l'intégrer avec d'autres bibliothèques ou projets existants. 
+Il est tout à fait capable de faire tourner des applications web monopages (Single Page Applications) très complexes lorsqu'il est combiné avec d'autres outils modernes et ses bibliothèques complémentaires.\newline
+Ses principaux avantages sont : 
+\begin{itemize}
+	\item Très petit de taille, très bien documenté et facile à apprendre et à commencer avec.
+	\item Flexible et offre de très bonne performances, c'est un des framework les plus rapides en ce moment.
+\end{itemize}
+
+Il est très difficile de comparer les framework front-end, chacune a ses points forts et toutes peuvent accomplir le même résultat, nous avons opté pour VueJs à raison de sa grande flexibilité et la facilité de commencer avec, qui nous a permis de tester rapidement plusieurs outils et fonctionnalités avant d'atteindre le résultat donnée dans la section \ref{ref:Implementation}.
+
 \section{Structure de l'application}
 \subsection{L'architecture MVC (Model-View-Controller)}
 L'application suit une architecture MVC qui est un modèle d'architecture qui sépare une application en 3 composants logiques: \textbf{Model}, \textbf{View}, \textbf{Controller}.
@@ -86,7 +95,7 @@ MVC est une des architectures les plus utilisées pour créer des projets évolu
 	      	      \end{itemize}
 	      	\item \textbf{Path} : représente une suggestion de chemin, contient les informations globales tel que le prix et temps total du chemin, ainsi qu'une liste d'objets Step.
 	      	      \begin{itemize}
-	      	      	\item \textbf{Step} : représente une étape d'un itinéraire utilisant le même moyen de transport, comporte la station de départ et d'arrivée, les stations intermédiaires et les informations sur le temps, cout et distance à parcourir.
+	      	      	\item \textbf{Step} : représente une étape d'un itinéraire utilisant le même moyen de transport, comporte la station de départ et d'arrivée, les stations intermédiaires et les informations sur le temps, coût et distance à parcourir.
 	      	      \end{itemize}
 	      	      le format de cet objet est détaillé dans la section \ref{ref:formatReponse}
 	      	\item \textbf{Models du graphe} : 
@@ -176,7 +185,7 @@ Les ressources principales de notre API sont les stations (\textbf{station}) et 
 \end{figure}
 \newpage
 \section{Recherche de chemin}
-L'implémentation de l'application du coté serveur permet de calculer un ensemble de chemins optimaux entre deux stations identifiées par un identifiant. Le calcul se déroule en plusieurs étapes :
+L'implémentation de l'application du côté serveur permet de calculer un ensemble de chemins optimaux entre deux stations identifiées par un identifiant. Le calcul se déroule en plusieurs étapes :
 \subsection{Déroulement d'une requête}
 
 \begin{figure}[h!]
@@ -213,7 +222,7 @@ RETURN segments, startNodes, endNodes
 	      Nous pouvons depuis cette requête filtrer les différents transports à inclure dans le chemin facilement, puisque chaque moyen de transport est désigné par ses propres arcs étiquetés dans le graphe.
 	\item Neo4j retourne ainsi une liste de chemins optimaux, le module va ensuite évaluer chaque chemin :
 	      \begin{itemize}
-	      	\item Évaluer le temps et cout estimé de chaque chemin.
+	      	\item Évaluer le temps et coût estimés de chaque chemin.
 	      	\item Trier les chemins selon le critère de la requête, en cas d'égalité considérer les autres critères.
 	      	\item Structurer chaque chemin en Objets Path, détaillé dans la section suivante.
 	      	\item Minimiser le chemin en regroupant les étapes intermédiaires (tel que deux arrêts utilisant le même Bus).
@@ -234,7 +243,7 @@ L'API retourne un tableau des chemins (tableau d'objets Path) en format JSON, ce
 	      \begin{itemize}
 	      	\item La station de départ et la station d'arrivée.
 	      	\item Les stations intermédiaires entre station de départ et d'arrivée.
-	      	\item Le prix, temps estimé et distance à parcourir de l'étape.
+	      	\item Le prix, temps estimés et distance à parcourir de l'étape.
 	      	\item Le transport à prendre (ou type de l'étape).
 	      \end{itemize}
 \end{itemize}
