@@ -30,7 +30,7 @@ Son nom vient de Humongous qui veut dire énorme ou immense. Il est capable de g
 En résumé, MongoDB est un SGBD très flexible et simple à utiliser, nous stockerons les informations supplémentaires de notre application en utilisant ce système, tel que les Bus, horaires,...etc.
 
 \subsection{Neo4j}
-Apparu en l'année 2000 et appartient à la société Neo Technology, Neo4j est un système de gestion de bases de données (SGBD) orienté graphe. Son approche est fondée sur la théorie des graphes. Les données sont stockées de manière assez libre (sans modèle prédéfini) dans des nœuds reliés entre eux par des relations.
+Apparu en l'année 2000 et appartient à la société Neo Technology, Neo4j \cite{Neo4j} est un système de gestion de bases de données (SGBD) orienté graphe. Son approche est fondée sur la théorie des graphes. Les données sont stockées de manière assez libre (sans modèle prédéfini) dans des nœuds reliés entre eux par des relations.
 
 Ses principaux avantages sont :
 \begin{itemize}
@@ -55,7 +55,7 @@ Il utilise une syntaxe déclarative avec de l'ASCII Art (des figures et signes u
 \end{figure}
 
 \subsection{VueJs}
-Vue est un framework évolutif pour construire des interfaces utilisateur. Il a été conçu et pensé pour pouvoir être adopté de manière incrémentale. Le cœur de la bibliothèque est concentré uniquement sur la partie vue, le reste (Routage, gestion d'état...) étant fourni dans des bibliothèques complémentaires, et il est simple de l'intégrer avec d'autres bibliothèques ou projets existants. 
+VueJs \cite{VueJs} est un framework évolutif pour construire des interfaces utilisateur. Il a été conçu et pensé pour pouvoir être adopté de manière incrémentale. Le cœur de la bibliothèque est concentré uniquement sur la partie vue, le reste (Routage, gestion d'état...) étant fourni dans des bibliothèques complémentaires, et il est simple de l'intégrer avec d'autres bibliothèques ou projets existants. 
 Il est tout à fait capable de faire tourner des applications web monopages (Single Page Applications) très complexes lorsqu'il est combiné avec d'autres outils modernes et ses bibliothèques complémentaires.\newline
 Ses principaux avantages sont : 
 \begin{itemize}
@@ -135,6 +135,11 @@ Notre API définit principalement 3 ressources:
 \subsection{Description des formats des ressources}
 Les ressources principales de notre API sont les stations (\textbf{station}) et les lignes (\textbf{line}), leur format est décrit dans la figure \ref{fig:formatResources}.
 \label{ref:resources}
+
+\begin{description}
+	\item[Station:] Dans cette version, chaque station contient un Identifiant unique, le nom et l'adresse ainsi les coordonnées GPS.
+	\item[Line:] Une ligne est identifiée par un ID et un nom, elle contient un lien vers le bus servant cette ligne et une liste des stations de cette ligne contenant l'identifiant, la distance et le temps entre chaque station. Cette ressource  est utilisée principalement pour les requêtes d'ajout du coté administrateur.
+\end{description}
 % Format JSON 
 \lstset{style=JSON}
 
@@ -165,9 +170,7 @@ Les ressources principales de notre API sont les stations (\textbf{station}) et 
   "name": "string",
   "bus": {
     "name": "string",
-    "price": 0,
-    "frequence": 0,
-    "avgWaitTime": 0
+    "link": "/api/bus/{id}",
   },
   "lineStations": [
     {
@@ -183,42 +186,22 @@ Les ressources principales de notre API sont les stations (\textbf{station}) et 
 	\caption{Description du format des ressources.}
 	\label{fig:formatResources}
 \end{figure}
-\newpage
-\section{Recherche de chemin}
-L'implémentation de l'application du côté serveur permet de calculer un ensemble de chemins optimaux entre deux stations identifiées par un identifiant. Le calcul se déroule en plusieurs étapes :
-\subsection{Déroulement d'une requête}
 
-\begin{figure}[h!]
+
+\section{Recherche de chemin}
+L'implémentation de l'application du côté serveur permet de calculer un ensemble de chemins optimaux entre deux stations identifiées par un identifiant.
+\subsection{Déroulement d'une requête}
+\begin{sidewaysfigure}[h!]
 	\center
-	\includegraphics[width=0.99\textwidth]{img/RechercheChemin.png}
+	\includegraphics[width=\textwidth]{img/RechercheChemin.png}
 	\caption{Diagramme de séquence pour la recherche de chemins.}
 	\label{fig:diagSequence}
-\end{figure}
+\end{sidewaysfigure}
 
-Une requête de chemin à partir de l'utilisateur jusqu'à l'affichage de la réponse passe par plusieurs étapes, la figure \ref{fig:diagSequence} décrit les étapes suivantes :
-
-
+Une requête de recherche d'itinéraire à commencer de la demande de l'utilisateur jusqu'à l'affichage de la réponse passe par plusieurs étapes. le diagramme de séquence dans la figure \ref{fig:diagSequence} décrit les étapes suivantes :
 \begin{enumerate}
 	\item L'API reçoit la requête de chemin, vérifie les paramètres et met en forme les données, pour les passer au module qui calcule le chemin (PathFinder).
-	\item Le module PathFinder formule la requête Cypher et l'envoi au serveur de la base de données Neo4j.
-	      Un exemple de cette requête est donné dans la figure \ref{fig:cipherRequest}.
-\begin{figure}[h!]
-	      \begin{lstlisting}[style=cypher]
-MATCH p = AllShortestPaths((A:Station)-[*..20]->(B:Station))
-WHERE A.name = {startParam} AND B.name = {endParam}
-	AND ALL(rel IN relationships(p) 
-	WHERE type(rel) IN {transportsParam})
-
-WITH p, RELATIONSHIPS(p) as segments
-WITH EXTRACT (segment in segments| StartNode(segment)) AS startNodes,
-EXTRACT (segment in segments| EndNode(segment)) AS endNodes,
-RELATIONSHIPS(p) as segments
-            
-RETURN segments, startNodes, endNodes
-	      \end{lstlisting}
-\caption{Requête Cypher des plus courts chemins}
-\label{fig:cipherRequest}
-\end{figure}
+	\item Le module PathFinder formule la requête Cypher et l'envoi au serveur de la base de données Neo4j. Cette requête est décrite dans la partie \ref{section:cypher}.
 	      Nous pouvons depuis cette requête filtrer les différents transports à inclure dans le chemin facilement, puisque chaque moyen de transport est désigné par ses propres arcs étiquetés dans le graphe.
 	\item Neo4j retourne ainsi une liste de chemins optimaux, le module va ensuite évaluer chaque chemin :
 	      \begin{itemize}
@@ -227,15 +210,69 @@ RETURN segments, startNodes, endNodes
 	      	\item Structurer chaque chemin en Objets Path, détaillé dans la section suivante.
 	      	\item Minimiser le chemin en regroupant les étapes intermédiaires (tel que deux arrêts utilisant le même Bus).
 	      \end{itemize}
-	\item Retourner l'objet à l'API qui l'envoi sous forme de réponse HTTP.
+	\item Retourner l'objet à l'API qui l'envoi sous forme de réponse HTTP, le format de cette réponse est décrit dans la partie \ref{ref:formatReponse}.
 \end{enumerate}
 \label{SectionPathFinding}
 	
-%\subsection{Format des requêtes}
-%**Montrer une requete HTTP du chemin avec les parametres ? 
+\subsection{Requête Cypher}
+\label{section:cypher}
+
+La recherche de chemin dans Neo4j est effectuée à travers une requête Cypher. La requête est formulée comme suit :
+
+\begin{itemize}
+
+\item \textbf{Rechercher tous les chemins possibles :}
+ \begin{lstlisting}[style=cypher]
+MATCH p = AllShortestPaths((A:Station)-[*..100]->(B:Station))
+\end{lstlisting}
+Cette ligne exprime tous les chemins possibles d'une station A vers une station B en assurant une limite de 100 nœuds actuellement. En y appliquant la fonction \textbf{AllShortestPath}, on obtient une liste de plus courts chemins qui seront stockés dans la variable \textbf{p}.
+
+\item \textbf{Spécifier les paramètres}
+ \begin{lstlisting}[style=cypher]
+MATCH p = AllShortestPaths((A:Station)-[*..20]->(B:Station))
+WHERE A.name = {startParam} AND B.name = {endParam}
+	AND ALL(rel IN relationships(p) 
+					WHERE type(rel) IN {transportsParam})
+\end{lstlisting}
+Dans cette partie nous spécifions les paramètres de la requête, à commencer par désigner le nom des stations A (startParam) et B (endParam), et assurer que les types d'arcs du chemin sont ceux donnés dans \emph{transportParam}.
+
+\item \textbf{Mettre en forme le résultat :}
+ \begin{lstlisting}[style=cypher]
+WITH p, RELATIONSHIPS(p) as segments
+WITH EXTRACT (segment in segments| StartNode(segment)) AS startNodes,
+EXTRACT (segment in segments| EndNode(segment)) AS endNodes,
+RELATIONSHIPS(p) as segments
+
+RETURN segments, startNodes, endNodes
+
+\end{lstlisting}
+
+Afin de faciliter le traitement et lecture du chemin retournée dans l'application, Neo4j extrait les stations de départ, d'arrivée et les arcs composant ce chemin  avant de les retourner séparément.
+\end{itemize}
+
+%
+%\begin{figure}
+% \begin{lstlisting}[style=cypher]
+%MATCH p = AllShortestPaths((A:Station)-[*..20]->(B:Station))
+%WHERE A.name = {startParam} AND B.name = {endParam}
+%	AND ALL(rel IN relationships(p) 
+%					WHERE type(rel) IN {transportsParam})
+%
+%WITH p, RELATIONSHIPS(p) as segments
+%WITH EXTRACT (segment in segments| StartNode(segment)) AS startNodes,
+%EXTRACT (segment in segments| EndNode(segment)) AS endNodes,
+%RELATIONSHIPS(p) as segments
+%            
+%RETURN segments, startNodes, endNodes
+%\end{lstlisting}
+%\caption{Requete Cypher de recherche de chemin}
+%\label{fig:cypherquery}
+%\end{figure}
+
 \subsection{Format des réponses}
 \label{ref:formatReponse}
 L'API retourne un tableau des chemins (tableau d'objets Path) en format JSON, ces objets contiennent les informations suivantes :
+
 \begin{itemize}
 	\item Le temps, prix et distance totale du chemin.
 	\item Les moyens de transport utilisés dans ce chemin.
@@ -247,48 +284,75 @@ L'API retourne un tableau des chemins (tableau d'objets Path) en format JSON, ce
 	      	\item Le transport à prendre (ou type de l'étape).
 	      \end{itemize}
 \end{itemize}
+La figure \ref{fig:JSONPath} donne un exemple d'une réponse en JSON d'un itinéraire entre l'université USTO et un arrêt à Dar el Beida.
 
-Un exemple d'une réponse JSON est donné dans la figure \ref{fig:JSONPath}.
-
-\begin{figure}
+\begin{figure}[ht]
 \begin{lstlisting}[]
-( A mettre a jour avec exemple de deux etapes )
-{
-  "totalDist": 0,
-  "totalPrice": 0,
-  "totalTime": 0,
-  "steps": [
-    {
-      "sourceStation": {
-        "id": 0,
-        "name": "string",
-        "address": "string",
-        "coordLat": 0,
-        "coordLon": 0
+[
+  {
+    "totalDistance":4850,	// en metres
+    "totalPrice":20,				// en DA
+    "totalTime":29,				// en minutes
+    "totalWalkTime":3,		// en minutes
+    "transportTypes":[		// les transports a utiliser dans ce chemin
+      "Bus",
+      "Marche"
+    ],
+    "steps":[							// Tableau d'etapes
+      {
+        "from":{						// station de depart
+          "ID":1,
+          "name":"Arret universite USTO",
+          "address":"Rue Aies Ben Ahmed, Bir El Djir, Algerie",
+          "coord":{
+            "lat":35.70403889560459,
+            "lon":-0.5774994712808166
+          }
+        },
+        "intermediate":[...],  // Tableaux de stations a passer
+        "to":{
+          ....	 // Derniere station de l'etape
+        },
+        "price":0,
+        "dist":4600,
+        "time":26,
+        "type":"Bus",
+        "name":"4G"
       },
-      "destStation": {
-        "id": 0,
-        "name": "string",
-        "address": "string",
-        "coordLat": 0,
-        "coordLon": 0
-      },
-      "price": 0,
-      "time": 0,
-      "type": "string",
-      "name": "string"
-    }
-  ]
-}
+      {
+        "from":{
+          ...
+        },
+        "intermediate":[],
+        "to":{
+          "ID":0,
+          "name":"Mosquee El Feth, Dar el Beida",
+          "address":"3eme Boulevard Peripherique, Oran, Algerie",
+          "coord":{
+            "lat":35.69603651865668,
+            "lon":-0.612222810195135
+          }
+        },
+        "price":0,
+        "dist":250,
+        "time":3,
+        "type":"Marche",
+      }
+    ]
+  }
+]
 \end{lstlisting}
 \caption{Format JSON de Path (chemin)}
 \label{fig:JSONPath}
 \end{figure}
 
-\newpage
 \section{Applications Front-End}
 \label{ref:Implementation}
+
+** Texte intro
 \subsection{Interfaces client}
+Les interfaces de l'application administrateur sont donnés dans les figures \ref{fig:clientInterface} et \ref{fig:clientInterface2}.
+
 \begin{figure}[h!]
 
 	 \begin{subfigure}[b]{\linewidth}
@@ -302,7 +366,7 @@ Un exemple d'une réponse JSON est donné dans la figure \ref{fig:JSONPath}.
 	 \end{subfigure}
 	 
 	\caption{Aperçu de l'application client.}
-
+	 \label{fig:clientInterface}
 \end{figure}
 
 
@@ -317,11 +381,11 @@ Un exemple d'une réponse JSON est donné dans la figure \ref{fig:JSONPath}.
 	 	\caption{Page de réponse détaillée.}	 
 	 \end{subfigure}
 	 \caption{Aperçu de l'application client.}
+	 \label{fig:clientInterface2}
 \end{figure}
 
-\newpage
 \subsection{Interfaces administrateur}
-
+Les interfaces de l'application administrateur sont donnés dans la figure \ref{fig:adminInterface}.
 \begin{figure}[h!]
 	 \begin{subfigure}[b]{\linewidth}
 	 	\includegraphics[width=\linewidth]{img/spuf/addline.png}
@@ -333,4 +397,5 @@ Un exemple d'une réponse JSON est donné dans la figure \ref{fig:JSONPath}.
 	 	\caption{Page ajout de nouvelle station.}	 
 	 \end{subfigure}
 	 \caption{Aperçu de l'application administrateur.}
+	 \label{fig:adminInterface}
 \end{figure}
