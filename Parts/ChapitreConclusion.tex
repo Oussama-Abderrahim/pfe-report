@@ -6,18 +6,18 @@ Notre application permet essentiellement à partir de deux lieux saisis par l'ut
 Nous avons divisé la résolution de ce problème en 4 parties:
 
 \begin{description}
-\item[Conception et stockage des données:] après avoir collecté les données, traiter et ajouter d'autres, nous les avons représenté sous forme de graphe: chaque noeud représente une station, et chaque arc entre deux stations représente le passage d'un transport.\newline
+\item[Conception et stockage des données:] après avoir collecté les données, traiter et ajouter d'autres, nous les avons représenté sous forme de graphe: chaque nœud représente une station, et chaque arc entre deux stations représente le passage d'un transport.\newline
 Nous avons utilisé une base de donnée orientée graphe pour stocker ce graphe pré-construit, et bénéficier de meilleures performances dans les différentes opérations de lecture/écriture.
 \item[Service Web:] nous avons réalisé un service web full-REST qui permet principalement de prendre des requêtes de recherche de chemin avec différentes critères et de répondre avec une liste de suggestions. L'API peut aussi de traiter différentes requêtes d'ajout/modification de lignes et stations.
 \item[Interface Web:]  nous avons implémenté une interface client, où l'utilisateur peut entrer sa station de départ et d'arrivée, ainsi que les facteurs et le moyens de transports qu'il souhaite.
 Ensuite visualiser le résultat sous forme de étapes avec informations (temps, prix et distance).
 
-\item[Interface administrateur:] nous avons implémenté également une interface admin qui communique avec l'API pour l'ajout et modification des lignes de transport.
+\item[Interface administrateur:] nous avons implémenté également une interface administrateur qui communique avec l'API pour l'ajout et modification des lignes de transport.
 
 \end{description}
 
 
-Lors de ce projet, nous avons fait face à certaines difficultés qui ont compromis la mise en place d'une version complète de l'application. à citer en premier lieu la spécificité de nos lignes, le manque de données et la non disponibilité des données GPS qui ont bloqué tout l'aspect visualisation sur une map, qui a suscité d'implémenter une interface administrateur permettant de mieux organiser nos informations.\newline\newline
+Lors de ce projet, nous avons fait face à certaines difficultés qui ont compromis la mise en place d'une version complète de l'application. à citer en premier lieu la spécificité de nos lignes, le manque de données et la non disponibilité des données GPS qui ont bloqué tout l'aspect visualisation sur une map.\newline\newline
 Ayant désormais une base solide de l'application, nous pouvons nous focaliser sur les idées et objectifs suivants :
 \begin{itemize}
 	\item \textbf{Compléter les données:} en introduisant la liste complète des lignes et informations de transport pour avoir une application utilisable.
@@ -25,15 +25,14 @@ Ayant désormais une base solide de l'application, nous pouvons nous focaliser s
 	\item \textbf{Enrichir les propriétés des stations: }en ajoutant des informations tel que :
 		\begin{itemize}
 			\item \textbf{Disponibilité:} possibilité de rendre les stations en cas de travaux (ou autres perturbations) non actives pour quelques jours.
-			\item \textbf{Multiples coordonnées :} Pour pouvoir donner avec plus de précision la position des arrêts à prendre, du fait que dans certains cas, les arrêts pour différentes directions sont assez éloignés.
+			\item \textbf{Multiples coordonnées :} pour pouvoir donner avec plus de précision la position des arrêts à prendre, du fait que dans certains cas, les arrêts pour différentes directions sont assez éloignés.
 		\end{itemize}
 		
-	\item \textbf{Ajouter la fonctionnalité de recherche du plus proche arrêt: } pour permettre de trouver un chemin à partir de n'importe quel point : cette fonctionnalité nécessite d'implémenter des \emph{opérations spatiales} sur le graphe. Par ailleurs, Neo4J permet déjà d'intégrer ces opérations facilement grâce à des librairies tel que \textbf{Neo4j Spatial}, et donc il ne sera pas nécessaire d'utiliser d'autres SGBD pour y arriver.
+	\item \textbf{Ajouter la fonctionnalité de recherche du plus proche arrêt: } pour permettre de trouver un chemin à partir de n'importe quel point : cette fonctionnalité nécessite d'implémenter des \emph{opérations spatiales} sur le graphe. Par ailleurs, Neo4j permet déjà d'intégrer ces opérations facilement grâce à des librairies tel que \textbf{Neo4j Spatial}, et donc il ne sera pas nécessaire d'utiliser d'autres SGBD pour y arriver.
 
-	\item \textbf{Améliorer l'algorithme de recherche de chemin}.
-		** a faire	
-	\item \textbf{Ajouter des fonctionnalités supplémentaires à l'application admin}.
-		** a faire 
+	\item \textbf{Améliorer l'algorithme de recherche de chemin :}  implémenter l'algorithme A* en utilisant des heuristiques adéquate, il est aussi possible d'implémenter différentes heuristiques pour différents scénarios.\newline
+	Nous pourrions aussi envisager certaines solutions de pré-traitement qui permettent de réduire les calculs de chaque recherche.
+	\item \textbf{Ajouter des fonctionnalités supplémentaires à l'application administrateur}.
 	\item \textbf{Ajouter des fonctionnalités supplémentaires à l'application client,} par exemple:
 		\begin{itemize}
 			\item Intégrer des cartes interactives permettant de visualiser les stations parcourues en temps réel, ou de télécharger les instructions en PDF pour les utiliser ultérieurement.

@@ -1,5 +1,5 @@
 \chapter{Développement}
-Après avoir détaillé la représentation des données de ce projet, nous étudierons dans ce chapitre les différentes technologies utilisées dans l'implémentation ainsi que l'architecture utilisée. Nous détaillerons ensuite les formats et modèles de nos données. Enfin, Nous donnerons un aperçu des applications front-end.
+Après avoir détaillé la représentation des données de ce projet, nous étudierons dans ce chapitre les différentes technologies utilisées dans l'implémentation ainsi que l'architecture utilisée. Nous détaillerons ensuite les formats et modèles de nos données. Enfin, nous donnerons un aperçu des applications front-end.
 \section{Technologies utilisées}
 \subsection{NodeJs}
 Aux alentours de 2010 Google a commencé à rendre JavaScript et son moteur d'exécution V8 plus rapides. Des outils comme Nodejs sont ensuite apparus\cite{NodeJs}.\newline
@@ -8,7 +8,7 @@ Il présente plusieurs avantages, notamment :
 \begin{itemize}
 	\item NodeJs et son écosystème permettent de travailler avec JavaScript à la fois sur le frontend et le backend.
 	\item L'approche non bloquante de NodeJs lui permet d'effectuer des entrées/sorties (I/O) de manière asynchrone. La programmation asynchrone est idéal pour une exécution plus rapide de programmes.
-	\item Contrairement aux langages serveur célèbres tel que PHP, ASP.NET, Ruby ou Java, NodeJs s'exécute en \emph{monothread}, en d'autres termes les processus de chaque requêtes sont traités dans un seul fil d'exécution, ce qui est très efficace en termes de mémoire.
+	\item Contrairement aux langages serveur célèbres tel que PHP, ASP.NET, Ruby ou Java, NodeJs s'exécute en \emph{monothread}, en d'autres termes les processus de chaque requête sont traités dans un seul fil d'exécution, ce qui est très efficace en termes de mémoire.
 	\item NodeJs rassemble une grande communauté très active, ce qui offre un grand nombre de librairies et de support en travaillant avec NodeJs.\newline
 \end{itemize}
 
@@ -34,18 +34,18 @@ Apparu en l'année 2000 et appartient à la société Neo Technology, Neo4j \cit
 
 Ses principaux avantages sont :
 \begin{itemize}
-	\item Neo4j utilise un stockage native du graphe, avec un principe appelé \textbf{index-free adjacency}, ceci permet de stocker des nœuds directement avec ses relations et nœuds adjacents sans avoir à utiliser des indexes pour consulter ses relations.\newline
-	Le stockage native offre de très grandes performances de lecture/écriture indépendamment de la taille du graphe (le temps d'accès à chaque noeud est constant).
+	\item Neo4j utilise un stockage natif du graphe, avec un principe appelé \textbf{index-free adjacency}, ceci permet de stocker des nœuds directement avec ses relations et nœuds adjacents sans avoir à utiliser des indexes pour consulter ses relations.\newline
+	Le stockage natif offre de très grandes performances de lecture/écriture indépendamment de la taille du graphe (le temps d'accès à chaque noeud est constant).
 	\item Neo4j est open-source, et a la plus grande communauté dans les bases de données orientées graphe, qui contribuent constamment à son écosystème, ce qui donne un très grand nombre de ressources et de support ainsi qu'une grande liste de pilotes et librairies dans tous les langages courants.
 	\item Neo4j se présente comme une solution dans un très grand nombre de cas d'utilisations, par exemple: Réseaux sociaux, détection de fraude, Réseaux et opérations IT...etc.
-	\item Facile à apprendre et à utiliser: Neo4j dispose d'une interface graphique très moderne et riche, et utilise son propre langage d'interrogation Cypher qui utilise une syntaxe textuelle très intuitive et similaire au SQL.
+	\item Facile à apprendre et à utiliser: Neo4j dispose d'une interface graphique très moderne et riche, et utilise son propre langage d'interrogation Cypher.\newline
 \end{itemize}
 
-Neo4j étant le SGBD le plus dominant dans le domaine des orientés graphe, et offrant une grande performance et flexibilité qui satisfait tous les besoins de ce projet, nous n'avons pas eu besoin de considérer les autres systèmes.
+Neo4j étant le SGBD le plus dominant dans le domaine des SGBD orientés graphe, et offrant une grande performance et flexibilité qui satisfait tous les besoins de ce projet. Nous n'avons pas eu besoin de considérer les autres systèmes.
 
 \textbf{Cypher: } c'est un langage de requête déclaratif sur Neo4j. Il permet de décrire la forme du résultat et les contraintes souhaitées à ajouter en optimisant le plan d'exécution pour récupérer les résultats.\newline
 
-Il utilise une syntaxe déclarative avec de l'ASCII Art (des figures et signes utilisant des lettres et caractères spéciaux) pour décrire les nœuds et les relations, rendant les requêtes faciles à lire et comprendre. un exemple est donné dans la figue \ref{fig:cypher}.
+Il utilise une syntaxe déclarative similaire au SQL, avec de l'ASCII Art (des figures et signes utilisant des lettres et caractères spéciaux) pour décrire les nœuds et les relations, rendant les requêtes faciles à lire et comprendre. Un exemple est donné dans la figue \ref{fig:cypher}.
 
 \begin{figure}
 	\center
@@ -55,31 +55,32 @@ Il utilise une syntaxe déclarative avec de l'ASCII Art (des figures et signes u
 \end{figure}
 
 \subsection{VueJs}
-VueJs \cite{VueJs} est un framework évolutif pour construire des interfaces utilisateur. Il a été conçu et pensé pour pouvoir être adopté de manière incrémentale. Le cœur de la bibliothèque est concentré uniquement sur la partie vue, le reste (Routage, gestion d'état...) étant fourni dans des bibliothèques complémentaires, et il est simple de l'intégrer avec d'autres bibliothèques ou projets existants. 
+VueJs\cite{VueJs} est un framework évolutif pour construire des interfaces utilisateur. Il a été conçu et pensé pour pouvoir être adopté de manière incrémentale. Le cœur de la bibliothèque est concentré uniquement sur la partie vue, le reste (Routage, gestion d'état...) étant fourni dans des bibliothèques complémentaires, et il est simple de l'intégrer avec d'autres bibliothèques ou projets existants. 
 Il est tout à fait capable de faire tourner des applications web monopages (Single Page Applications) très complexes lorsqu'il est combiné avec d'autres outils modernes et ses bibliothèques complémentaires.\newline
 Ses principaux avantages sont : 
 \begin{itemize}
-	\item Très petit de taille, très bien documenté et facile à apprendre et à commencer avec.
+	\item Très petit de taille et facile à apprendre: possible de commencer le développement avec VueJs rapidement sans avoir à connaitre toutes les fonctionnalités avancées dès le départ.
+	\item Très bien documenté avec une communauté active.
 	\item Flexible et offre de très bonne performances, c'est un des framework les plus rapides en ce moment.
 \end{itemize}
 
-Il est très difficile de comparer les framework front-end, chacune a ses points forts et toutes peuvent accomplir le même résultat, nous avons opté pour VueJs à raison de sa grande flexibilité et la facilité de commencer avec, qui nous a permis de tester rapidement plusieurs outils et fonctionnalités avant d'atteindre le résultat donnée dans la section \ref{ref:Implementation}.
+Il est très difficile de comparer les framework front-end, chacune a ses points forts et toutes peuvent accomplir le même résultat. Nous avons opté pour VueJs à raison de sa grande flexibilité et la facilité de commencer avec, qui nous a permis de tester rapidement plusieurs outils et fonctionnalités avant d'atteindre le résultat donné dans la section \ref{ref:Implementation}.
 
 \section{Structure de l'application}
 \subsection{L'architecture MVC (Model-View-Controller)}
-L'application suit une architecture MVC qui est un modèle d'architecture qui sépare une application en 3 composants logiques: \textbf{Model}, \textbf{View}, \textbf{Controller}.
+L'architecture MVC est un modèle d'architecture qui sépare une application en 3 composants logiques: \textbf{Model}, \textbf{View}, \textbf{Controller}.
 Chaque composant est construit pour gérer un aspect spécifique de l'application, on peut résumer le rôle de chacun comme suit :
 \begin{enumerate}
-	\item \textbf{Models: } ces composants correspondent à tout ce qui est relié aux données, un model peut représenter une classe d'objets ou une structure de données échangée entre Views et Controllers, ainsi que la logique manipulant ces données tel que des calculs de moyennes ou les différentes opérations d'ajout, modification et suppression dans une base de données.
-	\item \textbf{Views:} les views sont utilisés pour l'interface utilisateur (UI) de l'application, ceci inclut les composants d'interface (Textes, boutons, formulaires...etc.), ainsi que certaines logiques de mise en forme et affichage des données.
-	\item \textbf{Controller: } le Controller joue le rôle d'une interface entre le Model et les Views afin de traiter les requêtes venant du View (Par exemple un clique de bouton), manipuler les données du Model et enfin les rendre au View pour qu'elles soient présentées. il contient généralement la logique des actions effectuées par l'utilisateur.
+	\item \textbf{Models: } ces composants correspondent à tout ce qui est relié aux données, un model peut représenter une classe d'objets ou une structure de données échangée entre Views et Controllers, ainsi que la logique manipulant ces données telle que des calculs de moyennes ou les différentes opérations d'ajout, modification et suppression dans une base de données.
+	\item \textbf{Views:} les views sont utilisés pour l'interface utilisateur (UI) de l'application, ceci inclut les composants d'interface (textes, boutons, formulaires...etc.), ainsi que certaines logiques de mise en forme et affichage des données.
+	\item \textbf{Controller: } le Controller joue le rôle d'une interface entre le Model et les Views afin de traiter les requêtes venant du View (par exemple un clique de bouton), manipuler les données du Model et enfin les rendre au View pour qu'elles soient présentées. il contient généralement la logique des actions effectuées par l'utilisateur.
 \end{enumerate}
 	
 MVC est une des architectures les plus utilisées pour créer des projets évolutifs et extensibles \cite{refMVC}.
 %Il existe plusieurs variantes du MVC et d'autres architectures similaires tel que le MVVM (Model-View-ViewModel) et le MVP (Model-View-Presenter).
 
 \subsection{Composants de l'application}
-
+L'application suit une architecture MVC décomposée comme suit :
 \begin{sidewaysfigure}
 	\includegraphics[width=\textwidth]{img/ClassDiagram.png}
 	\caption{Vue d'ensemble des composants de l'application}
@@ -93,13 +94,13 @@ MVC est une des architectures les plus utilisées pour créer des projets évolu
 	      	      \begin{itemize}
 	      	      	\item \textbf{Bus} : représente un Bus ainsi que les différents facteurs estimés (temps d'attente moyen, fréquence ...etc.).
 	      	      \end{itemize}
-	      	\item \textbf{Path} : représente une suggestion de chemin, contient les informations globales tel que le prix et temps total du chemin, ainsi qu'une liste d'objets Step.
+	      	\item \textbf{Path} : représente une suggestion de chemin, contenant les informations globales tel que le prix et temps total du chemin, ainsi qu'une liste d'objets Step.
 	      	      \begin{itemize}
 	      	      	\item \textbf{Step} : représente une étape d'un itinéraire utilisant le même moyen de transport, comporte la station de départ et d'arrivée, les stations intermédiaires et les informations sur le temps, coût et distance à parcourir.
 	      	      \end{itemize}
 	      	      le format de cet objet est détaillé dans la section \ref{ref:formatReponse}
 	      	\item \textbf{Models du graphe} : 
-	      	      Afin d'avoir une application facilement extensible, nous avons séparé les Models relatifs au graphe des Models de l'application, ce qui permettra de modifier la représentation du graphe sans affecter l'application.
+	      	      afin d'avoir une application facilement extensible, nous avons séparé les Models relatifs au graphe des Models de l'application, ce qui permettra de modifier la représentation du graphe sans affecter l'application.
 	      	      \begin{itemize}
 	      	      	\item \textbf{GrapheNode} : représente un nœud, communique avec la base de données pour créer et manipuler les nœuds.
 	      	      	\item \textbf{GrapheSegment} : représente un arc entre deux nœuds, communique avec la base de données pour créer plusieurs relations (lignes de transport) ou les supprimer.
@@ -111,9 +112,9 @@ MVC est une des architectures les plus utilisées pour créer des projets évolu
 	\item \textbf{Views :} les Views dans ce projet consistent en deux applications séparées : une application client pour demander le chemin et consulter les lignes, et une application administrateur pour insérer et modifier les lignes des différents transports.
 	      
 	      Ces deux applications sont des \emph{Single Page Applications} : une application dynamique qui tourne sur un navigateur web.
-	      Nous ne détaillerons pas l'implémentation de ces applications car ce n'est pas l'objectif principal de ce projet, un aperçu du résultat final est donné dans la section \ref{ref:Implementation}.
+	      Nous ne détaillerons pas l'implémentation de ces applications, car ce n'est pas l'objectif principal de ce projet. Un aperçu du résultat final est donné dans la section \ref{ref:Implementation}.
 \end{enumerate}
-	
+La relation entre ces composants est décrite dans la figure \ref{fig:classDiagram}.
 	
 	
 \section{Implémentation de l'API}
@@ -137,7 +138,7 @@ Les ressources principales de notre API sont les stations (\textbf{station}) et 
 \label{ref:resources}
 
 \begin{description}
-	\item[Station:] Dans cette version, chaque station contient un Identifiant unique, le nom et l'adresse ainsi les coordonnées GPS.
+	\item[Station:] Dans cette version, chaque station contient un identifiant unique, le nom et l'adresse ainsi les coordonnées GPS.
 	\item[Line:] Une ligne est identifiée par un ID et un nom, elle contient un lien vers le bus servant cette ligne et une liste des stations de cette ligne contenant l'identifiant, la distance et le temps entre chaque station. Cette ressource  est utilisée principalement pour les requêtes d'ajout du coté administrateur.
 \end{description}
 % Format JSON 
@@ -198,7 +199,7 @@ L'implémentation de l'application du côté serveur permet de calculer un ensem
 	\label{fig:diagSequence}
 \end{sidewaysfigure}
 
-Une requête de recherche d'itinéraire à commencer de la demande de l'utilisateur jusqu'à l'affichage de la réponse passe par plusieurs étapes. le diagramme de séquence dans la figure \ref{fig:diagSequence} décrit les étapes suivantes :
+Une requête de recherche d'itinéraire à commencer de la demande de l'utilisateur jusqu'à l'affichage de la réponse passe par plusieurs étapes. Le diagramme de séquence dans la figure \ref{fig:diagSequence} décrit les étapes suivantes :
 \begin{enumerate}
 	\item L'API reçoit la requête de chemin, vérifie les paramètres et met en forme les données, pour les passer au module qui calcule le chemin (PathFinder).
 	\item Le module PathFinder formule la requête Cypher et l'envoi au serveur de la base de données Neo4j. Cette requête est décrite dans la partie \ref{section:cypher}.
@@ -210,7 +211,7 @@ Une requête de recherche d'itinéraire à commencer de la demande de l'utilisat
 	      	\item Structurer chaque chemin en Objets Path, détaillé dans la section suivante.
 	      	\item Minimiser le chemin en regroupant les étapes intermédiaires (tel que deux arrêts utilisant le même Bus).
 	      \end{itemize}
-	\item Retourner l'objet à l'API qui l'envoi sous forme de réponse HTTP, le format de cette réponse est décrit dans la partie \ref{ref:formatReponse}.
+	\item Retourner l'objet à l'API qui l'envoie sous forme de réponse HTTP, le format de cette réponse est décrit dans la partie \ref{ref:formatReponse}.
 \end{enumerate}
 \label{SectionPathFinding}
 	
@@ -310,8 +311,8 @@ La figure \ref{fig:JSONPath} donne un exemple d'une réponse en JSON d'un itiné
           }
         },
         "intermediate":[...],  // Tableaux de stations a passer
-        "to":{
-          ....	 // Derniere station de l'etape
+        "to":{ 								// Derniere station de l'etape
+          ....	 
         },
         "price":0,
         "dist":4600,
@@ -349,9 +350,13 @@ La figure \ref{fig:JSONPath} donne un exemple d'une réponse en JSON d'un itiné
 \section{Applications Front-End}
 \label{ref:Implementation}
 
-** Texte intro
-\subsection{Interfaces client}
-Les interfaces de l'application administrateur sont donnés dans les figures \ref{fig:clientInterface} et \ref{fig:clientInterface2}.
+La partie front end du projet qui communique avec le service web a été divisée en deux parties: une application client et une application administrateur.
+\subsection{Application client}
+
+La partie client consiste en une application web qui présente le service, et offre une interface aux utilisateurs pour saisir leurs requêtes et critères, puis visualiser les résultats à l'aide d'une carte.
+Elle peut évoluer en une application complète en ajoutant des sections d'orientations, des informations sur les lignes...etc.
+
+Les interfaces de l'application client sont donnés dans les figures \ref{fig:clientInterface}, \ref{fig:clientInterface2} et \ref{fig:clientInterface3}.
 
 \begin{figure}[h!]
 
@@ -384,12 +389,42 @@ Les interfaces de l'application administrateur sont donnés dans les figures \re
 	 \label{fig:clientInterface2}
 \end{figure}
 
-\subsection{Interfaces administrateur}
-Les interfaces de l'application administrateur sont donnés dans la figure \ref{fig:adminInterface}.
+\begin{figure}
+	 \begin{subfigure}[b]{\linewidth}
+	 	\includegraphics[width=\linewidth]{img/spuf/infobus.png}
+	 	\caption{Page d'informations (bus).}
+	 \end{subfigure}
+	 
+	 \begin{subfigure}[b]{\linewidth}
+	 	\includegraphics[width=\linewidth]{img/spuf/infotram.png}
+	 	\caption{Page d'informations (Tramway).}	 
+	 \end{subfigure}
+	 \caption{Aperçu de l'application client.}
+	 \label{fig:clientInterface3}
+\end{figure}
+
+\subsection{Application administrateur}
+La partie administrateur consiste en une application web indépendante de l'application client, elle permet d'introduire de nouvelles stations et lignes avec les différentes informations de chacune.
+Elle peut être complétée en ajoutant d'autres menus pour différents transports par exemple ou plus de fonctionnalités permettant d'ajouter plus facilement un grand nombre d'informations.\newline
+Les interfaces de l'application administrateur sont donnés dans les figures \ref{fig:adminInterface} et \ref{fig:adminInterface2}.
 \begin{figure}[h!]
+	 \begin{subfigure}[b]{\linewidth}
+	 	\includegraphics[width=\linewidth]{img/spuf/adminmenu.png}
+	 	\caption{Page acceuil.}
+	 \end{subfigure}
+	 
 	 \begin{subfigure}[b]{\linewidth}
 	 	\includegraphics[width=\linewidth]{img/spuf/addline.png}
 	 	\caption{Page ajout de nouvelles lignes.}
+	 \end{subfigure}
+	 \caption{Aperçu de l'application administrateur.}
+	 \label{fig:adminInterface}
+\end{figure}
+
+\begin{figure}[h!]
+	 \begin{subfigure}[b]{\linewidth}
+	 	\includegraphics[width=\linewidth]{img/spuf/stationadd.png}
+	 	\caption{Page ajout de nouvelles lignes.}	 
 	 \end{subfigure}
 	 
 	 \begin{subfigure}[b]{\linewidth}
@@ -397,5 +432,5 @@ Les interfaces de l'application administrateur sont donnés dans la figure \ref{
 	 	\caption{Page ajout de nouvelle station.}	 
 	 \end{subfigure}
 	 \caption{Aperçu de l'application administrateur.}
-	 \label{fig:adminInterface}
+	 \label{fig:adminInterface2}
 \end{figure}
