@@ -7,8 +7,8 @@ Nous avons divisé la résolution de ce problème en 4 parties:
 
 \begin{description}
 \item[Conception et stockage des données:] après avoir collecté les données nécessaire, traiter et compléter par d'autres. Nous les avons représentés sous forme de graphe: chaque nœud représente une station, et chaque arc entre deux stations représente le passage d'un transport.\newline
-Nous avons utilisé une base de donnée orientée graphe pour stocker ce graphe pré-construit, et bénéficier de meilleures performances dans les différentes opérations de lecture/écriture.
-\item[Service Web:] nous avons réalisé un service web full-REST qui permet principalement de prendre des requêtes de recherche de chemin avec différentes critères et de répondre avec une liste de suggestions. L'API peut aussi de traiter différentes requêtes d'ajout/modification de lignes et de stations.
+Nous avons utilisé une base de données orientée graphe pour stocker ce graphe pré-construit, et bénéficier de meilleures performances dans les différentes opérations de lecture/écriture.
+\item[Service Web:] nous avons réalisé un service web full-REST qui permet principalement de prendre des requêtes de recherche de chemin avec différents critères et de répondre avec une liste de suggestions. L'API permet aussi de traiter différentes requêtes d'ajout/modification de lignes et de stations.
 \item[Interface Web:]  nous avons implémenté une interface client, dans laquelle l'utilisateur peut entrer sa station de départ et d'arrivée, ainsi que les critères et le moyens de transports qu'il souhaite, pour ensuite visualiser le résultat sous forme d'étapes détaillées (temps, prix et distance).
 
 \item[Interface administrateur:] nous avons implémenté également une interface administrateur qui communique avec l'API pour faciliter l'ajout et modification des lignes de transport.
@@ -40,10 +40,10 @@ Ayant désormais une base solide de l'application, nous pouvons nous focaliser s
 	\item \textbf{Ajouter des fonctionnalités supplémentaires à l'application client,} par exemple:
 		\begin{itemize}
 			\item Intégrer des cartes interactives permettant de visualiser les stations parcourues en temps réel, ou de télécharger les instructions en PDF pour les utiliser ultérieurement.
-			\item Intégrer dans l'interface les futures fonctionnalités : trouver la station plus proche en marquant sur une carte, prendre en compte la météo et l'heure (avec éventuellement un mode nuit).
+			\item Intégrer dans l'interface les futures fonctionnalités : trouver la station la plus proche en marquant sur une carte. Prendre en compte la météo et l'heure (avec éventuellement un mode nuit).
 			\item Améliorer la version mobile de l'application web ou une application mobile pour plus d'interactivité.
 			\item Compléter la page d'information en affichant les lignes sur carte, les informations sur les horaires et des numéros de taxis par exemple.
-			\item Ajouter la possibilité de créer des comptes utilisateurs pour pouvoir enregistrer des lieux favoris (Maison, école,..etc.).
+			\item Ajouter la possibilité de créer des comptes utilisateurs pour pouvoir enregistrer des lieux favoris (maison, école,..etc.).
 			\item Ajouter un espace signalisation pour permettre aux utilisateurs de poster un changement dans les lignes ou une information incorrecte afin d'assurer l'intégrité et la mise à jour des informations.
 		\end{itemize}
 \end{itemize}

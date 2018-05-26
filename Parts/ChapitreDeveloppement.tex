@@ -226,7 +226,7 @@ La recherche de chemin dans Neo4j est effectuée à travers une requête Cypher.
  \begin{lstlisting}[style=cypher]
 MATCH p = AllShortestPaths((A:Station)-[*..100]->(B:Station))
 \end{lstlisting}
-Cette ligne exprime tous les chemins possibles d'une station A vers une station B en assurant une limite de 100 nœuds actuellement. En y appliquant la fonction \textbf{AllShortestPath}, on obtient une liste de plus courts chemins qui seront stockés dans la variable \textbf{p}.
+Cette ligne exprime tous les chemins possibles d'une station A vers une station B en assurant une limite de 100 nœuds actuellement. En y appliquant la fonction \textbf{AllShortestPath}, on obtient une liste des plus courts chemins qui seront stockés dans la variable \textbf{p}.
 
 \item \textbf{Spécifier les paramètres}
  \begin{lstlisting}[style=cypher]
@@ -385,7 +385,7 @@ Les interfaces de l'application client sont donnés dans les figures \ref{fig:cl
 	 	\includegraphics[width=\linewidth]{img/spuf/response2.png}
 	 	\caption{Page de réponse détaillée.}	 
 	 \end{subfigure}
-	 \caption{Aperçu de l'application client.}
+	 \caption{Deuxième aperçu de l'application client.}
 	 \label{fig:clientInterface2}
 \end{figure}
 
@@ -399,7 +399,7 @@ Les interfaces de l'application client sont donnés dans les figures \ref{fig:cl
 	 	\includegraphics[width=\linewidth]{img/spuf/infotram.png}
 	 	\caption{Page d'informations (Tramway).}	 
 	 \end{subfigure}
-	 \caption{Aperçu de l'application client.}
+	 \caption{Troisième aperçu de l'application client.}
 	 \label{fig:clientInterface3}
 \end{figure}
 
@@ -431,6 +431,6 @@ Les interfaces de l'application administrateur sont donnés dans les figures \re
 	 	\includegraphics[width=\linewidth]{img/spuf/createstation.png}
 	 	\caption{Page ajout de nouvelle station.}	 
 	 \end{subfigure}
-	 \caption{Aperçu de l'application administrateur.}
+	 \caption{Deuxième aperçu de l'application administrateur.}
 	 \label{fig:adminInterface2}
 \end{figure}

@@ -1,12 +1,12 @@
 \chapter{Représentation du réseau routier}
-Un graphe sert mieux à définir l'existence d'une relation entre objets tel qu'une ligne entre deux stations, ce qui est la représentation optimale pour nos données. 
+Un graphe sert mieux à définir l'existence d'une relation entre objets telle qu'une ligne entre deux stations, ce qui est la représentation optimale pour nos données. 
 
 Dans ce chapitre, nous présenterons en première partie les définitions relatives aux graphes et recherche de chemins, ensuite nous passerons à la collecte de données et les différentes approches de représentation prises en compte.
-Enfin nous détaillerons la représentation choisie, tout en donnant des exemples.
+Enfin, nous détaillerons la représentation choisie, tout en donnant des exemples.
 
 \section{Généralités sur les graphes}
 La théorie des graphes est très probablement née en 1735 lorsque Leonhard Euler (1707 - 1783) résout le problème des sept ponts de Königsberg. 
-L'énoncé de ce problème est: la ville de \emph{Königsberg} est une ville autour d'un fleuve, elle compte quatre berges et sept ponts les reliant. Le but du jeu est de savoir s'il existe un chemin permettant d'emprunter tous les ponts une fois et une seule et revenir au point de départ. Le problème s'appelle désormais, de façon plus formelle, la recherche d'un cycle eulérien dans un graphe. Euler a démontré que ce problème n'avait pas de solution.
+L'énoncé de ce problème est: la ville de \emph{Königsberg} est une ville autour d'un fleuve, elle compte quatre berges et sept ponts les reliant. Le but du jeu est de savoir s'il existe un chemin permettant d'emprunter tous les ponts une fois et une seule et revenir au point de départ. Le problème s'appelle désormais, de façon plus formelle, la recherche d'un cycle eulérien dans un graphe. Euler a démontré que ce problème n'avait pas de solution \cite{WikiGraphes}.
 
 \begin{figure}[h!]
 \center
@@ -15,7 +15,7 @@ L'énoncé de ce problème est: la ville de \emph{Königsberg} est une ville aut
 \end{figure}
 
 \subsection{Définitions}
-Avant de parler des avantages des graphes, il est important de connaitre la léxique autours de le théorie des graphes \cite{WikiGraphes}.
+Avant de parler des avantages des graphes, il est important de connaître la léxique autours de la théorie des graphes \cite{WikiGraphes}.
 \begin{description}
 \item[Graphe]: un graphe est composé de sommets, et d'arêtes reliant certains de ces sommets.
 Un graphe G est défini de manière formelle par un couple (S,A) où :
@@ -25,7 +25,7 @@ Un graphe G est défini de manière formelle par un couple (S,A) où :
 \end{itemize}
 \item[Arête :] c'est un connexion entre deux sommets A et B. Dans le cas où ce lien est orienté, le terme \textbf{arc} est généralement utilisé.
 
-\item[Poids:] chaque arc/arrête est associé à un poids ou une étiquette qui le décrit. Par exemple, dans un réseau social il peut définir la nature de la relation (ami, famille, collègue) et dans un réseau routier la longueur d'une rue. Parfois le terme \textbf{coût} est utilisé pour décrire le poids.
+\item[Poids:] chaque arc/arrête est associé à un poids ou une étiquette qui le décrit. Par exemple: dans un réseau social, il peut définir la nature de la relation (ami, famille, collègue) et dans un réseau routier la longueur d'une rue. Parfois le terme \textbf{coût} est utilisé pour décrire le poids.
 
 \item[Successeurs et prédécesseurs:] dans un arc (x, y) d'un graphe, le sommet \emph{y} est appelé \textbf{successeur} de \emph{x} et \emph{x} est dit \textbf{prédécesseur} de \emph{y}.\newline
 les sommets \emph{x} et \emph{y} sont des sommets voisins (ou adjacents).
@@ -56,20 +56,20 @@ Les graphes sont donc des outils très puissants et largement répandus qui se p
 
 
 \item[Recherche de chemin (PathFinding)]
-Un cas très fréquent. Chaque nœud représente une position et chaque arête est un chemin entre deux positions, ou en remplaçant les nœuds par des adresses et les arêtes par des routes, on obtient le graphe utilisé par les GPS ou les outils de cartographie tel que Google Map.
+un cas très fréquent. Chaque nœud représente une position et chaque arête est un chemin entre deux positions, ou en remplaçant les nœuds par des adresses et les arêtes par des routes, on obtient le graphe utilisé par les GPS ou les outils de cartographie tel que Google Map.
 La recherche de chemins est aussi utilisée en biologie, communications (réseaux de télécommunications)...etc.
 Il est courant de chercher le chemin le plus court entre deux positions dans la plupart de ces domaines, nous nous intéressons particulièrement à ce cas d'utilisation, que nous discuterons en détail dans la section suivante.
 
 
 \item[L'ordonnancement de tâches:]
-On peut représenter chacune des tâches à effectuer par un nœud, et les dépendances entre chacune de ces tâches par des arcs.
+on peut représenter chacune des tâches à effectuer par un nœud, et les dépendances entre chacune de ces tâches par des arcs.
 On cite l'exemple de l'ordonnancement des projets, les graphes permettent de planifier les différentes tâches d'un projet, détecter les tâches pouvant être effectuées simultanément et estimer la durée totale du projet.
 
 \item[Les systèmes de recommandation:]
-C'est une forme spécifique de filtrage de l'information qui a pour but de présenter à un utilisateur des éléments qui sont susceptibles de l'intéresser, en se basant sur ses préférences et son comportement.
+c'est une forme spécifique de filtrage de l'information qui a pour but de présenter à un utilisateur des éléments qui sont susceptibles de l'intéresser, en se basant sur ses préférences et son comportement.
 Les moteurs de recommandation font usage des graphes pour représenter des individus ou objets et leurs différents liens. Cet outil est très utilisé en sciences sociales, par exemple le graphe social de Facebook qui représente les associations entre des personnes ou le réseau LinkedIn qui est un graphe de relations entre des professionnels...etc.
 
-Le but est de pouvoir identifier les communautés formées, les centres d'intérêts communs, en suggérant à l'utilisateur les choses qu'il est susceptible d'aimer, les personnes qu'il connaît peut-être, et avant tout (et surtout) pour créer des publicités ciblées adaptées à chacun.
+Le but est de pouvoir identifier les communautés formées, les centres d'intérêt communs, en suggérant à l'utilisateur les choses qu'il est susceptible d'aimer, les personnes qu'il connaît peut-être, et avant tout (et surtout) pour créer des publicités ciblées adaptées à chacun.
 
 \end{description}
 
@@ -95,15 +95,15 @@ Le problème du plus court chemin est parmi les problèmes les plus étudiés de
 \end{itemize}
 
 \subsection{Les algorithmes de recherche de chemin}
-Les algorithmes de calcul d'itinéraires origine-destination(s) sont des algorithmes qui permettent de calculer le plus court chemin d'un sommet source vers tous les autres sommets avec une complexité polynomiale.\newline
+Les algorithmes de calcul d'itinéraire origine-destination(s) sont des algorithmes qui permettent de calculer le plus court chemin d'un sommet source vers tous les autres sommets avec une complexité polynomiale.\newline
  On les répartit classiquement en deux familles : 
 \begin{itemize}
 	\item \textbf{A fixation d'étiquette} (Label setting algorithms): Ce type d'algorithme choisissent à chaque itération un sommet x, et calculent sa valeur définitive V[x]. Cette valeur V[x], appelée étiquette, sert à définir la valeur du plus court chemin vers le sommet x.
-	L'avantage principal de ces algorithmes est qu'il est possible d'arrêter la recherche de chemin dès atteinte du nœud destination puisque son étiquette sera fixée définitivement.
+	L'avantage principal de ces algorithmes est qu'il est possible d'arrêter la recherche de chemin dès l'atteinte du nœud destination puisque son étiquette sera fixée définitivement.
 	L'algorithme à correction d'étiquette le plus célèbre est l'algorithme de \textbf{Djikstra}\cite{Djikstra}.
 	
 	\item \textbf{A correction d'étiquette} (Label correcting algorithms): Ces algorithmes peuvent affiner et corriger les étiquettes de chaque sommet jusqu'à la dernière itération.
-	Ils ne sont pas forcément moins performants que les algorithmes à fixation d'étiquette, et ont une utilisation plus générale, lors de présence de poids négatives dans le graphe où l'algorithme de Djikstra, par exemple, n'est pas utilisable.\newline
+	Ils ne sont pas forcément moins performants que les algorithmes à fixation d'étiquette, et ont une utilisation plus générale, lors de présence de poids négatifs dans le graphe où l'algorithme de Djikstra, par exemple, n'est pas utilisable.\newline
 	Un exemple bien connu est l'algorithme de \textbf{Bellman-Ford}.
 \end{itemize}
 
@@ -117,18 +117,19 @@ Nous avons pris en compte la possibilité de changer l'algorithme de recherche d
 \subsection{L'algorithme BFS (Breadth-First-Search)}
 
 \begin{enumerate}
-	\item \textbf{Présentation}: BFS\cite{refBFS} est un algorithme de parcours ou de recherche dans un arbre ou graphe, il commence d'un nœud source (ou la racine de l'arbre) et explore ses nœuds successeurs d'abord, 
+	\item \textbf{Présentation}: BFS\cite{refBFS} est un algorithme de parcours ou de recherche dans un arbre ou graphe, il commence d'un nœud source (ou la racine de l'arbre) et explore ses nœuds successeurs d'abord.
 
 Cet algorithme est très similaire au parcours par largeur d'un arbre, sauf qu'un graphe peut avoir des cycles, donc pour éviter de recalculer le même nœud deux fois, il garde une liste de nœuds visités.
 
 	\item \textbf{Complexité:} la complexité temporelle de l'algorithme est de O(V+E), où V est le nombre de sommets et E le nombre d'arcs.
 	
 	\item \textbf{Étapes de l'algorithme:}
-		L'algorithme effectue un parcours en largeur sur le graphe, en d'autres mot un parcours par niveau, il traite tous les nœuds voisins du nœud de départ avant de passer aux nœuds voisins des nœuds visités.
+		L'algorithme effectue un parcours en largeur sur le graphe, en d'autres mot un parcours par niveau, il traite tous les nœuds voisins du nœud de départ avant de passer aux nœuds voisins des nœuds visités. La figure \ref{fig:bfs} donne un exemple de parcours par niveau dans un graphe.\\
 \begin{figure}
 	\center
 	\includegraphics[scale=0.6]{img/BFS.jpg}
 	\caption{Déroulement d'un parcours BFS.}
+	\label{fig:bfs}
 \end{figure}		
 L'algorithme utilise une file pour mémoriser les nœuds suivants à visiter, les étapes de l'algorithme se résument en les règles suivantes:
 	\begin{enumerate}
@@ -146,7 +147,7 @@ Le résultat de cette collecte est comme suit :
 \subsection{ETO (Entreprise de Transport d'Oran)}
 
 %what they did gave u
-Nous avons été bien accueillis par l'un des responsables de l'ETO que nous remercions de nous avoir bien expliqué le fonctionnement des lignes de notre région ainsi que d'avoir fourni plusieurs informations utiles, tel que:
+Nous avons été bien accueillis par l'un des responsables de l'ETO que nous remercions de nous avoir bien expliqué le fonctionnement des lignes de notre région ainsi que d'avoir fourni plusieurs informations utiles, telles que:
 \begin{itemize}
 	\item La liste des lignes et leur longueur totale.
 	\item Les différents horaires de travail (été/hiver/fin de semaine...etc).
@@ -156,11 +157,12 @@ Nous avons été bien accueillis par l'un des responsables de l'ETO que nous rem
 \end{itemize}
 
 % but that wasnt enough
+La figure \ref{fig:ETO} est un échantillons des ces données.\newline
 En plus du catalogue que nous avons reçu, leurs informations nous ont permis de bien tracer les spécifications et les particularités de ces lignes.
 Cependant, ces informations n'ont pas été suffisantes pour notre travail, en effet:
 	\begin{itemize}
 	\item Nous avions besoin de noms plus significatifs pour chaque station, car les noms fournis étaient des noms communs connues par les habitants seulement.
-	\item Le catalogue ne contenant pas les adresses exacte ou les coordonnées de chaque station.
+	\item Le catalogue ne contenant pas les adresses exactes ou les coordonnées de chaque station.
 	\item Pas d'informations sur la distance entre chaque station.
 	\end{itemize}
 	
@@ -171,6 +173,7 @@ Nous remercions encore l'ETO pour leur assistance, néanmoins ces données doive
 	\center
 	\includegraphics[scale=0.7]{img/LignesETO.png}
 	\caption{Échantillon de données reçues par l'ETO.}
+	\label{fig:ETO}
 \end{figure}
 
 \subsection{Données supplémentaire}
@@ -199,7 +202,7 @@ Depuis ces informations nous avons déduit d'autres informations utiles, notamme
 
 	
 \section{Construction du graphe}
-Après avoir présenté quelques généralités sur graphe, et détaillé les données que nous avons collecté, nous passons aux différents détails sur comment est construit notre graphe et comment le stocker.
+Après avoir présenté quelques généralités sur les graphes, et détaillé les données que nous avons collecté, nous passons aux différents détails sur comment est construit notre graphe et comment le stocker.
 \subsection{Différentes approches pour stocker le graphe}
 \begin{itemize}
 	\item \textbf{Outils Open Source (OpenTripPlanner)} : 
@@ -214,7 +217,7 @@ Après avoir présenté quelques généralités sur graphe, et détaillé les do
 	      
 	\item \textbf{Utiliser une base de données orientée graphe}: nous avons finalement choisi d'utiliser une base de données orientée graphe qui permet de stocker en permanence le graphe, mais aussi de fournir plusieurs opérations pour créer des nœuds et des relations, les modifier et les parcourir pour rechercher des chemins ou effectuer certains calculs.
 	
-Comparé au stockage par tables SQL, cette approche offre un accès plus rapide et simple en parcourant un graphe déjà construit tout en tirant les meilleures performances des différents algorithmes de recherche de chemins.
+Comparée au stockage par tables SQL, cette approche offre un accès plus rapide et simple en parcourant un graphe déjà construit tout en tirant les meilleures performances des différents algorithmes de recherche de chemins.
 
 	Nous avons, cependant, noté certaines difficultés suivant cette représentation, notamment dans la modification ou suppression de lignes où le changement ou la suppression d'une seule station peut affecter plusieurs autres lignes.\newline
 	Ainsi, comme l'ajout d'une station au milieu d'une ligne impliquera la suppression de plusieurs arcs, nous avons décidé, comme première solution, de restreindre les modifications et suppressions de nœuds aux stations qui ne sont reliées à aucune ligne, et pour les lignes, de supprimer toute la ligne et reconstruire les arcs à chaque modification.
@@ -238,9 +241,11 @@ La figure \ref{fig:structGraph} présente la structure utilisée pour représent
 	\center
 	\includegraphics[width=1.1\textwidth]{img/GrapheNeo4j.png}
 	\caption{Aperçu d'un graphe de transport}
+	\label{fig:transportGraph}
 \end{figure}
 
 \textbf{Arcs de bus: } Chaque arc contient uniquement l'identifiant du Bus qui le concerne, les autres informations de chaque bus (temps d'arrêt, prix...etc.) peuvent être représentés séparément comme d'autres nœuds étiquetés dans le graphe ou stockés ailleurs dans une base de données différente. \newline
+La figure \ref{fig:transportGraph} nous donne un aperçu global de la forme d'un graphe dans notre application.\\
 Nous avons choisi de ne garder que les données les plus importantes dans cette première version, nous pouvons ajouter d'autres propriétés et informations dans le graphe au fur et à mesure que l'application évolue.
 
 %
@@ -265,13 +270,13 @@ Nous avons choisi de ne garder que les données les plus importantes dans cette 
 \subsection{Cas de la marche}
 Afin de pouvoir intégrer la marche dans la recherche de chemin, il est nécessaire de pouvoir détecter les arrêts les plus proches de chaque arrêt pendant le traitement, et essayer de considérer les arrêts les plus proches de chaque nœud visité.\newline 
 Cette solution s'avère difficile à appliquer dans la version actuelle du projet, nous avons donc choisi de représenter la possibilité de marcher avec un arc similaire aux arcs de transports.\newline
-Ces arcs sont automatiquement ajoutés à la création de chaque ligne en calculant toutes les distances entre le début et fin de la ligne ajoutée avec le début et fin de chaque autre ligne, et ajouter un arc dans les deux sens si la distance est inférieur à 1Km (valeur arbitraire).
+Ces arcs sont automatiquement ajoutés à la création de chaque ligne en calculant toutes les distances entre le début et fin de la ligne ajoutée avec le début et fin de chaque autre ligne, et ajouter un arc dans les deux sens si la distance est inférieure à 1Km (valeur arbitraire).
 Un exemple de cet arc est donné dans la figure \ref{fig:structGraph}.
 
 Cette approche permet d'intégrer la marche de façon minimale sans affecter les performances et sans avoir à calculer des distances pendant la recherche du chemin.
 Il sera possible d'améliorer cette fonctionnalité après avoir implémenté la recherche des plus proches stations directement dans le graphe à partir d'un point donné, sans avoir à comparer toutes les stations (voir chapitre des perspectives).
 
 \section{Conclusion}
-Nous avons, dans ce chapitre, présenté les différentes généralités sur les graphes et données collectés ainsi que comment est construit notre graphe pour ce projet.
+Nous avons, dans ce chapitre, présenté les différentes généralités sur les graphes et données collectées ainsi que comment est construit notre graphe pour ce projet.
 Malgré les différentes contraintes (complexité du problème, manque de données, spécificités des lignes d'Oran), la représentation choisie pour cette première version reste suffisante et facilement extensible pour de futures améliorations.
 \newpage
