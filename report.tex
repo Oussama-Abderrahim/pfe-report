@@ -16,14 +16,12 @@ headsepline
 \usepackage{subcaption} % for multiple image caption
 \usepackage{rotating}
 
-
 \usepackage{listings} 	% for Code listing
 \usepackage{csquotes}
 
 \usepackage[table,xcdraw]{xcolor}
 \usepackage{array}
 \usepackage{tabu}
-
 %----------------------------------------------------------------------------------------
 %	CodeListing
 %----------------------------------------------------------------------------------------
@@ -151,12 +149,21 @@ headheight=15.5pt]{geometry}
 \makeindex
 
 \begin{document}	
-\maketitle
+
+\includegraphics[scale=1]{parts/pagedegarde.pdf}
+
 %	\layout			% verifier dimensions/ structure de la page
 
 %\pagestyle{fancy}	
 
-\chapter*{Abstract} 
+\chapter*{Résumé} 
+
+Se déplacer en utilisant les transports en commun sans connaissances d'une ville est un réel besoin pour toute personne. L'informatique a su apporter plusieurs solutions à ce besoin, mais qui ne sont malheureusement pas toutes adaptées à notre ville d'Oran.\\
+Dans le but d'offrir une solution à ce problème, nous nous sommes basés sur les dernières technologies du web et de la théorie des graphes pour concevoir et implémenter une application web moderne.\\
+Cette application permettrait de représenter un réseau de transport en commun d'une ville avec toutes les informations nécessaires, et d'assister par conséquent les utilisateurs avec des suggestions de chemins optimaux selon différents critères.\\
+Nous avons abouti à une première version offrant une base solide pour d'éventuelles évolutions et de nouvelles fonctionnalités.
+
+%\chapter*{Abstract} 
 
 %\pagestyle{plain}	
 
@@ -188,6 +195,11 @@ headheight=15.5pt]{geometry}
 \input{Parts/ChapitreDeveloppement.tex}
 %Chapitre 5
 \input{Parts/ChapitreConclusion.tex}
+
+
+\printbibliography[heading=bibintoc]
+
+\end{document}}
 
 
 \printbibliography[heading=bibintoc]
