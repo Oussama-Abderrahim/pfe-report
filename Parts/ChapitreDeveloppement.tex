@@ -2,7 +2,7 @@
 Après avoir détaillé la représentation des données de ce projet, nous étudierons dans ce chapitre les différentes technologies utilisées dans l'implémentation ainsi que l'architecture utilisée. Nous détaillerons ensuite les formats et modèles de nos données. Enfin, nous donnerons un aperçu des applications front-end.
 \section{Technologies utilisées}
 \subsection{NodeJs}
-Aux alentours de 2010 Google a commencé à rendre JavaScript et son moteur d'exécution V8 plus rapides. Des outils comme Nodejs sont ensuite apparus\cite{NodeJs}.\newline
+Aux alentours de 2010 Google a commencé à rendre \Gls{JavaScript} et son moteur d'exécution V8 plus rapides. Des outils comme Nodejs sont ensuite apparus\cite{NodeJs}.\newline
 Node.js est un environnement d'exécution \textbf{JavaScript} construit sur le moteur \emph{V8} de Google Chrome. Il utilise un modèle basé sur l'événementiel (\textbf{event-driven}) et des entrées/sorties non bloquantes, ce qui le rend léger et efficace.
 Il présente plusieurs avantages, notamment :
 \begin{itemize}
@@ -12,12 +12,12 @@ Il présente plusieurs avantages, notamment :
 	\item NodeJs rassemble une grande communauté très active, ce qui offre un grand nombre de librairies et de support en travaillant avec NodeJs.\newline
 \end{itemize}
 
-\textbf{ExpressJs :} un framework\FancyFootNote{Framework : C'est une sorte d'infrastructure de développement, il désigne un ensemble cohérent de composants logiciels structurels qui sert à créer les fondations ainsi que les grandes lignes de tout ou d'une partie d'un logiciel ou application.} d'application minimaliste et très flexible qui propose un ensemble de fonctionnalités stables pour les applications web, en l'occurrence l'implémentation des APIs (Express.Router). Au moment d'écrire ce rapport, c'est l'outil le plus connu et le plus utilisé avec NodeJs.
+\textbf{ExpressJs :} un framework\footnote{Framework : C'est une sorte d'infrastructure de développement, il désigne un ensemble cohérent de composants logiciels structurels qui sert à créer les fondations ainsi que les grandes lignes de tout ou d'une partie d'un logiciel ou application.} d'application minimaliste et très flexible qui propose un ensemble de fonctionnalités stables pour les applications web, en l'occurrence l'implémentation des APIs (Express.Router). Au moment d'écrire ce rapport, c'est l'outil le plus connu et le plus utilisé avec NodeJs.
 
 NodeJs est donc un choix idéal pour développer des APIs REST minimales et flexibles tout en gardant des performances élevées pendant le traitement de requêtes.\newline
-En dernier, bien que NodeJs ne soit pas adapté pour des applications aux calculs intensifs, il ne sera pas un inconvénient du fait que les calculs sur le graphe seront effectués principalement dans le SGBD.
+En dernier, bien que NodeJs ne soit pas adapté pour des applications aux calculs intensifs, il ne sera pas un inconvénient du fait que les calculs sur le graphe seront effectués principalement dans le \acrfull{SGBD}.
 \subsection{MongoDB}
-	MongoDB \cite{MongoDB} est un système de base de données NoSQL. Il est orienté documents qui est une évolution des simples bases de données clé-valeur. Un document peut être une valeur atomique, paire clé-valeur, un tableau de valeurs ou une compositions de ces derniers.
+	MongoDB \cite{MongoDB} est un système de base de données \Gls{NoSQL}. Il est orienté documents qui est une évolution des simples bases de données clé-valeur. Un document peut être une valeur atomique, paire clé-valeur, un tableau de valeurs ou une compositions de ces derniers.
 
 Son nom vient de Humongous qui veut dire énorme ou immense. Il est capable de gérer de très grandes quantités de données avec une grande facilité d'extension, ses principaux avantages sont:
 
@@ -36,7 +36,7 @@ Ses principaux avantages sont :
 \begin{itemize}
 	\item Neo4j utilise un stockage natif du graphe, avec un principe appelé \textbf{index-free adjacency}, ceci permet de stocker des nœuds directement avec ses relations et nœuds adjacents sans avoir à utiliser des indexes pour consulter ses relations.\newline
 	Le stockage natif offre de très grandes performances de lecture/écriture indépendamment de la taille du graphe (le temps d'accès à chaque noeud est constant).
-	\item Neo4j est open-source, et a la plus grande communauté dans les bases de données orientées graphe, qui contribuent constamment à son écosystème, ce qui donne un très grand nombre de ressources et de support ainsi qu'une grande liste de pilotes et librairies dans tous les langages courants.
+	\item Neo4j est \gls{OpenSource}, et a la plus grande communauté dans les bases de données orientées graphe, qui contribuent constamment à son écosystème, ce qui donne un très grand nombre de ressources et de support ainsi qu'une grande liste de pilotes et librairies dans tous les langages courants.
 	\item Neo4j se présente comme une solution dans un très grand nombre de cas d'utilisations, par exemple: Réseaux sociaux, détection de fraude, Réseaux et opérations IT...etc.
 	\item Facile à apprendre et à utiliser: Neo4j dispose d'une interface graphique très moderne et riche, et utilise son propre langage d'interrogation Cypher.\newline
 \end{itemize}
@@ -111,7 +111,7 @@ L'application suit une architecture MVC décomposée comme suit :
 	     	      	
 	\item \textbf{Views :} les Views dans ce projet consistent en deux applications séparées : une application client pour demander le chemin et consulter les lignes, et une application administrateur pour insérer et modifier les lignes des différents transports.
 	      
-	      Ces deux applications sont des \emph{Single Page Applications} : une application dynamique qui tourne sur un navigateur web.
+	      Ces deux applications sont des \emph{\Glspl{SPA}} : une application dynamique qui tourne sur un navigateur web.
 	      Nous ne détaillerons pas l'implémentation de ces applications, car ce n'est pas l'objectif principal de ce projet. Un aperçu du résultat final est donné dans la section \ref{ref:Implementation}.
 \end{enumerate}
 La relation entre ces composants est décrite dans la figure \ref{fig:classDiagram}.
@@ -199,7 +199,7 @@ L'implémentation de l'application du côté serveur permet de calculer un ensem
 	\label{fig:diagSequence}
 \end{sidewaysfigure}
 
-Une requête de recherche d'itinéraire à commencer de la demande de l'utilisateur jusqu'à l'affichage de la réponse passe par plusieurs étapes. Le diagramme de séquence dans la figure \ref{fig:diagSequence} décrit les étapes suivantes :
+Une requête de recherche d'itinéraire à commencer de la demande de l'utilisateur jusqu'à l'affichage de la réponse passe par plusieurs étapes. Le \gls{diagrammeDeSequence} dans la figure \ref{fig:diagSequence} décrit les étapes suivantes :
 \begin{enumerate}
 	\item L'API reçoit la requête de chemin, vérifie les paramètres et met en forme les données, pour les passer au module qui calcule le chemin (PathFinder).
 	\item Le module PathFinder formule la requête Cypher et l'envoi au serveur de la base de données Neo4j. Cette requête est décrite dans la partie \ref{section:cypher}.
@@ -355,9 +355,8 @@ Ces deux applications ont été réalisées à l'aide du framework VueJs.
 \subsection{Application client}
 
 La partie client consiste en une application web qui présente le service, et offre une interface aux utilisateurs pour saisir leurs requêtes et critères, puis visualiser les résultats à l'aide d'une carte.
-Elle peut évoluer en une application complète en ajoutant des sections d'orientations, des informations sur les lignes...etc.
-
-Les interfaces de l'application client sont donnés dans les figures \ref{fig:clientInterface}, \ref{fig:clientInterface2} et \ref{fig:clientInterface3}.
+Elle peut évoluer en une application complète en ajoutant des sections d'orientations, des informations sur les lignes...etc.\\
+Les interfaces de l'application client sont données dans les figures \ref{fig:clientInterface}, \ref{fig:clientInterface2} et \ref{fig:clientInterface3}.
 
 \begin{figure}[h!]
 
@@ -406,8 +405,9 @@ Les interfaces de l'application client sont donnés dans les figures \ref{fig:cl
 
 \subsection{Application administrateur}
 La partie administrateur consiste en une application web indépendante de l'application client, elle permet d'introduire de nouvelles stations et lignes avec les différentes informations de chacune.
+L'interface a été pensée pour être très similaire au format des données fournies par l'ETO, afin d'avoir une utilisation simple et intuitive par n'importe quel utilisateur.
 Elle peut être complétée en ajoutant d'autres menus pour différents transports par exemple ou plus de fonctionnalités permettant d'ajouter plus facilement un grand nombre d'informations.\newline
-Les interfaces de l'application administrateur sont donnés dans les figures \ref{fig:adminInterface} et \ref{fig:adminInterface2}.
+Les interfaces de l'application administrateur sont données dans les figures \ref{fig:adminInterface} et \ref{fig:adminInterface2}.
 \begin{figure}[h!]
 	 \begin{subfigure}[b]{\linewidth}
 	 	\includegraphics[width=\linewidth]{img/spuf/adminmenu.png}

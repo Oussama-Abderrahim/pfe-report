@@ -22,74 +22,9 @@ headsepline
 \usepackage[table,xcdraw]{xcolor}
 \usepackage{array}
 \usepackage{tabu}
-%----------------------------------------------------------------------------------------
-%	CodeListing
-%----------------------------------------------------------------------------------------
+\usepackage[final]{pdfpages}
 
-\definecolor{commentcolor}{rgb}{0,0.6,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codepurple}{rgb}{0.58,0,0.82}
-\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-\definecolor{black}{rgb}{0.0,0.0,0.0}
-\definecolor{primary}{rgb}{0,0.6,0}
-\definecolor{secondary}{rgb}{0,0.6,0}
-
-\lstdefinestyle{JSON}{
-	string=[s]{"}{"},
-	stringstyle=\bfseries\color{black},
-	comment=[l]{:},
-	commentstyle=\color{secondary},
-	breakatwhitespace=false,
-    breaklines=true,                 
-    captionpos=b,                    
-    keepspaces=true,                 
-    numbers=left,                    
-    numbersep=5pt,                  
-    showspaces=false,                
-    showstringspaces=false,
-    showtabs=false,                  
-    tabsize=2
-} 
-
- 
-\lstdefinestyle{cypher}{
-    backgroundcolor=\color{backcolour},   
-    commentstyle=\color{commentcolor},
-    keywordstyle=\color{primary},
-    keywordstyle = [2]{\color{codepurple}},
-    keywordstyle = [3]{\color{black}},
-    morekeywords = [1]{MATCH, AllShortestPaths, WHERE, ALL, IN},
-    morekeywords = [2]{WITH,EXTRACT,RETURN,AND, AS},
-    morekeywords = [3]{EndNode,StartNode,RELATIONSHIPS},
-    numberstyle=\tiny\color{codegray},
-    string=[s]{\{}{\}},
-  	comment=[l]{},
-	stringstyle=\bfseries\color{black},
-    stringstyle=\color{codepurple},
-    basicstyle=\footnotesize,
-    breakatwhitespace=false,         
-    breaklines=true,                 
-    captionpos=b,                    
-    keepspaces=true,                 
-    numbers=left,                    
-    numbersep=5pt,                  
-    showspaces=false,                
-    showstringspaces=false,
-    showtabs=false,                  
-    tabsize=2
-}
-
-\lstset{style=Cypher}
-
-
-% Bibliography 
-\usepackage[backend=bibtex,sorting=none]{biblatex}
-\addbibresource{bibliographie}
-
-
-%----------------------------------------------------------------------------------------
-%	MARGIN SETTINGS
-%----------------------------------------------------------------------------------------
+\usepackage[acronym, sort=def]{glossaries}
 
 \usepackage[top=1in, bottom=1in, left=1in,right=1in,footskip=0.5in,
 headheight=15.5pt]{geometry} 
@@ -103,9 +38,6 @@ headheight=15.5pt]{geometry}
     linkcolor=black,  %choose some color if you want links to stand out
 }
 
-%----------------------------------------------------------------------------------------
-%	TEXT STYLES
-%----------------------------------------------------------------------------------------
 \usepackage{float} %used for figure placement with H as a parameter
 \usepackage{setspace}
 \usepackage{float}
@@ -114,33 +46,27 @@ headheight=15.5pt]{geometry}
 \usepackage[font=small,labelfont=bf]{caption}
 \def\figurename{\textbf{Figure }}
 
+
+\input{settings/codeListings.tex}
+
+% Bibliography 
+\usepackage[backend=bibtex,sorting=none]{biblatex}
+\addbibresource{bibliographie}
+
+
 %----------------------------------------------------------------------------------------
 %	HEADERS/FOOTERS
 %----------------------------------------------------------------------------------------
 
-\usepackage{scrlayer-scrpage}
-
-\automark{chapter}
-\automark*{section}
-\clearpairofpagestyles
-\ihead{\headmark}
-\ohead{\pagemark}
-%\renewcommand{\headrulewidth}{0.4pt}
-%\renewcommand{\footrulewidth}{0.4pt}
-
-\ifoot{}% Inner footer
-\ofoot{}% Outer footer
-
-% Pour supprimer le footer en présence des footnotes
-\newcommand{\FancyFootNote}[1]{
-    \footnote{#1}
-%    \thispagestyle{plain_nofoot} %change pagestyle for this page only.
-}
+\input{settings/HeaderAndFooter.tex}
 
 % ====================================================%
 % =================== DOCUMENT ======================%
 % ====================================================%
-\pagenumbering{roman} %numbering before main content starts
+
+\input{Parts/Glossary.tex}
+\input{Parts/Acronyms.tex}
+
 
 \title{Projet Fin Etude}
 \author{Serious Person 1, Serious Person 2}
@@ -150,34 +76,21 @@ headheight=15.5pt]{geometry}
 
 \begin{document}	
 
-\includegraphics[scale=1]{parts/pagedegarde.pdf}
+\includepdf[pages=-]{parts/pagedegarde.pdf}
 
 %	\layout			% verifier dimensions/ structure de la page
-
-%\pagestyle{fancy}	
-
 \input{Parts/Thanks.tex}
+\input{Parts/Resume.tex}
 
-\chapter*{Résumé} 
-
-Se déplacer en utilisant les transports en commun sans connaissances d'une ville est un réel besoin pour toute personne. L'informatique a su apporter plusieurs solutions à ce besoin, mais qui ne sont malheureusement pas toutes adaptées à notre ville d'Oran.\\
-Dans le but d'offrir une solution à ce problème, nous nous sommes basés sur les dernières technologies du web et de la théorie des graphes pour concevoir et implémenter une application web moderne.\\
-Cette application permettrait de représenter un réseau de transport en commun d'une ville avec toutes les informations nécessaires, et d'assister par conséquent les utilisateurs avec des suggestions de chemins optimaux selon différents critères.\\
-Nous avons abouti à une première version offrant une base solide pour d'éventuelles évolutions et de nouvelles fonctionnalités.
-
-%\chapter*{Abstract} 
-
-%\pagestyle{plain}	
-
-
-%----------------------------------------------------------------------------------------
-%	LIST OF CONTENTS/FIGURES/TABLES PAGES
-%----------------------------------------------------------------------------------------
+\pagenumbering{roman} %numbering before main content starts
 
 \pdfbookmark[0]{Contents}{contents}
-\tableofcontents % Prints the main table of contents
+\printglossary[type=\acronymtype]
+\printglossary
 
-\listoffigures % Prints the list of figures
+
+\tableofcontents % Prints the main table of contents
+\listoffigures 		 % Prints the list of figures
 
 %\listoftables % Prints the list of tables
 	
@@ -197,12 +110,6 @@ Nous avons abouti à une première version offrant une base solide pour d'évent
 \input{Parts/ChapitreDeveloppement.tex}
 %Chapitre 5
 \input{Parts/ChapitreConclusion.tex}
-
-
-\printbibliography[heading=bibintoc]
-
-\end{document}}
-
 
 \printbibliography[heading=bibintoc]
 

@@ -58,7 +58,7 @@ Les graphes sont donc des outils très puissants et largement répandus qui se p
 \item[Recherche de chemin (PathFinding)]
 un cas très fréquent. Chaque nœud représente une position et chaque arête est un chemin entre deux positions, ou en remplaçant les nœuds par des adresses et les arêtes par des routes, on obtient le graphe utilisé par les GPS ou les outils de cartographie tel que Google Map.
 La recherche de chemins est aussi utilisée en biologie, communications (réseaux de télécommunications)...etc.
-Il est courant de chercher le chemin le plus court entre deux positions dans la plupart de ces domaines, nous nous intéressons particulièrement à ce cas d'utilisation, que nous discuterons en détail dans la section suivante.
+Il est courant de chercher le chemin le plus court entre deux positions dans la plupart de ces domaines. Nous nous intéressons particulièrement à ce cas d'utilisation, que nous discuterons en détail dans la section suivante.
 
 
 \item[L'ordonnancement de tâches:]
@@ -110,7 +110,7 @@ Les algorithmes de calcul d'itinéraire origine-destination(s) sont des algorith
 Malgré leur complexité polynomiale, ces algorithmes peuvent engendrer des temps de calculs importants pour des graphes de grande taille, ce qui a suscité le développement des techniques d'accélération (visant souvent l'optimalité plutôt qu'un meilleur chemin) comme l'algorithme A* qui est le plus célèbre, le parcours en largeur/profondeur, le parcours bidirectionnel, ainsi que les méthodes de pré-traitement (pré-calculer les meilleurs chemins dans tout les nœuds par exemple).
 
 Dans notre cas, et vu que le graphe de la première version est statique (ne changera pas après avoir calculé le chemin), le choix le plus pertinent serait l'\textbf{algorithme A*} \cite{Astar}.
-Cependant, ce dernier nécessite une fonction heuristique\FancyFootNote{Heuristique: une méthode de calcul qui fournit rapidement une solution réalisable, pas nécessairement optimale ou exacte, pour un problème d'optimisation difficile.} pour estimer le meilleur nœud suivant, ce qui sera difficile à concevoir sans une bonne connaissance de notre problème et dans les limites du temps de ce projet.
+Cependant, ce dernier nécessite une fonction heuristique\footnote{Heuristique: une méthode de calcul qui fournit rapidement une solution réalisable, pas nécessairement optimale ou exacte, pour un problème d'optimisation difficile.} pour estimer le meilleur nœud suivant, ce qui sera difficile à concevoir sans une bonne connaissance de notre problème et dans les limites du temps de ce projet.
 De ce fait, nous avons opté pour une approche plus simple utilisant l'algorithme BFS qui est simple à implémenter et à adapter à nos besoins, pour ainsi avoir rapidement une version minimale de l'application, cet algorithme sera présenté dans la section suivante.\newline
 Nous avons pris en compte la possibilité de changer l'algorithme de recherche dans de futures version de l'application, en prenant une structure plus flexible qui sera expliquée dans le chapitre suivant.
 
@@ -180,7 +180,7 @@ Nous remercions encore l'ETO pour leur assistance, néanmoins ces données doive
 	\begin{itemize}
 		\item Malgré l'absence de données officielles, nous avons réussi à trouver sur le net différentes sources supplémentaires pouvant nous aider pour compléter nos données : notamment des listes de différents lieux de la ville d'Oran contenant des noms complets et des adresses permettant de compléter les données de l'ETO.
 		\item Le site officiel de la Setram (Société d'Exploitation des Tramways) a été suffisant pour récupérer toutes les données concernant la ligne du Tramway, ses horaires et même les temps d'attente pour chaque arrêt.
-		\item Pour assurer l'intégrité des données et leurs mise à jour constantes, une des solutions proposées est d'ajouter une fonctionnalité permettant à des utilisateurs ou à une autorité de signaler un changement de lignes, une estimation de temps trop imprécise ou suggérer des chemins que l'application n'a pas calculé, ceci permettra de faire fonctionner et évoluer cette application à l'aide de \emph{crowdsourcing}\FancyFootNote{crowdsourcing: ou production participative, c'est l'utilisation de connaissance d'un grand nombre de personnes comme une communauté d'internautes ou des utilisateurs d'un produit, pour réaliser une tâche traditionnellement faite par des employés.} seulement.
+		\item Pour assurer l'intégrité des données et leurs mise à jour constantes, une des solutions proposées est d'ajouter une fonctionnalité permettant à des utilisateurs ou à une autorité de signaler un changement de lignes, une estimation de temps trop imprécise ou suggérer des chemins que l'application n'a pas calculé, ceci permettra de faire fonctionner et évoluer cette application à l'aide de \emph{crowdsourcing}\footnote{crowdsourcing: ou production participative, c'est l'utilisation de connaissance d'un grand nombre de personnes comme une communauté d'internautes ou des utilisateurs d'un produit, pour réaliser une tâche traditionnellement faite par des employés.} seulement.
 	\end{itemize}
 
 \subsection{Traitement de données}
@@ -206,11 +206,11 @@ Après avoir présenté quelques généralités sur les graphes, et détaillé l
 \subsection{Différentes approches pour stocker le graphe}
 \begin{itemize}
 	\item \textbf{Outils Open Source (OpenTripPlanner)} : 
-	      Il existe plusieurs outils qui proposent ce service, en particulier OpenTripPlanner\cite{OpenTripPlanner} : un projet Open Source qui permet de créer un réseau routier à partir de données GTFS \FancyFootNote{GTFS (General Transit Feed Specification ou spécification générale pour les flux relatifs aux transports en commun) : est un format informatique standardisé pour communiquer des horaires de transports en commun et les informations géographiques associées.}, ces données seront ensuite intégrées avec OpenStreetMap et stockées sur le serveur, qui exposera une API REST pour questionner le serveur : recherche de Chemin, possibilité d'intégrer les horaires, ...etc.
+	      Il existe plusieurs outils qui proposent ce service, en particulier OpenTripPlanner\cite{OpenTripPlanner} : un projet Open Source qui permet de créer un réseau routier à partir de données GTFS \footnote{GTFS (General Transit Feed Specification ou spécification générale pour les flux relatifs aux transports en commun) : est un format informatique standardisé pour communiquer des horaires de transports en commun et les informations géographiques associées.}, ces données seront ensuite intégrées avec OpenStreetMap et stockées sur le serveur, qui exposera une API REST pour questionner le serveur : recherche de Chemin, possibilité d'intégrer les horaires, ...etc.
 	      		
 	      Vu la nature un peu particulière du réseau d'Oran, et la non-disponibilité des données (Données officielles des lignes et données (adresses) sur OpenStreetMap), cette solution ne sera pas envisagée. 
 	      Cependant, l'application prendra une architecture flexible permettant d'intégrer, au futur, de tels outils rapidement si une solution est possible.
-	\item \textbf{Représentation indépendante de chaque ligne en tables SQL}
+	\item \textbf{Représentation indépendante de chaque ligne en tables \Gls{SQL}}
 	      Une des approches considérées était de représenter chaque ligne indépendamment, l'algorithme du service aura à chercher des points de liaison entre ces lignes.
 	      L'avantage principal de cette approche est la facilité de manipulation de ces données de lignes, en ajoutant/supprimant des lignes sans conflit.
 	      Cette approche présente par contre un inconvénient majeur au niveau des performances, vu que l'utilisation d'un algorithme de PathFinding requiert l'utilisation de plusieurs tables (lignes) à chaque requête.

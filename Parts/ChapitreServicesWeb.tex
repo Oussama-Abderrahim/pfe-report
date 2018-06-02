@@ -14,12 +14,12 @@ Chacune de ces deux technologies avait des objectifs différents, et évoluait v
 
 \section{Définition}
 Un service web est un programme dynamique qui utilise le schéma Client-Serveur pour permettre la communication et l'échange de données entre des applications à travers un réseau (Intranet ou Internet).
-Il utilise un système de messagerie standard\FancyFootNote{Protocole standard: un protocole standard est un protocole formalisé (fixé) accepté par une autorité (comme la W3C dans le web) ou par la plupart des parties qui implémentent ce protocole.} comme XML mais n'est lié à aucun système d'exploitation ou langage de programmation.
+Il utilise un système de messagerie standard\footnote{Protocole standard: un protocole standard est un protocole formalisé (fixé) accepté par une autorité (comme la W3C dans le web) ou par la plupart des parties qui implémentent ce protocole.} comme \acrshort{XML} mais n'est lié à aucun système d'exploitation ou langage de programmation.
 
 Voici quelques autres définitions :
 \begin{enumerate}
 	\item W3C :
-	      un service web est un composant logiciel conçu pour permettre l'interaction interopérable entre machines à travers un réseau. Il a une interface décrite en un format compris par une machine (spécifiquement WSDL). Les autres systèmes interagissent avec le service web d'une manière définie par sa description en utilisant des messages SOAP, généralement transmis en utilisant HTTP avec un XML sérialisé en parallèle avec d'autres standard du web\cite{W3}.
+	      un service web est un composant logiciel conçu pour permettre l'interaction interopérable entre machines à travers un réseau. Il a une interface décrite en un format compris par une machine (spécifiquement \acrshort{WSDL}). Les autres systèmes interagissent avec le service web d'une manière définie par sa description en utilisant des messages SOAP, généralement transmis en utilisant HTTP avec un XML sérialisé en parallèle avec d'autres standard du web\cite{W3}.
 	\item Wikipedia : un service web (ou service de la toile) est un protocole d'interface informatique de la famille des technologies web permettant la communication et l'échange de données entre applications et systèmes hétérogènes dans des environnements distribués. Il s'agit donc d'un ensemble de fonctionnalités exposées sur internet ou sur un intranet, par et pour des applications ou machines, sans intervention humaine, de manière synchrone ou asynchrone. Le protocole de communication est défini dans le cadre de la norme SOAP dans la signature du service exposé (WSDL). Actuellement, le protocole de transport est essentiellement HTTP(S).
 \end{enumerate}
 
@@ -95,7 +95,7 @@ SOAP s'appuie donc sur des standards très connus, ce qui lui a donné une grand
 \subsection{Structure de message SOAP}
 Un message SOAP est un document XML contenant les éléments suivants \cite{refTutorialPointsSOAP} : 
 \begin{itemize}
-	\item \textbf{Enveloppe} : définit le début et fin du message, elle contient la spécification des espaces de désignation (namespace\FancyFootNote{Un namespace est un préfixe (chaine de caractères) identifiant de manière unique la signification d'un terme, ou une portion de code en programmation, pour éviter toute ambiguïté.}) et le codage des données. c'est un élément obligatoire.
+	\item \textbf{Enveloppe} : définit le début et fin du message, elle contient la spécification des espaces de désignation (namespace\footnote{Un namespace est un préfixe (chaine de caractères) identifiant de manière unique la signification d'un terme, ou une portion de code en programmation, pour éviter toute ambiguïté.}) et le codage des données. c'est un élément obligatoire.
 	\item \textbf{Header (Entête)} : contient des informations ou options supplémentaires pour le traitement du message comme l'encodage, elle est optionnelle.
 	\item \textbf{Body (Corps)} : contient les données XML du message à transporter, un élément obligatoire.
 	\item \textbf{Fault (Gestion d'erreurs)} : fournit des informations sur les erreurs qui peuvent se produire durant traitement de l'information, un élément optionnel.
@@ -142,7 +142,7 @@ Les services web emploient un ensemble de technologies qui ont été conçues en
 	\item [Couche communication (Messaging)] : cette couche est responsable de la représentation et formatage des messages échangés entre applications, afin d'assurer qu'ils soient compris par chaque extrémité. Elle utilise principalement XML (ou un dérivé de ce dernier comme SOAP dont l'enveloppe est en XML), mais peut aussi utiliser d'autres formats standard suivant les principes, d'autres services peuvent envoyer en simple texte, JSON ou XML par exemple.
 	\item[Couche description de service] : cette couche est responsable de la description de l'interface publique du service web, cette description est réalisée en utilisant le WSDL.\newline
 	      \texttt{WSDL (Web Services Description Language)} : c'est un langage de description standard basé sur XML, développé conjointement par Microsoft et IBM. Il permet de décrire différentes informations sur le service web telle que la liste de ses fonctions, comment interagir avec eux et comment les invoquer, les ports et protocoles utilisés...etc.
-	\item[Couche découverte de service] : cette couche est responsable de centraliser les services dans un registre commun, et fournir des fonctionnalités de recherche/publication de services web. Ce service est assuré par l'annuaire UDDI.\newline
+	\item[Couche découverte de service] : cette couche est responsable de centraliser les services dans un registre commun, et fournir des fonctionnalités de recherche/publication de services web. Ce service est assuré par l'annuaire \acrshort{UDDI}.\newline
 	      \texttt{UDDI (Universal Description, Discovery and Integration)} : c'est un annuaire de services web. Ce protocole, basé sur XML, comporte deux sections en WSDL : les descriptions de ces services et des définitions de ports pour manipuler et rechercher dans l'annuaire.
 \end{description}
 
@@ -151,7 +151,7 @@ SOAP est très souvent utilisé avec l'architecture orientée service pour la co
 \subsection{Inconvénients}
 Bien que SOAP, et plus en général l'architecture SOA, soit une solution standardisée pour la création de services web, on peut noter certains inconvénients :
 \begin{itemize}
-	\item \textbf{Lourdeur:} l'utilisation d'XML et la structure des messages SOAP sont assez verbeuse, XML nécessite aussi d'être parsé\FancyFootNote{Parser XML: Lire le document XML et identifier les fonctions de chaque pièce de ce document, tout en vérifiant sa syntaxe.}, ce qui peut rendre SOAP moins rapide comparé aux autres solutions lorsqu'il nécessite des communications répétées avec le serveur.
+	\item \textbf{Lourdeur:} l'utilisation d'XML et la structure des messages SOAP sont assez verbeuse, XML nécessite aussi d'être parsé\footnote{Parser XML: Lire le document XML et identifier les fonctions de chaque pièce de ce document, tout en vérifiant sa syntaxe.}, ce qui peut rendre SOAP moins rapide comparé aux autres solutions lorsqu'il nécessite des communications répétées avec le serveur.
 	\item \textbf{Limité uniquement à XML:} les messages SOAP et WSDL (XML) sont fortement typés. Bien que ce soit un point fort de XML, ce n'est pas très adapté pour des systèmes faiblement couplés. Changer le moindre paramètre (par exemple, changer un réel en entier) induit un changement de la signature du type et imposera donc à tous les clients de s'adapter.
 	\item \textbf{Différents niveaux de support:} on peut trouver SOAP presque automatisé dans certains langages et IDEs (Java, PHP,...etc), mais beaucoup moins supporté dans d'autres, notamment dans les langages au typage dynamique tel que Python et Javascript.
 \end{itemize}
@@ -174,7 +174,7 @@ Un serveur qui implémente REST fournit et contrôle l'accès à des ressources 
 Un système basé sur REST peut être implémenté dans n'importe quel réseau et architecture disponible en minimisant la complexité de l'implémentation, de la communication et de la distribution\cite{richardson2008restful}.
 
 \subsection{Les ressources}
-Une ressource est du contenu identifié par des URI \FancyFootNote{URI (Uniform Resource Identifier): une chaine de caractère servant à identifier une ressource en ayant une certaine hiérarchie, par exemple on peut représenter les livres de catégorie Informatique par "/livre/informatique/"} qui peut être un fichier texte, page HTML, image, vidéos...etc.
+Une ressource est du contenu identifié par des URI \footnote{URI (Uniform Resource Identifier): une chaine de caractère servant à identifier une ressource en ayant une certaine hiérarchie, par exemple on peut représenter les livres de catégorie Informatique par "/livre/informatique/"} qui peut être un fichier texte, page HTML, image, vidéos...etc.
 REST fournit au client l'accès aux ressources. Il utilise diverses représentations pour représenter une ressource comme du texte brut, JSON et XML. Aujourd'hui JSON est le format le plus populaire utilisé dans les services REST.
 
 \subsection{Service web full-REST}
@@ -221,7 +221,7 @@ L'architecture REST se résume en 5 règles à suivre dans implémentation \cite
 	L'exemple dans la figure \ref{fig:JSONXML} décrit l'utilisation d'un attribut pour spécifier le lien vers une autre ressource.
 	
 	\item \textbf{Règle 5 :} un paramètre comme jeton d'authentification.\newline
-	      Pour authentifier une requête, les APIs non-triviales utilisent le jeton d'authentification\FancyFootNote{Un jeton (token) est généralement une suite de caractères uniques à l'utilisateur, par laquelle le serveur peut identifier et ainsi authentifier ses requêtes.}. Chaque requête est envoyée avec un jeton passé en paramètre ou dans l'entête HTTP. Ce jeton temporaire peut être obtenu en envoyant une première requête authentification puis en l'incluant dans les requêtes suivantes.
+	      Pour authentifier une requête, les APIs non-triviales utilisent le jeton d'authentification\footnote{Un jeton (token) est généralement une suite de caractères uniques à l'utilisateur, par laquelle le serveur peut identifier et ainsi authentifier ses requêtes.}. Chaque requête est envoyée avec un jeton passé en paramètre ou dans l'entête HTTP. Ce jeton temporaire peut être obtenu en envoyant une première requête authentification puis en l'incluant dans les requêtes suivantes.
 \end{itemize}
 \subsection{Le format JSON}
 JSON (JavaScript Object Notation) est un format léger d'échange de données. Il est basé sur un sous-ensemble du langage de programmation Javascript. C'est un format texte indépendant de tout langage.
@@ -315,11 +315,12 @@ REST devient de plus en plus utilisé dans les entreprises aujourd'hui, les prin
 
 \subsection{Comparaison avec SOAP}
 On ne peut comparer directement REST et SOAP, le premier étant un style architectural et le deuxième un protocole. Dans ce cas nous comparons plutôt les services web RESTful avec les services web utilisant SOAP, WSDL et UDDI.
-Nous résumons les plus importantes différences dans la table \ref{tableSoapVsRest}.\newline\newline
+Nous résumons les plus importantes différences dans la table \ref{tableSoapVsRest}.
 %\begin{itemize}
 %	\item SOAP est strictement typé et a une spécification standard plus stricte pendant que REST donne le concept et est moins restreint dans l'implementation 
 %	\item SOAP a une gestion des erreurs par défaut ( vu dans son enveloppe ), expliquer utilité pour un exemple de transaction bancaire
 %\end{itemize}
+\begin{table}[h!]
 \begin{tabu} to \textwidth {| X[l] | X[l] |}
 \hline
 \rowcolor[HTML]{EFEFEF} 
@@ -335,7 +336,9 @@ SOAP & REST \\
    Les données dans un service REST peuvent avoir n'importe quel format: texte, XML, JSON ..etc, voire plusieurs selon le besoin du client, donnant une meilleure flexibilité et liberté, et des alternatives plus légères que le XML.\\
    \hline
 \end{tabu}
-   \label{tableSoapVsRest}
+     \caption{Comparaison entre SOAP et REST.}
+     \label{tableSoapVsRest}
+\end{table}
 
 On note que l'avantage principal du protocole SOAP est sa spécification standard en XML qui le rend fiable à long terme. Cependant, les services REST peuvent aisément remédier à cet inconvénient avec une bonne documentation des APIs et un respect de certaines bonnes pratiques.
 \newline
@@ -349,7 +352,7 @@ SOAP et REST ne sont pas les seules technologies autour des services web, nous c
 %
 %\begin{description}
 %\item[XML-RPC:] c'est un protocole RPC
-% \FancyFootNote{\textbf{RPC }(Remote Procedure Call): c'est un protocole qu'un programme peut utiliser pour demander un service d'un autre programme situé dans une machine distante sans avoir à comprendre son système de façon similaire à un appel de fonction locale.}
+% \footnote{\textbf{RPC }(Remote Procedure Call): c'est un protocole qu'un programme peut utiliser pour demander un service d'un autre programme situé dans une machine distante sans avoir à comprendre son système de façon similaire à un appel de fonction locale.}
 %qui utilise XML pour encoder ses messages et les envoyer par HTTP.
 %C'est une deuxième manière plus simple d'implémenter RPC en utilisant XML, SOAP étant la première. Nous ne considérons pas ce protocole car malgré sa simplicité, il est moins flexible nécessitant une dépendance forte entre le client et serveur, contrairement aux clients REST qui sont \emph{faiblement couplés}.
 %Il existe aussi JSON-RPC qui est similaire à XML-RPC \cite{XMLRPC}.
