@@ -1,13 +1,15 @@
 \renewcommand\labelitemi{-}
 \renewcommand\labelitemii{$\circ$}
-\chapter{Introduction générale}
+\renewcommand{\thesection}{\arabic{section}}
+\chapter*{Introduction générale}
+\addcontentsline{toc}{chapter}{Introduction générale}
 
 En 2021, la ville d'Oran accueillera les jeux méditerranéens. Hormis l'aspect sportif, cette perspective permettra d'améliorer plusieurs problèmes, parmi les plus importants: l'efficacité des transports en commun.\\
 En effet, il est actuellement très difficile de se déplacer de manière simple en utilisant les transports en commun, et cela pour plusieurs raisons:
 \begin{itemize}
 	\item Un manque important d'informations sur les lignes, leurs itinéraires, leurs fréquences...etc.
 	\item Un manque d'informations sur les stations (noms usuels).
-	\item Un manque d'informations sur les \gls{coordGPS}, noms de rues...etc.
+	\item Un manque d'informations sur les \gls{coordGPS} \gls{GPS}, noms de rues...etc.
 	\item Le partage des lignes entre deux organisations indépendantes de transports: public et privé.
 \end{itemize}
 Malgré l'existence de plusieurs solutions de \gls{cartographie} telles que : \gls{OpenStreetMap} et \gls{GoogleMaps}, aucune n'est satisfaisante pour nos besoins, et cela soit à cause de leur fonctionnement (pas de prise en compte des transports en commun), ou à cause de leur manque d'exactitude (noms de rues manquants ou pas à jour, sens de circulation non renseignés...etc). Ces facteurs contribuent encore à la confusion des usagers et touristes souhaitant utiliser ces transports.
@@ -110,7 +112,7 @@ Ce projet sera décomposé en quatre parties :
 \begin{description}
 	\item[Conception et stockage des données:] nous étudierons le problème pour enfin proposer une bonne représentation des données que nous pourrons facilement utiliser dans la recherche du chemin.
 
-	\item[Service web:] en ce moment, les services web sont une tendance dans le domaine du développement web, presque indispensable dans toute application non triviale: nous commencerons donc par créer une \acrshort{API} \acrshort{REST} complète de l'application afin qu'elle soit facilement extensible et portable sur différentes \glspl{plateforme} par la suite.
+	\item[Service web:] en ce moment, les services web sont une tendance dans le domaine du développement web, presque indispensable dans toute application non triviale: nous commencerons donc par créer une \Gls{API} REST complète de l'application afin qu'elle soit facilement extensible et portable sur différentes \glspl{plateforme} par la suite.
 	
 	\item[Interface d'administration:] implémenter une application indépendante qui va faciliter la  communication avec l'API pour l'ajout et modification des lignes de transport et autres informations nécessaires à l'application.
 	
@@ -124,12 +126,14 @@ L'architecture de l'application devra être suffisamment flexible pour pouvoir a
 
 \section{Plan du rapport}
 
-Après ce premier chapitre où nous avons présenté les objectifs du projet et la solution proposée;
+Après cette introduction où nous avons présenté les objectifs du projet et la solution proposée;
 
-Nous présenterons tout au long du chapitre 2 ce qu'est un service Web, ses caractéristiques et avantages. Nous explorerons ensuite deux manières concurrentes pour implémenter des services web : \acrshort{SOAP} et REST pour débattre brièvement les points forts de chacune afin de justifier finalement notre décision d'utiliser REST.
+Nous présenterons tout au long du chapitre 1 ce qu'est un service Web, ses caractéristiques et avantages. Nous explorerons ensuite deux manières concurrentes pour implémenter des services web, à savoir : SOAP et REST. Pour débattre brièvement les points forts de chacune afin de justifier finalement notre décision d'utiliser REST.
 
-Le chapitre 3 présentera en première partie les notions requises relatives aux graphes et à la recherche de chemins, et traitera ensuite les différents détails concernant la représentation et le stockage des données de l'application. Nous parlerons également du processus de la collecte de données et du résultat obtenu.
+Le chapitre 2 présentera en première partie les notions requises relatives aux graphes et à la recherche de chemins, et traitera ensuite les différents détails concernant la représentation et le stockage des données de l'application. Nous parlerons également du processus de la collecte de données et du résultat obtenu.
 
-Nous présenterons ensuite dans le chapitre 4 les différentes technologies que nous avons utilisé. Nous expliquerons aussi la structure globale de l'application et les modèles de données que nous avons choisi. Ces détails seront accompagnés par des aperçus des interfaces des deux applications (client et administration).
+Nous présenterons ensuite dans le chapitre 3 les différentes technologies que nous avons utilisé. Nous expliquerons aussi la structure globale de l'application et les modèles de données que nous avons choisi. Ces détails seront accompagnés par des aperçus des interfaces des deux applications (client et administration).
 
-Nous évaluerons enfin dans le chapitre 5 l'avancement du projet, ainsi que les futures possibilités de ce dernier.
+Nous évaluerons enfin dans le chapitre 4 l'avancement du projet, ainsi que les futures possibilités de ce dernier.
+
+\renewcommand{\thesection}{\thechapter.\arabic{section}}

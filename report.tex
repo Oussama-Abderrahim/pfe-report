@@ -8,6 +8,7 @@ headsepline
 \usepackage[T1]{fontenc}			% Pour l'encodage de caracteres
 \usepackage[french]{babel}
 
+
 \usepackage{lmodern} % Pour changer le pack de police
 \usepackage{makeidx}
 \usepackage{layout}
@@ -24,7 +25,7 @@ headsepline
 \usepackage{tabu}
 \usepackage[final]{pdfpages}
 
-\usepackage[acronym, sort=def]{glossaries}
+\usepackage[sort=use]{glossaries}
 
 \usepackage[top=1in, bottom=1in, left=1in,right=1in,footskip=0.5in,
 headheight=15.5pt]{geometry} 
@@ -80,13 +81,14 @@ headheight=15.5pt]{geometry}
 
 %	\layout			% verifier dimensions/ structure de la page
 \input{Parts/Thanks.tex}
+%\chapter*{Remerciements et dédicaces}
 \input{Parts/Resume.tex}
 
 \pagenumbering{roman} %numbering before main content starts
 
 \pdfbookmark[0]{Contents}{contents}
-\printglossary[type=\acronymtype]
-\printglossary
+%\printglossary[type=\acronymtype]
+\printglossary[type=main, title={Glossaire et acronymes}]
 
 
 \tableofcontents % Prints the main table of contents

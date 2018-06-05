@@ -1,57 +1,87 @@
 \makeglossaries
 
+%from documentation
+%\newacronym[⟨key-val list⟩]{⟨label ⟩}{⟨abbrv ⟩}{⟨long⟩}
+%above is short version of this
+% \newglossaryentry{⟨label ⟩}{type=\acronymtype,
+% name={⟨abbrv ⟩},
+% description={⟨long⟩},
+% text={⟨abbrv ⟩},
+% first={⟨long⟩ (⟨abbrv ⟩)},
+% plural={⟨abbrv ⟩\glspluralsuffix},
+% firstplural={⟨long⟩\glspluralsuffix\space (⟨abbrv ⟩\glspluralsuffix)},
+% ⟨key-val list⟩}
+
 \newglossaryentry{cartographie}
 {
     name=cartographie,
-    description={}
+    description={Une discipline qui s'occupe de la conception, de la production, de la diffusion et de l'étude des cartes}
 }
  
+ \newglossaryentry{GPS}
+{
+    name=GPS,
+    description={Un Global Positioning System (GPS) est un système de géolocalisation par satellite}
+}
+
 \newglossaryentry{coordGPS}
 {
-    name=coordonnées GPS,
-    description={sigle signifiant Global Positioning System. Système de géolocalisation par satellite}
+    name=coordonnées,
+    description={Les coordonnées géographiques permettent de localiser un lieu sur la Terre grâce à trois mesures : l'altitude, la longitude et la latitude. Les coordonnées géographiques sont notamment utilisées par les GPS}
 }
 
 \newglossaryentry{OpenStreetMap}
 {
     name=OpenStreetMap,
-    description={est un projet international fondé en 2004 dans le but de créer une carte libre du monde. Il collecte des données dans le monde entier sur les routes, voies ferrées, les rivières, les forêts, les bâtiments …}
+    description={OpenStreetMap est un projet international fondé en 2004 dans le but de créer une carte libre du monde. Il collecte des données dans le monde entier sur les routes, voies ferrées, les rivières, les forêts, les bâtiments …}
 }
 
 \newglossaryentry{GoogleMaps}
 {
     name=Google Maps,
-    description={}
+    description={Google Maps est une application pour la manipulation de données géographiques, permettant entre autre, d'afficher les cartes du monde entier et de tracer des itinéraires entre deux points par exemple}
 }
 
 \newglossaryentry{plateforme}
 {
     name=plateforme,
-    description={}
+    description={une plateforme est un environnement permettant la gestion et/ou l'utilisation de logiciels et applications, elle peut désigner un système d'exploitation, un environnement d'exécution, un serveur...etc}
+}
+
+\newglossaryentry{jeton}
+{
+    name=jeton d'authentification,
+    description={Dans le cas des APIs, un jeton (token) est généralement une suite de caractères uniques à l'utilisateur, par laquelle le serveur peut identifier et ainsi authentifier ses requêtes.}
+}
+
+\newglossaryentry{crowdsourcing}
+{
+	name=crowdsourcing,
+	description={Le crowdsourcing (ou la production participative) c'est l'utilisation de connaissance d'un grand nombre de personnes comme une communauté d'internautes ou des utilisateurs d'un produit, pour réaliser une tâche traditionnellement faite par des employés.}
 }
 
 \newglossaryentry{SQL}
 {
     name=SQL,
-    description={}
+    description={SQL (Structured Query Language) est un langage informatique normalisé servant à exploiter des bases de données relationnelles}
 }
 
 \newglossaryentry{NoSQL}
 {
     name=NoSQL,
-    description={}
+    description={NoSQL désigne une famille SGBD qui s'écarte du paradigme classique des bases de données relationnelles}
 }
 
 \newglossaryentry{JavaScript}
 {
     name=JavaScript,
-    description={}
+    description={Javascript (JS) est un langage de programmation de scripts principalement employé dans les pages web interactives mais aussi pour les serveurs actuellement}
 }
 
 \newglossaryentry{SPA}
 {
     name=Single Page Application,
-    description={}
+    description={Une Single Page Application (SPA) est une application web accessible via une page web unique, elle interagit avec l'utilisateur en modifiant dynamiquement la page sans avoir à recharger la page. Ceci lui donne une utilisation fluide et similaire à des logiciels de bureau}
 }
 
 \newglossaryentry{OpenSource}
@@ -63,5 +93,65 @@
 \newglossaryentry{diagrammeDeSequence}
 {
     name=diagramme de séquence,
-    description={}
+    description={Un diagramme de séquences est la représentation graphique des interactions entre les acteurs et le système selon un ordre chronologique}
+}
+
+\newglossaryentry{framework}
+{
+    name=framework,
+    description={Un framework est une sorte d'infrastructure de développement, il désigne un ensemble cohérent de composants logiciels structurels qui sert à créer les fondations ainsi que les grandes lignes de tout ou d'une partie d'un logiciel ou application}
+}
+
+\newglossaryentry{librairie}
+{
+    name=bibliothèque,
+    description={En informatique, une bibliothèque logicielle est une collection de fonctions, qui peuvent être déjà compilées et prêtes à être utilisées par des programmes}
+}
+
+\newglossaryentry{API}
+{
+    name=API,
+    description={une API (Application Programming Interface) est un ensemble de règles et spécifications qu'un programme peut suivre pour accéder et faire usage des services et des ressources fournis par un autre programme particulier qui implémente cette API}
+}
+
+\newglossaryentry{SGBDg}
+{
+    name=SGBD,
+    description={Système de Gestion de Bases de Données}
+}
+
+\newglossaryentry{XMLg}
+{
+    name={XML},
+    description={eXtensible Markup Language}
+}
+
+\newglossaryentry{WSDLg}
+{
+    name=WSDL,
+    description={Web Services Description Langage}
+}
+
+\newglossaryentry{UDDIg}
+{
+    name=UDDI,
+    description={Universal Description, Discovery and Integration}
+}
+
+\newglossaryentry{URLg}
+{
+    name=URL,
+    description={Uniform Resource Locator}
+}
+
+\newglossaryentry{JSONg}
+{
+    name=JSON,
+    description={JavaScript Object Notation}
+}
+
+\newglossaryentry{CSVg}
+{
+    name=CSV,
+    description={Comma Separated Values}
 }
