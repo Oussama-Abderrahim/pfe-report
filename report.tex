@@ -10,8 +10,8 @@ headsepline
 
 
 \usepackage{lmodern} % Pour changer le pack de police
-\usepackage{makeidx}
-\usepackage{layout}
+\usepackage{makeidx} % For table of content
+\usepackage{layout}  % For \Layout comment 
 
 \usepackage{graphicx}   % For images 
 \usepackage{subcaption} % for multiple image caption
@@ -20,26 +20,26 @@ headsepline
 \usepackage{listings} 	% for Code listing
 \usepackage{csquotes}
 
-\usepackage[table,xcdraw]{xcolor}
+\usepackage[table,xcdraw]{xcolor}   % For arrays
 \usepackage{array}
 \usepackage{tabu}
-\usepackage[final]{pdfpages}
+\usepackage[final]{pdfpages}        % To Include PDFs
 
-\usepackage[sort=use]{glossaries}
+\usepackage[sort=use]{glossaries}   % For glossary
 
 \usepackage[top=1in, bottom=1in, left=1in,right=1in,footskip=0.5in,
 headheight=15.5pt]{geometry} 
 
-% ========= FOR LINKS ============= % 
-\usepackage{color}   %May be necessary if you want to color links
-\usepackage{hyperref}	% clickable links 
+% ========= FOR LINKS IN TABLE OF CONTENT ============= % 
+\usepackage{color}      % May be necessary if you want to color links
+\usepackage{hyperref}   % clickable links 
 \hypersetup{
-    colorlinks=true, %set true if you want colored links
-    linktoc=all,     %set to all if you want both sections and subsections linked
-    linkcolor=black,  %choose some color if you want links to stand out
+    colorlinks=true,    %set true if you want colored links
+    linktoc=all,        %set to all if you want both sections and subsections linked
+    linkcolor=black,    %choose some color if you want links to stand out
 }
 
-\usepackage{float} %used for figure placement with H as a parameter
+\usepackage{float}      %used for figure placement with H as a parameter
 \usepackage{setspace}
 \usepackage{float}
 \usepackage{enumerate}
@@ -48,25 +48,17 @@ headheight=15.5pt]{geometry}
 \def\figurename{\textbf{Figure }}
 
 
-\input{settings/codeListings.tex}
 
 % Bibliography 
 \usepackage[backend=bibtex,sorting=none]{biblatex}
 \addbibresource{bibliographie}
 
-
-%----------------------------------------------------------------------------------------
-%	HEADERS/FOOTERS
-%----------------------------------------------------------------------------------------
-
+\input{settings/codeListings.tex}   % Settings for inserting code in Latex
 \input{settings/HeaderAndFooter.tex}
 
-% ====================================================%
-% =================== DOCUMENT ======================%
-% ====================================================%
 
-\input{Parts/Glossary.tex}
-\input{Parts/Acronyms.tex}
+\input{Parts/Glossary.tex}      % All terms definitions
+\input{Parts/Acronyms.tex}      % All Acronyms definitions
 
 
 \title{Projet Fin Etude}
@@ -77,24 +69,27 @@ headheight=15.5pt]{geometry}
 
 \begin{document}	
 
+%----------------------------------------------------------------------------------------
+%	REPORT CONTENT - HEADERS/INTRODUCTION 
+%----------------------------------------------------------------------------------------
+
 \includepdf[pages=-]{parts/pagedegarde.pdf}
 
-%	\layout			% verifier dimensions/ structure de la page
+%	\layout			% Décommenter pour verifier dimensions/ structure de la page
+
 \input{Parts/Thanks.tex}
-%\chapter*{Remerciements et dédicaces}
 \input{Parts/Resume.tex}
 
-\pagenumbering{roman} %numbering before main content starts
+\pagenumbering{roman}   % numbering before main content starts
 
-\pdfbookmark[0]{Contents}{contents}
-%\printglossary[type=\acronymtype]
+\pdfbookmark[0]{Contents}{contents} % Add an item to PDF bookmarks for PDF Readers
+
 \printglossary[type=main, title={Glossaire et acronymes}]
 
 
-\tableofcontents % Prints the main table of contents
-\listoffigures 		 % Prints the list of figures
-
-%\listoftables % Prints the list of tables
+\tableofcontents    % Prints the main table of contents
+\listoffigures      % Prints the list of figures
+%\listoftables      % Prints the list of tables
 	
 %----------------------------------------------------------------------------------------
 %	REPORT CONTENT - CHAPTERS
@@ -102,15 +97,10 @@ headheight=15.5pt]{geometry}
 
 \pagenumbering{arabic} %reset numbering to normal for the main content
 	
-% Chapitre1/intro
 \input{Parts/ChapitreIntroduction.tex}
-%Chapitre 2	
 \input{Parts/ChapitreServicesWeb.tex}
-%Chapitre 3
 \input{Parts/ChapitreGraphes.tex}
-%Chapitre 4
 \input{Parts/ChapitreDeveloppement.tex}
-%Chapitre 5
 \input{Parts/ChapitreConclusion.tex}
 
 \printbibliography[heading=bibintoc]
